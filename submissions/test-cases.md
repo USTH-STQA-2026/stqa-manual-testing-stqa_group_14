@@ -123,14 +123,24 @@
 
 ## Bước 2: Test Cases
 
-<!-- Tự tổ chức bảng test case: có thể chia nhóm theo chức năng, theo REQ, hoặc theo luồng nghiệp vụ — tùy nhóm quyết định. -->
-<!-- Mỗi TC phải ánh xạ ngược về ít nhất 1 dòng trong bảng IDM ở Bước 1. -->
+## Test Cases — REQ-05: Trả sách / Return Book
 
 | Mã TC | Mục tiêu kiểm thử | Tiền điều kiện | Bước thực hiện | Dữ liệu đầu vào | Kết quả mong đợi | REQ | Kỹ thuật |
-|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
-| | | | | | | | |
+|---|---|---|---|---|---|---|---|
+| TC-05-01 | Trả sách đang được thành viên mượn | Thành viên đã đăng nhập. Thành viên đang mượn `BOOK001` với phiếu `RECORD001` | 1. Mở trang phiếu mượn. 2. Chọn phiếu `RECORD001`. 3. Nhấn nút Trả sách. 4. Xác nhận trả sách. | `RECORD001`, `BOOK001` | Trả sách thành công. Trạng thái sách chuyển sang `"Có sẵn"`. Trạng thái phiếu chuyển sang `"Đã trả"`. | REQ-05 | EP |
+| TC-05-02 | Không cho trả sách mà thành viên không mượn | Thành viên đã đăng nhập. `BOOK009` không nằm trong danh sách sách đang mượn của thành viên | 1. Mở trang phiếu mượn. 2. Thử trả sách/phiếu không thuộc thành viên hiện tại. 3. Nhấn Trả sách. | `RECORD999`, `BOOK009` | Hệ thống từ chối trả sách. Không thay đổi trạng thái sách. | REQ-05 | EP |
+| TC-05-03 | Trả sách đúng hạn | Thành viên đang mượn `BOOK001`. `returnDate` nhỏ hơn hoặc bằng `dueDate` | 1. Mở phiếu mượn `RECORD001`. 2. Nhấn Trả sách. 3. Xác nhận trả sách. | `returnDate = 14/06/2026`, `dueDate = 15/06/2026` | Trả sách thành công. Không hiển thị cảnh báo quá hạn. | REQ-05 | EP, BVA |
+| TC-05-04 | Trả sách quá hạn | Thành viên đang mượn `BOOK001`. `returnDate` lớn hơn `dueDate` | 1. Mở phiếu mượn `RECORD002`. 2. Nhấn Trả sách. 3. Xác nhận trả sách. | `returnDate = 16/06/2026`, `dueDate = 15/06/2026` | Trả sách thành công. Hệ thống hiển thị cảnh báo quá hạn. Sách chuyển về `"Có sẵn"`. | REQ-05 | EP, BVA |
 
----
+## Test Cases — REQ-06: Xử lý sách quá hạn / Overdue Handling
+
+| Mã TC | Mục tiêu kiểm thử | Tiền điều kiện | Bước thực hiện | Dữ liệu đầu vào | Kết quả mong đợi | REQ | Kỹ thuật |
+|---|---|---|---|---|---|---|---|
+| TC-06-01 | Thủ thư kiểm tra phiếu chưa quá hạn | Thủ thư đã đăng nhập. Có phiếu mượn với `dueDate > today` | 1. Mở trang quản lý phiếu mượn. 2. Nhấn nút Kiểm tra quá hạn. 3. Quan sát trạng thái phiếu. | `today = 15/06/2026`, `dueDate = 20/06/2026` | Phiếu không bị đánh dấu `"Quá hạn"`. Trạng thái vẫn là `"Đang mượn"`. | REQ-06 | EP, BVA |
+| TC-06-02 | Thủ thư kiểm tra phiếu có dueDate bằng ngày hiện tại | Thủ thư đã đăng nhập. Có phiếu mượn với `dueDate = today` | 1. Mở trang quản lý phiếu mượn. 2. Nhấn nút Kiểm tra quá hạn. 3. Quan sát trạng thái phiếu. | `today = 15/06/2026`, `dueDate = 15/06/2026` | Phiếu được đánh dấu `"Quá hạn"`. | REQ-06 | BVA |
+| TC-06-03 | Thủ thư kiểm tra phiếu đã quá hạn | Thủ thư đã đăng nhập. Có phiếu mượn với `dueDate < today` | 1. Mở trang quản lý phiếu mượn. 2. Nhấn nút Kiểm tra quá hạn. 3. Quan sát trạng thái phiếu. | `today = 15/06/2026`, `dueDate = 10/06/2026` | Phiếu được đánh dấu `"Quá hạn"`. | REQ-06 | EP, BVA |
+| TC-06-04 | Thủ thư xem tất cả phiếu quá hạn | Thủ thư đã đăng nhập. Hệ thống có nhiều phiếu quá hạn của nhiều thành viên | 1. Đăng nhập bằng tài khoản thủ thư. 2. Mở trang phiếu quá hạn. 3. Quan sát danh sách hiển thị. | `Librarian`, `RECORD001`, `RECORD002` | Thủ thư xem được tất cả phiếu quá hạn của mọi thành viên. | REQ-06 | EP |
+| TC-06-05 | Thành viên chỉ xem phiếu quá hạn của chính mình | Thành viên `MEM001` đã đăng nhập. Có phiếu quá hạn của `MEM001` và `MEM002` | 1. Đăng nhập bằng tài khoản `MEM001`. 2. Mở trang phiếu mượn/quá hạn. 3. Quan sát danh sách hiển thị. | `MEM001`, `RECORD001 của MEM001`, `RECORD002 của MEM002` | Thành viên chỉ thấy phiếu quá hạn của chính mình. Không thấy phiếu của thành viên khác. | REQ-06 | EP |
 
 ## Tổng hợp
 
