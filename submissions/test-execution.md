@@ -14,7 +14,7 @@
 
 ## Kết quả chi tiết
 
-| Mã TC | Nhóm chức năng | Kết quả mong đợi (tóm tắt) | Kết quả thực tế | Kết luận | Minh chứng | Bug |
+| TC ID | Functional Group | Expected Result (Summary) | Actual Result | Conclusion | Evidence | Bug |
 |---|---|---|---|---|---|---|
 | TC-05-01 | Return Book | Book is returned successfully. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Borrow record `BR001` changed to **Returned**. `BOOK003` status changed to **Available**. No error message displayed. | PASS | See evidence below | None |
 ## Evidence
