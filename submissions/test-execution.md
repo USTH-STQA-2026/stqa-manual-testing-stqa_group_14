@@ -27,15 +27,15 @@
 <tr>
 <td align="center">
 <b>Borrow Record</b><br>
-<a href="evidence/TC-05/TC-05-01-before-record.png">
-  <img src="evidence/TC-05/TC-05-01-before-record.png" width="320">
+<a href="evidence/TC-05/TC-05-01 before-record.png">
+  <img src="evidence/TC-05/TC-05-01 before-record.png" width="320">
 </a>
 </td>
 
 <td align="center">
 <b>Book Status</b><br>
-<a href="evidence/TC-05/TC-05-01-before-book.png">
-  <img src="evidence/TC-05/TC-05-01-before-book.png" width="320">
+<a href="evidence/TC-05/TC-05-01 before-book.png">
+  <img src="evidence/TC-05/TC-05-01 before-book.png" width="320">
 </a>
 </td>
 </tr>
@@ -47,15 +47,15 @@
 <tr>
 <td align="center">
 <b>Borrow Record Updated</b><br>
-<a href="evidence/TC-05/TC-05-01-after-return.png">
-  <img src="evidence/TC-05/TC-05-01-after-return.png" width="320">
+<a href="evidence/TC-05/TC-05-01 after-return.png">
+  <img src="evidence/TC-05/TC-05-01 after-return.png" width="320">
 </a>
 </td>
 
 <td align="center">
 <b>Book Status Updated</b><br>
-<a href="evidence/TC-05/TC-05-01-after-book.png">
-  <img src="evidence/TC-05/TC-05-01-after-book.png" width="320">
+<a href="evidence/TC-05/TC-05-01 after-book.png">
+  <img src="evidence/TC-05/TC-05-01 after-book.png" width="320">
 </a>
 </td>
 </tr>
