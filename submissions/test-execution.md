@@ -16,7 +16,6 @@
 
 | Mã TC | Nhóm chức năng | Kết quả mong đợi (tóm tắt) | Kết quả thực tế | Kết luận | Minh chứng | Bug |
 |---|---|---|---|---|---|---|
-
 | TC-05-01 | Return Book | Book is returned successfully. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Borrow record `BR001` changed to **Returned**. `BOOK003` status changed to **Available**. No error message displayed. | PASS | See evidence below | None |
 ## Evidence
 
@@ -28,15 +27,15 @@
 <tr>
 <td align="center">
 <b>Borrow Record</b><br>
-<a href="../evidence/TC-05/TC-05-01-before-record.png">
-  <img src="../evidence/TC-05/TC-05-01-before-record.png" width="320">
+<a href="evidence/TC-05/TC-05-01-before-record.png">
+  <img src="evidence/TC-05/TC-05-01-before-record.png" width="320">
 </a>
 </td>
 
 <td align="center">
 <b>Book Status</b><br>
-<a href="../evidence/TC-05/TC-05-01-before-book.png">
-  <img src="../evidence/TC-05/TC-05-01-before-book.png" width="320">
+<a href="evidence/TC-05/TC-05-01-before-book.png">
+  <img src="evidence/TC-05/TC-05-01-before-book.png" width="320">
 </a>
 </td>
 </tr>
@@ -48,15 +47,15 @@
 <tr>
 <td align="center">
 <b>Borrow Record Updated</b><br>
-<a href="../evidence/TC-05/TC-05-01-after-return.png">
-  <img src="../evidence/TC-05/TC-05-01-after-return.png" width="320">
+<a href="evidence/TC-05/TC-05-01-after-return.png">
+  <img src="evidence/TC-05/TC-05-01-after-return.png" width="320">
 </a>
 </td>
 
 <td align="center">
 <b>Book Status Updated</b><br>
-<a href="../evidence/TC-05/TC-05-01-after-book.png">
-  <img src="../evidence/TC-05/TC-05-01-after-book.png" width="320">
+<a href="evidence/TC-05/TC-05-01-after-book.png">
+  <img src="evidence/TC-05/TC-05-01-after-book.png" width="320">
 </a>
 </td>
 </tr>
