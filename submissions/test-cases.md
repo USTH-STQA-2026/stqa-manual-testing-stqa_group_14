@@ -143,10 +143,10 @@
 | TC-06-04 | Librarian can view all overdue records | Librarian account is logged in. Multiple overdue records exist from different members. | 1. Login as librarian.<br>2. Open **Overdue Records** page.<br>3. Observe displayed records. | `librarian@library.com` | Librarian can view **all overdue borrow records** from all members. | REQ-06 | EP |
 | TC-06-05 | Member can only view their own overdue records | Member `MEM002` is logged in. Overdue records exist for both `MEM002` and `MEM003`. | 1. Login as `MEM002`.<br>2. Open **Borrow / Return** page.<br>3. Observe displayed records. | `MEM002` | Member only sees their own overdue records. Records belonging to other members are not displayed. | REQ-06 | EP |
 
-## Tổng hợp
+## Summary
 
-| Nhóm chức năng | Số TC | REQ phủ | Kỹ thuật IDM áp dụng |
+| Functional Group | Number of TCs | Covered REQ | Applied IDM Techniques |
 |---|---:|---|---|
-| Trả sách | 4 | REQ-05 | EP, BVA |
-| Xử lý sách quá hạn | 5 | REQ-06 | EP, BVA |
-| **Tổng** | **9** | **REQ-05 → REQ-06** | **EP, BVA** |
+| Return Book | 5 | REQ-05 | EP, BVA |
+| Overdue Handling | 5 | REQ-06 | EP, BVA |
+| **Total** | **10** | **REQ-05 → REQ-06** | **EP, BVA** |
