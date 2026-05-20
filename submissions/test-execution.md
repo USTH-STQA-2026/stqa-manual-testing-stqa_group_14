@@ -61,12 +61,6 @@
 </tr>
 </table>
 
-## Detailed Results
-
-| TC ID | Functional Group | Expected Result (Summary) | Actual Result | Conclusion | Evidence | Bug |
-|---|---|---|---|---|---|---|
-| TC-05-01 | Return Book | Book is returned successfully. No overdue warning message is displayed. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Borrow record changed to **Returned**. Book status changed to **Available**. No overdue warning message displayed. | PASS | See evidence below | None |
-
 ---
 
 ## TC-05-02 — Detailed Execution
