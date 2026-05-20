@@ -63,7 +63,7 @@
 
 ---
 
-## TC-05-02 — Detailed Execution
+## TC-05-02 
 
 | TC ID | Functional Group | Expected Result (Summary) | Actual Result | Conclusion | Evidence | Bug |
 |---|---|---|---|---|---|---|
@@ -103,7 +103,8 @@
 </td>
 </tr>
 </table>
-## TC-05-02 — Detailed Execution
+
+## TC-05-03
 
 | TC ID | Functional Group | Expected Result (Summary) | Actual Result | Conclusion | Evidence | Bug |
 |---|---|---|---|---|---|---|
