@@ -127,11 +127,10 @@
 
 | TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
 |---|---|---|---|---|---|---|---|
-| TC-05-01 | Return a borrowed book successfully | - Member `MEM002 (Nguyễn Học Bá)` is logged in.<br>- Book `BOOK003` is currently borrowed by the member. | 1. Open **Borrow / Return** page.<br>2. Locate borrowed record `BR001`.<br>3. Click **Return Book**.<br>4. Confirm return action. | `BR001`<br>`BOOK003` | - Book is returned successfully.<br>- Book status changes to **"Available"**.<br>- Borrow record status changes to **"Returned"**. | REQ-05 | EP |
-| TC-05-02 | Return a book before overdue date | - Member `MEM002` is logged in and has an active borrow record.<br>- `returnDate < dueDate`. | 1. Open **Borrow / Return** page.<br>2. Select an active borrow record.<br>3. Click **Return Book**. | `returnDate = 14/06/2026`<br>`dueDate = 15/06/2026` | - Book is returned successfully.<br>- No overdue warning message is displayed.<br>- Book status changes to **"Available"**. | REQ-05 | EP, BVA |
-| TC-05-03 | Return a book on the due date (boundary case) | - Member has an active borrow record.<br>- `returnDate = dueDate`. | 1. Open **Borrow / Return** page.<br>2. Select an active borrow record.<br>3. Click **Return Book**. | `returnDate = 15/06/2026`<br>`dueDate = 15/06/2026` | - Book is returned successfully.<br>- System displays a clear overdue warning.<br>- Book status changes to "Available".<br>- Borrow record status changes to "Returned". | REQ-05 | BVA |
-| TC-05-04 | Return an overdue book | - Member has an active borrow record.<br>- `returnDate > dueDate`. | 1. Open **Borrow / Return** page.<br>2. Select overdue borrow record.<br>3. Click **Return Book**. | `returnDate = 16/06/2026`<br>`dueDate = 15/06/2026` | - Book is returned successfully.<br>- System displays a **clear overdue warning**.<br>- Book status changes to **"Available"**.<br>- Borrow record status changes to **"Returned"**. | REQ-05 | EP, BVA |
-| TC-05-05 | Member cannot access borrow records of other members | - Member `MEM002` is logged in.<br>- Another member (`MEM003`) has borrow records. | 1. Login as `MEM002`.<br>2. Open **Borrow / Return** page.<br>3. Observe displayed borrow records. | `MEM002`<br>`records of MEM003` | - Member only sees their own borrow records.<br>- Borrow records of other members are not displayed and cannot be returned. | REQ-05, REQ-08 | EP |
+| TC-05-01 | Return a currently borrowed, non-overdue book successfully | - Member has an active borrow record.<br>- The selected book is currently **Borrowed**.<br>- `returnDate < dueDate`. | 1. Open **Borrow / Return** page.<br>2. Select the active borrow record.<br>3. Click **Return Book**.<br>4. Confirm return action.<br>5. Open **Book List** and verify the book status. | `returnDate = 14/06/2026`<br>`dueDate = 15/06/2026` | - Book is returned successfully.<br>- No overdue warning message is displayed.<br>- Book status changes to **"Available"**.<br>- Borrow record status changes to **"Returned"**. | REQ-05 | EP, BVA |
+| TC-05-02 | Return a book on the due date (boundary case) | - Member has an active borrow record.<br>- `returnDate = dueDate`. | 1. Open **Borrow / Return** page.<br>2. Select an active borrow record.<br>3. Click **Return Book**. | `returnDate = 15/06/2026`<br>`dueDate = 15/06/2026` | - Book is returned successfully.<br>- System displays a clear overdue warning.<br>- Book status changes to "Available".<br>- Borrow record status changes to "Returned". | REQ-05 | BVA |
+| TC-05-03 | Return an overdue book | - Member has an active borrow record.<br>- `returnDate > dueDate`. | 1. Open **Borrow / Return** page.<br>2. Select overdue borrow record.<br>3. Click **Return Book**. | `returnDate = 16/06/2026`<br>`dueDate = 15/06/2026` | - Book is returned successfully.<br>- System displays a **clear overdue warning**.<br>- Book status changes to **"Available"**.<br>- Borrow record status changes to **"Returned"**. | REQ-05 | EP, BVA |
+| TC-05-04 | Member cannot access borrow records of other members | - Member `MEM002` is logged in.<br>- Another member (`MEM003`) has borrow records. | 1. Login as `MEM002`.<br>2. Open **Borrow / Return** page.<br>3. Observe displayed borrow records. | `MEM002`<br>`records of MEM003` | - Member only sees their own borrow records.<br>- Borrow records of other members are not displayed and cannot be returned. | REQ-05, REQ-08 | EP |
 
 ## Test Cases — REQ-06: Overdue Handling
 
@@ -147,6 +146,6 @@
 
 | Functional Group | Number of TCs | Covered REQ | Applied IDM Techniques |
 |---|---:|---|---|
-| Return Book | 5 | REQ-05 | EP, BVA |
+| Return Book | 4 | REQ-05 | EP, BVA |
 | Overdue Handling | 5 | REQ-06 | EP, BVA |
-| **Total** | **10** | **REQ-05 → REQ-06** | **EP, BVA** |
+| **Total** | **9** | **REQ-05 → REQ-06** | **EP, BVA** |
