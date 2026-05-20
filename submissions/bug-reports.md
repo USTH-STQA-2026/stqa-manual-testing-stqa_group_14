@@ -16,14 +16,14 @@
 | Attribute | Details |
 |---|---|
 | Bug ID | BUG-01 |
-| Related TC | TC-05-02 |
+| Related TC | TC-05-02, TC-05-03  |
 | Related REQ | REQ-05, REQ-06 |
 | Severity | Medium |
 | Reported By | Vu Duc Quang |
 | Date Found | 20/05/2026 |
 | Status | Open |
 
-**Title:** No overdue warning displayed when returning a book on the due date
+**Title:** No overdue warning displayed when returning overdue books
 
 ### Environment
 
@@ -36,7 +36,7 @@
 - A member is logged into the system.
 - The member has an active borrow record.
 - The selected borrow record satisfies:
-  - `returnDate = dueDate`
+  - `returnDate >= dueDate`
   - The book has not been returned yet.
 
 ### Steps to Reproduce
@@ -93,11 +93,10 @@ Users do not receive an overdue warning even though the system defines books ret
 
 ### Suggested Fix
 
-The system should display an **overdue warning message** when:
+The system should display an overdue warning message when:
 
 ```text
-returnDate = dueDate
-```
+returnDate >= dueDate
 
 to ensure compliance with business rules **BR-05** and **BR-06**.
 

@@ -103,6 +103,10 @@
 </td>
 </tr>
 </table>
+| TC ID | Functional Group | Expected Result (Summary) | Actual Result | Conclusion | Evidence | Bug |
+|---|---|---|---|---|---|---|
+| TC-05-03 | Return Book | Book is returned successfully. System displays a clear overdue warning. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Book was returned successfully and the record/book status was updated, but no overdue warning message was displayed for an overdue return (`returnDate > dueDate`). | FAIL | See evidence TC-05-02 | BUG-01 |
+
 ## Tổng hợp kết quả
 
 | Chỉ số | Giá trị |
