@@ -13,46 +13,93 @@
 
 ## BUG-01
 
-| Thuộc tính | Chi tiết |
-|-----------|---------|
-| **Mã lỗi** | BUG-01 |
-| **TC liên quan** | `<!-- TC-xx -->` |
-| **REQ liên quan** | `<!-- REQ-xx -->` |
-| **Mức độ** | `<!-- High / Medium / Low -->` |
-| **Người phát hiện** | `<!-- Họ tên thành viên -->` |
-| **Ngày phát hiện** | `<!-- DD/MM/YYYY -->` |
-| **Trạng thái** | `<!-- Open / Closed -->` |
+| Attribute | Details |
+|---|---|
+| Bug ID | BUG-01 |
+| Related TC | TC-05-02 |
+| Related REQ | REQ-05, REQ-06 |
+| Severity | Medium |
+| Reported By | Vu Duc Quang |
+| Date Found | 20/05/2026 |
+| Status | Open |
 
-**Tiêu đề:**
-`<!-- Mô tả hành vi lỗi cụ thể -->`
+**Title:** No overdue warning displayed when returning a book on the due date
 
-**Môi trường:**
-- Trình duyệt: Chrome `<!-- version -->`
-- Hệ điều hành: `<!-- OS -->`
-- Ngôn ngữ giao diện: Tiếng Việt
+### Environment
 
-**Điều kiện tiên quyết:**
-`<!-- VD: Trang đăng nhập đã mở, dữ liệu đã reset -->`
+- **Browser:** Chrome Version 148  
+- **Operating System:** Windows 11  
+- **Interface Language:** Vietnamese  
 
-**Bước tái hiện:**
-1. `<!-- Bước 1 -->`
-2. `<!-- Bước 2 -->`
-3. `<!-- Bước 3 -->`
+### Preconditions
 
-**Kết quả mong đợi:**
-`<!-- Kết quả đúng theo SRS -->`
+- A member is logged into the system.
+- The member has an active borrow record.
+- The selected borrow record satisfies:
+  - `returnDate = dueDate`
+  - The book has not been returned yet.
 
-**Kết quả thực tế:**
-`<!-- Kết quả hệ thống thật sự trả về -->`
+### Steps to Reproduce
 
-**Tác động:**
-`<!-- VD: Vi phạm quy tắc nghiệp vụ cốt lõi, cho phép mượn vượt giới hạn -->`
+1. Log in using a member account.
+2. Open the **Borrow / Return** page.
+3. Select a borrow record where `returnDate = dueDate`.
+4. Click **Return Book**.
+5. Observe the system response after the return action.
 
-**Minh chứng:**
-`<!-- Đính kèm ảnh chụp màn hình nếu có -->`
+### Expected Result
 
-**Đề xuất xử lý:**
-`<!-- Gợi ý cách sửa lỗi nếu có -->` 
+The system should return the book successfully and display a **clear overdue warning**, because according to business rule **BR-05**:
+
+> A book is considered overdue on the due date itself (including the exact due date).
+
+Additionally:
+
+- The book status should change to **"Available"**
+- The borrow record status should change to **"Returned"**
+
+### Actual Result
+
+The system returned the book successfully:
+
+- The book status changed to **"Available"**
+- The borrow record status changed to **"Returned"**
+
+However, **no overdue warning message was displayed** when `returnDate = dueDate`.
+
+### Impact
+
+This behavior violates business rules **BR-05 (Overdue)** and **BR-06 (Overdue Return Warning)**.
+
+Users do not receive an overdue warning even though the system defines books returned on the due date as overdue. This creates inconsistent behavior with the specified business requirements.
+
+### Evidence
+
+#### Before Return
+
+<a href="evidence/TC-05/TC-05-02-before-record.png">
+  <img src="evidence/TC-05/TC-05-02-before-record.png" width="320">
+</a>
+
+#### After Return
+
+<a href="evidence/TC-05/TC-05-02-after-return.png">
+  <img src="evidence/TC-05/TC-05-02-after-return.png" width="320">
+</a>
+
+<a href="evidence/TC-05/TC-05-02-after-book.png">
+  <img src="evidence/TC-05/TC-05-02-after-book.png" width="320">
+</a>
+
+### Suggested Fix
+
+The system should display an **overdue warning message** when:
+
+```text
+returnDate = dueDate
+```
+
+to ensure compliance with business rules **BR-05** and **BR-06**.
 
 ---
 
