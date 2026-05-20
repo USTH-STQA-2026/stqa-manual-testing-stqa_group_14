@@ -60,8 +60,55 @@
 </td>
 </tr>
 </table>
+
+## Detailed Results
+
+| TC ID | Functional Group | Expected Result (Summary) | Actual Result | Conclusion | Evidence | Bug |
+|---|---|---|---|---|---|---|
+| TC-05-01 | Return Book | Book is returned successfully. No overdue warning message is displayed. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Borrow record changed to **Returned**. Book status changed to **Available**. No overdue warning message displayed. | PASS | See evidence below | None |
+
 ---
 
+## TC-05-02 — Detailed Execution
+
+| TC ID | Functional Group | Expected Result (Summary) | Actual Result | Conclusion | Evidence | Bug |
+|---|---|---|---|---|---|---|
+| TC-05-02 | Return Book | Book is returned successfully. System displays a clear overdue warning. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Book was returned successfully and the record/book status was updated, but no overdue warning message was displayed when `returnDate = dueDate`. | FAIL | See evidence below | BUG-01 |
+
+### Evidence — TC-05-02
+
+#### Before Return
+
+<table>
+<tr>
+<td align="center">
+<b>Borrow Record</b><br>
+<a href="evidence/TC-05/TC-05-02-before-record.png">
+  <img src="evidence/TC-05/TC-05-02-before-record.png" width="320">
+</a>
+</td>
+</tr>
+</table>
+
+#### After Return
+
+<table>
+<tr>
+<td align="center">
+<b>Borrow Record Returned — No Overdue Warning</b><br>
+<a href="evidence/TC-05/TC-05-02-after-return.png">
+  <img src="evidence/TC-05/TC-05-02-after-return.png" width="320">
+</a>
+</td>
+
+<td align="center">
+<b>Book Status Available</b><br>
+<a href="evidence/TC-05/TC-05-02-after-book.png">
+  <img src="evidence/TC-05/TC-05-02-after-book.png" width="320">
+</a>
+</td>
+</tr>
+</table>
 ## Tổng hợp kết quả
 
 | Chỉ số | Giá trị |
