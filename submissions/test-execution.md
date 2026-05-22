@@ -23,23 +23,33 @@
 | TC-05-03 | Return Book | Book is returned successfully. System displays a clear overdue warning. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Book was returned successfully and the record/book status was updated, but no overdue warning message was displayed for an overdue return (`returnDate > dueDate`). | FAIL | See BUG-01 | BUG-01 |
 | TC-05-04 | Return Book | System does not allow returning a book that has already been returned. The **Return Book** button is not displayed or cannot be used. Book status remains **"Available"**. Borrow record status remains **"Returned"**. | The borrow record remained in **"Returned"** status. The **Return Book** button was no longer displayed after the book had been returned, preventing duplicate return actions. Book status remained **"Available"**. | PASS | N/A | None |
 
+## REQ-06 — Overdue Handling
+
+| TC ID | Functional Group | Expected Result (Summary) | Actual Result | Conclusion | Evidence | Bug |
+|---|---|---|---|---|---|---|
+| TC-06-01 | Overdue Handling | Librarian can access and use the **Check Overdue** function. Overdue borrow records are displayed or updated after checking. | The librarian account successfully accessed and used the **Check Overdue** function. Borrow records were updated and overdue records were displayed after checking. | PASS | N/A | None |
+| TC-06-02 | Overdue Handling | Borrow record with `current date < dueDate` is **not marked as "Overdue"**. Status remains **"Borrowing"**. | The borrow record was **not marked as "Overdue"**. The status remained **"Borrowing"** after overdue checking. | PASS | N/A | None |
+| TC-06-03 | Overdue Handling | Borrow record with `current date = dueDate` is marked as **"Overdue"**. `dueDate <= current date` is considered overdue. | The borrow record was successfully marked as **"Overdue"** when the due date matched the current date. | PASS | N/A | None |
+| TC-06-04 | Overdue Handling | Borrow record with `current date > dueDate` is marked as **"Overdue"**. | The overdue borrow record was successfully marked as **"Overdue"** after overdue checking. | PASS | N/A | None |
+| TC-06-05 | Overdue Handling | Member cannot access or use the **Check Overdue** function. The button is not displayed or cannot be used. Member cannot mark records as **"Overdue"**. | The member account could not access the **Check Overdue** function. The **Check Overdue** button was not displayed in the interface. | PASS | N/A | None |
 
 
 
+## Summary of Results
 
-## Tổng hợp kết quả 
-
-| Chỉ số | Giá trị |
+| Metric | Value |
 |--------|---------|
-| Tổng số test case | `<!-- số -->` |
-| Pass | `<!-- số -->` |
-| Fail | `<!-- số -->` |
-| Blocked | `<!-- số -->` |
-| Not Run | `<!-- số -->` |
-| **Tỷ lệ Pass** | `<!-- xx% -->` |
+| Total Test Cases | 9 |
+| Pass | 7 |
+| Fail | 2 |
+| Blocked | 0 |
+| Not Run | 0 |
+| **Pass Rate** | 77.78% |
 
-### Kết quả theo nhóm chức năng
+### Results by Functional Group
 
-| Nhóm | Tổng TC | Pass | Fail | Tỷ lệ Pass |
+| Functional Group | Total TC | Pass | Fail | Pass Rate |
 |------|---------|------|------|------------|
-| | | | | |
+| Return Book (REQ-05) | 4 | 2 | 2 | 50% |
+| Overdue Handling (REQ-06) | 5 | 5 | 0 | 100% |
+| **Total** | **9** | **7** | **2** | **77.78%** |

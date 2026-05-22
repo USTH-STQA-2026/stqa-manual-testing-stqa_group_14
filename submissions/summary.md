@@ -15,66 +15,73 @@
 
 ---
 
-## 2. Tổng quan kết quả
+## 2. Overall Test Results
 
-| Chỉ số | Giá trị |
+| Metric | Value |
 |--------|---------|
-| Tổng số test case | `<!-- -->` |
-| Pass | `<!-- -->` |
-| Fail | `<!-- -->` |
-| Blocked | `<!-- -->` |
-| Not Run | `<!-- -->` |
-| **Tỷ lệ Pass** | `<!-- xx% -->` |
-| **Số bug phát hiện** | `<!-- -->` |
+| Total Test Cases | 9 |
+| Pass | 7 |
+| Fail | 2 |
+| Blocked | 0 |
+| Not Run | 0 |
+| **Pass Rate** | 77.78% |
+| **Number of Bugs Found** | 1 |
 
-### Phân bổ theo nhóm chức năng
+### Distribution by Functional Group
 
-| Nhóm chức năng | TC | Pass | Fail | Bug | Đánh giá |
+| Functional Group | TC | Pass | Fail | Bug | Assessment |
 |---------------|-----|------|------|-----|---------|
-| | | | | | |
+| Return Book (REQ-05) | 4 | 2 | 2 | 1 | Partially Passed — Core return functionality worked correctly, but overdue warning behavior did not comply with business rules. |
+| Overdue Handling (REQ-06) | 5 | 5 | 0 | 0 | Passed — Overdue checking function worked correctly in all tested scenarios. |
 
-### Phân bổ bug theo mức độ
+### Bug Distribution by Severity
 
-| Mức độ | Số lượng | Bug IDs |
+| Severity | Quantity | Bug IDs |
 |--------|---------|---------|
-| High | | |
-| Medium | | |
-| Low | | |
+| High | 0 | None |
+| Medium | 1 | BUG-01 |
+| Low | 0 | None |
 
 ---
 
-## 3. Kỹ thuật thiết kế đã sử dụng
+## 3. Test Design Techniques Used
 
-| Kỹ thuật | Áp dụng cho REQ nào? | Số TC sử dụng | Giải thích cách áp dụng |
+| Technique | Applied to REQ | Number of TCs | Application Description |
 |----------|---------------------|---------------|------------------------|
-| | | | |
+| Equivalence Partitioning (EP) | REQ-05, REQ-06 | 7 | Input conditions were divided into different partitions such as overdue/non-overdue records, librarian/member permissions, and active/returned borrow records. |
+| Boundary Value Analysis (BVA) | REQ-05, REQ-06 | 5 | Boundary conditions around due dates were tested, especially `currentDate = dueDate`, to verify system behavior at critical limits. |
 
 ---
 
-## 4. Phân tích chất lượng phần mềm
+## 4. Software Quality Analysis
 
-### 4.1. Điểm mạnh
-`<!-- Liệt kê các chức năng hoạt động tốt -->`
+### 4.1. Strengths
 
-### 4.2. Điểm yếu
-`<!-- Liệt kê các vấn đề nghiêm trọng -->`
+- The **Return Book** feature correctly updated the book status to **"Available"** and borrow record status to **"Returned"** after successful returns.
+- The system successfully prevented duplicate return actions for books that had already been returned.
+- The **Check Overdue** feature worked correctly for all tested date conditions (`before`, `on`, and `after` due date).
+- Access control for overdue checking was implemented correctly: librarians had permission while members did not.
+
+### 4.2. Weaknesses
+
+- The system failed to display an overdue warning when returning overdue books (`returnDate >= dueDate`), causing inconsistency with business rules **BR-05** and **BR-06**.
+- Overdue return behavior was inconsistent between **REQ-05** and **REQ-06**, since overdue detection worked correctly in overdue checking but failed during the return process.
 
 ---
 
-## 5. Đề xuất ưu tiên sửa lỗi
+## 5. Recommended Bug Fix Priority
 
-> 💡 Đây là phần **Quality Assurance**: bạn không chỉ tìm lỗi mà còn **đề xuất thứ tự ưu tiên** sửa chữa và đánh giá tác động.
-> Nêu rõ tiêu chí ưu tiên: dựa vào **severity** (mức độ nghiêm trọng kỹ thuật) và/hoặc **priority** (mức độ ưu tiên kinh doanh).
-
-| Thứ tự | Bug | Mức độ | Lý do ưu tiên |
+| Priority | Bug | Severity | Reason for Priority |
 |--------|-----|--------|---------------|
-| | | | |
+| 1 | BUG-01 | Medium | This bug violates business rules related to overdue handling and creates inconsistent system behavior. Although the return process succeeds, users do not receive the required overdue warning. |
 
 ---
 
-## 6. Kết luận
+## 6. Conclusion
 
-`<!-- Đánh giá tổng thể: Hệ thống có sẵn sàng phát hành không? Tại sao? -->`
+The system performed well for most tested scenarios in **REQ-05** and **REQ-06**, achieving a **77.78% pass rate**. Core functionalities such as returning books, updating statuses, overdue checking, and permission control operated correctly.
+
+However, the system is **not fully ready for release** because **BUG-01** violates business rules regarding overdue warnings. The issue should be fixed before deployment to ensure consistency and compliance with system requirements.
 
 ---
 
@@ -86,8 +93,6 @@
 
 ## 8. Khai báo sử dụng AI (Tùy chọn)
 
-> Nếu nhóm có sử dụng công cụ AI (ChatGPT, Copilot, Gemini...), hãy ghi rõ bên dưới. Khai báo trung thực **không ảnh hưởng điểm** — đây là kỹ năng minh bạch trong nghề.
-
-| Công cụ AI | Dùng cho phần nào | Bạn đã kiểm tra/chỉnh sửa thế nào |
+| AI Tool | Used For | Verification / Modification |
 |------------|-------------------|-----------------------------------|
-| | | |
+| ChatGPT | Grammar checking and wording improvement for test documentation | All test cases, executions, and reports were manually reviewed and adjusted based on the actual testing results. |
