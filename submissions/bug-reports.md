@@ -97,9 +97,8 @@ The system should display an overdue warning message when:
 
 ```text
 returnDate >= dueDate
-
+```
 to ensure compliance with business rules **BR-05** and **BR-06**.
-
 ---
 
 ## BUG-02
