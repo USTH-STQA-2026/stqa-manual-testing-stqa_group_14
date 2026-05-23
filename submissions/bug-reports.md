@@ -6,25 +6,24 @@
 
 | Thông tin | |
 |---|---|
-| **Nhóm** | `<!-- Tên nhóm -->` |
+| **Nhóm** | Group 14 |
 | **Ngày báo cáo** | `<!-- DD/MM/YYYY -->` |
 
 ---
 
-## BUG-01
+## BUG-04-03
 
 | Thuộc tính | Chi tiết |
 |-----------|---------|
-| **Mã lỗi** | BUG-01 |
-| **TC liên quan** | `<!-- TC-xx -->` |
-| **REQ liên quan** | `<!-- REQ-xx -->` |
-| **Mức độ** | `<!-- High / Medium / Low -->` |
-| **Người phát hiện** | `<!-- Họ tên thành viên -->` |
-| **Ngày phát hiện** | `<!-- DD/MM/YYYY -->` |
-| **Trạng thái** | `<!-- Open / Closed -->` |
+| **Mã lỗi** | BUG-04-03 |
+| **TC liên quan** | TC-04-03 |
+| **REQ liên quan** | REQ-04 |
+| **Mức độ** | Low-Medium |
+| **Người phát hiện** | Trần Thị Thu Trang |
+| **Ngày phát hiện** | 23/05/2026 |
+| **Trạng thái** | Open |
 
-**Tiêu đề:**
-`<!-- Mô tả hành vi lỗi cụ thể -->`
+**Tiêu đề:** Error message says the member has expired while they are suspended
 
 **Môi trường:**
 - Trình duyệt: Chrome `<!-- version -->`
@@ -32,64 +31,127 @@
 - Ngôn ngữ giao diện: Tiếng Việt
 
 **Điều kiện tiên quyết:**
-`<!-- VD: Trang đăng nhập đã mở, dữ liệu đã reset -->`
+1. Member can log in
+2. Member has been suspended
+3. Book is available
+4. Member's borrow count is less than 3
 
 **Bước tái hiện:**
-1. `<!-- Bước 1 -->`
-2. `<!-- Bước 2 -->`
-3. `<!-- Bước 3 -->`
+1. Refresh the page
+2. Log in to the account of MEM004
+3.  Borrow the book BOOK001
 
 **Kết quả mong đợi:**
-`<!-- Kết quả đúng theo SRS -->`
+- Member cannot borrow the book
+- Display error message: member has been suspended
+- Program state remains unchanged
 
 **Kết quả thực tế:**
-`<!-- Kết quả hệ thống thật sự trả về -->`
+- Member cannot borrow the book
+- Error message says the member has expired
+- Program state remains unchanged
 
 **Tác động:**
-`<!-- VD: Vi phạm quy tắc nghiệp vụ cốt lõi, cho phép mượn vượt giới hạn -->`
+- Wrong cause of error is announced to the user, leading to confusion
+
 
 **Minh chứng:**
-`<!-- Đính kèm ảnh chụp màn hình nếu có -->`
+<a href="evidence/TC-04-03/BOOK001_before.png">Before borrowing BOOK001</a><br><a href="evidence/TC-04-03/BOOK001_after_vi.png">After borrowing BOOK001</a><br><a href="evidence/TC-04-03/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-03/BR_after.png">Borrow records after borrowing</a>
 
 **Đề xuất xử lý:**
-`<!-- Gợi ý cách sửa lỗi nếu có -->` 
+- Correct the error message to "member has been suspended"
 
 ---
 
-## BUG-02
+## BUG-04-05
 
 | Thuộc tính | Chi tiết |
 |-----------|---------|
-| **Mã lỗi** | BUG-02 |
-| **TC liên quan** | `<!-- TC-xx -->` |
-| **REQ liên quan** | `<!-- REQ-xx -->` |
-| **Mức độ** | `<!-- High / Medium / Low -->` |
-| **Người phát hiện** | `<!-- Họ tên thành viên -->` |
-| **Ngày phát hiện** | `<!-- DD/MM/YYYY -->` |
-| **Trạng thái** | `<!-- Open / Closed -->` |
+| **Mã lỗi** | BUG-04-05 |
+| **TC liên quan** | TC-04-05 |
+| **REQ liên quan** | REQ-04 |
+| **Mức độ** | High |
+| **Người phát hiện** | Trần Thị Thu Trang |
+| **Ngày phát hiện** | 23/05/2026 |
+| **Trạng thái** | Open |
 
-**Tiêu đề:**
-`<!-- Mô tả hành vi lỗi -->`
+**Tiêu đề:** Users can still borrow a book when their borrow count is 3
 
 **Bước tái hiện:**
-1. `<!-- -->`
-2. `<!-- -->`
-3. `<!-- -->`
+1. Refresh the page
+2. Log in to the account of MEM002
+3. Borrow the book BOOK001
+4. Borrow the book BOOK002
+5. Borrow the book BOOK005 
 
 **Kết quả mong đợi:**
-`<!-- -->`
+ - Member cannot borrow the book BOOK005
+ - BOOK005 remains available
+ - Display error message when borrowing BOOK005 in corresponding display language: borrow limit reached
+ - Borrow records for that member and books BOOK001 and BOOK002 are created, due date is 14 days later after today, no record created for BOOK005
+
 
 **Kết quả thực tế:**
-`<!-- -->`
+Member can borrow book BOOK005, no error message is displayed, borrow record for BOOK005 is created
 
 **Tác động:**
-`<!-- -->`
+This violates the business requirement of only allowing to borrow up to 3 books at a time
 
 **Minh chứng:**
-`<!-- -->`
+<a href="evidence/TC-04-05/BOOK005_before.png">Before borrowing BOOK005</a><br><a href="evidence/TC-04-05/BOOK005_after.png">After borrowing BOOK005</a><br><a href="evidence/TC-04-05/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-05/BR_after.png">Borrow records after borrowing</a>
 
 **Đề xuất xử lý:**
-`<!-- -->`
+Recheck the condition checking whether the user has reached the borrow limit
+
+---
+
+## BUG-04-07
+
+| Thuộc tính | Chi tiết |
+|-----------|---------|
+| **Mã lỗi** | BUG-04-07 |
+| **TC liên quan** | TC-04-03, TC-04-04, TC-04-06 |
+| **REQ liên quan** | REQ-04 |
+| **Mức độ** | Low |
+| **Người phát hiện** | Trần Thị Thu Trang |
+| **Ngày phát hiện** | 23/05/2026 |
+| **Trạng thái** | Open |
+
+**Tiêu đề:** Error messages are in Vietnamese while display language is English
+
+**Bước tái hiện:**
+1. Recreate the BUG-04-03, set display language to English after step 2
+2. Perform TC-04-04:
+	1. Refresh the page
+	2. Log in to the account of MEM005
+	3. Set display language to English
+	4. Borrow the book BOOK001
+3. Perform TC-04-06:
+	1. Refresh the page
+	2. Log in to the account of MEM002
+	3. Set display language to English
+	4. Borrow the book BOOK001
+	5. Borrow the book BOOK002
+	6. Borrow the book BOOK005
+	7. Borrow the book BOOK008
+
+
+
+**Kết quả mong đợi:**
+Error messages are in English
+
+
+**Kết quả thực tế:**
+Error messages are in Vietnamese
+
+**Tác động:**
+Users who do not know Vietnamese can be confused
+
+**Minh chứng:**
+<a href="evidence/TC-04-03/BOOK001_after_en.png">TC-04-03: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-04/BOOK001_after_en.png">TC-04-04: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-06/BOOK008_after_en.png">TC-04-06: After borrowing BOOK008 (English)</a>
+
+**Đề xuất xử lý:**
+Correct the error messages to the English version when the display language is English
 
 ---
 
