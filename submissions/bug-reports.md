@@ -1,96 +1,118 @@
-# Bug Reports — Báo cáo lỗi
+# BUG-01
 
-> **Hướng dẫn**: Tạo 1 mục bug cho mỗi TC có kết quả **Fail**.
-> Xem [examples/sample-bug-report.md](../examples/sample-bug-report.md) để hiểu cách viết bug report tốt.
-> Mỗi bug cần: tiêu đề mô tả hành vi lỗi, bước tái hiện, expected vs actual, severity + giải thích.
-
-| Thông tin | |
-|---|---|
-| **Nhóm** | `<!-- Tên nhóm -->` |
-| **Ngày báo cáo** | `<!-- DD/MM/YYYY -->` |
-
----
-
-## BUG-01
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |-----------|---------|
-| **Mã lỗi** | BUG-01 |
-| **TC liên quan** | `<!-- TC-xx -->` |
-| **REQ liên quan** | `<!-- REQ-xx -->` |
-| **Mức độ** | `<!-- High / Medium / Low -->` |
-| **Người phát hiện** | `<!-- Họ tên thành viên -->` |
-| **Ngày phát hiện** | `<!-- DD/MM/YYYY -->` |
-| **Trạng thái** | `<!-- Open / Closed -->` |
+| **Bug ID** | BUG-01 |
+| **Related TC** | TC-03 |
+| **Related REQ** | REQ-01 |
+| **Severity** | Low |
+| **Reported By** | Testing Team |
+| **Date Reported** | 23/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**
-`<!-- Mô tả hành vi lỗi cụ thể -->`
+## Title
+Error message is displayed in Vietnamese instead of English when logging in with a non-existing email
 
-**Môi trường:**
-- Trình duyệt: Chrome `<!-- version -->`
-- Hệ điều hành: `<!-- OS -->`
-- Ngôn ngữ giao diện: Tiếng Việt
+## Environment
+- Browser: Chrome Version 148
+- Operating System: Windows 10
+- Application: Library Management System
+- UI Language: English
 
-**Điều kiện tiên quyết:**
-`<!-- VD: Trang đăng nhập đã mở, dữ liệu đã reset -->`
+## Preconditions
+- Application is running
+- System language is set to English
+- User is on the login screen
 
-**Bước tái hiện:**
-1. `<!-- Bước 1 -->`
-2. `<!-- Bước 2 -->`
-3. `<!-- Bước 3 -->`
+## Steps to Reproduce
+1. Open the login page
+2. Enter email: 'khongtontai@gmail.com'
+3. Enter password: 'password123'
+4. Click the **Login** button
 
-**Kết quả mong đợi:**
-`<!-- Kết quả đúng theo SRS -->`
+## Expected Result
+System displays the error message:
+'Member not found'(English Message)
 
-**Kết quả thực tế:**
-`<!-- Kết quả hệ thống thật sự trả về -->`
+## Actual Result
+System displays the Vietnamese message:
+'Không tìm thấy thành viên'
 
-**Tác động:**
-`<!-- VD: Vi phạm quy tắc nghiệp vụ cốt lõi, cho phép mượn vượt giới hạn -->`
+## Impact
+English users may not understand the displayed error message, causing inconsistent user experience.
 
-**Minh chứng:**
-`<!-- Đính kèm ảnh chụp màn hình nếu có -->`
+## Priority
+- P2
+## Severity
+- Low
+ 
+## Evidence
+<a href="Images/TC-03.png" target="_blank">
+Click here to view Screenshot
+</a>
 
-**Đề xuất xử lý:**
-`<!-- Gợi ý cách sửa lỗi nếu có -->` 
+## Suggested Fix
+- Check localization configuration for error message keys
+- Ensure “member not found” error uses English resource bundle when language = EN
+- Verify fallback language logic is not defaulting to Vietnamese incorrectly
 
----
+# BUG-02
 
-## BUG-02
-
-| Thuộc tính | Chi tiết |
+| Attribute | Details |
 |-----------|---------|
-| **Mã lỗi** | BUG-02 |
-| **TC liên quan** | `<!-- TC-xx -->` |
-| **REQ liên quan** | `<!-- REQ-xx -->` |
-| **Mức độ** | `<!-- High / Medium / Low -->` |
-| **Người phát hiện** | `<!-- Họ tên thành viên -->` |
-| **Ngày phát hiện** | `<!-- DD/MM/YYYY -->` |
-| **Trạng thái** | `<!-- Open / Closed -->` |
+| **Bug ID** | BUG-02 |
+| **Related TC** | TC-04 |
+| **Related REQ** | REQ-01 |
+| **Severity** | Low |
+| **Reported By** | Testing Team |
+| **Date Reported** | 23/05/2026 |
+| **Status** | Open |
 
-**Tiêu đề:**
-`<!-- Mô tả hành vi lỗi -->`
+## Title
+Error message is displayed in Vietnamese instead of English when logging in with incorrect password
 
-**Bước tái hiện:**
-1. `<!-- -->`
-2. `<!-- -->`
-3. `<!-- -->`
+## Environment
+- Browser: Chrome Version 148
+- Operating System: Windows 10
+- Application: Library Management System
+- UI Language: English
 
-**Kết quả mong đợi:**
-`<!-- -->`
+## Preconditions
+- Application is running
+- System language is set to English
+- User is on the login screen
 
-**Kết quả thực tế:**
-`<!-- -->`
+## Steps to Reproduce
+1. Open the login page
+2. Enter email: 'ba.nguyen@email.com'
+3. Enter password: 'wrongpassword123'
+4. Click the **Login** button
 
-**Tác động:**
-`<!-- -->`
+## Expected Result
+System displays the error message:
+'Incorrect password'(English Message)
 
-**Minh chứng:**
-`<!-- -->`
+## Actual Result
+System displays the Vietnamese message:
+'Mật khẩu không đúng'
 
-**Đề xuất xử lý:**
-`<!-- -->`
+## Impact
+English users may not understand the displayed error message, causing inconsistent user experience.
 
----
+## Priority
+- P2
+## Severity
+- Low
+ 
+## Evidence
+<a href="Images/TC-04.png" target="_blank">
+Click here to view Screenshot
+</a>
+## Suggested Fix
+- Check localization configuration for error message keys
+- Ensure “Incorrect password” error uses English resource bundle when language = EN
+- Verify fallback language logic is not defaulting to Vietnamese incorrectly
 
-<!-- Copy template BUG trên để thêm BUG-03, BUG-04, ... cho mỗi TC Fail -->
+
+
+

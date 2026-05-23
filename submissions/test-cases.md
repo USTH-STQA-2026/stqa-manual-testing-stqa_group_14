@@ -1,83 +1,77 @@
-# Test Cases — Bảng trường hợp kiểm thử
+# Table 1: IDM for REQ-01 — Login
 
-> **Hướng dẫn**: Viết tối thiểu **20 TC** phủ đủ các chức năng chính (REQ-01 → REQ-08).
-> Xem [examples/sample-test-case.md](../examples/sample-test-case.md) để hiểu cách viết TC tốt.
-> Tự tổ chức và phân nhóm test case theo cách hợp lý nhất.
+| Characteristic | Partition | Representative Value | Expected Result |
+|---|---|---|---|
+| Existing Email | Valid librarian account | librarian@library.com | Login successful |
+|  | Valid member account | ba.nguyen@email.com | Login successful |
+|  | Non-existing email | khongtontai@gmail.com | Display message: “Member not found” |
+| Password | Correct password | admin123 | User can log in successfully |
+|  | Incorrect password | wrongpassword123 | Display message: “Incorrect password” |
+| Input Fields | Both fields filled | Valid email + valid password | Continue login process |
+|  | Both fields empty | Email: "" <br> Password: "" | Display message: “Please enter email and password” |
+| Validation Behavior | Empty email only | Email: "" <br> Password: password123 |Display message: "Please enter email" |
+|  | Empty password only | Email: user@gmail.com <br> Password: "" |Display message: "Please enter password" |
+| Email Format (BVA) | Valid email format | user@gmail.com | Continue login validation |
+| |Invalid email format(missing . in the format)|user@gmail| Display message: "Member not found"
+| |Invalid email format(missing @ in the format)|abc.com| Display message: "Member not found "
+---
 
-| Thông tin | |
-|---|---|
-| **Nhóm** | `<!-- Tên nhóm -->` |
-| **Ngày tạo** | `<!-- DD/MM/YYYY -->` |
-| **Hệ thống** | https://stqa.rbc.vn |
-| **Tham chiếu** | SRS v1.0 |
+# Table 2: IDM for REQ-02 — View Book List
+
+| Characteristic | Partition | Representative Value | Expected Result |
+|---|---|---|---|
+| User Role | Librarian | librarian@library.com | System displays complete book list |
+|  | Member | ba.nguyen@email.com | System displays complete book list |
+| Book Information Display | Complete book information | BOOK001 | System displays title, author, genre, published year, and status correctly |
+| Book Status | Available | BOOK001 | Status displayed as “Available” |
+|  | Borrowed | BOOK003 | Status displayed as “Borrowed” |
+| Real-time Update | After borrowing a book | BOOK001 | Status changes immediately to “Borrowed” |
+|  | After returning a book | BOOK003 | Status changes immediately to “Available” |
+
+
+# DECISION TABLE REQ-01:
+| Condition | Case 1 | Case 2 | Case 3 | Case 4 | Case 5 |
+|---|---|---|---|---|---|
+| Email exists in DB? | YES | YES | NO | NO | — |
+| Password correct? | YES | NO | YES | NO | — |
+| Both fields empty? | NO | NO | NO | NO | YES |
+| **Expected Result** | Login successful | "Incorrect password" | "Member not found" | "Member not found" | "Please enter email and password" |
+
+
+# Table 3: TEST CASES FOR REQ-01 — Login
+---
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
+|---|---|---|---|---|---|---|---|
+| TC-01 | Verify successful login with librarian account | User is on Login page and not logged in | 1. Open https://stqa.rbc.vn <br> 2. Enter email <br> 3. Enter password <br> 4. Click “Login” | Email: librarian@library.com <br> Password: admin123 | User is redirected to Home page. AppBar displays role “LIBRARIAN” | REQ-01 | EP |
+| TC-02 | Verify successful login with member account | User is on Login page and not logged in | 1. Open https://stqa.rbc.vn <br> 2. Enter email <br> 3. Enter password <br> 4. Click “Login” | Email: ba.nguyen@email.com <br> Password: password123 | User is redirected to Home page. AppBar displays role “MEMBER” | REQ-01 | EP |
+| TC-03 | Verify login with non-existing email | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter non-existing email <br> 3. Enter password <br> 4. Click “Login” | Email: khongtontai@gmail.com <br> Password: password123 | System displays message: “Member not found” | REQ-01 | EP |
+| TC-04 | Verify login with incorrect password | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter valid email <br> 3. Enter incorrect password <br> 4. Click “Login” | Email: ba.nguyen@email.com <br> Password: wrongpassword123 | System displays message: “Incorrect password” | REQ-01 | EP |
+| TC-05 | Verify login when both email and password are empty | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Leave Email empty <br> 3. Leave Password empty <br> 4. Click “Login” | Email: "" <br> Password: "" | System displays message: “Please enter email and password” | REQ-01 | EP |
+| TC-06 | Verify system behavior when email field is empty | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Leave Email empty <br> 3. Enter password <br> 4. Click “Login” | Email: "" <br> Password: password123 | Requirement gap: SRS does not specify expected behavior when only email field is empty | REQ-01 | EP |
+| TC-07 | Verify system behavior when password field is empty | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter email <br> 3. Leave Password empty <br> 4. Click “Login” | Email: user@gmail.com <br> Password: "" | Requirement gap: SRS does not specify expected behavior when only password field is empty | REQ-01 | EP |
+| TC-08 | Verify system behavior for invalid email format(missing @) | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter invalid email format <br> 3. Enter password <br> 4. Click “Login” | Email: abc.com <br> Password: password123 | "Requirement gap: SRS does not specify expected behavior for invalid email format (missing @)" | REQ-01 | BVA |
+| TC-09 | Verify system behavior for invalid email format(missing .) | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter invalid email format <br> 3. Enter password <br> 4. Click “Login” | Email: user@gmail <br> Password: password123 | "Requirement gap: SRS does not specify expected behavior for invalid email format (missing .)" | REQ-01 | BVA |
 
 ---
 
-## Bước 1: Mô hình hóa miền đầu vào — Input Domain Modeling (IDM)
+# Table 4: TEST CASES FOR REQ-02 — View Book List
 
-> 📖 **Textbook:** Chương 6 — *Input Domain Modeling*, Paul Ammann & Jeff Offutt.
->
-> **Trước khi viết Test Case**, nhóm **phải** phân tích miền đầu vào bằng bảng IDM bên dưới.
-> Mỗi chức năng cần xác định: **Đặc tính (Characteristic)**, **Phân vùng (Block/Partition)**, và **Giá trị đại diện (Value)**.
-
-### IDM — Đăng nhập (REQ-01)
-
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
-|---|---|---|---|
-| Email có tồn tại trong DB? | Có | `librarian@library.com` | Đăng nhập thành công |
-| | Không | `noone@email.com` | Thông báo lỗi |
-| Mật khẩu có đúng? | Đúng | `admin123` | Đăng nhập thành công |
-| | Sai | `wrongpass` | Thông báo lỗi |
-| Ô nhập có rỗng? | Không rỗng | (giá trị bất kỳ) | Xử lý bình thường |
-| | Rỗng | `""` | Thông báo "Vui lòng nhập..." |
-
-### IDM — Tìm kiếm sách (REQ-03)
-
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
-|---|---|---|---|
-| Từ khóa có tồn tại trong DB? | Có (tên sách) | `"Flutter"` | Hiển thị sách chứa "Flutter" |
-| | Có (tên tác giả) | `"Nguyễn"` | Hiển thị sách của tác giả Nguyễn |
-| | Không | `"XYZ123"` | Danh sách rỗng |
-| Phân biệt HOA/thường? | Chữ thường | `"flutter"` | Kết quả giống "Flutter" |
-| | Chữ HOA | `"FLUTTER"` | Kết quả giống "Flutter" |
-
-### IDM — Mượn sách (REQ-04, REQ-05)
-
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
-|---|---|---|---|
-| Trạng thái sách? | Có sẵn | BOOK001 | Cho phép mượn |
-| | Đang mượn | BOOK003 | Không cho phép |
-| | Thất lạc | BOOK007 | Không cho phép |
-| Trạng thái thành viên? | Hoạt động | MEM002 | Cho phép mượn |
-| | Tạm ngưng | MEM004 | Từ chối, thông báo lỗi |
-| | Hết hạn | MEM005 | Từ chối, thông báo lỗi |
-| Số sách đang mượn? | < 3 (BVA: 0, 1, 2) | MEM006 (0 sách) | Cho phép mượn |
-| | = 3 (BVA: giới hạn) | MEM đã mượn 3 sách | Từ chối, thông báo vượt giới hạn |
-
-### IDM — `<!-- Nhóm tự bổ sung cho REQ-05 đến REQ-08 -->`
-
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
-|---|---|---|---|
-| `<!-- Nhóm tự điền -->` | | | |
-
-> 💡 **Gợi ý kỹ thuật**: Sử dụng **Phân lớp tương đương (EP)** cho các phân vùng rời rạc, **Phân tích giá trị biên (BVA)** cho các phân vùng số (ví dụ: giới hạn 3 sách). Xem textbook §6.1–6.3.
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
+|---|---|---|---|---|---|---|---|
+| TC-10 | Verify librarian can view the complete book list | User is logged in as librarian | 1. Login as librarian <br> 2. Navigate to the “Books” tab <br> 3. Check displayed book list | Email: librarian@library.com <br> Password: admin123 | System displays all books with title, author, genre, published year, and status | REQ-02 | EP |
+| TC-11 | Verify member can view the complete book list | User is logged in as member | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Check displayed book list | Email: ba.nguyen@email.com <br> Password: password123 | System displays all books with title, author, genre, published year, and status | REQ-02 | EP |
+| TC-12 | Verify complete book information is displayed correctly | User is logged in and currently on the “Books” tab | 1. Login <br> 2. Navigate to the “Books” tab <br> 3. Check information of BOOK001 | BOOK001 | System correctly displays title, author, genre, published year, and status for BOOK001 | REQ-02 | EP |
+| TC-13 | Verify book status is displayed correctly | User is logged in and currently on the “Books” tab | 1. Login <br> 2. Navigate to the “Books” tab <br> 3. Check status of BOOK001 and BOOK003 | BOOK001, BOOK003 | BOOK001 status is displayed as “Available”. BOOK003 status is displayed as “Borrowed” | REQ-02 | EP |
+| TC-14 | Verify real-time status update after borrowing a book | User is logged in as member. BOOK001 is currently “Available” | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Verify BOOK001 is “Available” <br> 4. Borrow BOOK001 <br> 5. Return to the “Books” tab <br> 6. Check BOOK001 status again | BOOK001 | BOOK001 status changes immediately from “Available” to “Borrowed” | REQ-02 | EP |
+| TC-15 | Verify real-time status update after returning a book | User is logged in as member. BOOK003 is currently “Borrowed” | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Verify BOOK003 is “Borrowed” <br> 4. Return BOOK003 <br> 5. Return to the “Books” tab <br> 6. Check BOOK003 status again | BOOK003 | BOOK003 status changes immediately from “Borrowed” to “Available” | REQ-02 | EP |
 
 ---
 
-## Bước 2: Test Cases
+# SUMMARY TABLE
+| Functional Group | TC Count | REQ Covered | IDM Technique Used |
+|---|---|---|---|
+| Login | 9 | REQ-01 | Equivalence Partitioning (EP), Boundary Value Analysis (BVA), Decision Table |
+| View Book List | 6 | REQ-02 | Equivalence Partitioning (EP) |
 
-<!-- Tự tổ chức bảng test case: có thể chia nhóm theo chức năng, theo REQ, hoặc theo luồng nghiệp vụ — tùy nhóm quyết định. -->
-<!-- Mỗi TC phải ánh xạ ngược về ít nhất 1 dòng trong bảng IDM ở Bước 1. -->
-
-| Mã TC | Mục tiêu kiểm thử | Tiền điều kiện | Bước thực hiện | Dữ liệu đầu vào | Kết quả mong đợi | REQ | Kỹ thuật |
-|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
-| | | | | | | | |
-
----
-
-## Tổng hợp
-
-| Nhóm chức năng | Số TC | REQ phủ | Kỹ thuật IDM áp dụng |
-|----------------|-------|---------|----------------------|
-| | | | |
-| **Tổng** | **<!-- ≥ 20 -->** | | |
+- Total: 15 test cases, 2 REQs covered
+- Techniques applied: EP (all TCs), BVA (TC-08, TC-09), Decision Table (REQ-01)

@@ -1,93 +1,72 @@
-# Test Summary — Báo cáo tổng hợp kiểm thử
+# TEST SUMMARY  
+## 1.Team Information
 
-> **Hướng dẫn**: Đây là hoạt động **Quality Assurance** — bạn đánh giá chất lượng tổng thể của phần mềm, không chỉ liệt kê lỗi.
+| Item | Information |
+| :---- | :---- |
+| Team | Team 14 |
+| Class | ICT-1 |
+| Report date | 23/05/2026 |
+| System under Test | https://stqa.rbc.vn \- v1.0 |
 
----
+## 2.Overall Results
 
-## 1. Thông tin nhóm
+| Metric | Value |
+| :---- | :---- |
+| Total Test Case | 15 |
+| Passed | 9 |
+| Failed | 2 |
+| Inconcusive | 4 |
+| Blocked | 0 |
+| Not Run | 0 |
+| Pass Rate | 60% |
+| Total Bugs Found | 2 |
 
-| Mục | Thông tin |
-|-----|----------|
-| **Nhóm** | `<!-- Tên nhóm -->` |
-| **Lớp** | `<!-- VD: SE001.P11 -->` |
-| **Ngày báo cáo** | `<!-- DD/MM/YYYY -->` |
-| **Hệ thống kiểm thử** | https://stqa.rbc.vn — v1.0 |
+### 2.1)RESULT BY FUNCTIONAL GROUP
 
----
+| Functional Group | TC | Pass | Fail | Inconclusice | Bug | Evaluation |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| Login | 9 | 3 | 2 | 4 | 2 | Need Improvement (language inconsisted) |
+| View Book list | 6 | 6 | 0 | 0 | Stable |
 
-## 2. Tổng quan kết quả
+### 2.2)BUG BY SEVERITY
 
-| Chỉ số | Giá trị |
-|--------|---------|
-| Tổng số test case | `<!-- -->` |
-| Pass | `<!-- -->` |
-| Fail | `<!-- -->` |
-| Blocked | `<!-- -->` |
-| Not Run | `<!-- -->` |
-| **Tỷ lệ Pass** | `<!-- xx% -->` |
-| **Số bug phát hiện** | `<!-- -->` |
+| Severity | Count | Bug IDs |
+| :---- | :---- | :---- |
+| High | 0 |  |
+| Medium | 0 |  |
+| Low | 2 | BUG-01,BUG-02 |
 
-### Phân bổ theo nhóm chức năng
+## 3.TEST DESIGN TECHNIQUE USED
 
-| Nhóm chức năng | TC | Pass | Fail | Bug | Đánh giá |
-|---------------|-----|------|------|-----|---------|
-| | | | | | |
+| Technique | Applied to REQ | Number of TCs | Explanation |
+| :---- | :---- | :---- | :---- |
+| Equivalence  Partitioning | REQ-01 REQ-02 | 15 | Input is divided into valid and invalid classes such as valid/invalid email, correct/incorrect password, User roles and book status conditions |
 
-### Phân bổ bug theo mức độ
+## 4.SOFTWARE QUALITY ANALYSIS  
+### 4.1)STRENGTH   
+\-Role-based access(LIBRARIAN/MEMBER) is correctly implemented  
+\-Book list displays complete and accurate information  
+\-Real-time book status updates function properly
 
-| Mức độ | Số lượng | Bug IDs |
-|--------|---------|---------|
-| High | | |
-| Medium | | |
-| Low | | |
+### 4.2)Weakness  
+\-Error messages are not consistent localized(English vs Vietnamese mismatch)
 
----
+## 5.BUG FIX PRIORITY 
 
-## 3. Kỹ thuật thiết kế đã sử dụng
+| PRIORITY ORDER | BUG | SEVERITY | REASON FOR PRIORITY |
+| :---- | :---- | :---- | :---- |
+| 1 | BUG-01 | Low | Affect English UI consistency and user-experience |
+| 2 | BUG-02 | Low | Affect English UI consistency and user-experience |
 
-| Kỹ thuật | Áp dụng cho REQ nào? | Số TC sử dụng | Giải thích cách áp dụng |
-|----------|---------------------|---------------|------------------------|
-| | | | |
+## 6.CONCLUSION:  
+\=\>System is not fully ready for production release
+\=\>Core functionality (login, book list) works correctly
 
----
+## 8.AI USAGE DECLARATION
 
-## 4. Phân tích chất lượng phần mềm
+| AI tool | Used for | Verification & Edit |
+| :---- | :---- | :---- |
+| ChatGPT | Check Test Cases |  |
+| Gemini | Explaination& Understanding the concept| |
+| Claude | Step-by-step guidance & Review | |
 
-### 4.1. Điểm mạnh
-`<!-- Liệt kê các chức năng hoạt động tốt -->`
-
-### 4.2. Điểm yếu
-`<!-- Liệt kê các vấn đề nghiêm trọng -->`
-
----
-
-## 5. Đề xuất ưu tiên sửa lỗi
-
-> 💡 Đây là phần **Quality Assurance**: bạn không chỉ tìm lỗi mà còn **đề xuất thứ tự ưu tiên** sửa chữa và đánh giá tác động.
-> Nêu rõ tiêu chí ưu tiên: dựa vào **severity** (mức độ nghiêm trọng kỹ thuật) và/hoặc **priority** (mức độ ưu tiên kinh doanh).
-
-| Thứ tự | Bug | Mức độ | Lý do ưu tiên |
-|--------|-----|--------|---------------|
-| | | | |
-
----
-
-## 6. Kết luận
-
-`<!-- Đánh giá tổng thể: Hệ thống có sẵn sàng phát hành không? Tại sao? -->`
-
----
-
-## 7. Bài học rút ra (Tùy chọn)
-
-`<!-- Nhóm bạn học được gì từ quá trình kiểm thử này? -->`
-
----
-
-## 8. Khai báo sử dụng AI (Tùy chọn)
-
-> Nếu nhóm có sử dụng công cụ AI (ChatGPT, Copilot, Gemini...), hãy ghi rõ bên dưới. Khai báo trung thực **không ảnh hưởng điểm** — đây là kỹ năng minh bạch trong nghề.
-
-| Công cụ AI | Dùng cho phần nào | Bạn đã kiểm tra/chỉnh sửa thế nào |
-|------------|-------------------|-----------------------------------|
-| | | |
