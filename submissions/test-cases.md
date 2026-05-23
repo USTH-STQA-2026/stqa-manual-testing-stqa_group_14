@@ -118,6 +118,7 @@ We do not include our last test case into the table as it is not a direct result
 | TC-04-03 | T | F | T | T | F |
 | TC-04-04 | T | T | F | T | F |
 | TC-04-05 | T | T | T | F | F |
+
 This set of test cases satisfies the restricted active clause coverage (RACC) and also correlated ACC (CACC). We can choose any clause as the major clause, and:
 - The major clause evaluates to T and F
 - Predicate evaluates to T and F
