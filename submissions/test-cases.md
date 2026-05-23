@@ -37,7 +37,7 @@
 | Characteristic | Block / Partition | Representative Value | Expected Result |
 |---|---|---|---|
 | User role | Librarian | `librarian@library.com` | Can access **Check Overdue** function |
-| | Member | `member@library.com` | Cannot access function |
+| | Member | `ba.nguyen@email.com` | Cannot access function |
 | Due date compared to current date | `dueDate > currentDate` | `20/06 > 15/06` | Record is **not marked overdue** |
 | | `dueDate = currentDate` (Boundary) | `15/06 = 15/06` | Record is marked **"Overdue"** |
 | | `dueDate < currentDate` | `10/06 < 15/06` | Record is marked **"Overdue"** |

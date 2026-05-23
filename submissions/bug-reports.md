@@ -17,7 +17,7 @@
 |---|---|
 | Bug ID | BUG-01 |
 | Related TC | TC-05-02, TC-05-03  |
-| Related REQ | REQ-05, REQ-06 |
+| Related REQ | REQ-05 |
 | Severity | Medium |
 | Reported By | Vu Duc Quang |
 | Date Found | 20/05/2026 |
