@@ -7,8 +7,8 @@
 |---|---|
 | **Nhóm** | Group 14 |
 | **Ngày thực thi** | 20/05/2026 |
-| **Trình duyệt** | Chrome `<!-- version -->` |
-| **Hệ điều hành** | `<!-- Windows / macOS / Linux -->` |
+| **Trình duyệt** | Chrome `<!-- version 142.0.7444.176 -->` |
+| **Hệ điều hành** | `<!-- Windows 10 -->` |
 
 ---
 

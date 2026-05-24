@@ -6,12 +6,12 @@
 
 ## 1. Thông tin nhóm
 
-| Mục | Thông tin |
+| Mục (Item) | Thông tin (Information) |
 |-----|----------|
-| **Nhóm** | Group 14 |
-| **Lớp** | `<!-- VD: SE001.P11 -->` |
-| **Ngày báo cáo** | 23/05/2026 |
-| **Hệ thống kiểm thử** | https://stqa.rbc.vn — v1.0 
+| **Nhóm (Group)** | Group 14 |
+| **Lớp (Class)** | ICT |
+| **Ngày báo cáo (Reporting date)** | 23/05/2026 |
+| **Hệ thống kiểm thử (Testing system)** | https://stqa.rbc.vn — v1.0 
 
 ---
 
@@ -55,7 +55,7 @@
 
 | Kỹ thuật (Technique) | Áp dụng cho REQ nào? (Applied to REQ) | Số TC sử dụng (TC count) | Giải thích cách áp dụng (How it was applied) |
 |----------|---------------------|---------------|------------------------|
-| **EP (Equivalence Partitioning)** | REQ-03 | 9 | Divided search inputs into partitions: valid keyword (book title / author name), no match, case variants (lowercase / uppercase), diacritic variants, and partial input. Each partition has one representative value — testing one value covers the whole group. |
+| **EP (Equivalence Partitioning)** | REQ-03 | 9 | Divided search inputs into partitions: valid keyword (book title/author name), no match, case variants (lowercase/uppercase), diacritic variants, and partial input. Each partition has one representative value — testing one value covers the whole group. |
 | **BVA (Boundary Value Analysis)** | REQ-03 | 1 | Applied to the empty input boundary (TC-10): when both search bars are empty, the system must display all 20 books. This is the lower boundary between "filtered" and "unfiltered" state. |
 | **Decision Table** | REQ-03 | 2 | Applied to combined search (TC-11, TC-12): systematically covered all combinations of keyword and category inputs — both match, and keyword match but category mismatch — to verify AND logic is applied correctly. |
 
