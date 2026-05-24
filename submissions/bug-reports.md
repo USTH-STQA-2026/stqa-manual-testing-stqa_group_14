@@ -137,7 +137,6 @@ Loss of new members, poor user experience, damage to reputation, operational pro
 
 **Minh chứng:**
 - ![BUG-07 screenshot](screenshots/BUG-07.png)
-- `Place actual screenshot file at submissions/screenshots/BUG-07.png`
 
 **Đề xuất xử lý:**
 Check the registration form, inspect the database, review server log, fix backend code, improve server capacity
@@ -183,7 +182,6 @@ Data privacy breach
 
 **Minh chứng:**
 - ![BUG-08 screenshot](screenshots/BUG-08.png)
-- `Place actual screenshot file at submissions/screenshots/BUG-08.png`
 
 **Đề xuất xử lý:**
 Server-side / data-layer filtering, improve UI-layer enforcement
