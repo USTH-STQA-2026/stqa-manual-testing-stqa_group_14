@@ -5,18 +5,32 @@
 
 | Thông tin | |
 |---|---|
-| **Nhóm** | `<!-- Tên nhóm -->` |
-| **Ngày thực thi** | `<!-- DD/MM/YYYY -->` |
-| **Trình duyệt** | Chrome `<!-- version -->` |
-| **Hệ điều hành** | `<!-- Windows / macOS / Linux -->` |
+| **Nhóm** | STQA-14 |
+| **Ngày thực thi** | 24/05/2026 |
+| **Trình duyệt** | Chrome |
+| **Hệ điều hành** | Windows 10 |
 
 ---
 
 ## Kết quả chi tiết
 
 | Mã TC | Nhóm chức năng | Kết quả mong đợi (tóm tắt) | Kết quả thực tế | Kết luận | Minh chứng | Bug |
-|-------|---------------|---------------------------|-----------------|---------|-----------|----| 
-| | | | | | | |
+|-------|---------------|---------------------------|-----------------|---------|-----------|----|
+| TC-01 | Members | Tạo member hợp lệ | Hệ thống từ chối, báo "Email invalid" | Fail | | BUG-07 |
+| TC-02 | Members | Từ chối email thiếu "." | Hệ thống từ chối (email invalid) | Pass | | |
+| TC-03 | Members | Từ chối email thiếu "@" | Hệ thống từ chối (email invalid) | Pass | | |
+| TC-04 | Members | Từ chối email trùng | Hệ thống từ chối (email exists) | Pass | | |
+| TC-05 | Members | Member không thấy tab Members | Tab không hiển thị / không truy cập được | Pass | | |
+| TC-06 | Members | Tạo member với a@b.co | Thành viên tạo thành công | Pass | | |
+| TC-07 | Borrow/Return | Hiển thị BR001–BR005 (Librarian) | Hiển thị đủ các phiếu | Pass | | |
+| TC-08 | Borrow/Return | Member chỉ thấy BR001 & BR004 | Chỉ thấy BR001 & BR004 | Pass | | |
+| TC-09 | Borrow/Return | Member không xem được ticket khác | Tickets của MEM003 hiển thị | Fail | | BUG-08 |
+| TC-10 | Borrow/Return | Xem chi tiết BR001 đầy đủ | Hiển thị đầy đủ thông tin | Pass | | |
+| TC-11 | Borrow/Return | BR002 hiển thị "Returned" | Hiển thị "Returned" | Pass | | |
+| TC-12 | Borrow/Return | Check Overdue đánh dấu BR001 | BR001 chuyển thành "Overdue" khi tới hạn | Pass | | |
+| TC-13 | Borrow/Return | BR002 vẫn "Returned" sau check | BR002 vẫn hiển thị "Returned" | Pass | | |
+| TC-14 | Members | Từ chối email nhiều @ hoặc .. | Hệ thống từ chối (email invalid) | Pass | | |
+| TC-15 | Members | Từ chối username trống | Hệ thống từ chối (Username blank) | Pass | | |
 
 ---
 
@@ -24,15 +38,16 @@
 
 | Chỉ số | Giá trị |
 |--------|---------|
-| Tổng số test case | `<!-- số -->` |
-| Pass | `<!-- số -->` |
-| Fail | `<!-- số -->` |
-| Blocked | `<!-- số -->` |
-| Not Run | `<!-- số -->` |
-| **Tỷ lệ Pass** | `<!-- xx% -->` |
+| Tổng số test case | 15 |
+| Pass | 13 |
+| Fail | 2 |
+| Blocked | 0 |
+| Not Run | 0 |
+| **Tỷ lệ Pass** | 86.7% |
 
 ### Kết quả theo nhóm chức năng
 
 | Nhóm | Tổng TC | Pass | Fail | Tỷ lệ Pass |
 |------|---------|------|------|------------|
-| | | | | |
+| Members | 9 | 8 | 1 | 88.9% |
+| Borrow/Return | 6 | 5 | 1 | 83.3% |
