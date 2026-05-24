@@ -58,8 +58,8 @@ Users who type category names in lowercase or uppercase get no results despite m
 Medium - the category filter still works with exact casing. Core functionality is not broken, but the inconsistency with the keyword bar and the SRS violation reduce reliability and usability.
 
 **Minh chứng (Evidence):**
-- Screenshot: ![TC-06_BUG-01_lowercase](evidence/TC-06_BUG-01_lowercase.png)
-- Screenshot: ![TC-06_BUG-01_uppercase](evidence/TC-06_BUG-01_uppercase.png)
+- Screenshot lowecase: ![TC-06 lowercase](evidence/TC-06_BUG-01_lowercase.png)
+- Screenshot uppercase: ![TC-06 uppercase](evidence/TC-06_BUG-01_uppercase.png)
 
 **Đề xuất xử lý (Suggested fix):**
 Apply `.toLowerCase()` or equivalent normalization to both the user input and the stored category values before comparison, consistent with how the keyword search bar already handles case. 
@@ -110,7 +110,7 @@ Category filter behaves inconsistently compared to the title/author search bar �
 Low — SRS does not explicitly require partial match for the category filter. However the inconsistency with the title/author bar creates a confusing user experience.
 
 **Minh chứng (Evidence):**
-- Screenshot: ![TC-09_BUG-02](evidence/TC-09_BUG-02.png)
+- Screenshot: ![TC-09](evidence/TC-09_BUG-02.png)
 
 **Đề xuất xử lý (Suggested fix):**
 Implement partial match logic for the category filter (e.g. use `.contains()` instead of exact match), consistent with how the title/author search bar handles input.
@@ -185,10 +185,11 @@ Combined search is fundamentally broken. Results are unpredictable and depend en
 High — combined filtering is a core use case of REQ-03 (especially when users don't remember the exact the detail of name). The feature returns incorrect results in 3 out of 4 scenarios with no warning to the user. This directly misleads users and violates SRS requirements.
 
 **Minh chứng (Evidence):**
-- Screenshot: ![TC-11_BUG-03](evidence/TC-11_BUG-03_author-first_1.png) ![TC-11_BUG-03](evidence/TC-11_BUG-03_author-first_2.png) ![TC-11_BUG-03](evidence/TC-11_BUG-03_author-first_3.png)
-- Screenshot: ![TC-11_BUG-03](evidence/TC-11_BUG-03_genre-first.png)
-- Screenshot: ![TC-12_BUG-03](evidence/TC-12_BUG-03_author-first.png)
-- Screenshot: ![TC-12_BUG-03](evidence/TC-12_BUG-03_genre-first.png)
+Match
+- Screenshot match - author 1st: ![TC-11 author 1st](evidence/TC-11_BUG-03_author-first_1.png) ![TC-11_BUG-03](evidence/TC-11_BUG-03_author-first_2.png) ![TC-11_BUG-03](evidence/TC-11_BUG-03_author-first_3.png)
+- Screenshot match - genre 1st: ![TC-11 genre 1st](evidence/TC-11_BUG-03_genre-first.png)
+- Screenshot mismatch author 1st: ![TC-12 author 1st](evidence/TC-12_BUG-03_author-first.png)
+- Screenshot mismatch genre 1st: ![TC-12 genre 1st](evidence/TC-12_BUG-03_genre-first.png)
 
 **Đề xuất xử lý (Suggested fix):**
 Refactor the search/filter logic to evaluate both conditions simultaneously using AND logic: a book must satisfy both the keyword condition (title or author contains keyword) AND the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
