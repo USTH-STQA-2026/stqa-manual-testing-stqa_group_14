@@ -27,8 +27,8 @@
 Category filter returns no results when input is lowercase or uppercase
 
 **Môi trường (Environment):**
-- Trình duyệt (Browser): Chrome `<!-- version 142.0.7444.176 -->`
-- Hệ điều hành (OS): `<!-- Windows 10 -->`
+- Trình duyệt (Browser): Chrome version 142.0.7444.176
+- Hệ điều hành (OS): Windows 10
 - Web application: Library Management System
 - Ngôn ngữ giao diện (UI language): English
 
@@ -86,8 +86,8 @@ Apply `.toLowerCase()` or equivalent normalization to both the user input and th
 Category filter does not support partial keyword input — requires full exact category name to return results
 
 **Môi trường (Environment):**
-- Trình duyệt (Browser): Chrome `<!-- version 142.0.7444.176 -->`
-- Hệ điều hành (OS): `<!-- Windows 10 -->`
+- Trình duyệt (Browser): Chrome version 142.0.7444.176
+- Hệ điều hành (OS): Windows 10
 - Web application: Library Management System
 - Ngôn ngữ giao diện (UI language): English
 
@@ -141,8 +141,8 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 Combined search does not apply AND logic — the last-entered search bar overrides the other, returning wrong results
 
 **Môi trường (Environment):**
-- Trình duyệt (Browser): Chrome `<!-- version 142.0.7444.176 -->`
-- Hệ điều hành (OS): `<!-- Windows 10 -->`
+- Trình duyệt (Browser): Chrome version 142.0.7444.176
+- Hệ điều hành (OS): Windows 10
 - Web application: Library Management System
 - Ngôn ngữ giao diện (UI language): English
 
