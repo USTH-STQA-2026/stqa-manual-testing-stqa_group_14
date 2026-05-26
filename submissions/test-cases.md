@@ -62,8 +62,7 @@
 | Username | Chỉ khoảng trắng | "   " (3 spaces) | Từ chối, hiển thị "Please enter your username" |
 | Username | Blank | (blank) | Từ chối, hiển thị "Please enter your username" |
 | Email | Hợp lệ | member@so.com | Chấp nhận |
-| Email | Thiếu @ | memberso.com | Từ chối, hiển thị "Please enter your email" |
-| Email | Thiếu . | member@socom | Từ chối, hiển thị "Please enter your email" |
+| Email | Thiếu @ or Thiếu . | memberso.com or member@socom | Từ chối, hiển thị "Please enter your email" |
 | Email | Blank | (blank) | Từ chối, hiển thị "Please enter your email" |
 | Phone number | Đúng 10 chữ số | 0988743321 | Chấp nhận |
 | Phone number | Không đủ 10 chữ số | 09283189 | Từ chối, hiển thị "Please enter your phone number" |
@@ -76,16 +75,16 @@
 | Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
 |---|---|---|---|
 | Role | Librarian | librarian@library.com | Hiển thị tất cả ticket |
-| Role | Active member | ba.nguyen@email.com (MEM002) | Chỉ hiển thị ticket của MEM002 |
-| Role | Suspended member | cu.le@email.com (MEM004) | Chỉ hiển thị ticket của MEM004 |
+|  | Active member | ba.nguyen@email.com (MEM002) | Chỉ hiển thị ticket của MEM002 |
+|  | Suspended member | cu.le@email.com (MEM004) | Chỉ hiển thị ticket của MEM004 |
 | Search member ID | Librarian tìm MEM002/MEM003/MEM006 | MEM002, MEM003, MEM006 | Hiển thị tất cả ticket tương ứng |
-| Search member ID | Member tìm chính họ | MEM002 tìm MEM002 | Hiển thị lịch sử mượn của MEM002 |
-| Search member ID | Member tìm người khác | MEM002 tìm MEM003 | Không hiển thị ticket, thông báo "Not found" |
-| Search member ID | ID không tồn tại | MEM099 | Thông báo "Not exist" hoặc "Not found" |
+|  | Member tìm chính họ | MEM002 tìm MEM002 | Hiển thị lịch sử mượn của MEM002 |
+|  | Member tìm người khác | MEM002 tìm MEM003 | Không hiển thị ticket, thông báo "Not found" |
+|  | ID không tồn tại | MEM099 | Thông báo "Not exist" hoặc "Not found" |
 | Borrow record ID | ID tồn tại - Borrowed | BR001 | Hiển thị trạng thái tương ứng |
-| Borrow record ID | ID tồn tại - Returned | BR002 | Hiển thị thông báo "Returned" |
-| Borrow record ID | ID tồn tại - Expired | BR001 (sau check overdue) | Hiển thị thông báo "Expired" |
-| Borrow record ID | ID không tồn tại | BR369 | Thông báo "Not found" |
+|  | ID tồn tại - Returned | BR002 | Hiển thị thông báo "Returned" |
+|  | ID tồn tại - Expired | BR001 (sau check overdue) | Hiển thị thông báo "Expired" |
+|  | ID không tồn tại | BR369 | Thông báo "Not found" |
 | Borrow history | Có lịch sử | MEM002 có BR001, BR004 | Hiển thị lịch sử mượn |
 | Borrow history | Chưa mượn | New member | Danh sách rỗng |
 
