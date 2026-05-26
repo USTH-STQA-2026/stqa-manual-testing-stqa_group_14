@@ -16,9 +16,9 @@
 | Thuộc tính | Chi tiết |
 |-----------|---------|
 | **Mã lỗi** | BUG-04-03 |
-| **TC liên quan** | TC-04-03 |
+| **TC liên quan** | TC-04-04 |
 | **REQ liên quan** | REQ-04 |
-| **Mức độ** | Low-Medium |
+| **Mức độ** | Medium |
 | **Người phát hiện** | Trần Thị Thu Trang |
 | **Ngày phát hiện** | 23/05/2026 |
 | **Trạng thái** | Open |
@@ -56,10 +56,10 @@
 
 
 **Minh chứng:**
-<a href="evidence/TC-04-03/BOOK001_before.png">Before borrowing BOOK001</a><br><a href="evidence/TC-04-03/BOOK001_after_vi.png">After borrowing BOOK001</a><br><a href="evidence/TC-04-03/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-03/BR_after.png">Borrow records after borrowing</a>
+<br><a href="evidence/TC-04-04/BOOK001_before.png">Before borrowing BOOK001</a><br><a href="evidence/TC-04-04/BOOK001_after_vi.png">After borrowing BOOK001</a><br><a href="evidence/TC-04-04/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-04/BR_after.png">Borrow records after borrowing</a>
 
 **Đề xuất xử lý:**
-- Correct the error message to "member has been suspended"
+Correct the error message to "member has been suspended"
 
 ---
 
@@ -68,7 +68,7 @@
 | Thuộc tính | Chi tiết |
 |-----------|---------|
 | **Mã lỗi** | BUG-04-05 |
-| **TC liên quan** | TC-04-05 |
+| **TC liên quan** | TC-04-06 |
 | **REQ liên quan** | REQ-04 |
 | **Mức độ** | High |
 | **Người phát hiện** | Trần Thị Thu Trang |
@@ -98,10 +98,10 @@ Member can borrow book BOOK005, no error message is displayed, borrow record for
 This violates the business requirement of only allowing to borrow up to 3 books at a time
 
 **Minh chứng:**
-<a href="evidence/TC-04-05/BOOK005_before.png">Before borrowing BOOK005</a><br><a href="evidence/TC-04-05/BOOK005_after.png">After borrowing BOOK005</a><br><a href="evidence/TC-04-05/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-05/BR_after.png">Borrow records after borrowing</a>
+<br><a href="evidence/TC-04-06/BOOK005_before.png">Before borrowing BOOK005</a><br><a href="evidence/TC-04-06/BOOK005_after.png">After borrowing BOOK005</a><br><a href="evidence/TC-04-06/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-06/BR_after.png">Borrow records after borrowing</a>
 
 **Đề xuất xử lý:**
-Recheck the condition checking whether the user has reached the borrow limit
+Recheck the condition checking whether the user has reached the borrow limit.
 
 ---
 
@@ -110,7 +110,7 @@ Recheck the condition checking whether the user has reached the borrow limit
 | Thuộc tính | Chi tiết |
 |-----------|---------|
 | **Mã lỗi** | BUG-04-07 |
-| **TC liên quan** | TC-04-03, TC-04-04, TC-04-06 |
+| **TC liên quan** | TC-04-04, TC-04-05, TC-04-07 |
 | **REQ liên quan** | REQ-04 |
 | **Mức độ** | Low |
 | **Người phát hiện** | Trần Thị Thu Trang |
@@ -148,7 +148,7 @@ Error messages are in Vietnamese
 Users who do not know Vietnamese can be confused
 
 **Minh chứng:**
-<a href="evidence/TC-04-03/BOOK001_after_en.png">TC-04-03: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-04/BOOK001_after_en.png">TC-04-04: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-06/BOOK008_after_en.png">TC-04-06: After borrowing BOOK008 (English)</a>
+<br><a href="evidence/TC-04-04/BOOK001_after_en.png">TC-04-04: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-05/BOOK001_after_en.png">TC-04-05: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-07/BOOK008_after_en.png">TC-04-07: After borrowing BOOK008 (English)</a>
 
 **Đề xuất xử lý:**
 Correct the error messages to the English version when the display language is English
