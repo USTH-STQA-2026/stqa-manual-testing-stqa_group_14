@@ -29,16 +29,16 @@
 
 | Chỉ số | Giá trị |
 |--------|---------|
-| Tổng số test case | 6 |
-| Pass | 2 |
+| Tổng số test case | 7 |
+| Pass | 3 |
 | Fail | 4 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | 33.3% |
+| **Tỷ lệ Pass** | 43% |
 
 ### Kết quả theo nhóm chức năng
 
 | Nhóm | Tổng TC | Pass | Fail | Tỷ lệ Pass |
 |------|---------|------|------|------------|
-| Borrow Book | 6 | 2 | 4 | 33.3% |
+| Borrow Book | 7 | 3 | 4 | 43% |
 
