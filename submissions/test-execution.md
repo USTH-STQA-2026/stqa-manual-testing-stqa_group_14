@@ -25,7 +25,8 @@
 | TC-12 | View Book List | Display correct information for BOOK001 | System displayed title, author, genre, published year, and status correctly | Pass | BOOK001 information displayed correctly | N/A |
 | TC-13 | View Book List | Display correct status for BOOK001 and BOOK003 | BOOK001 displayed as “Available” and BOOK003 displayed as “Borrowed” | Pass | Book statuses displayed correctly | N/A |
 | TC-14 | View Book List | Update BOOK001 status after borrowing | BOOK001 status changed immediately from “Available” to “Borrowed” | Pass | Real-time update worked correctly | N/A |
-| TC-15 | View Book List | Update BOOK003 status after returning | BOOK003 status changed immediately from “Borrowed” to “Available” | Pass | Real-time update worked correctly | N/A |
+| TC-15 | View Book List | BOOK007 remains "Lost" | BOOK007 status doesn't change| Inconclusive| SRS does not clearly define "Lost" status | N/A |
+| TC-16 | View Book List | Update BOOK003 status after returning | BOOK003 status changed immediately from “Borrowed” to “Available” | Pass | Real-time update worked correctly | N/A |
 
 
 ---
@@ -34,13 +35,13 @@
 
 | Metric | Value |
 |---|---|
-| Total Test Cases | 15 |
+| Total Test Cases | 16 |
 | Pass | 9 |
 | Fail | 2 |
-| Inconclusive | 4 (TC-06, TC-07, TC-08, TC-09)|
+| Inconclusive | 5 (TC-06, TC-07, TC-08, TC-09, TC-15)|
 | Blocked | 0 |
 | Not Run | 0 |
-| Pass Rate | 60.0% |
+| Pass Rate | 56.25% |
 
 ---
 
@@ -49,4 +50,4 @@
 | Functional Group | Total TC | Pass | Fail | Inconclusive | Blocked | Pass Rate |
 |---|---|---|---|---|---|---|
 | Login | 9 | 3 | 2 | 4 | 0 | 33.3% |
-| View Book List | 6 | 6 | 0 | 0 | 0 | 100% |
+| View Book List | 7 | 6 | 0 | 1 | 0 | 85.71% |

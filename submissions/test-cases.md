@@ -10,8 +10,8 @@
 | Input Fields | Both fields filled | Valid email + valid password | Continue login process |
 |  | Both fields empty | Email: "" <br> Password: "" | Display message: “Please enter email and password” |
 | Validation Behavior | Empty email only | Email: "" <br> Password: password123 |Display message: "Please enter email" |
-|  | Empty password only | Email: user@gmail.com <br> Password: "" |Display message: "Please enter password" |
-| Email Format (BVA) | Valid email format | user@gmail.com | Continue login validation |
+|  | Empty password only | Email: ba.nguyen@email.com <br> Password: "" |Display message: "Please enter password" |
+| Email Format (BVA) | Valid email format | ba.nguyen@email.com | Continue login validation |
 | |Invalid email format(missing . in the format)|user@gmail| Display message: "Member not found"
 | |Invalid email format(missing @ in the format)|abc.com| Display message: "Member not found "
 ---
@@ -25,6 +25,7 @@
 | Book Information Display | Complete book information | BOOK001 | System displays title, author, genre, published year, and status correctly |
 | Book Status | Available | BOOK001 | Status displayed as “Available” |
 |  | Borrowed | BOOK003 | Status displayed as “Borrowed” |
+|  | Lost | BOOK007 | Status displayed as “Lost” |
 | Real-time Update | After borrowing a book | BOOK001 | Status changes immediately to “Borrowed” |
 |  | After returning a book | BOOK003 | Status changes immediately to “Available” |
 
@@ -63,7 +64,8 @@
 | TC-12 | Verify complete book information is displayed correctly | User is logged in and currently on the “Books” tab | 1. Login <br> 2. Navigate to the “Books” tab <br> 3. Check information of BOOK001 | BOOK001 | System correctly displays title, author, genre, published year, and status for BOOK001 | REQ-02 | EP |
 | TC-13 | Verify book status is displayed correctly | User is logged in and currently on the “Books” tab | 1. Login <br> 2. Navigate to the “Books” tab <br> 3. Check status of BOOK001 and BOOK003 | BOOK001, BOOK003 | BOOK001 status is displayed as “Available”. BOOK003 status is displayed as “Borrowed” | REQ-02 | EP |
 | TC-14 | Verify real-time status update after borrowing a book | User is logged in as member. BOOK001 is currently “Available” | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Verify BOOK001 is “Available” <br> 4. Borrow BOOK001 <br> 5. Return to the “Books” tab <br> 6. Check BOOK001 status again | BOOK001 | BOOK001 status changes immediately from “Available” to “Borrowed” | REQ-02 | EP |
-| TC-15 | Verify real-time status update after returning a book | User is logged in as member. BOOK003 is currently “Borrowed” | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Verify BOOK003 is “Borrowed” <br> 4. Return BOOK003 <br> 5. Return to the “Books” tab <br> 6. Check BOOK003 status again | BOOK003 | BOOK003 status changes immediately from “Borrowed” to “Available” | REQ-02 | EP |
+| TC-15 | Verify real-time status update after borrowing a book | User is logged in as member. BOOK007 is currently “Lost” | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Verify BOOK007 is “Lost” <br>|BOOK007,BOOK020 | BOOK007 status remains “Lost” | REQ-02 | EP |
+| TC-16 | Verify real-time status update after returning a book | User is logged in as member. BOOK003 is currently “Borrowed” | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Verify BOOK003 is “Borrowed” <br> 4. Return BOOK003 <br> 5. Return to the “Books” tab <br> 6. Check BOOK003 status again | BOOK003 | BOOK003 status changes immediately from “Borrowed” to “Available” | REQ-02 | EP |
 
 ---
 
@@ -71,7 +73,7 @@
 | Functional Group | TC Count | REQ Covered | IDM Technique Used |
 |---|---|---|---|
 | Login | 9 | REQ-01 | Equivalence Partitioning (EP), Boundary Value Analysis (BVA), Decision Table |
-| View Book List | 6 | REQ-02 | Equivalence Partitioning (EP) |
+| View Book List | 7 | REQ-02 | Equivalence Partitioning (EP) |
 
-- Total: 15 test cases, 2 REQs covered
+- Total: 16 test cases, 2 REQs covered
 - Techniques applied: EP (all TCs), BVA (TC-08, TC-09), Decision Table (REQ-01)
