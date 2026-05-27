@@ -102,3 +102,74 @@ to ensure compliance with business rules **BR-05** and **BR-06**.
 ---
 
 
+## BUG-02
+
+| Attribute | Details |
+|---|---|
+| Bug ID | BUG-02 |
+| Related TC | TC-05-05 |
+| Related REQ | REQ-05, REQ-08 |
+| Severity | High |
+| Reported By | Vu Duc Quang |
+| Date Found | 27/05/2026 |
+| Status | Open |
+
+**Title:** Member can return books borrowed by another member
+
+### Environment
+
+- **Browser:** Chrome Version 148  
+- **Operating System:** Windows 11  
+- **Interface Language:** Vietnamese  
+
+### Preconditions
+
+- A member account is logged into the system.
+- Another member has an active borrow record.
+- The borrow record does not belong to the currently logged-in member.
+
+### Steps to Reproduce
+
+1. Log in using a member account (e.g. `dam.tran@email.com` / MEM003).
+2. Open the **Borrow / Return** page.
+3. Locate or select an active borrow record belonging to another member (e.g. MEM002).
+4. Click **Return Book** on that borrow record.
+5. Observe the system response and record status.
+
+### Expected Result
+
+The system must **not allow** a member to return another member’s borrowed book.
+
+Additionally:
+
+- Borrow records belonging to other members should **not be visible or accessible** for return actions.
+- The **Return Book** button should not be displayed or should be disabled for unauthorized records.
+- The borrow record status must remain unchanged.
+- The book status must remain unchanged.
+
+### Actual Result
+
+The logged-in member was able to access and return a book borrowed by another member.
+
+As a result:
+
+- The borrow record status was updated even though the record did not belong to the current member.
+- The book status changed despite unauthorized access.
+
+### Impact
+
+This behavior violates **access control and data ownership rules**.
+
+Members are able to manipulate borrow records that belong to other users, which may lead to:
+
+- Unauthorized modifications of borrowing history
+- Incorrect book availability status
+- Data integrity issues
+- Privacy and security concerns
+
+### Evidence
+
+#### Before Return
+
+```text
+Insert screenshot showing another member's active borrow record
