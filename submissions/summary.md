@@ -1,69 +1,95 @@
 # TEST SUMMARY  
+
 ## 1. Team Information
 
 | Item | Information |
 | :---- | :---- |
 | Team | Team 14 |
 | Class | ICT-1 |
-| Report date | 23/05/2026 |
+| Report Date | 23/05/2026 |
 | System under Test | https://stqa.rbc.vn - v1.0 |
+
+---
 
 ## 2. Overall Results
 
 | Metric | Value |
 | :---- | :---- |
-| Total Test Case | 16 |
-| Passed | 9 |
+| Total Test Cases | 16 |
+| Passed | 10 |
 | Failed | 2 |
-| Inconclusive | 5 |
+| Inconclusive | 4 |
 | Blocked | 0 |
 | Not Run | 0 |
-| Pass Rate | 56.25% |
-| Total Bugs Found | 1 |
+| Pass Rate | 62.5% |
+| Total Failures | 1 |
+| Requirement Ambiguities | 1 |
+| Requirement Gaps | 1 |
 
-### 2.1) RESULT BY FUNCTIONAL GROUP
-| Functional Group | TC | Pass | Fail | Inconclusive | Bug | Evaluation |
+---
+
+## 2.1) Results by Functional Group
+
+| Functional Group | TC | Pass | Fail | Inconclusive | Observation | Evaluation |
 | :---- | :---: | :---: | :---: | :---: | :---: | :---- |
 | Login | 9 | 3 | 2 | 4 | 1 | Need Improvement (language inconsistency) |
-| View Book list | 7 | 6 | 0 | 1 | 0 | Stable |
+| View Book List | 7 | 7 | 0 | 0 | 0 | Stable |
 
-### 2.2) BUG BY SEVERITY
+---
 
-| Severity | Count | Bug IDs |
+## 2.2) Test Observation Severity
+
+| Severity | Count | Report IDs |
 | :---- | :---: | :---- |
-| High | 0 | |
-| Medium | 0 | |
-| Low | 1 | BUG-01 |
+| High | 0 | N/A |
+| Medium | 0 | N/A |
+| Low | 1 | OBS-01 |
 
-## 3. TEST DESIGN TECHNIQUE USED
+---
+
+## 3. Test Design Techniques Used
 
 | Technique | Applied to REQ | Number of TCs | Explanation |
 | :---- | :---- | :---: | :---- |
-| Equivalence Partitioning | REQ-01, REQ-02 | 16 | Input is divided into valid and invalid classes such as valid/invalid email, correct/incorrect password, User roles, and book status conditions. |
+| Equivalence Partitioning (EP) | REQ-01, REQ-02 | 16 | Input is divided into valid and invalid classes such as valid/invalid email, correct/incorrect password, user roles, and book status conditions. |
 
-## 4. SOFTWARE QUALITY ANALYSIS  
-### 4.1) STRENGTH   
-- Role-based access (LIBRARIAN/MEMBER) is correctly implemented.  
-- Book list displays complete and accurate information.  
+
+---
+
+## 4. Software Quality Analysis  
+
+### 4.1) Strengths
+- Role-based access (LIBRARIAN/MEMBER) is correctly implemented.
+- Book list displays complete and accurate information.
 - Real-time book status updates function properly.
 
-### 4.2) WEAKNESS  
-- Error messages are not consistently localized (English vs. Vietnamese mismatch).
+### 4.2) Weaknesses
+- Error messages are not consistently localized (English/Vietnamese mismatch).
+- Some requirements in the SRS are ambiguous or incomplete.
+- Email format validation behavior is not clearly specified.
 
-## 5. BUG FIX PRIORITY 
+---
 
-| PRIORITY ORDER | BUG | SEVERITY | REASON FOR PRIORITY |
-| :---: | :---- | :---- | :---- |
-| 1 | BUG-01 | Low | Affects English UI consistency and user experience. |
+## 5. Priority of Reported Issues
 
-## 6. CONCLUSION  
-- System is not fully ready for production release because of incomplete (inconclusive) testing scope.  
-- Core functionality (login, book list) works correctly in successful paths.
+| Priority Order | Report ID | Type | Severity | Reason |
+| :---: | :---- | :---- | :---- | :---- |
+| 1 | OBS-01 | Failure | Low | Affects English UI consistency and user experience. |
+| 2 | RA-01 | Requirement Ambiguity | Low | SRS does not define behavior for partially empty fields. |
+| 3 | RG-01 | Requirement Gap | Low | SRS does not define invalid email format validation. |
 
-## 7. AI USAGE DECLARATION
+---
 
-| AI tool | Used for | Verification & Edit |
+## 6. Conclusion
+- Core functionality (login and book list management) works correctly in normal scenarios.
+- Some test cases could not be fully evaluated because the SRS contains ambiguities and missing specifications.
+- The system requires clarification of requirements and improvement of localization consistency before production release.
+
+---
+
+## 7. AI Usage Declaration
+| AI Tool | Used For | Verification & Edit |
 | :---- | :---- | :---- |
-| ChatGPT | Check Test Cases | Reviewed and verified outputs manually |
-| Gemini | Explanation & Understanding the concept | Applied concepts to logic structure |
-| Claude | Step-by-step guidance & Review | Used for final formatting checks |
+| ChatGPT | Reviewing test cases and report structure | Outputs were reviewed and verified manually |
+| Gemini | Concept explanation and understanding | Concepts were applied to testing logic |
+| Claude | Formatting review and documentation guidance | Final outputs were checked manually |
