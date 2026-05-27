@@ -8,7 +8,7 @@
 
 | Mục | Thông tin |
 |-----|----------|
-| **Nhóm** | `<!-- Tên nhóm -->` |
+| **Nhóm** | STQA-14 |
 | **Lớp** | `<!-- VD: SE001.P11 -->` |
 | **Ngày báo cáo** | `<!-- DD/MM/YYYY -->` |
 | **Hệ thống kiểm thử** | https://stqa.rbc.vn — v1.0 |
@@ -19,27 +19,28 @@
 
 | Chỉ số | Giá trị |
 |--------|---------|
-| Tổng số test case | `<!-- -->` |
-| Pass | `<!-- -->` |
-| Fail | `<!-- -->` |
-| Blocked | `<!-- -->` |
-| Not Run | `<!-- -->` |
-| **Tỷ lệ Pass** | `<!-- xx% -->` |
-| **Số bug phát hiện** | `<!-- -->` |
+| Tổng số test case | 15 |
+| Pass | 13 |
+| Fail | 2 |
+| Blocked | 0 |
+| Not Run | 0 |
+| **Tỷ lệ Pass** | 86.7% |
+| **Số bug phát hiện** | 2 |
 
 ### Phân bổ theo nhóm chức năng
 
 | Nhóm chức năng | TC | Pass | Fail | Bug | Đánh giá |
 |---------------|-----|------|------|-----|---------|
-| | | | | | |
+| Members | 9 | 8 | 1 | BUG-07 | Cần sửa: email validation gây từ chối sai |
+| Borrow/Return | 6 | 5 | 1 | BUG-08 | Cần sửa: phân quyền/search lọc theo member |
 
 ### Phân bổ bug theo mức độ
 
 | Mức độ | Số lượng | Bug IDs |
 |--------|---------|---------|
-| High | | |
-| Medium | | |
-| Low | | |
+| High | 2 | BUG-07, BUG-08 |
+| Medium | 0 | |
+| Low | 0 | |
 
 ---
 
@@ -47,17 +48,22 @@
 
 | Kỹ thuật | Áp dụng cho REQ nào? | Số TC sử dụng | Giải thích cách áp dụng |
 |----------|---------------------|---------------|------------------------|
-| | | | |
+| EP (Equivalence Partitioning) | REQ-07, REQ-08 | 12 | Dùng để nhóm dữ liệu rời rạc (valid/invalid emails, roles) |
+| BVA (Boundary Value Analysis) | REQ-07 | 3 | Áp dụng cho kiểm tra độ dài/định dạng email, số điện thoại |
 
 ---
 
 ## 4. Phân tích chất lượng phần mềm
 
 ### 4.1. Điểm mạnh
-`<!-- Liệt kê các chức năng hoạt động tốt -->`
+`- Core workflows mostly functional: adding members and borrow/return flows operate correctly for the majority of cases.`
+
+`- IDM analysis applied: tests cover valid/invalid partitions and boundary values for member inputs.`
 
 ### 4.2. Điểm yếu
-`<!-- Liệt kê các vấn đề nghiêm trọng -->`
+`- Two high-severity issues found:`
+`  - BUG-07: Email validation currently rejects a valid email during member creation (blocks registrations).`
+`  - BUG-08: Members can view other members' borrow tickets (data privacy / access control breach).`
 
 ---
 
@@ -68,19 +74,25 @@
 
 | Thứ tự | Bug | Mức độ | Lý do ưu tiên |
 |--------|-----|--------|---------------|
-| | | | |
+| 1 | BUG-08 | High | Data privacy breach — immediate security/privacy risk |
+| 2 | BUG-07 | High | Blocks core functionality (member registration) — business impact |
+
+**Gợi ý xử lý ngắn:**
+- BUG-08: Thực thi kiểm tra phân quyền ở server/data layer, thêm unit/integration test cho search API.
+- BUG-07: Kiểm tra/điều chỉnh regex/validator email phía backend, thêm test cases cho email giới hạn và quốc tế hóa.
 
 ---
 
 ## 6. Kết luận
 
-`<!-- Đánh giá tổng thể: Hệ thống có sẵn sàng phát hành không? Tại sao? -->`
+Hệ thống **chưa sẵn sàng phát hành**. Hai vấn đề thân trọng (privacy + registration) cần được khắc phục và retest trước release.
 
 ---
 
 ## 7. Bài học rút ra (Tùy chọn)
 
-`<!-- Nhóm bạn học được gì từ quá trình kiểm thử này? -->`
+`- Thiết kế IDM trước khi viết TC giúp phát hiện các kịch bản biên và trường hợp xấu.
+`- Cần bổ sung test tự động (unit & integration) cho validation và phân quyền truy xuất dữ liệu.
 
 ---
 
@@ -91,3 +103,7 @@
 | Công cụ AI | Dùng cho phần nào | Bạn đã kiểm tra/chỉnh sửa thế nào |
 |------------|-------------------|-----------------------------------|
 | | | |
+| Công cụ AI | Dùng cho phần nào | Bạn đã kiểm tra/chỉnh sửa thế nào |
+|------------|-------------------|-----------------------------------|
+| GitHub Copilot | Sửa lỗi, điều chỉnh chính tả tài liệu | Xem lại và chỉnh sửa thủ công trước khi lưu |
+| Claud AI | Tìm Bug | Nhờ gợi ý những test cases chưa nghĩ đến |
