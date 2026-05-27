@@ -86,7 +86,7 @@ Users do not receive an overdue warning even though the system defines books ret
 <a href="evidence/TC-05/TC-05-02-after-return.png">
   <img src="evidence/TC-05/TC-05-02-after-return.png" >
 </a>
-
+----------
 <a href="evidence/TC-05/TC-05-02-after-book.png">
   <img src="evidence/TC-05/TC-05-02-after-book.png">
 </a>
