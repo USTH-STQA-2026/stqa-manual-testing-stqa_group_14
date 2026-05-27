@@ -16,7 +16,7 @@
 | Thuộc tính (Attribute) | Chi tiết (Detail) |
 |-----------|---------|
 | **Mã lỗi (Bug ID)** | BUG-01 |
-| **TC liên quan (Related TC)** | TC-06 |
+| **TC liên quan (Related TC)** | TC-03-06 |
 | **REQ liên quan (Related REQ)** | REQ-03 |
 | **Mức độ (Severity)** | Medium |
 | **Người phát hiện (Found by)** | Nguyễn Minh Nhật |
@@ -30,7 +30,7 @@ Category filter returns no results when input is lowercase or uppercase
 - Trình duyệt (Browser): Chrome version 142.0.7444.176
 - Hệ điều hành (OS): Windows 10
 - Web application: Library Management System
-- Ngôn ngữ giao diện (UI language): English
+- Ngôn ngữ giao diện (UI language): Vietnamese, English
 
 **Điều kiện tiên quyết (Preconditions):**
 - Logged in as `ba.nguyen@email.com`
@@ -62,8 +62,8 @@ Medium - the category filter still works with exact casing. Core functionality i
 P2
 
 **Minh chứng (Evidence):**
-- Screenshot lowecase: ![TC-06 lowercase](evidence/TC-06_BUG-01_lowercase.png)
-- Screenshot uppercase: ![TC-06 uppercase](evidence/TC-06_BUG-01_uppercase.png)
+- Screenshot lowecase: ![TC-03-06 lowercase](evidence/TC-03-06_BUG-01_lowercase.png)
+- Screenshot uppercase: ![TC-03-06 uppercase](evidence/TC-03-06_BUG-01_uppercase.png)
 
 **Đề xuất xử lý (Suggested fix):**
 Apply `.toLowerCase()` or equivalent normalization to both the user input and the stored category values before comparison, consistent with how the keyword search bar already handles case. 
@@ -74,63 +74,8 @@ Apply `.toLowerCase()` or equivalent normalization to both the user input and th
 
 | Thuộc tính (Attribute) | Chi tiết (Detail) |
 |-----------|---------|
-| **Mã lỗi (Bug ID)** | BUG-02 |
-| **TC liên quan (Related TC)** | TC-09 |
-| **REQ liên quan (Related REQ)** | REQ-03 |
-| **Mức độ (Severity)** | Low |
-| **Người phát hiện (Found by)** | Nguyễn Minh Nhật |
-| **Ngày phát hiện (Date found)** | 20/05/2026 |
-| **Trạng thái (Status)** | Open |
-
-**Tiêu đề (Title):**
-Category filter does not support partial keyword input — requires full exact category name to return results
-
-**Môi trường (Environment):**
-- Trình duyệt (Browser): Chrome version 142.0.7444.176
-- Hệ điều hành (OS): Windows 10
-- Web application: Library Management System
-- Ngôn ngữ giao diện (UI language): English
-
-**Điều kiện tiên quyết (Preconditions):**
-- Logged in as `ba.nguyen@email.com`
-- On Books tab
-- Data has been reset to seed data
-
-**Bước tái hiện (Steps to reproduce):**
-1. Go to **Books** tab.
-2. Click on the category filter bar.
-3. Type `"Công"` (partial keyword).
-4. Observe the book list.
-
-**Kết quả mong đợi (Expected result):**
-Display 8 books whose category contains "Công": BOOK001, BOOK002, BOOK003, BOOK005, BOOK008, BOOK009, BOOK010, BOOK011.
-
-**Kết quả thực tế (Actual result):**
-Display "No books found". No books shown. Only typing the full exact name `"Công nghệ"` returns results.
-
-**Tác động (Impact):**
-Category filter behaves inconsistently compared to the title/author search bar — which supports partial input (verified in TC-08). Users who type partial category names get no results and may assume no books exist in that category.
-
-**Severity explanation:**
-Low — SRS does not explicitly require partial match for the category filter. However the inconsistency with the title/author bar creates a confusing user experience.
-
-**Priority:**
-P3
-
-**Minh chứng (Evidence):**
-- Screenshot: ![TC-09](evidence/TC-09_BUG-02.png)
-
-**Đề xuất xử lý (Suggested fix):**
-Implement partial match logic for the category filter (e.g. use `.contains()` instead of exact match), consistent with how the title/author search bar handles input.
-
---
-
-## BUG-03
-
-| Thuộc tính (Attribute) | Chi tiết (Detail) |
-|-----------|---------|
 | **Mã lỗi (Bug ID)** | BUG-03 |
-| **TC liên quan (Related TC)** | TC-11, TC-12 |
+| **TC liên quan (Related TC)** | TC-03-11, TC-03-12 |
 | **REQ liên quan (Related REQ)** | REQ-03 |
 | **Mức độ (Severity)** | High |
 | **Người phát hiện (Found by)** | Nguyễn Minh Nhật |
@@ -144,7 +89,7 @@ Combined search does not apply AND logic — the last-entered search bar overrid
 - Trình duyệt (Browser): Chrome version 142.0.7444.176
 - Hệ điều hành (OS): Windows 10
 - Web application: Library Management System
-- Ngôn ngữ giao diện (UI language): English
+- Ngôn ngữ giao diện (UI language): Vietnamese, English
 
 **Điều kiện tiên quyết (Preconditions):**
 - Logged in as `ba.nguyen@email.com`
@@ -198,14 +143,129 @@ P1
 
 **Minh chứng (Evidence):**
 Match
-- Screenshot match - author 1st: ![TC-11 author 1st](evidence/TC-11_BUG-03_author-first_1.png) ![TC-11_BUG-03](evidence/TC-11_BUG-03_author-first_2.png) ![TC-11_BUG-03](evidence/TC-11_BUG-03_author-first_3.png)
-- Screenshot match - genre 1st: ![TC-11 genre 1st](evidence/TC-11_BUG-03_genre-first.png)
-- Screenshot mismatch author 1st: ![TC-12 author 1st](evidence/TC-12_BUG-03_author-first.png)
-- Screenshot mismatch genre 1st: ![TC-12 genre 1st](evidence/TC-12_BUG-03_genre-first.png)
+- Screenshot match - author 1st: ![TC-03-11 author 1st](evidence/TC-03-11_BUG-02_author-first_1.png) ![TC-03-11_BUG-03](evidence/TC-03-11_BUG-02_author-first_2.png) ![TC-03-11_BUG-03](evidence/TC-03-11_BUG-02_author-first_3.png)
+- Screenshot match - genre 1st: ![TC-03-11 genre 1st](evidence/TC-03-11_BUG-02_genre-first.png)
+- Screenshot mismatch author 1st: ![TC-03-12 author 1st](evidence/TC-03-12_BUG-02_author-first.png)
+- Screenshot mismatch genre 1st: ![TC-03-12 genre 1st](evidence/TC-03-12_BUG-02_genre-first.png)
 
 **Đề xuất xử lý (Suggested fix):**
 Refactor the search/filter logic to evaluate both conditions simultaneously using AND logic: a book must satisfy both the keyword condition (title or author contains keyword) AND the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
 
 ---
 
+## OBSERVED-01
+
+| Thuộc tính (Attribute) | Chi tiết (Detail) |
+|-----------|---------|
+| **Mã lỗi (Bug ID)** | |
+| **TC liên quan (Related TC)** | TC-03-07 |
+| **REQ liên quan (Related REQ)** | REQ-03 |
+| **Mức độ (Severity)** | Low |
+| **Người phát hiện (Found by)** | Nguyễn Minh Nhật |
+| **Ngày phát hiện (Date found)** | 20/05/2026 |
+| **Trạng thái (Status)** | Open |
+
+**Tiêu đề (Title):**
+Both search bars do not support diacritic-insensitive input — typing without Vietnamese diacritics returns no results
+
+**Môi trường (Environment):**
+- Trình duyệt (Browser): Chrome version 142.0.7444.176
+- Hệ điều hành (OS): Windows 10
+- Web application: Library Management System
+- Ngôn ngữ giao diện (UI language): Vietnamese, English
+
+**Điều kiện tiên quyết (Preconditions):**
+- Logged in as `ba.nguyen@email.com`
+- On Books tab
+- Data has been reset to seed data
+
+**Bước tái hiện (Steps to reproduce):**
+1. Go to **Books** tab.
+2. Click on the title or author search bar.
+3. Type `"Nguyen Minh Duc"` (without diacritics).
+4. Observe the book list.
+5. Clear the search bar.
+6. Click on the category filter bar.
+7. Type `"Cong nghe"` (without diacritics).
+8. Observe the book list.
+
+**Kết quả mong đợi (Expected result):**
+Step 4: Display 2 books by Nguyễn Minh Đức — same result as TC-03-02.
+Step 8: Display 8 Technology books — same result as TC-03-03.
+
+**Kết quả thực tế (Actual result):**
+Display "No books found" for both steps. No books shown.
+
+**Tác động (Impact):**
+Users who type Vietnamese names or categories without diacritics — which is common on keyboards without Vietnamese input support — get no results despite matching books existing in the system. Given that the system supports a Vietnamese-language interface, this may affect a significant portion of users.
+
+**Severity explanation:**
+Low — SRS does not require diacritic-insensitive search. Current behavior is technically within spec. Reported as an observation for future consideration.
+
+**Priority:**
+P3
+
+**Minh chứng (Evidence):**
+- Screenshot: ![TC-03-07](evidence/TC-03-07_author-without-diacritics.png)
+- Screenshot: ![TC-03-07](evidence/TC-03-07_genre-without-diacritics.png)
+
+**Đề xuất xử lý (Suggested fix):**
+Implement diacritic normalization (e.g. convert `"Nguyen Minh Duc"` → `"Nguyễn Minh Đức"` before comparison) for both search bars. This is a common requirement for Vietnamese-language applications.
+
+---
+
+## OBSERVED-02
+
+| Thuộc tính (Attribute) | Chi tiết (Detail) |
+|-----------|---------|
+| **Mã lỗi (Bug ID)** | |
+| **TC liên quan (Related TC)** | TC-03-09 |
+| **REQ liên quan (Related REQ)** | REQ-03 |
+| **Mức độ (Severity)** | Low |
+| **Người phát hiện (Found by)** | Nguyễn Minh Nhật |
+| **Ngày phát hiện (Date found)** | 20/05/2026 |
+| **Trạng thái (Status)** | Open |
+
+**Tiêu đề (Title):**
+Category filter does not support partial keyword input — requires full exact category name to return results
+
+**Môi trường (Environment):**
+- Trình duyệt (Browser): Chrome version 142.0.7444.176
+- Hệ điều hành (OS): Windows 10
+- Web application: Library Management System
+- Ngôn ngữ giao diện (UI language): Vietnamese, English
+
+**Điều kiện tiên quyết (Preconditions):**
+- Logged in as `ba.nguyen@email.com`
+- On Books tab
+- Data has been reset to seed data
+
+**Bước tái hiện (Steps to reproduce):**
+1. Go to **Books** tab.
+2. Click on the category filter bar.
+3. Type `"Công"` (partial keyword).
+4. Observe the book list.
+
+**Kết quả mong đợi (Expected result):**
+Display 8 books whose category contains "Công": BOOK001, BOOK002, BOOK003, BOOK005, BOOK008, BOOK009, BOOK010, BOOK011.
+
+**Kết quả thực tế (Actual result):**
+Display "No books found". No books shown. Only typing the full exact name `"Công nghệ"` returns results.
+
+**Tác động (Impact):**
+Category filter behaves inconsistently compared to the title/author search bar — which supports partial input (verified in TC-08). Users who type partial category names get no results and may assume no books exist in that category.
+
+**Severity explanation:**
+Low — SRS does not explicitly require partial match for the category filter. However the inconsistency with the title/author bar creates a confusing user experience.
+
+**Priority:**
+P3
+
+**Minh chứng (Evidence):**
+- Screenshot: ![TC-03-09](evidence/TC-03-09.png)
+
+**Đề xuất xử lý (Suggested fix):**
+Implement partial match logic for the category filter (e.g. use `.contains()` instead of exact match), consistent with how the title/author search bar handles input.
+
+---
 <!-- Copy template BUG trên để thêm BUG-03, BUG-04, ... cho mỗi TC Fail -->
