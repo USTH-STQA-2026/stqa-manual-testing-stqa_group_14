@@ -6,7 +6,7 @@
 
 | Thông tin | |
 |---|---|
-| **Nhóm** | STQA-14 |
+| **Nhóm** | `<!-- Tên nhóm -->` |
 | **Ngày tạo** | `<!-- DD/MM/YYYY -->` |
 | **Hệ thống** | https://stqa.rbc.vn |
 | **Tham chiếu** | SRS v1.0 |
@@ -54,39 +54,11 @@
 | Số sách đang mượn? | < 3 (BVA: 0, 1, 2) | MEM006 (0 sách) | Cho phép mượn |
 | | = 3 (BVA: giới hạn) | MEM đã mượn 3 sách | Từ chối, thông báo vượt giới hạn |
 
-### IDM — Members (REQ-07)
+### IDM — `<!-- Nhóm tự bổ sung cho REQ-05 đến REQ-08 -->`
 
 | Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
 |---|---|---|---|
-| Username | Hợp lệ | "Kevin Hart" | Chấp nhận (Accept) |
-| Username | Chỉ khoảng trắng | "   " (3 spaces) | Từ chối, hiển thị "Please enter your username" |
-| Username | Blank | (blank) | Từ chối, hiển thị "Please enter your username" |
-| Email | Hợp lệ | member@so.com | Chấp nhận |
-| Email | Thiếu @ or Thiếu . | memberso.com or member@socom | Từ chối, hiển thị "Please enter your email" |
-| Email | Blank | (blank) | Từ chối, hiển thị "Please enter your email" |
-| Phone number | Đúng 10 chữ số | 0988743321 | Chấp nhận |
-| Phone number | Không đủ 10 chữ số | 09283189 | Từ chối, hiển thị "Please enter your phone number" |
-| Phone number | Chứa chữ | abcxyz | Từ chối, hiển thị "Please enter your phone number" |
-| Ability to add member | Admin | librarian@library.com | Cho phép thêm |
-| Ability to add member | Member | ba.nguyen@email.com | Không cho phép |
-
-### IDM — Search borrow tickets (REQ-08)
-
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
-|---|---|---|---|
-| Role | Librarian | librarian@library.com | Hiển thị tất cả ticket |
-|  | Active member | ba.nguyen@email.com (MEM002) | Chỉ hiển thị ticket của MEM002 |
-|  | Suspended member | cu.le@email.com (MEM004) | Chỉ hiển thị ticket của MEM004 |
-| Search member ID | Librarian tìm MEM002/MEM003/MEM006 | MEM002, MEM003, MEM006 | Hiển thị tất cả ticket tương ứng |
-|  | Member tìm chính họ | MEM002 tìm MEM002 | Hiển thị lịch sử mượn của MEM002 |
-|  | Member tìm người khác | MEM002 tìm MEM003 | Không hiển thị ticket, thông báo "Not found" |
-|  | ID không tồn tại | MEM099 | Thông báo "Not exist" hoặc "Not found" |
-| Borrow record ID | ID tồn tại - Borrowed | BR001 | Hiển thị trạng thái tương ứng |
-|  | ID tồn tại - Returned | BR002 | Hiển thị thông báo "Returned" |
-|  | ID tồn tại - Expired | BR001 (sau check overdue) | Hiển thị thông báo "Expired" |
-|  | ID không tồn tại | BR369 | Thông báo "Not found" |
-| Borrow history | Có lịch sử | MEM002 có BR001, BR004 | Hiển thị lịch sử mượn |
-| Borrow history | Chưa mượn | New member | Danh sách rỗng |
+| `<!-- Nhóm tự điền -->` | | | |
 
 > 💡 **Gợi ý kỹ thuật**: Sử dụng **Phân lớp tương đương (EP)** cho các phân vùng rời rạc, **Phân tích giá trị biên (BVA)** cho các phân vùng số (ví dụ: giới hạn 3 sách). Xem textbook §6.1–6.3.
 
@@ -99,21 +71,7 @@
 
 | Mã TC | Mục tiêu kiểm thử | Tiền điều kiện | Bước thực hiện | Dữ liệu đầu vào | Kết quả mong đợi | REQ | Kỹ thuật |
 |-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
-| TC-01 | Thêm thành viên mới hợp lệ | Đăng nhập bằng tài khoản Librarian | 1. Vào tab Members<br>2. Click "Add member"<br>3. Điền thông tin<br>4. Xác nhận | Username: Nguyễn Văn Test<br>Email: newmember@test.com<br>Phone: 0901234567 | Thành viên được tạo thành công, xuất hiện trong danh sách | REQ-07 | EP |
-| TC-02 | Thêm thành viên với email thiếu dấu chấm trong domain | Đăng nhập Librarian | 1. Vào Members<br>2. Click Add<br>3. Nhập email user@domain<br>4. Xác nhận | Email: user@domain | Hệ thống từ chối, thông báo lỗi email không hợp lệ | REQ-07 | BVA |
-| TC-03 | Thêm thành viên với email thiếu @ | Đăng nhập Librarian | 1. Vào Members<br>2. Click Add<br>3. Nhập email userdomain.com<br>4. Xác nhận | Email: userdomain.com | Hệ thống từ chối, thông báo lỗi email không hợp lệ | REQ-07 | BVA |
-| TC-04 | Thêm thành viên trùng email | Đăng nhập Librarian | 1. Vào Members<br>2. Click Add<br>3. Nhập email đã tồn tại (ba.nguyen@email.com)<br>4. Xác nhận | Email: ba.nguyen@email.com | Hệ thống từ chối, thông báo email đã tồn tại | REQ-07 | EP |
-| TC-05 | Kiểm tra quyền Member không thấy tab Members | Đăng nhập bằng tài khoản Member (ba.nguyen) | 1. Đăng nhập bằng MEM002<br>2. Quan sát các tab hiển thị | (không cần nhập thêm) | Tab "Members" không xuất hiện hoặc không truy cập được | REQ-07 | EP |
-| TC-06 | Email ngắn nhất hợp lệ (BVA) | Đăng nhập Librarian | 1. Vào Members<br>2. Click Add<br>3. Nhập email a@b.co<br>4. Xác nhận | Email: a@b.co<br>Phone: 0900000001 | Thành viên được tạo thành công | REQ-07 | BVA |
-| TC-07 | Hiển thị danh sách phiếu mượn (Librarian) | Đăng nhập Librarian | 1. Đăng nhập Librarian<br>2. Vào tab Borrow/Return<br>3. Quan sát danh sách | (không cần dữ liệu) | Hiển thị đủ BR001–BR005 cho tất cả thành viên | REQ-08 | EP |
-| TC-08 | Hiển thị phiếu mượn cho Member (chỉ của họ) | Đăng nhập MEM002 | 1. Đăng nhập MEM002<br>2. Vào Borrow/Return<br>3. Quan sát danh sách | (MEM002) | Chỉ thấy BR001 và BR004 (của MEM002) | REQ-08 | EP |
-| TC-09 | Tìm kiếm phiếu mượn của thành viên khác (không cho phép) | Đăng nhập MEM002 | 1. Đăng nhập MEM002<br>2. Vào Borrow/Return<br>3. Tìm ID MEM003 | Tìm MEM003 | Không hiển thị ticket của MEM003; hoặc thông báo "Not found" | REQ-08 | EP, BUG |
-| TC-10 | Xem chi tiết phiếu BR001 | Đăng nhập Librarian | 1. Đăng nhập Librarian<br>2. Vào Borrow/Return<br>3. Mở BR001 | BR001 | Hiển thị đầy đủ: mã, sách, ngày mượn, ngày trả, trạng thái | REQ-08 | EP |
-| TC-11 | Xem phiếu BR002 (đã trả) | Đăng nhập Librarian hoặc MEM003 | 1. Đăng nhập<br>2. Vào Borrow/Return<br>3. Mở BR002 | BR002 (đã trả 20/08/2024) | Trạng thái hiển thị "Returned" | REQ-08 | EP |
-| TC-12 | Kiểm tra đánh dấu quá hạn (Check Overdue) | Đăng nhập Librarian | 1. Đăng nhập Librarian<br>2. Click "Check Overdue"<br>3. Vào Borrow/Return, mở BR001 | BR001 (expiry 15/09/2024) | BR001 được chuyển trạng thái thành "Overdue" nếu đến hạn | REQ-06, REQ-08 | EP |
-| TC-13 | Kiểm tra BR002 hiển thị đúng trạng thái sau check overdue | Đăng nhập Librarian | 1. Đăng nhập Librarian<br>2. Check Overdue<br>3. Mở BR002 | BR002 (returned) | BR002 vẫn hiển thị "Returned" | REQ-08 | EP |
-| TC-14 | Thêm member với email có nhiều @ hoặc nhiều dấu chấm liên tiếp | Đăng nhập Librarian | 1. Click Add member<br>2. Nhập email admin@@vn.com hoặc admin@vn..com<br>3. Xác nhận | Email: admin@@vn.com / admin@vn..com | Hệ thống từ chối, thông báo lỗi email không hợp lệ | REQ-07 | EP |
-| TC-15 | Thêm member với username trống | Đăng nhập Librarian | 1. Click Add member<br>2. Để trống Username<br>3. Xác nhận | Username: (blank), Email: admin@vn.com | Hệ thống từ chối, thông báo "Username blank" | REQ-07 | EP |
+| | | | | | | | |
 
 ---
 
@@ -121,6 +79,5 @@
 
 | Nhóm chức năng | Số TC | REQ phủ | Kỹ thuật IDM áp dụng |
 |----------------|-------|---------|----------------------|
-| Members | 9 | REQ-07 | EP, BVA |
-| Borrow/Return | 6 | REQ-06, REQ-08 | EP |
-| **Tổng** | **15** | REQ-06 → REQ-08 | EP, BVA |
+| | | | |
+| **Tổng** | **<!-- ≥ 20 -->** | | |
