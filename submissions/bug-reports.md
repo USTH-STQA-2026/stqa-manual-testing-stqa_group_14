@@ -16,7 +16,7 @@
 | **Trạng thái** | Open |
 
 **Tiêu đề:**
-No more new member — hệ thống từ chối email sai lệch
+System rejects valid email but accepts invalid email when creating a new member
 
 **Môi trường:**
 - Trình duyệt: Chrome
@@ -28,9 +28,11 @@ No more new member — hệ thống từ chối email sai lệch
 
 **Bước tái hiện:**
 1. Get in tab member
-2. Click “Add member”
-3. Fill in information
-4. Accept
+2. Navigate to the **Add New Member** page.
+3. Enter valid member information, including a valid email format (e.g., `newmember@gmail.com`).
+4. Click **Submit**.
+5. Observe the system response.
+6. Repeat the process using an invalid email format (e.g., `whoisthis@idontknow`).
 
 **Kết quả mong đợi:**
 New member successfully created, appears in list (REQ-07: valid input → created successfully)
@@ -40,15 +42,14 @@ Valid input --> Error message " Email invalid ",
 Invalid input --> Created succesfully
 
 **Tác động:**
-Loss of new members, poor user experience, damage to reputation, operational problem
+Loss of new members, poor user experience, damage to reputation, allows invalid data to be stored in the system database.
 
 **Minh chứng:**
 - ![BUG-07](image.png)
 - ![BUG-07](image-2.png)
 
 **Đề xuất xử lý:**
-Check the registration form, inspect the database, review server log, fix backend code, improve server capacity
-
+Review and fix the email validation logic in the member creation form, ensure valid email formats are accepted and invalid formats are rejected correctly
 ---
 
 ## BUG-08
