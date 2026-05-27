@@ -42,7 +42,7 @@ New member successfully created, appears in list (REQ-07: valid input → create
 Loss of new members, poor user experience, damage to reputation, operational problem
 
 **Minh chứng:**
-- ![BUG-07 screenshot](screenshots/BUG-07.png)
+- ![BUG-07](image.png)
 
 **Đề xuất xử lý:**
 Check the registration form, inspect the database, review server log, fix backend code, improve server capacity
@@ -87,7 +87,7 @@ Tickets for MEM003 are displayed
 Data privacy breach
 
 **Minh chứng:**
-- ![BUG-08 screenshot](screenshots/BUG-08.png)
+- ![BUG-08](image-1.png)
 
 **Đề xuất xử lý:**
 Server-side / data-layer filtering, improve UI-layer enforcement
