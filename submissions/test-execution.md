@@ -1,7 +1,7 @@
 # Execution
 | Information | |
 |---|---|
-| **Team** | Team 14 |
+| **Team** |  14 |
 | **Execution Date** | 23/05/2026 |
 | **Browser** | Chrome Version 148 |
 | **Operating System** | Windows 10 |

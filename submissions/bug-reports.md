@@ -44,10 +44,8 @@
 'Incorrect password'(English Message)
 
 ## Actual Result
-- TC-03:System displays the Vietnamese message:
-'Không tìm thấy thành viên'
-- TC-04:System displays the Vietnamese message:
-'Mật khẩu không đúng'
+- TC-03:System displays the Vietnamese message: 'Không tìm thấy thành viên'
+- TC-04:System displays the Vietnamese message: 'Mật khẩu không đúng'
 
 ## Impact
 English users may not understand the displayed error message, causing inconsistent user experience.
@@ -74,7 +72,7 @@ English users may not understand the displayed error message, causing inconsiste
 - Ensure “member not found” error uses English resource bundle when language = EN
 - Verify fallback language logic is not defaulting to Vietnamese incorrectly
 
-# Requirement Ambiguity report -RA-01
+# Requirement Ambiguity report - RA-01
 | Attribute | Details |
 |-----------|---------|
 | **Report ID** | RA-01 |
@@ -86,7 +84,7 @@ English users may not understand the displayed error message, causing inconsiste
 | **Date Reported** | 25/05/2026 |
 | **Status** | Open |
 ## Title
-The SRS specifies behavior only when BOTH email and password fields are empty.
+The SRS specifies behavior only when both email and password fields are empty.
 However, the SRS does not define expected behavior for:
 - empty email only
 - empty password only
@@ -100,13 +98,13 @@ Therefore, expected results cannot be determined confidently.
 - UI Language: English
 
 ## Testing Impact
-- Test verdict is marked as: Inconclusive. Because the specification is too vague to determine Pass/Fail.
+- Test verdict is marked as: Inconclusive. Because the specification is too vague to determine a Pass or Fail result.
 
 ## Suggested Fix
 - Expected validation message when email is empty
 - Expected validation message when password is empty
 
-# Requirement Gap report -RA-01
+# Requirement Gap report - RG-01
 | Attribute | Details |
 |-----------|---------|
 | **Report ID** | RG-01 |
@@ -138,9 +136,9 @@ Test verdict is marked as: Inconclusive
 - Different developers may implement inconsistent validation behavior.
 
 ## Suggested Fix
-- whether email format validation is required
-- expected validation messages for invalid email formats
-- whether format validation occurs before account lookup
+- Specify whether email format validation is required
+- Define expected validation messages for invalid email formats
+- Clarify whether format validation should occur before account lookup
 
 
 

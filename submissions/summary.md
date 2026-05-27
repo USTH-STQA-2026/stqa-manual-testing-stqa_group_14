@@ -22,7 +22,7 @@
 | Blocked | 0 |
 | Not Run | 0 |
 | Pass Rate | 62.5% |
-| Total Failures | 1 |
+| Total Observation Reports | 1 |
 | Requirement Ambiguities | 1 |
 | Requirement Gaps | 1 |
 
@@ -32,7 +32,7 @@
 
 | Functional Group | TC | Pass | Fail | Inconclusive | Observation | Evaluation |
 | :---- | :---: | :---: | :---: | :---: | :---: | :---- |
-| Login | 9 | 3 | 2 | 4 | 1 | Need Improvement (language inconsistency) |
+| Login | 9 | 3 | 2 | 4 | OBS-01, RA-01, RG-01 | Need Improvement (language inconsistency) |
 | View Book List | 7 | 7 | 0 | 0 | 0 | Stable |
 
 ---

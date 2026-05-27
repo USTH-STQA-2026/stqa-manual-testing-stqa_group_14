@@ -1,4 +1,16 @@
-# Table 1: IDM for REQ-01 — Login
+# Test Cases — Bảng trường hợp kiểm thử
+## Team Information
+
+| Item | Information |
+| :---- | :---- |
+| Team |  14 |
+| Class | ICT-1 |
+| Report Date | 23/05/2026 |
+| System under Test | https://stqa.rbc.vn - v1.0 |
+
+
+## Input Domain Modeling (IDM)
+### Table 1: IDM for REQ-01 — Login
 
 | Characteristic | Partition | Representative Value | Expected Result |
 |---|---|---|---|
@@ -16,7 +28,7 @@
 | |Invalid email format(missing @ in the format)|abc.com| Display message: "Member not found "
 ---
 
-# Table 2: IDM for REQ-02 — View Book List
+### Table 2: IDM for REQ-02 — View Book List
 
 | Characteristic | Partition | Representative Value | Expected Result |
 |---|---|---|---|
@@ -29,8 +41,8 @@
 | Real-time Update | After borrowing a book | BOOK001 | Status changes immediately to “Borrowed” |
 |  | After returning a book | BOOK003 | Status changes immediately to “Available” |
 
-
-# Table 3: TEST CASES FOR REQ-01 — Login
+## Test Cases
+### Table 3: TEST CASES FOR REQ-01 — Login
 ---
 | TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
 |---|---|---|---|---|---|---|---|
@@ -46,7 +58,7 @@
 
 ---
 
-# Table 4: TEST CASES FOR REQ-02 — View Book List
+### Table 4: TEST CASES FOR REQ-02 — View Book List
 
 | TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
 |---|---|---|---|---|---|---|---|
