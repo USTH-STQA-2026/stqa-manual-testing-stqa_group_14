@@ -21,7 +21,7 @@
 | TC-03 | Members | Từ chối email thiếu "@" | Created Successfully | Fail | | BUG-07 |
 | TC-04 | Members | Từ chối email trùng | Hệ thống từ chối (email exists) | Pass | | |
 | TC-05 | Members | Member không thấy tab "Add member" | Tab không hiển thị / không truy cập được | Pass | | |
-| TC-06 | Members | Tạo member với a@b.co thành công | Hệ thống từ chối (email exists) | Fail | | BUG-07 |
+| TC-06 | Members | Tạo member với a@b.co thành công | Hệ thống từ chối (email invalid) | Fail | | BUG-07 |
 | TC-07 | Borrow/Return | Hiển thị BR001–BR005 (Librarian) | Hiển thị đủ các phiếu | Pass | | |
 | TC-08 | Borrow/Return | Member chỉ thấy BR001 & BR004 | Chỉ thấy BR001 & BR004 | Pass | | |
 | TC-09 | Borrow/Return | Member không xem được ticket khác | Tickets của MEM003 hiển thị | Fail | | BUG-08 |
