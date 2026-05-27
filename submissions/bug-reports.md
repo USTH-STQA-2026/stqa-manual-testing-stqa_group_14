@@ -174,7 +174,7 @@ Members are able to manipulate borrow records that belong to other users, which 
 Logged in as **MEM003 (Trần Dựa Dẫm)**, but the system displayed borrow records belonging to **MEM002 (Nguyễn Học Bá)** and still allowed the **"Trả sách"** action.
 
 <a href="evidence/TC-05/TC-05-05-before-record.png">
-  <img src="evidence/TC-05/TC-05-05-before-record.png" width="320">
+  <img src="evidence/TC-05/TC-05-05-before-record.png">
 </a>
 
 #### After Unauthorized Return
@@ -182,5 +182,5 @@ Logged in as **MEM003 (Trần Dựa Dẫm)**, but the system displayed borrow re
 While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully returned a borrow record belonging to **MEM002 (Nguyễn Học Bá)**. The record status changed to **"Đã trả"**, confirming unauthorized access and modification.
 
 <a href="evidence/TC-05/TC-05-05-after-return.png">
-  <img src="evidence/TC-05/TC-05-05-after-return.png" width="320">
+  <img src="evidence/TC-05/TC-05-05-after-return.png">
 </a>
