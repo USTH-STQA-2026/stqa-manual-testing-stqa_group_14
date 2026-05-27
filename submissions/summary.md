@@ -20,19 +20,19 @@
 | Chỉ số | Giá trị |
 |--------|---------|
 | Tổng số test case | 15 |
-| Pass | 13 |
-| Fail | 2 |
+| Pass | 10 |
+| Fail | 5 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | 86.7% |
+| **Tỷ lệ Pass** | 50% |
 | **Số bug phát hiện** | 2 |
 
 ### Phân bổ theo nhóm chức năng
 
 | Nhóm chức năng | TC | Pass | Fail | Bug | Đánh giá |
 |---------------|-----|------|------|-----|---------|
-| Members | 9 | 8 | 1 | BUG-07 | Cần sửa: email validation gây từ chối sai |
-| Borrow/Return | 6 | 5 | 1 | BUG-08 | Cần sửa: phân quyền/search lọc theo member |
+| Members | 8 | 4 | 4 | BUG-07 | Cần sửa: email validation gây từ chối sai |
+| Borrow/Return | 7 | 6 | 1 | BUG-08 | Cần sửa: phân quyền/search lọc theo member |
 
 ### Phân bổ bug theo mức độ
 
@@ -62,7 +62,7 @@
 
 ### 4.2. Điểm yếu
 `- Two high-severity issues found:`
-`  - BUG-07: Email validation currently rejects a valid email during member creation (blocks registrations).`
+`  - BUG-07: Email validation currently rejects a valid email during member creation (blocks registrations) and accept invalid email into database.`
 `  - BUG-08: Members can view other members' borrow tickets (data privacy / access control breach).`
 
 ---

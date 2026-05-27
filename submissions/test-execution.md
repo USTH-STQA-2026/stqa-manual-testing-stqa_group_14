@@ -39,15 +39,15 @@
 | Chỉ số | Giá trị |
 |--------|---------|
 | Tổng số test case | 15 |
-| Pass | 13 |
-| Fail | 2 |
+| Pass | 10 |
+| Fail | 5 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | 86.7% |
+| **Tỷ lệ Pass** | 66.7% |
 
 ### Kết quả theo nhóm chức năng
 
 | Nhóm | Tổng TC | Pass | Fail | Tỷ lệ Pass |
 |------|---------|------|------|------------|
-| Members | 9 | 8 | 1 | 88.9% |
-| Borrow/Return | 6 | 5 | 1 | 83.3% |
+| Members | 8 | 4 | 4 | 50% |
+| Borrow/Return | 7 | 6 | 1 | 85.7% |
