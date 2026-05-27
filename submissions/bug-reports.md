@@ -78,7 +78,7 @@ Users do not receive an overdue warning even though the system defines books ret
 #### Before Return
 
 <a href="evidence/TC-05/TC-05-02-before-record.png">
-  <img src="evidence/TC-05/TC-05-02-before-record.png" width="320">
+  <img src="evidence/TC-05/TC-05-02-before-record.png">
 </a>
 
 #### After Return
