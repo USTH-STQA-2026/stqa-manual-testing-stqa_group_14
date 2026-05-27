@@ -36,8 +36,8 @@ No more new member — hệ thống từ chối email sai lệch
 New member successfully created, appears in list (REQ-07: valid input → created successfully)
 
 **Kết quả thực tế:**
-Valid input --> Error message " Email invalid "
-Invalid inpjut --> Created succesfully
+Valid input --> Error message " Email invalid ", 
+Invalid input --> Created succesfully
 
 **Tác động:**
 Loss of new members, poor user experience, damage to reputation, operational problem
