@@ -16,7 +16,7 @@
 | **Trạng thái** | Open |
 
 **Tiêu đề:**
-No more new member — hệ thống từ chối email hợp lệ
+No more new member — hệ thống từ chối email sai lệch
 
 **Môi trường:**
 - Trình duyệt: Chrome
@@ -36,13 +36,15 @@ No more new member — hệ thống từ chối email hợp lệ
 New member successfully created, appears in list (REQ-07: valid input → created successfully)
 
 **Kết quả thực tế:**
-"Email invalid"
+Valid input --> Error message " Email invalid "
+Invalid inpjut --> Created succesfully
 
 **Tác động:**
 Loss of new members, poor user experience, damage to reputation, operational problem
 
 **Minh chứng:**
 - ![BUG-07](image.png)
+- ![BUG-07](image-2.png)
 
 **Đề xuất xử lý:**
 Check the registration form, inspect the database, review server log, fix backend code, improve server capacity
