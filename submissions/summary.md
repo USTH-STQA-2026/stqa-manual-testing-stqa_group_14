@@ -28,7 +28,7 @@
 
 ---
 
-## 2.1) Results by Functional Group
+### 2.1) Results by Functional Group
 
 | Functional Group | TC | Pass | Fail | Inconclusive | Observation | Evaluation |
 | :---- | :---: | :---: | :---: | :---: | :---: | :---- |
@@ -37,7 +37,7 @@
 
 ---
 
-## 2.2) Test Observation Severity
+### 2.2) Test Observation Severity
 
 | Severity | Count | Report IDs |
 | :---- | :---: | :---- |

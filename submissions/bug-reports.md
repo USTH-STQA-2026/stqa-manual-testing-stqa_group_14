@@ -54,7 +54,7 @@ English users may not understand the displayed error message, causing inconsiste
 
 ## Priority
 - P2
-## Evidence
+
 ## Evidence
 
 <p><strong>TC-03 Screenshot</strong></p>
