@@ -24,7 +24,7 @@
 | Fail | 5 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | 50% |
+| **Tỷ lệ Pass** | 66.7% |
 | **Số bug phát hiện** | 2 |
 
 ### Phân bổ theo nhóm chức năng
