@@ -1,7 +1,5 @@
 # Test Summary — Báo cáo tổng hợp kiểm thử
 
-# Test Summary — Báo cáo tổng hợp kiểm thử
-
 > **Hướng dẫn**: Đây là hoạt động **Quality Assurance** — bạn đánh giá chất lượng tổng thể của phần mềm, không chỉ liệt kê lỗi.
 
 ---
