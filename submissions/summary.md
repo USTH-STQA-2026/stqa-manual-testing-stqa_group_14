@@ -20,18 +20,18 @@
 | Chỉ số | Giá trị |
 |--------|---------|
 | Tổng số test case | 15 |
-| Pass | 10 |
-| Fail | 5 |
+| Pass | 11 |
+| Fail | 4 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | 66.7% |
+| **Tỷ lệ Pass** | 73.3% |
 | **Số bug phát hiện** | 2 |
 
 ### Phân bổ theo nhóm chức năng
 
 | Nhóm chức năng | TC | Pass | Fail | Bug | Đánh giá |
 |---------------|-----|------|------|-----|---------|
-| Members | 8 | 4 | 4 | BUG-07 | Cần sửa: email validation gây từ chối sai |
+| Members | 8 | 5 | 3 | BUG-07 | Cần sửa: email validation gây từ chối sai |
 | Borrow/Return | 7 | 6 | 1 | BUG-08 | Cần sửa: phân quyền/search lọc theo member |
 
 ### Phân bổ bug theo mức độ

@@ -17,7 +17,7 @@
 | Mã TC | Nhóm chức năng | Kết quả mong đợi (tóm tắt) | Kết quả thực tế | Kết luận | Minh chứng | Bug |
 |-------|---------------|---------------------------|-----------------|---------|-----------|----|
 | TC-01 | Members | Tạo member hợp lệ | Hệ thống từ chối, báo "Email invalid" | Fail | | BUG-07 |
-| TC-02 | Members | Từ chối email thiếu "." | Created Successfully | Fail | | BUG-07 |
+| TC-02 | Members | Từ chối email thiếu "." | Hệ thống từ chối, báo "Email invalid" | PASS | |  |
 | TC-03 | Members | Từ chối email thiếu "@" | Created Successfully | Fail | | BUG-07 |
 | TC-04 | Members | Từ chối email trùng | Hệ thống từ chối (email exists) | Pass | | |
 | TC-05 | Members | Member không thấy tab "Add member" | Tab không hiển thị / không truy cập được | Pass | | |
@@ -39,15 +39,15 @@
 | Chỉ số | Giá trị |
 |--------|---------|
 | Tổng số test case | 15 |
-| Pass | 10 |
-| Fail | 5 |
+| Pass | 11 |
+| Fail | 4 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | 66.7% |
+| **Tỷ lệ Pass** | 73.3% |
 
 ### Kết quả theo nhóm chức năng
 
 | Nhóm | Tổng TC | Pass | Fail | Tỷ lệ Pass |
 |------|---------|------|------|------------|
-| Members | 8 | 4 | 4 | 50% |
+| Members | 8 | 5 | 3 | 62.5% |
 | Borrow/Return | 7 | 6 | 1 | 85.7% |
