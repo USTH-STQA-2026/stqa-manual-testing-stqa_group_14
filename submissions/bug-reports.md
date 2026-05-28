@@ -44,6 +44,9 @@ Invalid input --> Created succesfully
 **Tác động:**
 Loss of new members, poor user experience, damage to reputation, allows invalid data to be stored in the system database.
 
+**Severity explanation:**
+- High because this bug prevents valid users from being created while still allowing invalid entries, which breaks core member registration flow and undermines data integrity.
+
 **Minh chứng:**
 - ![TC-01 REQ-07](Evidences/REQ-07/TC-01%20REQ-07%20BUG.png)
 - ![TC-02 REQ-07](Evidences/REQ-07/TC-02%20REQ-07%20BUG.png)
@@ -89,6 +92,9 @@ Tickets for MEM003 are displayed
 
 **Tác động:**
 Data privacy breach
+
+**Severity explanation:**
+- High because the issue exposes other members' ticket data, creating a serious privacy breach and potential compliance violation.
 
 **Minh chứng:**
 - ![TC-09 REQ-08](Evidences/REQ-08/TC-09%20REQ-08%20BUG.png)
