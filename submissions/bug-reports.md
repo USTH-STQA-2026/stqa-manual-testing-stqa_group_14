@@ -45,9 +45,9 @@ Invalid input --> Created succesfully
 Loss of new members, poor user experience, damage to reputation, allows invalid data to be stored in the system database.
 
 **Minh chứng:**
-- ![TC-01 REQ-07](Evidences/TC-01 REQ-07.png)
-- ![TC-02 REQ-07](Evidences/TC-02 REQ-07.png)
-- ![TC-06 REQ-07](Evidences/TC-06 REQ-07.png)
+- ![TC-01 REQ-07](Evidences/REQ-07/TC-01 REQ-07 BUG.png)
+- ![TC-02 REQ-07](Evidences/REQ-07/TC-02 REQ-07 BUG.png)
+- ![TC-06 REQ-07](Evidences/REQ-07/TC-06 REQ-07 BUG.png)
 
 **Đề xuất xử lý:**
 Review and fix the email validation logic in the member creation form, ensure valid email formats are accepted and invalid formats are rejected correctly
