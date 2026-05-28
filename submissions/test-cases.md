@@ -92,35 +92,35 @@
 
 ---
 
-## Bước 2: Test Cases
+## Step 2: Test Cases
 
-<!-- Tự tổ chức bảng test case: có thể chia nhóm theo chức năng, theo REQ, hoặc theo luồng nghiệp vụ — tùy nhóm quyết định. -->
-<!-- Mỗi TC phải ánh xạ ngược về ít nhất 1 dòng trong bảng IDM ở Bước 1. -->
+<!-- Organize test case table yourself: can be grouped by function, by REQ, or by business flow — depends on group decision. -->
+<!-- Each TC must map back to at least 1 row in the IDM table in Step 1. -->
 
-| Mã TC | Mục tiêu kiểm thử | Tiền điều kiện | Bước thực hiện | Dữ liệu đầu vào | Kết quả mong đợi | REQ | Kỹ thuật |
-|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
-| TC-01 | Thêm thành viên mới hợp lệ | Đăng nhập bằng tài khoản Librarian | 1. Vào tab Members<br>2. Click "Add member"<br>3. Điền thông tin<br>4. Xác nhận | Username: Nguyễn Văn Test<br>Email: newmember@test.com<br>Phone: 0901234567 | Thành viên được tạo thành công, xuất hiện trong danh sách | REQ-07 | EP |
-| TC-02 | Thêm thành viên với email thiếu dấu chấm trong domain | Đăng nhập Librarian | 1. Vào Members<br>2. Click Add<br>3. Nhập email user@domain<br>4. Xác nhận | Email: user@domain | Hệ thống từ chối, thông báo lỗi email không hợp lệ | REQ-07 | BVA |
-| TC-03 | Thêm thành viên với email thiếu @ | Đăng nhập Librarian | 1. Vào Members<br>2. Click Add<br>3. Nhập email userdomain.com<br>4. Xác nhận | Email: userdomain.com | Hệ thống từ chối, thông báo lỗi email không hợp lệ | REQ-07 | BVA |
-| TC-04 | Thêm thành viên trùng email | Đăng nhập Librarian | 1. Vào Members<br>2. Click Add<br>3. Nhập email đã tồn tại (ba.nguyen@email.com)<br>4. Xác nhận | Email: ba.nguyen@email.com | Hệ thống từ chối, thông báo email đã tồn tại | REQ-07 | EP |
-| TC-05 | Kiểm tra quyền Member không thấy tab Members | Đăng nhập bằng tài khoản Member (ba.nguyen) | 1. Đăng nhập bằng MEM002<br>2. Quan sát các tab hiển thị | (không cần nhập thêm) | Tab "Members" không xuất hiện hoặc không truy cập được | REQ-07 | EP |
-| TC-06 | Email ngắn nhất hợp lệ (BVA) | Đăng nhập Librarian | 1. Vào Members<br>2. Click Add<br>3. Nhập email a@b.co<br>4. Xác nhận | Email: a@b.co<br>Phone: 0900000001 | Thành viên được tạo thành công | REQ-07 | BVA |
-| TC-07 | Hiển thị danh sách phiếu mượn (Librarian) | Đăng nhập Librarian | 1. Đăng nhập Librarian<br>2. Vào tab Borrow/Return<br>3. Quan sát danh sách | (không cần dữ liệu) | Hiển thị đủ BR001–BR005 cho tất cả thành viên | REQ-08 | EP |
-| TC-08 | Hiển thị phiếu mượn cho Member (chỉ của họ) | Đăng nhập MEM002 | 1. Đăng nhập MEM002<br>2. Vào Borrow/Return<br>3. Quan sát danh sách | (MEM002) | Chỉ thấy BR001 và BR004 (của MEM002) | REQ-08 | EP |
-| TC-09 | Tìm kiếm phiếu mượn của thành viên khác (không cho phép) | Đăng nhập MEM002 | 1. Đăng nhập MEM002<br>2. Vào Borrow/Return<br>3. Tìm ID MEM003 | Tìm MEM003 | Không hiển thị ticket của MEM003; hoặc thông báo "Not found" | REQ-08 | EP, BUG |
-| TC-10 | Xem chi tiết phiếu BR001 | Đăng nhập Librarian | 1. Đăng nhập Librarian<br>2. Vào Borrow/Return<br>3. Mở BR001 | BR001 | Hiển thị đầy đủ: mã, sách, ngày mượn, ngày trả, trạng thái | REQ-08 | EP |
-| TC-11 | Xem phiếu BR002 (đã trả) | Đăng nhập Librarian hoặc MEM003 | 1. Đăng nhập<br>2. Vào Borrow/Return<br>3. Mở BR002 | BR002 (đã trả 20/08/2024) | Trạng thái hiển thị "Returned" | REQ-08 | EP |
-| TC-12 | Kiểm tra đánh dấu quá hạn (Check Overdue) | Đăng nhập Librarian | 1. Đăng nhập Librarian<br>2. Click "Check Overdue"<br>3. Vào Borrow/Return, mở BR001 | BR001 (expiry 15/09/2024) | BR001 được chuyển trạng thái thành "Overdue" nếu đến hạn | REQ-06, REQ-08 | EP |
-| TC-13 | Kiểm tra BR002 hiển thị đúng trạng thái sau check overdue | Đăng nhập Librarian | 1. Đăng nhập Librarian<br>2. Check Overdue<br>3. Mở BR002 | BR002 (returned) | BR002 vẫn hiển thị "Returned" | REQ-08 | EP |
-| TC-14 | Thêm member với email có nhiều @ hoặc nhiều dấu chấm liên tiếp | Đăng nhập Librarian | 1. Click Add member<br>2. Nhập email admin@@vn.com hoặc admin@vn..com<br>3. Xác nhận | Email: admin@@vn.com / admin@vn..com | Hệ thống từ chối, thông báo lỗi email không hợp lệ | REQ-07 | EP |
-| TC-15 | Thêm member với username trống | Đăng nhập Librarian | 1. Click Add member<br>2. Để trống Username<br>3. Xác nhận | Username: (blank), Email: admin@vn.com | Hệ thống từ chối, thông báo "Username blank" | REQ-07 | EP |
+| Test Case ID | Test Objective | Pre-condition | Test Steps | Input Data | Expected Result | REQ | Technique |
+|---|---|---|---|---|---|---|---|
+| TC-01 | Add new valid member | Login with Librarian account | 1. Go to Members tab<br>2. Click "Add member"<br>3. Fill in information<br>4. Confirm | Username: Nguyen Van Test<br>Email: newmember@test.com<br>Phone: 0901234567 | Member is created successfully, appears in list | REQ-07 | EP |
+| TC-02 | Add member with email missing dot in domain | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter email user@domain<br>4. Confirm | Email: user@domain | System rejects, displays email error message | REQ-07 | BVA |
+| TC-03 | Add member with email missing @ | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter email userdomain.com<br>4. Confirm | Email: userdomain.com | System rejects, displays email error message | REQ-07 | BVA |
+| TC-04 | Add member with duplicate email | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter existing email (ba.nguyen@email.com)<br>4. Confirm | Email: ba.nguyen@email.com | System rejects, displays email already exists message | REQ-07 | EP |
+| TC-05 | Check Member permission cannot see Members tab | Login with Member account (ba.nguyen) | 1. Login with MEM002<br>2. Observe displayed tabs | (no additional input needed) | "Members" tab does not appear or is not accessible | REQ-07 | EP |
+| TC-06 | Shortest valid email (BVA) | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter email a@b.co<br>4. Confirm | Email: a@b.co<br>Phone: 0900000001 | Member is created successfully | REQ-07 | BVA |
+| TC-07 | Display borrow ticket list (Librarian) | Login as Librarian | 1. Login as Librarian<br>2. Go to Borrow/Return tab<br>3. Observe list | (no data input needed) | Display BR001–BR005 for all members | REQ-08 | EP |
+| TC-08 | Display borrow ticket for Member (only theirs) | Login as MEM002 | 1. Login as MEM002<br>2. Go to Borrow/Return<br>3. Observe list | (MEM002) | Only see BR001 and BR004 (belonging to MEM002) | REQ-08 | EP |
+| TC-09 | Search borrow ticket of another member (not allowed) | Login as MEM002 | 1. Login as MEM002<br>2. Go to Borrow/Return<br>3. Search for ID MEM003 | Search for MEM003 | Does not display MEM003 tickets; or displays "Not found" message | REQ-08 | EP, BUG |
+| TC-10 | View details of ticket BR001 | Login as Librarian | 1. Login as Librarian<br>2. Go to Borrow/Return<br>3. Open BR001 | BR001 | Display complete: code, book, borrow date, return date, status | REQ-08 | EP |
+| TC-11 | View ticket BR002 (returned) | Login as Librarian or MEM003 | 1. Login<br>2. Go to Borrow/Return<br>3. Open BR002 | BR002 (returned 20/08/2024) | Status displays "Returned" | REQ-08 | EP |
+| TC-12 | Check overdue marking (Check Overdue) | Login as Librarian | 1. Login as Librarian<br>2. Click "Check Overdue"<br>3. Go to Borrow/Return, open BR001 | BR001 (expiry 15/09/2024) | BR001 status is changed to "Overdue" if expired | REQ-06, REQ-08 | EP |
+| TC-13 | Check BR002 displays correct status after check overdue | Login as Librarian | 1. Login as Librarian<br>2. Check Overdue<br>3. Open BR002 | BR002 (returned) | BR002 still displays "Returned" | REQ-08 | EP |
+| TC-14 | Add member with email having multiple @ or consecutive dots | Login as Librarian | 1. Click Add member<br>2. Enter email admin@@vn.com or admin@vn..com<br>3. Confirm | Email: admin@@vn.com / admin@vn..com | System rejects, displays email error message | REQ-07 | EP |
+| TC-15 | Add member with blank username | Login as Librarian | 1. Click Add member<br>2. Leave Username blank<br>3. Confirm | Username: (blank), Email: admin@vn.com | System rejects, displays "Username blank" message | REQ-07 | EP |
 
 ---
 
-## Tổng hợp
+## Summary
 
-| Nhóm chức năng | Số TC | REQ phủ | Kỹ thuật IDM áp dụng |
+| Function Group | Number of TC | REQ Coverage | IDM Technique Applied |
 |----------------|-------|---------|----------------------|
 | Members | 9 | REQ-07 | EP, BVA |
 | Borrow/Return | 6 | REQ-06, REQ-08 | EP |
-| **Tổng** | **15** | REQ-06 → REQ-08 | EP, BVA |
+| **Total** | **15** | REQ-06 → REQ-08 | EP, BVA |

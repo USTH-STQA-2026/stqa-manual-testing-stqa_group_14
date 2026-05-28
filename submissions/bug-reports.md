@@ -24,7 +24,7 @@ System rejects valid email but accepts invalid email when creating a new member
 - Ngôn ngữ giao diện: English
 
 **Điều kiện tiên quyết:**
-Đăng nhập bằng librarian (librarian@library.com / admin123)
+Log in using librarian account (librarian@library.com / admin123)
 
 **Bước tái hiện:**
 1. Get in tab member

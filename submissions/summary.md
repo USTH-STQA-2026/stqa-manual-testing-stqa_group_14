@@ -1,42 +1,42 @@
-# Test Summary — Báo cáo tổng hợp kiểm thử
+# Test Summary — Testing Summary Report
 
-> **Hướng dẫn**: Đây là hoạt động **Quality Assurance** — bạn đánh giá chất lượng tổng thể của phần mềm, không chỉ liệt kê lỗi.
+> **Instructions**: This is a **Quality Assurance** activity — you evaluate the overall quality of the software, not just list bugs.
 
 ---
 
-## 1. Thông tin nhóm
+## 1. Group Information
 
-| Mục | Thông tin |
+| Item | Information |
 |-----|----------|
-| **Nhóm** | STQA-14 |
-| **Lớp** | `<!-- VD: SE001.P11 -->` |
-| **Ngày báo cáo** | `<!-- DD/MM/YYYY -->` |
-| **Hệ thống kiểm thử** | https://stqa.rbc.vn — v1.0 |
+| **Group** | STQA-14 |
+| **Class** | `<!-- Ex: SE001.P11 -->` |
+| **Report Date** | `<!-- DD/MM/YYYY -->` |
+| **System Under Test** | https://stqa.rbc.vn — v1.0 |
 
 ---
 
-## 2. Tổng quan kết quả
+## 2. Overall Result Summary
 
-| Chỉ số | Giá trị |
-|--------|---------|
-| Tổng số test case | 15 |
+| Metric | Value |
+|--------|--------|
+| Total test cases | 15 |
 | Pass | 11 |
 | Fail | 4 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | 73.3% |
-| **Số bug phát hiện** | 2 |
+| **Pass Rate** | 73.3% |
+| **Bugs Found** | 2 |
 
-### Phân bổ theo nhóm chức năng
+### Distribution by Function Group
 
-| Nhóm chức năng | TC | Pass | Fail | Bug | Đánh giá |
-|---------------|-----|------|------|-----|---------|
-| Members | 8 | 5 | 3 | BUG-07 | Cần sửa: email validation gây từ chối sai |
-| Borrow/Return | 7 | 6 | 1 | BUG-08 | Cần sửa: phân quyền/search lọc theo member |
+| Function Group | TC | Pass | Fail | Bug | Assessment |
+|---------------|-----|------|------|-----|----------|
+| Members | 8 | 5 | 3 | BUG-07 | Need fix: email validation causing false rejection |
+| Borrow/Return | 7 | 6 | 1 | BUG-08 | Need fix: access control/search filtering by member |
 
-### Phân bổ bug theo mức độ
+### Bug Distribution by Severity
 
-| Mức độ | Số lượng | Bug IDs |
+| Severity | Count | Bug IDs |
 |--------|---------|---------|
 | High | 2 | BUG-07, BUG-08 |
 | Medium | 0 | |
@@ -44,66 +44,66 @@
 
 ---
 
-## 3. Kỹ thuật thiết kế đã sử dụng
+## 3. Design Techniques Used
 
-| Kỹ thuật | Áp dụng cho REQ nào? | Số TC sử dụng | Giải thích cách áp dụng |
+| Technique | Applied to Which REQs? | Number of TCs | How It Was Applied |
 |----------|---------------------|---------------|------------------------|
-| EP (Equivalence Partitioning) | REQ-07, REQ-08 | 12 | Dùng để nhóm dữ liệu rời rạc (valid/invalid emails, roles) |
-| BVA (Boundary Value Analysis) | REQ-07 | 3 | Áp dụng cho kiểm tra độ dài/định dạng email, số điện thoại |
+| EP (Equivalence Partitioning) | REQ-07, REQ-08 | 12 | Group discrete data (valid/invalid emails, roles) |
+| BVA (Boundary Value Analysis) | REQ-07 | 3 | Applied for email length/format validation and phone number |
 
 ---
 
-## 4. Phân tích chất lượng phần mềm
+## 4. Software Quality Analysis
 
-### 4.1. Điểm mạnh
+### 4.1. Strengths
 `- Core workflows mostly functional: adding members and borrow/return flows operate correctly for the majority of cases.`
 
 `- IDM analysis applied: tests cover valid/invalid partitions and boundary values for member inputs.`
 
-### 4.2. Điểm yếu
+### 4.2. Weaknesses
 `- Two high-severity issues found:`
 `  - BUG-07: Email validation currently rejects a valid email during member creation (blocks registrations) and accept invalid email into database.`
 `  - BUG-08: Members can view other members' borrow tickets (data privacy / access control breach).`
 
 ---
 
-## 5. Đề xuất ưu tiên sửa lỗi
+## 5. Bug Fix Priority Recommendation
 
-> 💡 Đây là phần **Quality Assurance**: bạn không chỉ tìm lỗi mà còn **đề xuất thứ tự ưu tiên** sửa chữa và đánh giá tác động.
-> Nêu rõ tiêu chí ưu tiên: dựa vào **severity** (mức độ nghiêm trọng kỹ thuật) và/hoặc **priority** (mức độ ưu tiên kinh doanh).
+> 💡 This is the **Quality Assurance** section: you not only find bugs but also **recommend fix priorities** and assess impact.
+> Clearly state priority criteria: based on **severity** (technical severity) and/or **priority** (business priority).
 
-| Thứ tự | Bug | Mức độ | Lý do ưu tiên |
+| Order | Bug | Severity | Reason for Priority |
 |--------|-----|--------|---------------|
 | 1 | BUG-08 | High | Data privacy breach — immediate security/privacy risk |
 | 2 | BUG-07 | High | Blocks core functionality (member registration) — business impact |
 
-**Gợi ý xử lý ngắn:**
-- BUG-08: Thực thi kiểm tra phân quyền ở server/data layer, thêm unit/integration test cho search API.
-- BUG-07: Kiểm tra/điều chỉnh regex/validator email phía backend, thêm test cases cho email giới hạn và quốc tế hóa.
+**Short-term Fix Suggestions:**
+- BUG-08: Enforce access control checks at server/data layer, add unit/integration tests for search API.
+- BUG-07: Review/adjust email regex/validator in backend, add test cases for edge-case and international emails.
 
 ---
 
-## 6. Kết luận
+## 6. Conclusion
 
-Hệ thống **chưa sẵn sàng phát hành**. Hai vấn đề thân trọng (privacy + registration) cần được khắc phục và retest trước release.
+The system is **not ready for release**. Two critical issues (privacy + registration) must be fixed and retested before release.
 
 ---
 
-## 7. Bài học rút ra (Tùy chọn)
+## 7. Lessons Learned (Optional)
 
 `- Thiết kế IDM trước khi viết TC giúp phát hiện các kịch bản biên và trường hợp xấu.
 `- Cần bổ sung test tự động (unit & integration) cho validation và phân quyền truy xuất dữ liệu.
 
 ---
 
-## 8. Khai báo sử dụng AI (Tùy chọn)
+## 8. AI Tool Usage Declaration (Optional)
 
-> Nếu nhóm có sử dụng công cụ AI (ChatGPT, Copilot, Gemini...), hãy ghi rõ bên dưới. Khai báo trung thực **không ảnh hưởng điểm** — đây là kỹ năng minh bạch trong nghề.
+> If the group used AI tools (ChatGPT, Copilot, Gemini...), please document below. Honest disclosure **does not affect your score** — this is a professional transparency skill.
 
-| Công cụ AI | Dùng cho phần nào | Bạn đã kiểm tra/chỉnh sửa thế nào |
-|------------|-------------------|-----------------------------------|
+| AI Tool | Used For Which Section | How You Verified/Edited It |
+|------------|-------------------|------------------------------|
 | | | |
-| Công cụ AI | Dùng cho phần nào | Bạn đã kiểm tra/chỉnh sửa thế nào |
-|------------|-------------------|-----------------------------------|
-| GitHub Copilot | Sửa lỗi, điều chỉnh chính tả tài liệu | Xem lại và chỉnh sửa thủ công trước khi lưu |
-| Claud AI | Tìm Bug | Nhờ gợi ý những test cases chưa nghĩ đến |
+| AI Tool | Used For Which Section | How You Verified/Edited It |
+|------------|-------------------|------------------------------|
+| GitHub Copilot | Bug fixes, documentation spelling corrections | Manually reviewed and edited before saving |
+| Claude AI | Test case suggestions | Asked for suggestions on missing test scenarios |
