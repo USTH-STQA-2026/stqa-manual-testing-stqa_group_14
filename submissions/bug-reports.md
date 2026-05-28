@@ -26,8 +26,8 @@
 **Tiêu đề:** Error message says the member has expired while they are suspended
 
 **Môi trường:**
-- Trình duyệt: Chrome `<!-- version -->`
-- Hệ điều hành: `<!-- OS -->`
+- Trình duyệt: Chrome Version 148
+- Hệ điều hành: Linux
 - Ngôn ngữ giao diện: Tiếng Việt
 
 **Điều kiện tiên quyết:**
@@ -77,6 +77,17 @@ Correct the error message to "member has been suspended"
 
 **Tiêu đề:** Users can still borrow a book when their borrow count is 3
 
+**Môi trường:**
+- Trình duyệt: Chrome Version 148
+- Hệ điều hành: Linux
+- Ngôn ngữ giao diện: Tiếng Việt
+
+**Điều kiện tiên quyết:**
+1. Member can log in
+2. Member is active
+3. Book is available
+4. Member's borrow count is 3
+
 **Bước tái hiện:**
 1. Refresh the page
 2. Log in to the account of MEM002
@@ -117,7 +128,14 @@ Recheck the condition checking whether the user has reached the borrow limit.
 | **Ngày phát hiện** | 23/05/2026 |
 | **Trạng thái** | Open |
 
-**Tiêu đề:** Error messages are in Vietnamese while display language is English
+**Tiêu đề:** (NOTE: Merge this bug with other language-related bugs in other REQs) Error messages are in Vietnamese while display language is English
+
+**Môi trường:**
+- Trình duyệt: Chrome Version 148
+- Hệ điều hành: Linux
+- Ngôn ngữ giao diện: Tiếng Việt
+
+**Điều kiện tiên quyết:** Refer to each individual test case mentioned below
 
 **Bước tái hiện:**
 1. Recreate the BUG-04-03, set display language to English after step 2
