@@ -1,94 +1,94 @@
-# Test Cases — Bảng trường hợp kiểm thử
+# Test Cases — Test Cases Table
 
-> **Hướng dẫn**: Viết tối thiểu **20 TC** phủ đủ các chức năng chính (REQ-01 → REQ-08).
-> Xem [examples/sample-test-case.md](../examples/sample-test-case.md) để hiểu cách viết TC tốt.
-> Tự tổ chức và phân nhóm test case theo cách hợp lý nhất.
+> **Instructions**: Write at least **20 TC** covering all main functions (REQ-01 → REQ-08).
+> See [examples/sample-test-case.md](../examples/sample-test-case.md) to understand how to write good TC.
+> Organize and group test cases in the most logical way.
 
-| Thông tin | |
+| Information | |
 |---|---|
-| **Nhóm** | STQA-14 |
-| **Ngày tạo** | `<!-- DD/MM/YYYY -->` |
-| **Hệ thống** | https://stqa.rbc.vn |
-| **Tham chiếu** | SRS v1.0 |
+| **Group** | STQA-14 |
+| **Creation Date** | `<!-- DD/MM/YYYY -->` |
+| **System** | https://stqa.rbc.vn |
+| **Reference** | SRS v1.0 |
 
 ---
 
-## Bước 1: Mô hình hóa miền đầu vào — Input Domain Modeling (IDM)
+## Step 1: Input Domain Modeling — Input Domain Modeling (IDM)
 
-> 📖 **Textbook:** Chương 6 — *Input Domain Modeling*, Paul Ammann & Jeff Offutt.
+> 📖 **Textbook:** Chapter 6 — *Input Domain Modeling*, Paul Ammann & Jeff Offutt.
 >
-> **Trước khi viết Test Case**, nhóm **phải** phân tích miền đầu vào bằng bảng IDM bên dưới.
-> Mỗi chức năng cần xác định: **Đặc tính (Characteristic)**, **Phân vùng (Block/Partition)**, và **Giá trị đại diện (Value)**.
+> **Before writing Test Cases**, the group **must** analyze the input domain using the IDM table below.
+> Each function needs to identify: **Characteristic**, **Partition**, and **Representative Value**.
 
-### IDM — Đăng nhập (REQ-01)
+### IDM — Login (REQ-01)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Partition | Representative Value | Expected Result |
 |---|---|---|---|
-| Email có tồn tại trong DB? | Có | `librarian@library.com` | Đăng nhập thành công |
-| | Không | `noone@email.com` | Thông báo lỗi |
-| Mật khẩu có đúng? | Đúng | `admin123` | Đăng nhập thành công |
-| | Sai | `wrongpass` | Thông báo lỗi |
-| Ô nhập có rỗng? | Không rỗng | (giá trị bất kỳ) | Xử lý bình thường |
-| | Rỗng | `""` | Thông báo "Vui lòng nhập..." |
+| Email exists in DB? | Yes | `librarian@library.com` | Login successful |
+| | No | `noone@email.com` | Error message |
+| Password correct? | Yes | `admin123` | Login successful |
+| | No | `wrongpass` | Error message |
+| Input field empty? | Not empty | (any value) | Normal processing |
+| | Empty | `""` | Display "Please enter..." |
 
-### IDM — Tìm kiếm sách (REQ-03)
+### IDM — Search book (REQ-03)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Partition | Representative Value | Expected Result |
 |---|---|---|---|
-| Từ khóa có tồn tại trong DB? | Có (tên sách) | `"Flutter"` | Hiển thị sách chứa "Flutter" |
-| | Có (tên tác giả) | `"Nguyễn"` | Hiển thị sách của tác giả Nguyễn |
-| | Không | `"XYZ123"` | Danh sách rỗng |
-| Phân biệt HOA/thường? | Chữ thường | `"flutter"` | Kết quả giống "Flutter" |
-| | Chữ HOA | `"FLUTTER"` | Kết quả giống "Flutter" |
+| Keyword exists in DB? | Yes (book name) | `"Flutter"` | Display books containing "Flutter" |
+| | Yes (author name) | `"Nguyen"` | Display books by author Nguyen |
+| | No | `"XYZ123"` | Empty list |
+| Case-sensitive? | Lowercase | `"flutter"` | Results same as "Flutter" |
+| | Uppercase | `"FLUTTER"` | Results same as "Flutter" |
 
-### IDM — Mượn sách (REQ-04, REQ-05)
+### IDM — Borrow book (REQ-04, REQ-05)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Partition | Representative Value | Expected Result |
 |---|---|---|---|
-| Trạng thái sách? | Có sẵn | BOOK001 | Cho phép mượn |
-| | Đang mượn | BOOK003 | Không cho phép |
-| | Thất lạc | BOOK007 | Không cho phép |
-| Trạng thái thành viên? | Hoạt động | MEM002 | Cho phép mượn |
-| | Tạm ngưng | MEM004 | Từ chối, thông báo lỗi |
-| | Hết hạn | MEM005 | Từ chối, thông báo lỗi |
-| Số sách đang mượn? | < 3 (BVA: 0, 1, 2) | MEM006 (0 sách) | Cho phép mượn |
-| | = 3 (BVA: giới hạn) | MEM đã mượn 3 sách | Từ chối, thông báo vượt giới hạn |
+| Book status? | Available | BOOK001 | Allow borrow |
+| | Borrowed | BOOK003 | Not allowed |
+| | Lost | BOOK007 | Not allowed |
+| Member status? | Active | MEM002 | Allow borrow |
+| | Suspended | MEM004 | Reject, display error |
+| | Expired | MEM005 | Reject, display error |
+| Books currently borrowed? | < 3 (BVA: 0, 1, 2) | MEM006 (0 books) | Allow borrow |
+| | = 3 (BVA: limit) | Member borrowed 3 books | Reject, display limit exceeded |
 
 ### IDM — Members (REQ-07)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Partition | Representative Value | Expected Result |
 |---|---|---|---|
-| Username | Hợp lệ | "Kevin Hart" | Chấp nhận (Accept) |
-| Username | Chỉ khoảng trắng | "   " (3 spaces) | Từ chối, hiển thị "Please enter your username" |
-| Username | Blank | (blank) | Từ chối, hiển thị "Please enter your username" |
-| Email | Hợp lệ | member@so.com | Chấp nhận |
-| Email | Thiếu @ or Thiếu . | memberso.com or member@socom | Từ chối, hiển thị "Please enter your email" |
-| Email | Blank | (blank) | Từ chối, hiển thị "Please enter your email" |
-| Phone number | Đúng 10 chữ số | 0988743321 | Chấp nhận |
-| Phone number | Không đủ 10 chữ số | 09283189 | Từ chối, hiển thị "Please enter your phone number" |
-| Phone number | Chứa chữ | abcxyz | Từ chối, hiển thị "Please enter your phone number" |
-| Ability to add member | Admin | librarian@library.com | Cho phép thêm |
-| Ability to add member | Member | ba.nguyen@email.com | Không cho phép |
+| Username | Valid | "Kevin Hart" | Accept |
+| Username | Only spaces | "   " (3 spaces) | Reject, display "Please enter your username" |
+| Username | Blank | (blank) | Reject, display "Please enter your username" |
+| Email | Valid | member@so.com | Accept |
+| Email | Missing @ or . | memberso.com or member@socom | Reject, display "Please enter your email" |
+| Email | Blank | (blank) | Reject, display "Please enter your email" |
+| Phone number | Exactly 10 digits | 0988743321 | Accept |
+| Phone number | Less than 10 digits | 09283189 | Reject, display "Please enter your phone number" |
+| Phone number | Contains letters | abcxyz | Reject, display "Please enter your phone number" |
+| Ability to add member | Admin | librarian@library.com | Allow add |
+| Ability to add member | Member | ba.nguyen@email.com | Not allowed |
 
 ### IDM — Search borrow tickets (REQ-08)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Partition | Representative Value | Expected Result |
 |---|---|---|---|
-| Role | Librarian | librarian@library.com | Hiển thị tất cả ticket |
-|  | Active member | ba.nguyen@email.com (MEM002) | Chỉ hiển thị ticket của MEM002 |
-|  | Suspended member | cu.le@email.com (MEM004) | Chỉ hiển thị ticket của MEM004 |
-| Search member ID | Librarian tìm MEM002/MEM003/MEM006 | MEM002, MEM003, MEM006 | Hiển thị tất cả ticket tương ứng |
-|  | Member tìm chính họ | MEM002 tìm MEM002 | Hiển thị lịch sử mượn của MEM002 |
-|  | Member tìm người khác | MEM002 tìm MEM003 | Không hiển thị ticket, thông báo "Not found" |
-|  | ID không tồn tại | MEM099 | Thông báo "Not exist" hoặc "Not found" |
-| Borrow record ID | ID tồn tại - Borrowed | BR001 | Hiển thị trạng thái tương ứng |
-|  | ID tồn tại - Returned | BR002 | Hiển thị thông báo "Returned" |
-|  | ID tồn tại - Expired | BR001 (sau check overdue) | Hiển thị thông báo "Expired" |
-|  | ID không tồn tại | BR369 | Thông báo "Not found" |
-| Borrow history | Có lịch sử | MEM002 có BR001, BR004 | Hiển thị lịch sử mượn |
-| Borrow history | Chưa mượn | New member | Danh sách rỗng |
+| Role | Librarian | librarian@library.com | Display all tickets |
+| | Active member | ba.nguyen@email.com (MEM002) | Only display MEM002 tickets |
+| | Suspended member | cu.le@email.com (MEM004) | Only display MEM004 tickets |
+| Search member ID | Librarian search MEM002/MEM003/MEM006 | MEM002, MEM003, MEM006 | Display all corresponding tickets |
+| | Member search self | MEM002 search MEM002 | Display borrow history of MEM002 |
+| | Member search another | MEM002 search MEM003 | No tickets displayed, display "Not found" |
+| | ID does not exist | MEM099 | Display "Not exist" or "Not found" |
+| Borrow record ID | ID exists - Borrowed | BR001 | Display corresponding status |
+| | ID exists - Returned | BR002 | Display "Returned" message |
+| | ID exists - Expired | BR001 (after check overdue) | Display "Expired" message |
+| | ID does not exist | BR369 | Display "Not found" |
+| Borrow history | Has history | MEM002 has BR001, BR004 | Display borrow history |
+| Borrow history | Never borrowed | New member | Empty list |
 
-> 💡 **Gợi ý kỹ thuật**: Sử dụng **Phân lớp tương đương (EP)** cho các phân vùng rời rạc, **Phân tích giá trị biên (BVA)** cho các phân vùng số (ví dụ: giới hạn 3 sách). Xem textbook §6.1–6.3.
+> 💡 **Technical Tip**: Use **Equivalence Partitioning (EP)** for discrete partitions, **Boundary Value Analysis (BVA)** for numeric partitions (e.g., limit of 3 books). See textbook §6.1–6.3.
 
 ---
 
