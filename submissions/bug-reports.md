@@ -476,6 +476,8 @@ While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully retu
   <img src="evidence/TC-05/TC-05-05-after-return.png">
 </a>
 
+**Suggested fix:**
+
 ---
 
 ## BUG-08
