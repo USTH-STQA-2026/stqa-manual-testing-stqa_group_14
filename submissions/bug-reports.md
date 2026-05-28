@@ -123,12 +123,13 @@ Recheck the condition checking whether the user has reached the borrow limit.
 | **Mã lỗi** | BUG-04-07 |
 | **TC liên quan** | TC-04-04, TC-04-05, TC-04-07 |
 | **REQ liên quan** | REQ-04 |
+| **Type** | Failure |
 | **Mức độ** | Low |
 | **Người phát hiện** | Trần Thị Thu Trang |
 | **Ngày phát hiện** | 23/05/2026 |
 | **Trạng thái** | Open |
 
-**Tiêu đề:** (NOTE: Merge this bug with other language-related bugs in other REQs) Error messages are in Vietnamese while display language is English
+**Tiêu đề:** (NOTE: Merge this with other language-related failures in other REQs) Error messages are in Vietnamese while display language is English
 
 **Môi trường:**
 - Trình duyệt: Chrome Version 148
