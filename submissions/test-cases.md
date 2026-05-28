@@ -32,16 +32,6 @@
 | Record owner | Record belongs to the current member | `BR001` belongs to `MEM002` | `MEM002` can return the book |
 | | Record does not belong to the current member | `BR001` belongs to `MEM002`, current user is `MEM003` | `MEM003` cannot view or return the book |
 
-### Decision Table — Return Book (REQ-05)
-
-| Rule | Borrow Record Status | Due Date vs Current Date | Record Owner | Expected Result | Covered TC |
-|---|---|---|---|---|---|
-| R1 | Borrowing | `currentDate < dueDate` | Current member | Return successfully without overdue warning | TC-05-01 |
-| R2 | Borrowing | `currentDate = dueDate` | Current member | Return successfully and display overdue warning | TC-05-02 |
-| R3 | Borrowing | `currentDate > dueDate` | Current member | Return successfully and display overdue warning | TC-05-03 |
-| R4 | Returned | Any | Current member | Return action is not allowed | TC-05-04 |
-| R5 | Borrowing | Any | Another member | Return action is not allowed | TC-05-05 |
-
 ### IDM — Overdue Handling (REQ-06)
 
 | Characteristic | Block / Partition | Representative Value | Expected Result |
