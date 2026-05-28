@@ -91,7 +91,7 @@ Tickets for MEM003 are displayed
 Data privacy breach
 
 **Minh chứng:**
-- ![TC-09 REQ-08](Evidences/TC-09 REQ-08.png)
+- ![TC-09 REQ-08](Evidences/REQ-08/TC-09 REQ-08.png)
 
 **Đề xuất xử lý:**
 Server-side / data-layer filtering, improve UI-layer enforcement
