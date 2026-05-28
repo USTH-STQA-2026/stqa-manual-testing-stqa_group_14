@@ -20,9 +20,9 @@
 > **Trước khi viết Test Case**, nhóm **phải** phân tích miền đầu vào bằng bảng IDM bên dưới.
 > Mỗi chức năng cần xác định: **Đặc tính (Characteristic)**, **Phân vùng (Block/Partition)**, và **Giá trị đại diện (Value)**.
 
-### IDM — Đăng nhập (REQ-01)
+### IDM — Login (REQ-01)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
 | Existing Email | Valid librarian account | librarian@library.com | Login successful |
 |  | Valid member account | ba.nguyen@email.com | Login successful |
@@ -39,7 +39,7 @@
 
 ### IDM - View Book List (REQ-02)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
 | User Role | Librarian | librarian@library.com | System displays complete book list |
 |  | Member | ba.nguyen@email.com | System displays complete book list |
@@ -50,9 +50,9 @@
 | Real-time Update | After borrowing a book | BOOK001 | Status changes immediately to “Borrowed” |
 |  | After returning a book | BOOK003 | Status changes immediately to “Available” |
 
-### IDM — Tìm kiếm sách (REQ-03)
+### IDM — Search & Filter Books (REQ-03)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
 | Keywords exists in DB | Yes (book title) | `"Flutter"` | Display books containing "Flutter" |
 | | Yes (author name) | `"Nguyễn Minh Đức"` | Display books by Nguyễn Minh Đức |
@@ -72,39 +72,36 @@
 | Keyword + category combined | Both match | `"Nguyễn Minh Đức"` + `"Công nghệ"` | Display 2 books: BOOK008, BOOK011 |
 | | Keyword and category mismatch| `"Nguyễn Minh Đức"` + `"Kinh tế"` | Display "No books found" |
 
-### IDM — Mượn sách (REQ-04)
+### IDM — Borrow book (REQ-04)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
-| Trạng thái sách? | Có sẵn | BOOK001 | Cho phép mượn |
-| | Đang mượn | BOOK003 | Không cho phép |
-| | Thất lạc | BOOK007 | Không cho phép |
-| Trạng thái thành viên? | Hoạt động | MEM002 | Cho phép mượn |
-| | Tạm ngưng | MEM004 | Từ chối, thông báo lỗi |
-| | Hết hạn | MEM005 | Từ chối, thông báo lỗi |
-| Số sách đang mượn? | < 3 (BVA: 0, 1, 2) | MEM002 (1 sách) | Cho phép mượn |
-| | = 3 (BVA: giới hạn) | MEM đã mượn 3 sách | Từ chối, thông báo vượt giới hạn |
-| | > 3 | MEM has borrowed more than 3 books | Deny, announce limit exceeded |
+| Book status | Available | BOOK001 | Allow |
+| | Borrowed | BOOK003 | Reject |
+| | Lost | BOOK007 | Reject |
+| Member status | Active | MEM002 | Allow |
+| | Suspended | MEM004 | Reject, display error message |
+| | Expired | MEM005 | Reject, display error message |
+| Number of borrowed books | < 3 (BVA: 0, 1, 2) | MEM002 (1 book) | Allow |
+| | = 3 (BVA: boundary) | MEM has borrowed 3 books | Reject, announce limit exceeded |
+| | > 3 | MEM has borrowed more than 3 books | Reject, announce limit exceeded |
 
-### BELOW IDMs ARE STILL PRONE TO CHANGE
 
 ### IDM — Return Book (REQ-05)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
 | Borrow record status | Borrowing (active) | `BR001` | Allow return process |
-| | Returned | `BR002` | Return action is not allowed |
-| Due date compared to current date | `currentDate < dueDate` | `10/06 < 15/06` | Return successfully without overdue warning |
-| | `currentDate = dueDate` (Boundary) | `15/06 = 15/06` | Return successfully and display overdue warning |
-| | `currentDate > dueDate` | `20/06 > 15/06` | Return successfully and display overdue warning |
-| Book status after return (not necessary) | Successful return | `BOOK001` | Book status changes to **"Available"** |
-| Borrow record update (not necessary) | Successful return | `RECORD001` | Record status changes to **"Returned"** |
-| Suggestion: add a characteristic "record owner" | Suggestion: add equivalence class "Records belong to MEM002" | BR001 of MEM002 | Can return the book |
-|| Suggestion: add equivalence class "Records not belong to MEM002" | BR003 of MEM006 | Cannot return the book |
+| | Returned | `BR004` | Return action is not allowed |
+| Due date compared to current date | `currentDate < dueDate` | `10/09/2024 < 15/09/2024` | Return successfully without overdue warning |
+| | `currentDate = dueDate` (Boundary) | `15/09/2024 = 15/09/2024` | Return successfully and display overdue warning |
+| | `currentDate > dueDate` | `27/05/2026 > 15/09/2024` | Return successfully and display overdue warning |
+| Record owner | Record belongs to the current member | `BR001` belongs to `MEM002` | `MEM002` can return the book |
+| | Record does not belong to the current member | `BR001` belongs to `MEM002`, current user is `MEM003` | `MEM003` cannot view or return the book |
 
 ### IDM — Overdue Handling (REQ-06)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
 | User role | Librarian | `librarian@library.com` | Can access **Check Overdue** function |
 | | Member | `ba.nguyen@email.com` | Cannot access function |
@@ -116,39 +113,42 @@
 
 ### IDM — Members (REQ-07)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
-| Full name | Valid | "Kevin Hart" | Accept |
-| | Only whitespaces | "   " (3 spaces) | Deny, display "Please enter your username" |
-| | Blank | (blank) | Deny, display "Please enter your username" |
+| Username | Valid | "Kevin Hart" | Accept |
+|  | Only spaces | "   " (3 spaces) | Reject, display "Please enter your username" |
+|  | Blank | (blank) | Reject, display "Please enter your username" |
 | Email | Valid | member@so.com | Accept |
-| | Missing @ or missing . | memberso.com or member@socom | Deny, display "Please enter your email" |
-| | Blank | (blank) | Deny, display "Please enter your email" |
-| Phone number (missing "does not start with 0, 10 digits" and "does not start with 0, not 10 digits") | Starts with 0, 10 digits | 0988743321 | Accept |
-| | Starts with 0, not 10 digits | 09283189 | Deny, display "Please enter your phone number" |
-| | Contains letters | abcxyz | Deny, display "Please enter your phone number" |
-| Ability to add member | Admin | librarian@library.com | Allow |
-| | Member | ba.nguyen@email.com | Deny |
+|  | Missing @ or . | memberso.com or member@socom | Reject, display "Please enter your email" |
+|  | Blank | (blank) | Reject, display "Please enter your email" |
+| Phone number | x-digit number = 10 | 0988743321 | Accept |
+|  | x-digit number != 10 | 09283189 | Reject, display "Please enter your phone number" |
+|  | Contains letters | abcxyz | Reject, display "Please enter your phone number" |
+|  | Not start with 0 | 9849927236 | Reject, display "Please enter your phone number" |
+| Ability to add member | Admin | librarian@library.com | Allow add |
+|  | Member | ba.nguyen@email.com | Not allowed |
 
 ### IDM — Search borrow tickets (REQ-08)
 
-| Đặc tính (Characteristic) | Phân vùng (Block) | Giá trị đại diện (Value) | Kết quả mong đợi |
+| Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
 | Role | Librarian | librarian@library.com | Display all tickets |
-| Suggestion | Active member | ba.nguyen@email.com (MEM002) | Only display ticket of MEM002 |
-|  | Suspended member | cu.le@email.com (MEM004) | Only display ticket of MEM004 |
-| Search member ID | Librarian tìm MEM002/MEM003/MEM006 | MEM002, MEM003, MEM006 | Hiển thị tất cả ticket tương ứng |
-|  | Member tìm chính họ | MEM002 tìm MEM002 | Hiển thị lịch sử mượn của MEM002 |
-|  | Member tìm người khác | MEM002 tìm MEM003 | Không hiển thị ticket, thông báo "Not found" |
-|  | ID không tồn tại | MEM099 | Thông báo "Not exist" hoặc "Not found" |
-| Borrow record ID | ID tồn tại - Borrowed | BR001 | Hiển thị trạng thái tương ứng |
-|  | ID tồn tại - Returned | BR002 | Hiển thị thông báo "Returned" |
-|  | ID tồn tại - Expired | BR001 (sau check overdue) | Hiển thị thông báo "Expired" |
-|  | ID không tồn tại | BR369 | Thông báo "Not found" |
-| Borrow history | Có lịch sử | MEM002 có BR001, BR004 | Hiển thị lịch sử mượn |
-| Borrow history | Chưa mượn | New member | Danh sách rỗng |
+| | Member | ba.nguyen@email.com (MEM002) | Only display MEM002 tickets |
+| Search member ID | Librarian search MEM002/MEM003/MEM006 | MEM002, MEM003, MEM006 | Display all corresponding tickets |
+| | Member search self | MEM002 search MEM002 | Display borrow history of MEM002 |
+| | Member search another | MEM002 search MEM003 | No tickets displayed, display "Not found" |
+| | ID does not exist | MEM099 | Display "Not exist" or "Not found" |
+| Borrow record ID | ID exists - Borrowed | BR001 | Display corresponding status |
+| | ID exists - Returned | BR002 | Display "Returned" message |
+| | ID exists - Expired | BR001 (after check overdue) | Display "Expired" message |
+| | ID does not exist | BR369 | Display "Not found" |
+| Borrow history | Has history | MEM002 has BR001, BR004 | Display borrow history |
+| Borrow history | Never borrowed | New member | Empty list |
+
+---
 
 ### Explanation of Techniques Used:
+
 **1. Equivalence Partition (EP):**
 
 We use mathematical notions to construct our IDM: partitions and equivalence classes.
@@ -232,18 +232,133 @@ We used decision tables because:
 
 ## Bước 2: Test Cases
 
-<!-- Tự tổ chức bảng test case: có thể chia nhóm theo chức năng, theo REQ, hoặc theo luồng nghiệp vụ — tùy nhóm quyết định. -->
-<!-- Mỗi TC phải ánh xạ ngược về ít nhất 1 dòng trong bảng IDM ở Bước 1. -->
+## REQ-01: Login
 
-| Mã TC | Mục tiêu kiểm thử | Tiền điều kiện | Bước thực hiện | Dữ liệu đầu vào | Kết quả mong đợi | REQ | Kỹ thuật |
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
 |-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
-| | | | | | | | |
+| TC-01-01 | Verify successful login with librarian account | User is on Login page and not logged in | 1. Open https://stqa.rbc.vn <br> 2. Enter email <br> 3. Enter password <br> 4. Click “Login” | Email: librarian@library.com <br> Password: admin123 | User is redirected to Home page. AppBar displays role “LIBRARIAN” | REQ-01 | EP, Decision Table |
+| TC-01-02 | Verify successful login with member account | User is on Login page and not logged in | 1. Open https://stqa.rbc.vn <br> 2. Enter email <br> 3. Enter password <br> 4. Click “Login” | Email: ba.nguyen@email.com <br> Password: password123 | User is redirected to Home page. AppBar displays role “MEMBER” | REQ-01 | EP, Decision Table|
+| TC-01-03 | Verify login with non-existing email | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter non-existing email <br> 3. Enter password <br> 4. Click “Login” | Email: khongtontai@gmail.com <br> Password: password123 | System displays message: “Member not found” | REQ-01 | EP, Decision Table |
+| TC-01-04 | Verify login with incorrect password | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter valid email <br> 3. Enter incorrect password <br> 4. Click “Login” | Email: ba.nguyen@email.com <br> Password: wrongpassword123 | System displays message: “Incorrect password” | REQ-01 | EP, Decision Table |
+| TC-01-05 | Verify login when both email and password are empty | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Leave Email empty <br> 3. Leave Password empty <br> 4. Click “Login” | Email: "" <br> Password: "" | System displays message: “Please enter email and password” | REQ-01 | EP, Decision Table |
+| TC-01-06 | Verify system behavior when email field is empty | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Leave Email empty <br> 3. Enter password <br> 4. Click “Login” | Email: "" <br> Password: password123 | Requirement gap: SRS does not specify expected behavior when only email field is empty | REQ-01 | EP, Decision Table |
+| TC-01-07 | Verify system behavior when password field is empty | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter email <br> 3. Leave Password empty <br> 4. Click “Login” | Email: ba.nguyen@email.com <br> Password: "" | Requirement gap: SRS does not specify expected behavior when only password field is empty | REQ-01 | EP, Decision Table |
+| TC-01-08 | Verify system behavior for invalid email format(missing @) | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter invalid email format <br> 3. Enter password <br> 4. Click “Login” | Email: abc.com <br> Password: password123 | "Requirement gap: SRS does not specify expected behavior for invalid email format (missing @)" | REQ-01 | EP, Decision Table |
+| TC-01-09 | Verify system behavior for invalid email format(missing .) | User is on Login page | 1. Open https://stqa.rbc.vn <br> 2. Enter invalid email format <br> 3. Enter password <br> 4. Click “Login” | Email: user@gmail <br> Password: password123 | "Requirement gap: SRS does not specify expected behavior for invalid email format (missing .)" | REQ-01 | EP, Decision Table |
 
 ---
 
-## Tổng hợp
+## REQ-02: View Book List
 
-| Nhóm chức năng | Số TC | REQ phủ | Kỹ thuật IDM áp dụng |
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
+|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
+| TC-01-10 | Verify librarian can view the complete book list | User is logged in as librarian | 1. Login as librarian <br> 2. Navigate to the “Books” tab <br> 3. Check displayed book list | Email: librarian@library.com <br> Password: admin123 | System displays all books with title, author, genre, published year, and status | REQ-02 | EP, Decision Table |
+| TC-01-11 | Verify member can view the complete book list | User is logged in as member | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Check displayed book list | Email: ba.nguyen@email.com <br> Password: password123 | System displays all books with title, author, genre, published year, and status | REQ-02 | EP, Decision Table |
+| TC-01-12 | Verify complete book information is displayed correctly | User is logged in and currently on the “Books” tab | 1. Login <br> 2. Navigate to the “Books” tab <br> 3. Check information of BOOK001 | BOOK001 | System correctly displays title, author, genre, published year, and status for BOOK001 | REQ-02 | EP, Decision Table |
+| TC-01-13 | Verify book status is displayed correctly | User is logged in and currently on the “Books” tab | 1. Login <br> 2. Navigate to the “Books” tab <br> 3. Check status of BOOK001 and BOOK003 | BOOK001, BOOK003 | BOOK001 status is displayed as “Available”. BOOK003 status is displayed as “Borrowed” | REQ-02 | EP, Decision Table |
+| TC-01-14 | Verify real-time status update after borrowing a book | User is logged in as member. BOOK001 is currently “Available” | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Verify BOOK001 is “Available” <br> 4. Borrow BOOK001 <br> 5. Return to the “Books” tab <br> 6. Check BOOK001 status again | BOOK001 | BOOK001 status changes immediately from “Available” to “Borrowed” | REQ-02 | EP, Decision Table |
+| TC-01-15 | Verify lost books are displayed with correct status | User is logged in and currently on the “Books” tab | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Locate BOOK007 and BOOK020 in the book list 4.Observe displayed status <br>|BOOK007,BOOK020 | BOOK007 and BOOK020 are displayed with status “Lost” | REQ-02 | EP, Decision Table |
+| TC-01-16 | Verify real-time status update after returning a book | User is logged in as member. BOOK003 is currently “Borrowed” | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Verify BOOK003 is “Borrowed” <br> 4. Return BOOK003 <br> 5. Return to the “Books” tab <br> 6. Check BOOK003 status again | BOOK003 | BOOK003 status changes immediately from “Borrowed” to “Available” | REQ-02 | EP, Decision Table |
+
+---
+
+## REQ-03: Search & Filter Books
+
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
+|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
+| TC-03-01 | Search by valid book title/Baseline for case sensitivity test | Logged in as `ba.nguyen@email.com`. On Books tab. | 1. Click on the title or author search bar. 2. Type `"Flutter"`. 3. Observe the book list. | Keyword: `"Flutter"` | Display exactly 1 book: "Lập trình Flutter cơ bản" (BOOK001). No other books shown. Used as baseline for TC-05. | REQ-03 | EP, Decision Table |
+| TC-03-02 | Search by valid author name | Similar to the above | 1. Click on the title or author search bar. 2. Type `"Nguyễn Minh Đức"`. 3. Observe the book list. | Keyword: `"Nguyễn Minh Đức"` | Display exactly 2 books: BOOK001 and BOOK009. No other books shown. | REQ-03 | EP, Decision Table |
+| TC-03-03 | Filter books by category/Baseline for case sensitivity test | Similar to the above | 1. Click on the category filter. 2. Type `"Công nghệ"`. 3. Observe the book list. | Keyword: `"Công nghệ"` | Display exactly 8 books in Technology category: BOOK001, BOOK002, BOOK003, BOOK005, BOOK008, BOOK009, BOOK010, BOOK011. No other books shown. Used as baseline for TC-06. | REQ-03 | EP, Decision Table |
+| TC-03-04 | Search with keyword that does not exist in DB | Similar to the above | 1. Click on each search bar. 2. Type `"XYZ123"`. 3. Observe the book list. | Keyword: `"XYZ123"` | Display message "No books found". No books shown. | REQ-03 | EP, Decision Table |
+| TC-03-05 | Search bar — lowercase & uppercase input (case-insensitive) | Similar to the above | 1. Go to the title or author search bar. 2. Type `"nguyễn minh đức"`. 3. Observe the book list. 4. Do it again with `"NGUYỄN MINH ĐỨC"`. | Keyword: `"nguyễn minh đức"` & `"NGUYỄN MINH ĐỨC"` | Display exactly 1 book: BOOK001. Same result as TC-01. SRS requires case-insensitive search. | REQ-03 | EP, Decision Table |
+| TC-03-06 | Category bar — lowercase & uppercase input (case-insensitive) | Similar to the above | 1. Go to the category filter. 2. Type `"công nghệ"`. 3. Observe the book list. 4. Do it again with `"CÔNG NGHỆ"`. | Keyword: `"công nghệ"` & `"CÔNG NGHỆ"` |  Same result as TC-04 — 8 books shown. | REQ-03 | EP, Decision Table |
+| TC-03-07 | Both search bars — input without diacritics | Similar to the above | 1. Go to the title or author search bar. 2. Type `"Nguyen Minh Duc"`. 3. Observe the book list. 4. Clear the search bar. 5. Go to the category filter. 6. Type `"Cong nghe"`. 7. Observe the book list. | Keyword: `"Nguyen Minh Duc"` (step 2) & `"Cong nghe"` (step 6) | Same result as TC-02 (step 3) & TC-04 (step 7). ⚠ Observation: SRS does not require diacritic-insensitive search. Record actual result only. Result TBD | REQ-03 | EP, Decision Table |
+| TC-03-08 | Search bar — partial keyword input | Similar to the above | 1. Go to the title or author search bar. 2. Type `"Nguyễn"`. 3. Observe the book list. | Keyword: `"Nguyễn"` | Display all books whose author name contains "Nguyễn" | REQ-03 | EP, Decision Table |
+| TC-03-09 | Category bar — partial keyword input | Similar to the above | 1. Go to the category filter. 2. Type `"Công"`. 3. Observe the book list. | Keyword: `"Công"` | Display all books whose category contains "Công" | REQ-03 | EP |
+| TC-03-10 | Both fields empty | Similar to the above | 1. Go to both search bars. 2. Leave search bar empty. 3. Do not select any category. 4. Observe the book list. | Search bar: empty. Category: none selected. | Display all 20 books. | REQ-03 | EP, BVA, Decision Table |
+| TC-03-11 | Combined search — both keyword and category match | Similar to the above | 1. Go to both search bars. 2. Type `"Nguyễn Minh Đức"` in the title or author search bar. 3. Type `"Công nghệ"` in the category filter. 4. Observe the book list. 5. Clear and then repeat this process, but reverse steps 2 and 3. | Keyword: `"Nguyễn Minh Đức"`. Category: `"Công nghệ"`. | Display exactly 2 books: BOOK001 and BOOK009. | REQ-03 | EP, Decision Table |
+| TC-03-12 | Combined search — keyword matches but category mismatches | Similar to the above | 1. Go to both search bars. 2. Type `"Nguyễn Minh Đức"` in the title or author search bar. 3. Type `"Kinh tế"` in the category filter. 4. Observe the book list. 5. Clear and then repeat this process, but reverse steps 2 and 3. | Keyword: `"Nguyễn Minh Đức"`. Category: `"Kinh tế"`. | Display message "No books found". System must apply both filters simultaneously. | REQ-03 | EP, Decision Table |
+
+---
+
+## REQ-04: Borrow book
+
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
+|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
+| TC-04-01 | An active member whose borrow count is less than 3 borrows an available book | 1. Member can log in<br>2. Member is active<br>3. Book is available<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK001 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK001 | - Member can borrow the book<br>- Display a successful message and the book is borrowed in corresponding display language<br>- A borrow record for that member and that book is created, due date is 14 days later after today | REQ-04 | EP, Decision Table |
+| TC-04-02 | An active member whose borrow count is less than 3 borrows a borrowed book | 1. Member can log in<br>2. Member is active<br>3. Book is borrowed<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK013 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK013 | - Member cannot borrow the book<br>- Display the book is borrowed in corresponding display language<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
+| TC-04-03 | An active member whose borrow count is less than 3 borrows a lost book | 1. Member can log in<br>2. Member is active<br>3. Book is lost<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK013 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK013 | - Member cannot borrow the book<br>- Display the book is lost in corresponding display language<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
+| TC-04-04 | A suspended member whose borrow count is less than 3 borrows an available book | 1. Member can log in<br>2. Member has been suspended<br>3. Book is available<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM004<br>3. Borrow the book BOOK001 | 1. Login email: cu.le@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK001 | - Member cannot borrow the book<br>- Display error message in corresponding display language: member has been suspended<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
+| TC-04-05 | An expired member whose borrow count is less than 3 borrows an available book | 1. Member can log in<br>2. Member has expired<br>3. Book is available<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM005<br>3. Borrow the book BOOK001 | 1. Login email: binh.pham@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK001 | - Member cannot borrow the book<br>- Display error message in corresponding display language: member has expired<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
+| TC-04-06 | An active member whose borrow count is 3 borrows an available book | 1. Member can log in<br>2. Member is active<br>3. Book is available<br>4. Member's borrow count is 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK001<br>4. Borrow the book BOOK002<br>5. Borrow the book BOOK005 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Books borrowed: BOOK001, BOOK002, BOOK005 | - Member cannot borrow the book BOOK005<br>- BOOK005 remains available<br>- Display error message when borrowing BOOK005 in corresponding display language: borrow limit reached<br>- Borrow records for that member and books BOOK001 and BOOK002 are created, due date is 14 days later after today, no record created for BOOK005 | REQ-04 | EP, BVA, Decision Table |
+| TC-04-07 | An active member whose borrow count is more than 3 borrows an available book | 1. Member can log in<br>2. Member is active<br>3. Book is available<br>4. Member's borrow count is more than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK001<br>4. Borrow the book BOOK002<br>5. Borrow the book BOOK005<br>6. Borrow the book BOOK008 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Books borrowed: BOOK001, BOOK002, BOOK005, BOOK008 | - Member cannot borrow the book BOOK008<br>- BOOK008 remains available<br>- Display error message when borrowing BOOK008 in corresponding display language: borrow limit reached<br>- Borrow records for that member and BOOK008 is not created | REQ-04 | EP |
+
+---
+
+## REQ-05: Return Book
+
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
+|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
+| TC-05-01 | Return a currently borrowed, non-overdue book successfully | - Member has an active borrow record.<br>- A borrow record exists with `currentDate < dueDate`.<br>- The system date/time can be adjusted on the test machine. | 1. Set the system date to a date **before the record due date**.<br>2. Refresh the web page.<br>3. Log in as the member who owns the borrow record.<br>4. Open **Borrow / Return** page.<br>5. Select an active borrow record that is not overdue.<br>6. Click **Return Book**.<br>7. Confirm return action.<br>8. Open **Book List** and verify the book status. | Example record: `BR001`.<br>`currentDate < dueDate`.<br>Example: `10/09/2024 < 15/09/2024`. | - Book is returned successfully.<br>- No overdue warning message is displayed.<br>- Book status changes to **"Available"**.<br>- Borrow record status changes to **"Returned"**. | REQ-05 | EP, BVA, Decision Table |
+| TC-05-02 | Return a book on the due date (boundary case) | - Member has an active borrow record.<br>- A borrow record exists with `currentDate = dueDate`.<br>- The system date/time can be adjusted on the test machine. | 1. Set the system date to the **same date as the borrow record due date**.<br>2. Refresh the web page.<br>3. Log in as the member who owns the borrow record.<br>4. Open **Borrow / Return** page.<br>5. Select a borrow record due today.<br>6. Click **Return Book**.<br>7. Observe whether an overdue warning is displayed. | Example record: `BR001`.<br>`currentDate = dueDate`.<br>Example: `15/09/2024 = 15/09/2024`. | - Book is returned successfully.<br>- System displays a clear overdue warning.<br>- Book status changes to **"Available"**.<br>- Borrow record status changes to **"Returned"**. | REQ-05 | BVA, Decision Table |
+| TC-05-03 | Return an overdue book | - Member has an active borrow record.<br>- A borrow record exists with `currentDate > dueDate`.<br>- The system date/time can be adjusted on the test machine. | 1. Set the system date to a date **after the borrow record due date**.<br>2. Refresh the web page.<br>3. Log in as the member who owns the borrow record.<br>4. Open **Borrow / Return** page.<br>5. Select an overdue borrow record.<br>6. Click **Return Book**.<br>7. Observe whether an overdue warning is displayed. | Example record: `BR001`.<br>`currentDate > dueDate`.<br>Example: `27/05/2026 > 15/09/2024`. | - Book is returned successfully.<br>- System displays a **clear overdue warning**.<br>- Book status changes to **"Available"**.<br>- Borrow record status changes to **"Returned"**. | REQ-05 | EP, BVA, Decision Table |
+| TC-05-04 | Return a book that has already been returned | - Member has a borrow record that has already been returned.<br>- Book status is **Available**. | 1. Log in as the member who owns the returned borrow record.<br>2. Open **Borrow / Return** page.<br>3. Select/view a borrow record with status **Returned**.<br>4. Check whether the return action is available. | Example record: `BR004`.<br>`recordStatus = Returned`. | - The system does not allow returning the same book again.<br>- The **Return Book** button is not displayed or cannot be used.<br>- Borrow record status remains **"Returned"**.<br>- Book status remains **"Available"**. | REQ-05 | EP, Decision Table |
+| TC-05-05 | Verify that a member cannot return another member’s borrowed book | - Login as a member account.<br>- Another member has an active borrow record.<br>- The borrow record does not belong to the current logged-in member. | 1. Login as `dam.tran@email.com` / `MEM003`.<br>2. Open **Borrow / Return** page.<br>3. Search for or try to access records belonging to another member, e.g. `MEM002`.<br>4. Try to view or select `BR001`, which belongs to `MEM002`.<br>5. If the **Return Book** button is available, click **Return Book**.<br>6. Observe whether the system allows the action. | Current user: `MEM003`.<br>Target record owner: `MEM002`.<br>Target record: `BR001`.<br>`recordOwner != currentUser`. | - The system must not allow `MEM003` to view or return `MEM002`’s borrow record.<br>- The **Return Book** button must not be displayed or must be disabled for records that do not belong to the current member.<br>- The borrow record status remains unchanged.<br>- The book status remains unchanged. | REQ-05, REQ-08 | EP, Decision Table |
+
+---
+
+## REQ-06: Overdue Handling
+
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
+|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
+| TC-06-01 | Librarian can check overdue records | - Librarian account is logged in.<br>- Borrow records exist in the system. | 1. Login as librarian.<br>2. Open **Borrow / Return** page.<br>3. Click **Check Overdue** button.<br>4. Observe displayed records. | `librarian@library.com` | - Librarian can access and use the **Check Overdue** function.<br>- Overdue borrow records are displayed or updated after checking. | REQ-06 | EP, Decision Table |
+| TC-06-02 | Check borrow record not overdue | - Librarian is logged in.<br>- A borrow record exists with `dueDate > current date`.<br>- The system date/time can be adjusted on the test machine. | 1. Set the system date to a date **before the record due date**.<br>2. Refresh the web page.<br>3. Login as librarian.<br>4. Open **Borrow / Return** page.<br>5. Click **Check Overdue** button.<br>6. Observe borrow record status. | `currentDate < dueDate`.<br>Example: `10/09/2024 < 15/09/2024`. | - Borrow record is **not marked as "Overdue"**.<br>- Status remains **"Borrowing"**. | REQ-06 | EP, BVA, Decision Table |
+| TC-06-03 | Check borrow record due today (boundary case) | - Librarian is logged in.<br>- A borrow record exists with `dueDate = current date`.<br>- The system date/time can be adjusted on the test machine. | 1. Set the system date to the **same date as the borrow record due date**.<br>2. Refresh the web page.<br>3. Login as librarian.<br>4. Open **Borrow / Return** page.<br>5. Click **Check Overdue** button.<br>6. Observe borrow record status. | `currentDate = dueDate`.<br>Example: `15/09/2024 = 15/09/2024`. | - Borrow record is marked as **"Overdue"**.<br>- `dueDate <= currentDate` is considered overdue. | REQ-06 | BVA, Decision Table |
+| TC-06-04 | Check overdue borrow record | - Librarian is logged in.<br>- A borrow record exists with `dueDate < current date`.<br>- The system date/time can be adjusted on the test machine. | 1. Set the system date to a date **after the record due date**.<br>2. Refresh the web page.<br>3. Login as librarian.<br>4. Open **Borrow / Return** page.<br>5. Click **Check Overdue** button.<br>6. Observe borrow record status. | `currentDate > dueDate`.<br>Example: `20/09/2024 > 15/09/2024`. | - Borrow record is marked as **"Overdue"**. | REQ-06 | EP, BVA, Decision Table |
+| TC-06-05 | Member cannot use Check Overdue function | - Member account is logged in. | 1. Login as a member account.<br>2. Open **Borrow / Return** page.<br>3. Check whether the **Check Overdue** function is available.<br>4. Try to access or use the function if possible. | `ba.nguyen@email.com` / `MEM002` | - Member cannot access or use the **Check Overdue** function.<br>- The **Check Overdue** button is not displayed or cannot be used.<br>- Member cannot mark records as **"Overdue"**. | REQ-06 | EP, Decision Table |
+
+---
+
+## REQ-07: Members
+
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
+|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
+| TC-07-01 | Add new valid member | Login with Librarian account | 1. Go to Members tab<br>2. Click "Add member"<br>3. Fill in information<br>4. Confirm | Username: Nguyen Van Test<br>Email: newmember@test.com<br>Phone: 0901234567 | Member is created successfully, appears in list | REQ-07 | EP, Decision Table |
+| TC-07-02 | Add member with email missing dot in domain | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter email user@domain<br>4. Confirm | Email: user@domain | System rejects, displays email error message | REQ-07 | BVA, Decision Table |
+| TC-07-03 | Add member with email missing @ | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter email userdomain.com<br>4. Confirm | Email: userdomain.com | System rejects, displays email error message | REQ-07 | BVA, Decision Table |
+| TC-07-04 | Add member with duplicate email | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter existing email (ba.nguyen@email.com)<br>4. Confirm | Email: ba.nguyen@email.com | System rejects, displays email already exists message | REQ-07 | EP, Decision Table |
+| TC-07-05 | Check Member permission cannot see Members tab | Login with Member account (ba.nguyen) | 1. Login with MEM002<br>2. Observe displayed tabs | (no additional input needed) | "Members" tab does not appear or is not accessible | REQ-07 | EP, Decision Table |
+| TC-07-06 | Shortest valid email (BVA) | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter email a@b.co<br>4. Confirm | Email: a@b.co<br>Phone: 0900000001 | Member is created successfully | REQ-07 | BVA, Decision Table |
+| TC-07-14 | Add member with email having multiple @ or consecutive dots | Login as Librarian | 1. Click Add member<br>2. Enter email admin@@vn.com or admin@vn..com<br>3. Confirm | Email: admin@@vn.com / admin@vn..com | System rejects, displays email error message | REQ-07 | EP, Decision Table |
+| TC-07-15 | Add member with blank username | Login as Librarian | 1. Click Add member<br>2. Leave Username blank<br>3. Confirm | Username: (blank), Email: admin@vn.com | System rejects, displays "Username blank" message | REQ-07 | EP, Decision Table |
+| TC-07-16 | Phone number not start with 0 | Log in as Librarian | 1. Go to Members tab<br>2. Click "Add member"<br>3. Fill in information<br>4. Confirm | Username: Stranger, Email: admin@vn.com, Phone number: 9839219743 | System rejects, displays "Phone number invalid" message| REQ-07 | EP, Decision Table |
+
+---
+
+## REQ-08: Search borrow tickets
+
+| TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
+|-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
+| TC-08-07 | Display borrow ticket list (Librarian) | Login as Librarian | 1. Login as Librarian<br>2. Go to Borrow/Return tab<br>3. Observe list | (no data input needed) | Display BR001–BR005 for all members | REQ-08 | EP, Decision Table |
+| TC-08-08 | Display borrow ticket for Member (only theirs) | Login as MEM002 | 1. Login as MEM002<br>2. Go to Borrow/Return<br>3. Observe list | (MEM002) | Only see BR001 and BR004 (belonging to MEM002) | REQ-08 | EP, Decision Table |
+| TC-08-09 | Search borrow ticket of another member (not allowed) | Login as MEM002 | 1. Login as MEM002<br>2. Go to Borrow/Return<br>3. Search for ID MEM003 | Search for MEM003 | Does not display MEM003 tickets; or displays "Not found" message | REQ-08 | EP, Decision Table |
+| TC-08-10 | View details of ticket BR001 | Login as Librarian | 1. Login as Librarian<br>2. Go to Borrow/Return<br>3. Open BR001 | BR001 | Display complete: code, book, borrow date, return date, status | REQ-08 | EP, Decision Table |
+| TC-08-11 | View ticket BR002 (returned) | Login as Librarian or MEM003 | 1. Login<br>2. Go to Borrow/Return<br>3. Open BR002 | BR002 (returned 20/08/2024) | Status displays "Returned" | REQ-08 | EP, Decision Table |
+| TC-08-12 | Check overdue marking (Check Overdue) | Login as Librarian | 1. Login as Librarian<br>2. Click "Check Overdue"<br>3. Go to Borrow/Return, open BR001 | BR001 (expiry 15/09/2024) | BR001 status is changed to "Overdue" if expired | REQ-06, REQ-08 | EP, Decision Table |
+| TC-08-13 | Check BR002 displays correct status after check overdue | Login as Librarian | 1. Login as Librarian<br>2. Check Overdue<br>3. Open BR002 | BR002 (returned) | BR002 still displays "Returned" | REQ-08 | EP, Decision Table |
+
+---
+
+## Summary
+
+| Functional Group | TC Count | REQ Covered | IDM Technique Used |
 |----------------|-------|---------|----------------------|
-| | | | |
-| **Tổng** | **<!-- ≥ 20 -->** | | |
+| Login | 9 | REQ-01 | EP, Decision Table |
+| View Book List | 7 | REQ-02 | EP, Decision Table |
+| Search & Filter Books | 12 | REQ-03 | EP, BVA, Decision Table |
+| Borrow book | 7 | REQ-04 | EP, BVA, Decision Table |
+| Return Book | 5 | REQ-05, REQ-08 | EP, BVA, Decision Table |
+| Overdue Handling | 5 | REQ-06 | EP, BVA, Decision Table |
+| Members | 9 | REQ-07 | EP, BVA, Decision Table |
+| Search borrow tickets | 6 | REQ-08 | EP, Decision Table |
+| **Total** | 60 | REQ-01 → REQ-08 | EP, BVA, Decision Table |
