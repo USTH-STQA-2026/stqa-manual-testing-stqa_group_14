@@ -45,8 +45,9 @@ Invalid input --> Created succesfully
 Loss of new members, poor user experience, damage to reputation, allows invalid data to be stored in the system database.
 
 **Minh chứng:**
-- ![BUG-07](image.png)
-- ![BUG-07](image-2.png)
+- [BUG-07.1](TC-01 REQ-07.png)
+- [BUG-07.2](TC-02 REQ-07.png)
+- [BUG-07.3](TC-06 REQ-07.png)
 
 **Đề xuất xử lý:**
 Review and fix the email validation logic in the member creation form, ensure valid email formats are accepted and invalid formats are rejected correctly
@@ -90,7 +91,7 @@ Tickets for MEM003 are displayed
 Data privacy breach
 
 **Minh chứng:**
-- ![BUG-08](image-1.png)
+- [BUG-08](TC-09 REQ-08.png)
 
 **Đề xuất xử lý:**
 Server-side / data-layer filtering, improve UI-layer enforcement
