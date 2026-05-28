@@ -59,16 +59,17 @@
 | Characteristic | Partition | Representative Value | Expected Result |
 |---|---|---|---|
 | Username | Valid | "Kevin Hart" | Accept |
-| Username | Only spaces | "   " (3 spaces) | Reject, display "Please enter your username" |
-| Username | Blank | (blank) | Reject, display "Please enter your username" |
+|  | Only spaces | "   " (3 spaces) | Reject, display "Please enter your username" |
+|  | Blank | (blank) | Reject, display "Please enter your username" |
 | Email | Valid | member@so.com | Accept |
-| Email | Missing @ or . | memberso.com or member@socom | Reject, display "Please enter your email" |
-| Email | Blank | (blank) | Reject, display "Please enter your email" |
+|  | Missing @ or . | memberso.com or member@socom | Reject, display "Please enter your email" |
+|  | Blank | (blank) | Reject, display "Please enter your email" |
 | Phone number | Exactly 10 digits | 0988743321 | Accept |
-| Phone number | Less than 10 digits | 09283189 | Reject, display "Please enter your phone number" |
-| Phone number | Contains letters | abcxyz | Reject, display "Please enter your phone number" |
+|  | Less than 10 digits | 09283189 | Reject, display "Please enter your phone number" |
+|  | Contains letters | abcxyz | Reject, display "Please enter your phone number" |
+|  | Not start with 0 | 9849927236 | Reject, display "Please enter your phone number" |
 | Ability to add member | Admin | librarian@library.com | Allow add |
-| Ability to add member | Member | ba.nguyen@email.com | Not allowed |
+|  | Member | ba.nguyen@email.com | Not allowed |
 
 ### IDM — Search borrow tickets (REQ-08)
 
@@ -114,6 +115,7 @@
 | TC-13 | Check BR002 displays correct status after check overdue | Login as Librarian | 1. Login as Librarian<br>2. Check Overdue<br>3. Open BR002 | BR002 (returned) | BR002 still displays "Returned" | REQ-08 | EP |
 | TC-14 | Add member with email having multiple @ or consecutive dots | Login as Librarian | 1. Click Add member<br>2. Enter email admin@@vn.com or admin@vn..com<br>3. Confirm | Email: admin@@vn.com / admin@vn..com | System rejects, displays email error message | REQ-07 | EP |
 | TC-15 | Add member with blank username | Login as Librarian | 1. Click Add member<br>2. Leave Username blank<br>3. Confirm | Username: (blank), Email: admin@vn.com | System rejects, displays "Username blank" message | REQ-07 | EP |
+| TC-16 | Phone number not start with 0 | Log in as Librarian | 1. Go to Members tab<br>2. Click "Add member"<br>3. Fill in information<br>4. Confirm | Username: Stranger, Email: admin@vn.com, Phone number: 9839219743 | REQ-07 | EP |
 
 ---
 
