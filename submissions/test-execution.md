@@ -32,6 +32,7 @@
 | TC-13 | Borrow/Return | BR002 still "Returned" after check | BR002 still displays "Returned" | Pass | | |
 | TC-14 | Members | Reject email with multiple @ or .. | System rejected (email invalid) | Pass | | |
 | TC-15 | Members | Reject blank username | System rejected (Username blank) | Pass | | |
+| TC-16 | Members | Reject wrong phone number | System rejected (Invalid phone number) | Pass | | |
 
 ---
 

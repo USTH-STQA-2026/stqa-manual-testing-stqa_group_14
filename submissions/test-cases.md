@@ -64,8 +64,8 @@
 | Email | Valid | member@so.com | Accept |
 |  | Missing @ or . | memberso.com or member@socom | Reject, display "Please enter your email" |
 |  | Blank | (blank) | Reject, display "Please enter your email" |
-| Phone number | Exactly 10 digits | 0988743321 | Accept |
-|  | Less than 10 digits | 09283189 | Reject, display "Please enter your phone number" |
+| Phone number | x-digit number = 10 | 0988743321 | Accept |
+|  | x-digit number != 10 | 09283189 | Reject, display "Please enter your phone number" |
 |  | Contains letters | abcxyz | Reject, display "Please enter your phone number" |
 |  | Not start with 0 | 9849927236 | Reject, display "Please enter your phone number" |
 | Ability to add member | Admin | librarian@library.com | Allow add |
