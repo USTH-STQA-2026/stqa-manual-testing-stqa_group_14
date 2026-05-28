@@ -79,6 +79,5 @@
 
 | Nhóm chức năng | Số TC | REQ phủ | Kỹ thuật IDM áp dụng |
 |----------------|-------|---------|----------------------|
-| Members | 9 | REQ-07 | EP, BVA |
-| Borrow/Return | 6 | REQ-06, REQ-08 | EP |
-| **Tổng** | **15** | REQ-06 → REQ-08 | EP, BVA |
+| | | | |
+| **Tổng** | **<!-- ≥ 20 -->** | | |
