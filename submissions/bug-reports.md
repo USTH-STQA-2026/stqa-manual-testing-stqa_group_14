@@ -148,6 +148,7 @@ The ambiguity does not prevent the system from functioning. However, it affects 
 <a href="Images/REQ-01-02/TC-07.png" target="_blank">
     <img src="Images/REQ-01-02/TC-07.png" alt="TC-07 Screenshot" width="700">
 </a>
+
 ## Suggested Fix
 - Expected validation message when email is empty
 - Expected validation message when password is empty
