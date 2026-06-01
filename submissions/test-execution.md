@@ -1,38 +1,90 @@
-# Test Execution — Kết quả thực thi kiểm thử
-
-> **Hướng dẫn**: Chạy từng TC trên hệ thống https://stqa.rbc.vn, ghi lại kết quả thực tế.
-> Kết luận: **Pass** (kết quả đúng), **Fail** (kết quả sai → tạo bug report), **Blocked** (không thực hiện được vì lỗi khác chặn), **Not Run** (chưa chạy).
-
-| Thông tin | |
+# Execution
+| Information | |
 |---|---|
-| **Nhóm** | `<!-- Tên nhóm -->` |
-| **Ngày thực thi** | `<!-- DD/MM/YYYY -->` |
-| **Trình duyệt** | Chrome `<!-- version -->` |
-| **Hệ điều hành** | `<!-- Windows / macOS / Linux -->` |
+| **Team** |  14 |
+| **Execution Date** | 23/05/2026 |
+| **Browser** | Chrome Version 148 |
+| **Operating System** | Windows 10 |
 
 ---
+## Detailed Test Execution Results
 
-## Kết quả chi tiết
+| TC ID | Functional Group | Expected Result (Summary) | Actual Result | Status | Evidence | Issue |
+|---|---|---|---|---|---|---|
+| TC-01-01 | Login | Librarian logs in successfully | System redirected user to Home page and displayed LIBRARIAN role correctly | Pass | N/A | - |
+| TC-01-02 | Login | Member logs in successfully | System redirected user to Home page and displayed MEMBER role correctly | Pass |  N/A | - |
+| TC-01-03 | Login | Display “Member not found” in English mode | System displayed “Không tìm thấy thành viên” | Fail | [View Evidence](Evidences/REQ-01-02/TC-01-03.jpg)|Failure|
+| TC-01-04 | Login | Display “Incorrect password” in English mode | System displayed “Mật khẩu không đúng” | Fail | [View Evidence](Evidences/REQ-01-02/TC-01-04.jpg) | Failure |
+| TC-01-05 | Login | Display validation message when both email and password are empty | System displayed “Please enter your email and password” | Pass |  N/A | - |
+| TC-01-06 | Login | Behavior for empty email only is not clearly specified in the SRS | System displayed “Please enter your email and password” | Inconclusive | SRS does not define expected behavior for empty email only [View Evidence](Evidences/REQ-01-02/TC-01-06.jpg) | Requirement Ambiguity |
+| TC-01-07 | Login | Behavior for empty password only is not clearly specified in the SRS | System displayed “Please enter your email and password” | Inconclusive | SRS does not define expected behavior for empty password only [View Evidence](Evidences/REQ-01-02/TC-01-07.jpg) | Requirement Ambiguity |
+| TC-01-08 | Login |Requirement gap: SRS does not specify behavior for invalid email format (missing .) | System displayed “Member not found” | Inconclusive | SRS does not clearly define invalid email format validation [View Evidence](Evidences/REQ-01-02/TC-01-08.jpg) | Requirement Gap |
+| TC-01-09 | Login | Requirement gap: SRS does not specify behavior for invalid email format (missing @) | System displayed "Member not found" | Inconclusive | SRS does not define invalid email format validation [View Evidence](Evidences/REQ-01-02/TC-01-09.jpg) | Requirement Gap |
+| TC-02-01 | View Book List | Librarian can view complete book list | System displayed all books with complete information correctly | Pass |  [View Evidence](Evidences/REQ-01-02/TC-02-01.jpg)| - |
+| TC-02-02 | View Book List | Member can view complete book list | System displayed all books with complete information correctly | Pass | [View Evidence](Evidences/REQ-01-02/TC-02-02.jpg) | - |
+| TC-02-03 | View Book List | Display correct information for BOOK001 | System displayed title, author, genre, published year, and status correctly | Pass | [View Evidence](Evidences/REQ-01-02/TC-02-03.jpg) | - |
+| TC-02-04 | View Book List | Display correct status for BOOK001 and BOOK003 | BOOK001 displayed as “Available” and BOOK003 displayed as “Borrowed” | Pass | [View Evidence](Evidences/REQ-01-02/TC-02-04.jpg) | -|
+| TC-02-05 | View Book List | Update BOOK001 status after borrowing | BOOK001 status changed immediately from “Available” to “Borrowed” | Pass | N/A|- |
+| TC-02-06 | View Book List | BOOK007 is displayed with status “Lost” | System displayed BOOK007 with status “Lost” correctly | Pass | N/A| - |
+| TC-02-07 | View Book List | Update BOOK003 status after returning | BOOK003 status changed immediately from “Borrowed” to “Available” | Pass | N/A| - |
+| TC-03-01 | Search by title/author | Display 1 book: BOOK001 (baseline for TC-05) | Display BOOK001 | Pass |N/A| -|
+| TC-03-02 | As above | Display 2 books: BOOK001, BOOK009 | Display BOOK001, 009 | Pass |N/A| - |
+| TC-03-03 | Filter by category | Display 8 books in Technology: BOOK001, 002, 003, 005, 008, 009, 010, 011 (baseline for TC-06) | Display BOOK001, 002, 003, 005, 008, 009, 010, 011 | Pass |N/A| -|
+| TC-03-04 | Both bars | Display "No books found" | Display "No books found" |  Pass | N/A| - |
+| TC-03-05 | Case sensitivity — title/author bar | Display 1 book: BOOK001 for both `"nguyễn minh đức"` and `"NGUYỄN MINH ĐỨC"` (same as TC-03-01) | Display BOOK001 for both inputs | Pass | N/A| - |
+| TC-03-06 | Case sensitivity — category bar | Display 8 books for both `"công nghệ"` and `"CÔNG NGHỆ"` (same as TC-03-03) | Display "No books found", blank list for both inputs | Fail |  [Lowercase](REQ-03/TC-03-06_BUG-03-01_lowercase.png), [Uppercase](REQ-03/TC-03-06_BUG-03-01_uppercase.png)| BUG-03-01 |
+| TC-03-07 | Diacritic sensitivity — both bars | Display 2 books: BOOK001, BOOK009 (Step 3 - same as TC-02). Display 8 books: BOOK001, 002, 003, 005, 008, 009, 010, 011 (Step 7 - same as TC-04) | Display "No books found", blank list | Inconclusive| [Author without diacritics](Images/REQ-03/TC-03-07_author-without-diacritics.png), [Genre without diacritics](Images/REQ-03/TC-03-07_genre-without-diacritics.png)  | Requirement Gap |
+| TC-03-08 | Partial keyword — title/author bar | Display 4 books whose author contains "Nguyễn": BOOK001, 006, 009, 016 | Display BOOK001, 006, 009, 016 | Pass |N/A | - |
+| TC-03-09 | Partial keyword — category bar | Display 8 books whose genre contains "Công": BOOK001, 002, 003, 005, 008, 009, 010, 011 | Display "No books found", blank list | Inconclusive | TC-03-09.png |Requirement Gap |
+| TC-03-10 | Empty fields | Display all 20 books | Display all 20 books | Pass |N/A| -|
+| TC-03-11 | Combined search - match| Display 2 books: BOOK001, BOOK009 | (1) If keyword entered first then category — display 8 Technology books: BOOK001, 002, 003, 005, 008, 009, 010, 011 (category overrides keyword); (2) If category entered first then keyword — display 2 books: BOOK001, BOOK009 (keyword overrides category) | Fail | [Author first 1](Images/REQ-03/TC-03-11_BUG-02_author-first_1.png), [Author first 2](Images/REQ-03/TC-03-11_BUG-02_author-first_2.png), [Author first 3](Images/REQ-03/TC-03-11_BUG-02_author-first_3.png),[Genre first](Images/REQ-03/TC-03-11_BUG-02_genre-first.png) | BUG-03-02 |
+| TC-03-12 | Combined search - mismatch | Display "No books found" | (1) If keyword entered first then category — display 3 Economics books: BOOK007, BOOK014, BOOK015 (category overrides keyword); (2) If category entered first then keyword — display 2 books: BOOK001, BOOK009 (keyword overrides category); | Fail | [Author first](Images/REQ-03/TC-03-12_BUG-02_author-first.png), [Genre first](Images/REQ-03/TC-03-12_BUG-02_genre-first.png) | BUG-03-02 |
+| TC-04-01 | Borrow Book | Member can borrow the book, successful message displayed in corresponding language| Member can borrow the book, successful message displayed in corresponding language | Pass | <a href="Images/REQ-04/evidence/TC-04-01/BOOK001_before.png">Before borrowing BOOK001</a><br><a href="Images/REQ-04/evidence/TC-04-01/BOOK001_after_vi.png">After borrowing BOOK001 (Vietnamese)</a><br><a href="Images/REQ-04/evidence/TC-04-01/BOOK001_after_en.png">After borrowing BOOK001 (English)</a><br><a href="Images/REQ-04/evidence/TC-04-01/BR_before.png">Borrow records before borrowing</a><br><a href="Images/REQ-04/evidence/TC-04-01/BR_after.png">Borrow records after borrowing</a> | - |
+| TC-04-02 | Borrow Book | Member cannot borrow the book | Member cannot borrow the book | Pass | <a href="Images/REQ-04/evidence/TC-04-02/BOOK003_before.png">Before borrowing BOOK003</a><br><a href="Images/REQ-04/evidence/TC-04-02/BOOK003_after.png">After borrowing BOOK003</a><br><a href="Images/REQ-04/evidence/TC-04-02/BR_before.png">Borrow records before borrowing</a><br><a href="Images/REQ-04/evidence/TC-04-02/BR_after.png">Borrow records after borrowing</a> | - |
+| TC-04-03 | Borrow Book | Member cannot borrow the book | Member cannot borrow the book | Pass | <a href="Images/REQ-04/evidence/TC-04-03/BOOK007_before.png">Before borrowing BOOK007</a><br><a href="Images/REQ-04/evidence/TC-04-03/BOOK007_after.png">After borrowing BOOK007</a><br><a href="Images/REQ-04/evidence/TC-04-03/BR_before.png">Borrow records before borrowing</a><br><a href="Images/REQ-04/evidence/TC-04-03/BR_after.png">Borrow records after borrowing</a> | - |
+| TC-04-04 | Borrow Book | - Member cannot borrow the book<br>- Error message on member being suspended is displayed in corresponding language | - Member cannot borrow the book<br>- Error message says the member has expired<br>- Error message is Vietnamese while display language is English | Fail | <a href="Images/REQ-04/evidence/TC-04-04/BOOK001_before.png">Before borrowing BOOK001</a><br><a href="Images/REQ-04/evidence/TC-04-04/BOOK001_after_vi.png">After borrowing BOOK001 (Vietnamese)</a><br><a href="Images/REQ-04/evidence/TC-04-04/BOOK001_after_en.png">After borrowing BOOK001 (English)</a><br><a href="Images/REQ-04/evidence/TC-04-04/BR_before.png">Borrow records before borrowing</a><br><a href="Images/REQ-04/evidence/TC-04-03/BR_after.png">Borrow records after borrowing</a> | BUG-04-03, BUG-04-07 |
+| TC-04-05 | Borrow Book | - Member cannot borrow the book<br>- Error message on member having expired is displayed in corresponding language | - Member cannot borrow the book<br>- Error message says the member has expired<br>- Error message is Vietnamese while display language is English | Fail | <a href="Images/REQ-04/evidence/TC-04-05/BOOK001_before.png">Before borrowing BOOK001</a><br><a href="Images/REQ-04/evidence/TC-04-05/BOOK001_after_vi.png">After borrowing BOOK001 (Vietnamese)</a><br><a href="Images/REQ-04/evidence/TC-04-05/BOOK001_after_en.png">After borrowing BOOK001 (English)</a><br><a href="Images/REQ-04/evidence/TC-04-05/BR_before.png">Borrow records before borrowing</a><br><a href="Images/REQ-04/evidence/TC-04-05/BR_after.png">Borrow records after borrowing</a> | BUG-04-07 |
+| TC-04-06 | Borrow Book | - Member cannot borrow book BOOK005<br>- Error on limit having exceeded is displayed in corresponding language<br>- Borrow record is not created for BOOK005 | Member can borrow book BOOK005, no error message is displayed, borrow record for BOOK005 is created | Fail | <a href="Images/REQ-04/evidence/TC-04-06/BOOK005_before.png">Before borrowing BOOK005</a><br><a href="Images/REQ-04/evidence/TC-04-06/BOOK005_after.png">After borrowing BOOK005</a><br><a href="Images/REQ-04/evidence/TC-04-06/BR_before.png">Borrow records before borrowing</a><br><a href="Images/REQ-04/evidence/TC-04-06/BR_after.png">Borrow records after borrowing</a> | BUG-04-05 |
+| TC-04-07 | Borrow Book | - Member cannot borrow book BOOK008<br>- Error on limit being exceeded is displayed in corresponding language<br>- Borrow record is not created for BOOK008 | - Member cannot borrow BOOK008, borrow record for BOOK008 is not created. BOOK008 remains available<br>- Error message says the member has exceeded the limit<br>- Error message is Vietnamese while display language is English  | Fail | <a href="Images/REQ-04/evidence/TC-04-07/BOOK008_before.png">Before borrowing BOOK008</a><br><a href="Images/REQ-04/evidence/TC-04-07/BOOK008_after_vi.png">After borrowing BOOK008 (Vietnamese)</a><br><a href="Images/REQ-04/evidence/TC-04-07/BOOK008_after_en.png">After borrowing BOOK008 (English)</a><br><a href="Images/REQ-04/evidence/TC-04-07/BR_before.png">Borrow records before borrowing</a><br><a href="Images/REQ-04/evidence/TC-04-07/BR_after.png">Borrow records after borrowing</a> | BUG-04-06, BUG-04-07 |
+| TC-05-01 | Return Book | Book is returned successfully. No overdue warning message is displayed. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Borrow record changed to **"Returned"**. Book status changed to **"Available"**. No overdue warning message was displayed. | Pass | N/A | - |
+| TC-05-02 | Return Book | Book is returned successfully. System displays a clear overdue warning. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Book was returned successfully and the record/book status was updated, but no overdue warning message was displayed when `returnDate = dueDate`. | Fail |  [Book Status After Return](Images/REQ-05/TC-02_after-book_BUG_Medium.png),[Borrow Record After Return](Images/REQ-05/TC-02_after-return_BUG_Medium.png),[Borrow Record Before Return](Images/REQ-05/TC-02_before-record_BUG_Medium.png)| BUG-05-01 |
+| TC-05-03 | Return Book | Book is returned successfully. System displays a clear overdue warning. Book status changes to **"Available"**. Borrow record status changes to **"Returned"**. | Book was returned successfully and the record/book status was updated, but no overdue warning message was displayed for an overdue return (`returnDate > dueDate`). | Fail | [Book Status After Return](Images/REQ-05/TC-02_after-book_BUG_Medium.png),[Borrow Record After Return](Images/REQ-05/TC-02_after-return_BUG_Medium.png),[Borrow Record Before Return](Images/REQ-05/TC-02_before-record_BUG_Medium.png)| BUG-05-01 |
+| TC-05-04 | Return Book | System does not allow returning a book that has already been returned. The **Return Book** button is not displayed or cannot be used. Book status remains **"Available"**. Borrow record status remains **"Returned"**. | The borrow record remained in **"Returned"** status. The **Return Book** button was no longer displayed after the book had been returned, preventing duplicate return actions. Book status remained **"Available"**. | Pass | N/A| - |
+| TC-05-05 | Return Book / Access Control | The system must not allow the logged-in member to view or return another member’s borrowed book. The borrow record status and book status remain unchanged. | The logged-in member was able to view and return a book borrowed by another member. The borrow record/book status was updated even though the record did not belong to the current user. | Fail | [Before Record](Images/REQ-05/TC-05_before-record_BUG_High.png),[After Return](Images/REQ-05/TC-05_after-return_BUG_High.png) | BUG-05-02 |
+| TC-06-01 | Overdue Handling | Librarian can access and use the **Check Overdue** function. Overdue borrow records are displayed or updated after checking. | The librarian account successfully accessed and used the **Check Overdue** function. Borrow records were updated and overdue records were displayed after checking. | Pass | N/A | - |
+| TC-06-02 | Overdue Handling | Borrow record with `current date < dueDate` is **not marked as "Overdue"**. Status remains **"Borrowing"**. | The borrow record was **not marked as "Overdue"**. The status remained **"Borrowing"** after overdue checking. | Pass| N/A| - |
+| TC-06-03 | Overdue Handling | Borrow record with `current date = dueDate` is marked as **"Overdue"**. `dueDate <= current date` is considered overdue. | The borrow record was successfully marked as **"Overdue"** when the due date matched the current date. | Pass |N/A | - |
+| TC-06-04 | Overdue Handling | Borrow record with `current date > dueDate` is marked as **"Overdue"**. | The overdue borrow record was successfully marked as **"Overdue"** after overdue checking. | Pass |N/A| - |
+| TC-06-05 | Overdue Handling | Member cannot access or use the **Check Overdue** function. The button is not displayed or cannot be used. Member cannot mark records as **"Overdue"**. | The member account could not access the **Check Overdue** function. The **Check Overdue** button was not displayed in the interface. | Pass| N/A| - |
+| TC-07-01 | Members | Create valid member | System rejected, displays "Email invalid" | Fail | [View Evidence](Images/REQ-07/TC-01_REQ-07_BUG_High.png) | BUG-07-01 |
+| TC-07-02 | Members | Reject email missing "." | System rejected, displays "Email invalid" | Pass |[View Evidence](Images/REQ-07/TC-02_REQ-07_BUG_High.png)| -|
+| TC-07-03 | Members | Reject email missing "@" | Created Successfully | Fail | [View Evidence](Images/REQ-07/TC-03_REQ-07_BUG_High.png)| BUG-07 |
+| TC-07-04 | Members | Reject duplicate email | System rejected (email exists) | Pass |[View Evidence](Images/REQ-07/TC-04_REQ-07_BUG_High.png)| -|
+| TC-07-05 | Members | Member does not see "Add member" tab | Tab not displayed / not accessible | Pass |[View Evidence](Images/REQ-07/TC-05_REQ-07_BUG_High.png) | |
+| TC-07-06 | Members | Create member with a@b.co successfully | System rejected (email invalid) | Fail |[View Evidence](Images/REQ-07/TC-06_REQ-07_BUG_High.png) | BUG-07-06 |
+| TC-07-07 | Members | Reject email with multiple @ or .. | System rejected (email invalid) | Pass |[View Evidence](Images/REQ-07/TC-014_REQ-07_BUG_High.png)| -|
+| TC-07-08 | Members | Reject blank username | System rejected (Username blank) | Pass | [View Evidence](Images/REQ-07/TC-015_REQ-07_BUG_High.png)| -|
+| TC-07-09 | Members | Reject wrong phone number | System rejected (Invalid phone number) | Pass |[View Evidence](Images/REQ-07/TC-016_REQ-07_BUG_High.png) |- |
+| TC-08-01 | Borrow/Return | Display BR001–BR005 (Librarian) | Display all tickets | Pass |[View Evidence](Images/REQ-08/TC-07_REQ-08_BUG_High.png)| -|
+| TC-08-02| Borrow/Return | Member sees only BR001 & BR004 | Only see BR001 & BR004 | Pass |[View Evidence](Images/REQ-08/TC-08_REQ-08_BUG_High.png) | -|
+| TC-08-03 | Borrow/Return | Member cannot view other ticket | MEM003 tickets displayed | Fail |[View Evidence](Images/REQ-08/TC-09_REQ-08_BUG_High.png) | BUG-08-03 |
+| TC-08-04 | Borrow/Return | View BR001 details completely | Display all information | Pass |[View Evidence](Images/REQ-08/TC-10-11-12-13_REQ-08_BUG_High.png) |- |
+| TC-08-05 | Borrow/Return | BR002 displays "Returned" | Displays "Returned" | Pass |[View Evidence](Images/REQ-08/TC-10-11-12-13_REQ-08_BUG_High.png) |- |
+| TC-08-06 | Borrow/Return | Check Overdue marks BR001 | BR001 changes to "Overdue" if expired | Pass |[View Evidence](Images/REQ-08/TC-10-11-12-13_REQ-08_BUG_High.png)| -|
+| TC-08-07 | Borrow/Return | BR002 still "Returned" after check | BR002 still displays "Returned" | Pass |[View Evidence](Images/REQ-08/TC-10-11-12-13_REQ-08_BUG_High.png)|- |
+# SUMMARY TABLE
 
-| Mã TC | Nhóm chức năng | Kết quả mong đợi (tóm tắt) | Kết quả thực tế | Kết luận | Minh chứng | Bug |
-|-------|---------------|---------------------------|-----------------|---------|-----------|----| 
-| | | | | | | |
+| Functional Group | TC Count | REQ Covered | IDM Technique Used |
+|---|---|---|---|
+| Login | 9 | REQ-01 | Equivalence Partitioning (EP) |
+| View Book List | 7 | REQ-02 | Equivalence Partitioning (EP) |
+| Search by Title/Author | 12 | REQ-03 | Equivalence Partitioning (EP), Boundary Value Analysis (BVA) |
+| Borrow Book | 7 | REQ-04 | Equivalence Partitioning (EP), Decision Table (DT) |
+| Return Book | 5 | REQ-05 | Equivalence Partitioning (EP), Decision Table (DT) |
+| Overdue Handling | 5 | REQ-06 | Equivalence Partitioning (EP), Boundary Value Analysis (BVA) |
+| Members Management | 10 | REQ-07 | Equivalence Partitioning (EP), Boundary Value Analysis (BVA) |
+| Borrow/Return Records | 7 | REQ-08 | Equivalence Partitioning (EP), Access Control Testing |
 
+- Total: 62 test cases, 8 REQs covered
+- Techniques applied: EP, BVA, DT, Access Control Testing
 ---
-
-## Tổng hợp kết quả
-
-| Chỉ số | Giá trị |
-|--------|---------|
-| Tổng số test case | `<!-- số -->` |
-| Pass | `<!-- số -->` |
-| Fail | `<!-- số -->` |
-| Blocked | `<!-- số -->` |
-| Not Run | `<!-- số -->` |
-| **Tỷ lệ Pass** | `<!-- xx% -->` |
-
-### Kết quả theo nhóm chức năng
-
-| Nhóm | Tổng TC | Pass | Fail | Tỷ lệ Pass |
-|------|---------|------|------|------------|
-| | | | | |

@@ -27,7 +27,7 @@ Category filter returns no results when input is lowercase or uppercase
 - Browser: Chrome version 142
 - Operating System: Windows 10
 - Web application: Library Management System
-- UI language: Vietnamese, English
+- User Interface Language: Vietnamese, English
 
 **Preconditions:**
 - Logged in as `ba.nguyen@email.com`
@@ -59,8 +59,8 @@ Users who type category names in lowercase or uppercase get no results despite m
 P2
 
 **Evidence:**
-- Screenshot lowecase: ![TC-03-06 lowercase](evidence/TC-06_BUG-01_lowercase.png)
-- Screenshot uppercase: ![TC-03-06 uppercase](evidence/TC-03-06_BUG-01_uppercase.png)
+- Screenshot lowecase: ![TC-03-06 lowercase](Evidences/REQ-03/TC-06_lowercase%20(Medium).png)
+- Screenshot uppercase: ![TC-03-06 uppercase](Evidences/REQ-03/TC-06_uppercase%20(Medium).png)
 
 **Suggested fix:**
 Apply `.toLowerCase()` or equivalent normalization to both the user input and the stored category values before comparison, consistent with how the keyword search bar already handles case. 
@@ -83,10 +83,10 @@ Apply `.toLowerCase()` or equivalent normalization to both the user input and th
 Combined search does not apply AND logic — the last-entered search bar overrides the other, returning wrong results
 
 **Environment:**
-- Trình duyệt (Browser): Chrome version 142
-- Hệ điều hành (OS): Windows 10
+- Browser: Chrome version 142
+- Operating System: Windows 10
 - Web application: Library Management System
-- Ngôn ngữ giao diện (UI language): Vietnamese, English
+- User Interface Language: Vietnamese, English
 
 **Preconditions:**
 - Logged in as `ba.nguyen@email.com`
@@ -139,10 +139,10 @@ Combined search is fundamentally broken. Results are unpredictable and depend en
 P1
 
 **Evidence:**
-- Screenshot match - author 1st: ![TC-03-11 author 1st](evidence/TC-03-11_BUG-02_author-first_1.png) ![TC-03-11_BUG-03](evidence/TC-03-11_BUG-02_author-first_2.png) ![TC-03-11_BUG-03](evidence/TC-03-11_BUG-02_author-first_3.png)
-- Screenshot match - genre 1st: ![TC-03-11 genre 1st](evidence/TC-03-11_BUG-02_genre-first.png)
-- Screenshot mismatch author 1st: ![TC-03-12 author 1st](evidence/TC-03-12_BUG-02_author-first.png)
-- Screenshot mismatch genre 1st: ![TC-03-12 genre 1st](evidence/TC-03-12_BUG-02_genre-first.png)
+- Screenshot match - author 1st: ![TC-03-11 author 1st](Evidences/REQ-03/TC-11_author-first_1%20(High).png) ![TC-03-11_BUG-03](Evidences/REQ-03/TC-11_author-first_2%20(High).png) ![TC-03-11_BUG-03](Evidences/REQ-03/TC-11_author-first_3%20(High).png)
+- Screenshot match - genre 1st: ![TC-03-11 genre 1st](Evidences/REQ-03/TC-11_genre-first%20(High).png)
+- Screenshot mismatch author 1st: ![TC-03-12 author 1st](Evidences/REQ-03/TC-12_author-first%20(High).png)
+- Screenshot mismatch genre 1st: ![TC-03-12 genre 1st](Evidences//REQ-03/TC-12_genre-first%20(High).png)
 
 **Suggested fix:**
 Refactor the search/filter logic to evaluate both conditions simultaneously using AND logic: a book must satisfy both the keyword condition (title or author contains keyword) AND the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
@@ -164,9 +164,9 @@ Refactor the search/filter logic to evaluate both conditions simultaneously usin
 **Title:** Error message says the member has expired while they are suspended
 
 **Environment:**
-- Trình duyệt: Chrome `<!-- version -->`
-- Hệ điều hành: `<!-- OS -->`
-- Ngôn ngữ giao diện: Tiếng Việt
+- Browser: Chrome Version 148
+- Operating System: Linux
+- UI Languague: Vietnamese
 
 **Preconditions:**
 1. Member can log in
@@ -194,13 +194,12 @@ Refactor the search/filter logic to evaluate both conditions simultaneously usin
 
 **Severity explanation:**
 
-**Priority:**
 
 **Evidence:**
-- Before borrowing BOOK001: evidence/TC-04-04/BOOK001_before.png
-- After borrowing BOOK001: evidence/TC-04-04/BOOK001_after_vi.png
-- Borrow records before borrowing: evidence/TC-04-04/BR_before.png
-- Borrow records after borrowing: evidence/TC-04-04/BR_after.png
+- Before borrowing BOOK001: ![TC-04-04 BOOK001 before](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_before.png)
+- After borrowing BOOK001: ![TC-04-04 BOOK001 after](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_vi.png)
+- Borrow records before borrowing: ![TC-04-04 BR before](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BR_before.png)
+- Borrow records after borrowing: ![TC-04-04 BR after](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BR_after.png)
 
 **Suggested fix:**
 Correct the error message to "member has been suspended"
@@ -253,73 +252,15 @@ This violates the business requirement of only allowing to borrow up to 3 books 
 
 **Severity explanation:**
 
-**Priority:**
 
 **Evidence:**
-- Before borrowing BOOK005: evidence/TC-04-06/BOOK005_before.png
-- After borrowing BOOK005: evidence/TC-04-06/BOOK005_after.png
-- Borrow records before borrowing: evidence/TC-04-06/BR_before.png
-- Borrow records after borrowing: evidence/TC-04-06/BR_after.png
+- Before borrowing BOOK005: ![TC-04-06 BOOK005 before](Evidences/REQ-04/evidence/TC-04-06%20BUG/BOOK005_before.png)
+- After borrowing BOOK005: ![TC-04-06](Evidences/REQ-04/evidence/TC-04-06%20BUG/BOOK005_after.png)
+- Borrow records before borrowing: ![TC-04-06 BR before](Evidences/REQ-04/evidence/TC-04-06%20BUG/BR_before.png)
+- Borrow records after borrowing: ![TC-04-06 BR after](Evidences/REQ-04/evidence/TC-04-06%20BUG/BR_after.png)
 
 **Suggested fix:**
 Recheck the condition checking whether the user has reached the borrow limit.
-
----
-
-## OBSERVATION-0
-
-| Attribute | Details |
-|-----------|---------|
-| **Bug ID** | BUG-05 |
-| **Related TC** | TC-04-04, TC-04-05, TC-04-07 |
-| **Related REQ** | REQ-04 |
-| **Type** | Failure - Requirement Gap |
-| **Severity** | Low |
-| **Reported by** | Trần Thị Thu Trang |
-| **Date reported** | 23/05/2026 |
-| **Status** | Open |
-
-**Title:** Error messages are in Vietnamese while display language is English
-
-**Environment:**
-
-**Preconditions:**
-
-**Steps to reproduce:**
-1. Recreate the BUG-04-03, set display language to English after step 2
-2. Perform TC-04-04:
-	1. Refresh the page
-	2. Log in to the account of MEM005
-	3. Set display language to English
-	4. Borrow the book BOOK001
-3. Perform TC-04-06:
-	1. Refresh the page
-	2. Log in to the account of MEM002
-	3. Set display language to English
-	4. Borrow the book BOOK001
-	5. Borrow the book BOOK002
-	6. Borrow the book BOOK005
-	7. Borrow the book BOOK008
-
-
-**Expected result:**
-Error messages are in English
-
-**Actual result:**
-Error messages are in Vietnamese
-
-**Impact:**
-Users who do not know Vietnamese can be confused
-
-**Severity explanation:**
-
-**Priority:**
-
-**Evidence:**
-<br><a href="evidence/TC-04-04/BOOK001_after_en.png">TC-04-04: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-05/BOOK001_after_en.png">TC-04-05: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-07/BOOK008_after_en.png">TC-04-07: After borrowing BOOK008 (English)</a>
-
-**Suggested fix:**
-Correct the error messages to the English version when the display language is English
 
 ---
 
@@ -374,17 +315,16 @@ However, **no overdue warning message was displayed** when `returnDate >= dueDat
 - This behavior violates business rules **BR-05 (Overdue)** and **BR-06 (Overdue Return Warning)**.
 - Users do not receive an overdue warning even though the system defines books returned on the due date as overdue. This creates inconsistent behavior with the specified business requirements.
 
-**Severity:**
+**Severity explanation:**
 
-**Priority:**
 
 **Evidence:**
 Before Return
-- evidence/TC-05/TC-05-02-before-record.png
+- ![TC-05-02 before record](Evidences/REQ-05/TC-02-before-record%20BUG%20(Medium).png)
 
 After Return
-- evidence/TC-05/TC-05-02-after-return.png
-- evidence/TC-05/TC-05-02-after-book.png
+- ![TC-05-02 after return](Evidences/REQ-05/TC-02-after-return%20BUG%20(Medium).png)
+- ![TC-05-02 after book](Evidences/REQ-05/TC-02-after-book%20BUG%20(Medium).png)
 
 **Suggested fix:**
 The system should display an overdue warning message when:
@@ -404,7 +344,7 @@ to ensure compliance with business rules **BR-05** and **BR-06**.
 | Related TC | TC-05-05 |
 | Related REQ | REQ-05, REQ-08 |
 | Severity | High |
-| Reported by | Vu Duc Quang |
+| Reported by | Vũ Đức Quang, Nguyễn Hải Minh |
 | Date reported | 27/05/2026 |
 | Status | Open |
 
@@ -452,16 +392,19 @@ Members are able to manipulate borrow records that belong to other users, which 
 - Data integrity issues
 - Privacy and security concerns
 
+**Severity explanation:**
+
+
 **Evidence:**
 Before Unauthorized Return
 
 Logged in as **MEM003 (Trần Dựa Dẫm)**, but the system displayed borrow records belonging to **MEM002 (Nguyễn Học Bá)** and still allowed the **Return** action.
-- evidence/TC-05/TC-05-05-before-record.png
+![TC-05-05](Evidences/REQ-05/TC-05-before-record%20BUG%20(High).png)
 
 After Unauthorized Return
 
 While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully returned a borrow record belonging to **MEM002 (Nguyễn Học Bá)**. The record status changed to **Returned**, confirming unauthorized access and modification.
-- evidence/TC-05/TC-05-05-after-return.pn
+![TC-05-05 after return](Evidences/REQ-05/TC-05-after-return%20BUG%20(High).png)
 
 **Suggested fix:**
 
@@ -511,12 +454,10 @@ Loss of new members, poor user experience, damage to reputation, allows invalid 
 **Severity explanation:** High
 This bug prevents valid users from being created while still allowing invalid entries, which breaks core member registration flow and undermines data integrity.
 
-**Priority:**
-
 **Evidence:**
-- ![TC-01 REQ-07](Evidences/REQ-07/TC-01%20REQ-07%20BUG.png)
-- ![TC-02 REQ-07](Evidences/REQ-07/TC-02%20REQ-07%20BUG.png)
-- ![TC-06 REQ-07](Evidences/REQ-07/TC-06%20REQ-07%20BUG.png)
+- ![TC-01 REQ-07](Evidences/REQ-07/TC-01%20REQ-07%20BUG%20(High).png)
+- ![TC-02 REQ-07](Evidences/REQ-07/TC-02%20REQ-07%20BUG%20(High).png)
+- ![TC-06 REQ-07](Evidences/REQ-07/TC-06%20REQ-07%20BUG%20(High).png)
 
 **Suggested fix:**
 Review and fix the email validation logic in the member creation form, ensure valid email formats are accepted and invalid formats are rejected correctly.
@@ -563,10 +504,8 @@ Data privacy breach
 **Severity explanation:** High
 The issue exposes other members' ticket data, creating a serious privacy breach and potential compliance violation.
 
-**Priority:**
-
 **Evidence:**
-- ![TC-09 REQ-08](Evidences/REQ-08/TC-09%20REQ-08%20BUG.png)
+- ![TC-09 REQ-08](Evidences/REQ-08/TC-09%20REQ-08%20BUG%20(High).png)
 
 **Suggested fix:**
 Server-side / data-layer filtering, improve UI-layer enforcement
@@ -582,7 +521,7 @@ Server-side / data-layer filtering, improve UI-layer enforcement
 | **Report ID** | OBS-01 |
 | **Related TC** | TC-01-03 ,TC-01-04|
 | **Related REQ** | REQ-01 |
-| **Type** | Requirement Gap |
+| **Type** | Failure - Requirement Gap |
 | **Severity** | Low |
 | **Reported by** | La Thi Bao Tram |
 | **Date reported** | 25/05/2026 |
@@ -595,7 +534,7 @@ Server-side / data-layer filtering, improve UI-layer enforcement
 **Environment:**
 - Browser: Chrome Version 148
 - Operating System: Windows 10
-- Web application: Library Management System
+- Application: Library Management System
 - UI Language: Vietnamese, English
 
 **Preconditions:**
@@ -629,15 +568,15 @@ Server-side / data-layer filtering, improve UI-layer enforcement
 English users may not understand the displayed error message, causing inconsistent user experience.
 
 **Severity explanation:** Low
-- The issue does not prevent users from logging in or accessing system functions.
+The issue does not prevent users from logging in or accessing system functions.
 However, it affects usability and language consistency when the application is used in English mode.
 
 **Priority:**
 - P2
 
 **Evidence:**
-- TC-01-03 screenshot: ![TC-01-03](evidence/TC-01-03.jpg)
-- TC-01-04 screenshot: ![TC-01-04](evidence/TC-01-04.jpg)
+- TC-01-03 screenshot: ![TC-01-03](Evidences/REQ-01-02/TC-01-03.jpg)
+- TC-01-04 screenshot: ![TC-01-04](Evidences/REQ-01-02/TC-01-04.jpg)
 
 **Suggested Fix:**
 - Check localization configuration for error message keys
@@ -652,7 +591,7 @@ However, it affects usability and language consistency when the application is u
 | **Report ID** | OBS-02 |
 | **Related TC** | TC-01-06 ,TC-01-07|
 | **Related REQ** | REQ-01 |
-| **Type** | Requirement Ambiguity |
+| **Type** | Failure - Requirement Ambiguity |
 | **Severity** | Low |
 | **Reported by** | La Thi Bao Tram |
 | **Date reported** | 25/05/2026 |
@@ -675,12 +614,12 @@ However, the SRS does not define expected behavior for:
 - User is on the login screen
 
 **Steps to reproduce:**
-- TC-06
+- TC-01-06:
 1.Open the login page
 2.Leave the email field empty
 3.Enter password: 'password123'
 4.Click the Login button
-- TC-07:
+- TC-01-07:
 1.Open the login page
 2.Enter email: 'ba.nguyen@email.com'
 3.Leave the password field empty
@@ -698,14 +637,14 @@ However, the SRS does not define expected behavior for:
 - Test verdict is marked as: Inconclusive. Because the specification is too vague to determine a Pass or Fail result.
 
 **Severity explanation:** Low
-- The ambiguity does not prevent the system from functioning. However, it affects the ability to evaluate test results consistently and may lead to misunderstandings during development and testing.
+The ambiguity does not prevent the system from functioning. However, it affects the ability to evaluate test results consistently and may lead to misunderstandings during development and testing.
 
 **Priority:**
 - P3
 
 **Evidence:**
-- TC-01-06 screenshot: ![TC-01-06](evidence/TC-01-06.jpg)
-- TC-01-07 screenshot: ![TC-01-07](evidence/TC-01-07.jpg)
+- TC-01-06 screenshot: ![TC-01-06](Evidences/REQ-01-02/TC-01-06.jpg)
+- TC-01-07 screenshot: ![TC-01-07](Evidences/REQ-01-02/TC-01-07.jpg)
 
 **Suggested Fix:**
 - Expected validation message when email is empty
@@ -719,7 +658,7 @@ However, the SRS does not define expected behavior for:
 | **Report ID** | OBS-03 |
 | **Related TC** | TC-01-08 ,TC-01-09|
 | **Related REQ** | REQ-01 |
-| **Type** | Requirement Gap |
+| **Type** | Failure - Requirement Gap |
 | **Severity** | Low |
 | **Reported by** | La Thi Bao Tram |
 | **Date reported** | 25/05/2026 |
@@ -765,7 +704,7 @@ The SRS does not specify the expected behavior for invalid email formats
 The test verdict is marked as Inconclusive because the SRS does not define the expected behavior for invalid email formats.
 
 **Risk:**
-- Different developers may implement inconsistent validation behavior.
+Different developers may implement inconsistent validation behavior.
 
 **Severity explanation:** Low
 The issue does not affect system operation directly. However, it prevents objective verification of login validation behavior and may lead to inconsistent implementations.
@@ -774,8 +713,8 @@ The issue does not affect system operation directly. However, it prevents object
 - P3
 
 **Evidence:**
-- TC-01-08 screenshot: ![TC-01-08](evidence/TC-01-08.jpg)
-- TC-01-09 screenshot: ![TC-01-09](evidence/TC-01-09.jpg)
+- TC-01-08 screenshot: ![TC-01-08](Evidences/REQ-01-02/TC-01-08.jpg)
+- TC-01-09 screenshot: ![TC-01-09](Evidences/REQ-01-02/TC-01-09.jpg)
 
 **Suggested Fix:**
 - Specify whether email format validation is required
@@ -792,7 +731,7 @@ The issue does not affect system operation directly. However, it prevents object
 | **Related TC** | TC-03-07 |
 | **Related REQ** | REQ-03 |
 | **Severity** | Low |
-| **Type** | Requirement Gap |
+| **Type** | Failure - Requirement Gap |
 | **Reported by** | Nguyễn Minh Nhật |
 | **Date reported** | 20/05/2026 |
 | **Status** | Open |
@@ -801,8 +740,8 @@ The issue does not affect system operation directly. However, it prevents object
 Both search bars do not support diacritic-insensitive input — typing without Vietnamese diacritics returns no results
 
 **Environment:**
-- Browser: Chrome version 142.0.7444.176
-- Operating System: Windows 10
+- Browser: Chrome version 142
+- Operating system: Windows 10
 - Web application: Library Management System
 - UI language: Vietnamese, English
 
@@ -838,8 +777,8 @@ Users who type Vietnamese names or categories without diacritics — which is co
 P3
 
 **Evidence:**
-- Screenshot: ![TC-03-07](evidence/TC-03-07_author-without-diacritics.png)
-- Screenshot: ![TC-03-07](evidence/TC-03-07_genre-without-diacritics.png)
+- Screenshot: ![TC-03-07 author](Evidences/REQ-03/TC-07_author-without-diacritics%20(Low).png)
+- Screenshot: ![TC-03-07 genre](Evidences/REQ-03/TC-07_genre-without-diacritics%20(Low).png)
 
 **Suggested fix:**
 Implement diacritic normalization (e.g. convert `"Nguyen Minh Duc"` → `"Nguyễn Minh Đức"` before comparison) for both search bars. This is a common requirement for Vietnamese-language applications.
@@ -863,10 +802,10 @@ Implement diacritic normalization (e.g. convert `"Nguyen Minh Duc"` → `"Nguy�
 Category filter does not support partial keyword input — requires full exact category name to return results
 
 **Environment:**
-- Trình duyệt (Browser): Chrome version 142.0.7444.176
-- Hệ điều hành (OS): Windows 10
+- Browser: Chrome version 142
+- Operatingn system: Windows 10
 - Web application: Library Management System
-- Ngôn ngữ giao diện (UI language): Vietnamese, English
+- UI language: Vietnamese, English
 
 **Preconditions:**
 - Logged in as `ba.nguyen@email.com`
@@ -886,18 +825,77 @@ Display 8 books whose category contains "Công": BOOK001, BOOK002, BOOK003, BOOK
 Display "No books found". No books shown. Only typing the full exact name `"Công nghệ"` returns results.
 
 **Impact:**
-Category filter behaves inconsistently compared to the title/author search bar — which supports partial input (verified in TC-08). Users who type partial category names get no results and may assume no books exist in that category.
+Category filter behaves inconsistently compared to the title/author search bar — which supports partial input. Users who type partial category names get no results and may assume no books exist in that category.
 
-**Severity explanation:**
-Low — SRS does not explicitly require partial match for the category filter. However the inconsistency with the title/author bar creates a confusing user experience.
+**Severity explanation:** Low
+SRS does not explicitly require partial match for the category filter. However the inconsistency with the title/author bar creates a confusing user experience.
 
 **Priority:**
 P3
 
 **Evidence:**
-- Screenshot: ![TC-03-09](evidence/TC-03-09.png)
+- Screenshot: ![TC-03-09](Evidences/REQ-03/TC-03-09%20Observed.png)
 
 **Suggested fix:**
 Implement partial match logic for the category filter (e.g. use `.contains()` instead of exact match), consistent with how the title/author search bar handles input.
+
+---
+
+## OBSERVATION-06
+
+| Attribute | Details |
+|-----------|---------|
+| **Bug ID** | OBS-06 |
+| **Related TC** | TC-04-04, TC-04-05, TC-04-07 |
+| **Related REQ** | REQ-04 |
+| **Type** | Failure - Requirement Gap |
+| **Severity** | Low |
+| **Reported by** | Trần Thị Thu Trang, Nguyễn Minh Nhật |
+| **Date reported** | 23/05/2026 |
+| **Status** | Open |
+
+**Title:** Error messages are in Vietnamese while display language is English
+
+**Environment:**
+- Browser: Chrome Version 148
+- OS: Linux
+- UI Language: Vietnamese
+
+**Preconditions:**
+
+**Steps to reproduce:**
+1. Recreate the BUG-04-03, set display language to English after step 2
+2. Perform TC-04-04:
+	1. Refresh the page
+	2. Log in to the account of MEM005
+	3. Set display language to English
+	4. Borrow the book BOOK001
+3. Perform TC-04-06:
+	1. Refresh the page
+	2. Log in to the account of MEM002
+	3. Set display language to English
+	4. Borrow the book BOOK001
+	5. Borrow the book BOOK002
+	6. Borrow the book BOOK005
+	7. Borrow the book BOOK008
+
+
+**Expected result:**
+Error messages are in English
+
+**Actual result:**
+Error messages are in Vietnamese
+
+**Impact:**
+Users who do not know Vietnamese can be confused
+
+**Severity explanation:**
+
+
+**Evidence:**
+<br><a href="evidence/TC-04-04/BOOK001_after_en.png">TC-04-04: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-05/BOOK001_after_en.png">TC-04-05: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-07/BOOK008_after_en.png">TC-04-07: After borrowing BOOK008 (English)</a>
+
+**Suggested fix:**
+Correct the error messages to the English version when the display language is English
 
 ---
