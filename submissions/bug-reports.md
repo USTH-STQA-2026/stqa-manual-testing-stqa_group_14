@@ -73,6 +73,13 @@ This behavior violates business rules **BR-05 (Overdue)** and **BR-06 (Overdue R
 
 Users do not receive an overdue warning even though the system defines books returned on the due date as overdue. This creates inconsistent behavior with the specified business requirements.
 
+### Severity Explanation
+
+The defect does not block the return process or affect core system functionality.
+However, it violates business rules BR-05 and BR-06 by failing to display the required overdue warning.
+Users may misunderstand the overdue status of returned books.
+Therefore, the severity is classified as Medium.
+
 ### Evidence
 
 #### Before Return
@@ -166,6 +173,13 @@ Members are able to manipulate borrow records that belong to other users, which 
 - Incorrect book availability status
 - Data integrity issues
 - Privacy and security concerns
+- 
+### Severity Explanation
+
+The defect allows unauthorized users to modify borrow records belonging to other members.
+This violates access control requirements and compromises data integrity.
+Unauthorized actions may affect borrowing history and book availability status.
+Therefore, the severity is classified as High.
 
 ### Evidence
 
