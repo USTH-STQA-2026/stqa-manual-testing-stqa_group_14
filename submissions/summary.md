@@ -19,12 +19,12 @@
 
 | Chỉ số (Metric) | Giá trị (Value) |
 |--------|---------|
-| Tổng số test case (Total TC) | 12 |
+| Tổng số test case (Total TC) | 13 |
 | Pass | 7 |
 | Fail | 3 |
 | Blocked | 0 |
 | Not Run | 0 |
-| Observed | 2 |
+| Observed | 3 |
 | **Tỷ lệ Pass (Pass rate)** | 70% |
 | **Số bug phát hiện (Total bugs found)** | 2 |
 
@@ -39,7 +39,7 @@
 | Partial keyword | 2 | 1 | 0 | 1 | Observed | Needs improvement |
 | Empty fields | 1 | 1 | 0 | 0 | — | Good |
 | Combined search | 2 | 0 | 2 | 0 | BUG-02 | Critical issue |
-| **Total** | **12** | **7** | **3** | **2** | **2** | |
+| **Total** | **13** | **7** | **3** | **3** | **2** | |
 
 ### Phân bổ bug theo mức độ
 

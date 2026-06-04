@@ -28,18 +28,19 @@
 | TC-03-10 | Empty fields | Display all 20 books | Display all 20 books | Pass | | - |
 | TC-03-11 | Combined search - match| Display 2 books: BOOK001, BOOK009 | (1) If keyword entered first then category — display 8 Technology books: BOOK001, 002, 003, 005, 008, 009, 010, 011 (category overrides keyword); (2) If category entered first then keyword — display 2 books: BOOK001, BOOK009 (keyword overrides category) | Fail | TC-03-11_BUG-02_author-first_1.png, TC-03-11_BUG-02_author-first_2.png, TC-03-11_BUG-02_author-first_3.png, TC-03-11_BUG-02_genre-first.png | BUG-02 |
 | TC-03-12 | Combined search - mismatch | Display "No books found" | (1) If keyword entered first then category — display 3 Economics books: BOOK007, BOOK014, BOOK015 (category overrides keyword); (2) If category entered first then keyword — display 2 books: BOOK001, BOOK009 (keyword overrides category); | Fail | TC-03-12_BUG-02_author-first.png, TC-03-12_BUG-02_genre-first.png | BUG-02 |
+| TC-13 | Bilingual support — category bar | Same as TC-03-03 | Display "No books found" | Observed/TBD | TC-03-13.png | — |
 ---
 
 ## Tổng hợp kết quả
 
 | Chỉ số (Metric) | Giá trị (Value) |
 |--------|---------|
-| Tổng số test case (Total TC) | 12 |
+| Tổng số test case (Total TC) | 13 |
 | Pass | 7 |
 | Fail | 3 |
 | Blocked | 0 |
 | Not Run | 0 |
-| Observed | 2 |
+| Observed | 3 |
 | **Tỷ lệ Pass (Pass rate)** | 70% |
 
 ### Kết quả theo nhóm chức năng
@@ -53,3 +54,4 @@
 | Partial keyword | 2 | 1 | 0 | 1 | 50% |
 | Empty fields | 1 | 1 | 0 | 100% |
 | Combined search | 2 | 0 | 2 | 0% |
+| Bilingual support | 1 | 0 | 0 | 1 | 0% |
