@@ -50,10 +50,12 @@ Both inputs display 8 books in Technology category — same as typing `"Công ng
 Both inputs return "No books found". No books shown.
 
 **Impact:**
-Users who type category names in lowercase or uppercase get no results despite matching books existing in the system. Violates the case-insensitive rule stated in SRS REQ-03. This is inconsistent with keyword search bar which correctly handles case-insensitive input.
+- Users who type category names in lowercase or uppercase get no results despite matching books existing in the system.
+- Violates the case-insensitive rule stated in SRS REQ-03. This is inconsistent with keyword search bar which correctly handles case-insensitive input.
 
 **Severity explanation:** Medium
- The category filter still works with exact casing. Core functionality is not broken, but the inconsistency with the keyword bar and the SRS violation reduce reliability and usability.
+
+The category filter still works with exact casing. Core functionality is not broken, but the inconsistency with the keyword bar and the SRS violation reduce reliability and usability.
 
 **Priority:**
 P2
@@ -130,10 +132,12 @@ Combined search does not apply AND logic — the last-entered search bar overrid
 - TC-03-12 - 2: Display 2 books BOOK001, BOOK009 — keyword overrides category, ignores category filter
 
 **Impact:**
-Combined search is fundamentally broken. Results are unpredictable and depend entirely on input order (based on which bar is entered last). Users cannot narrow down results using both filters simultaneously, which defeats the purpose of having two search bars. Wrong books are returned silently with no error message.
+- Combined search is fundamentally broken. Results are unpredictable and depend entirely on input order (based on which bar is entered last).
+- Users cannot narrow down results using both filters simultaneously, which defeats the purpose of having two search bars. Wrong books are returned silently with no error message.
 
 **Severity explanation:** High
- Combined filtering is a core use case of REQ-03 (especially when users don't remember the exact the detail of name). The feature returns incorrect results in 3 out of 4 scenarios with no warning to the user. This directly misleads users and violates SRS requirements.
+
+Combined filtering is a core use case of REQ-03 (especially when users don't remember the exact the detail of name). The feature returns incorrect results in 3 out of 4 scenarios with no warning to the user. This directly misleads users and violates SRS requirements.
 
 **Priority:**
 P1
@@ -145,7 +149,7 @@ P1
 - Screenshot mismatch genre 1st: ![TC-03-12 genre 1st](Evidences//REQ-03/TC-12_genre-first%20(High).png)
 
 **Suggested fix:**
-Refactor the search/filter logic to evaluate both conditions simultaneously using AND logic: a book must satisfy both the keyword condition (title or author contains keyword) AND the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
+Refactor the search/filter logic to evaluate both conditions simultaneously using AND logic: a book must satisfy both the keyword condition (title or author contains keyword) and the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
 
 ---
 
@@ -192,8 +196,10 @@ Refactor the search/filter logic to evaluate both conditions simultaneously usin
 **Impact:**
 - Wrong cause of error is announced to the user, leading to confusion
 
-**Severity explanation:**
+**Severity explanation:** High
+- Mixing up between suspension and expiration violates the business rule.
 
+**Priority:** P1
 
 **Evidence:**
 - Before borrowing BOOK001: ![TC-04-04 BOOK001 before](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_before.png)
@@ -239,10 +245,10 @@ Correct the error message to "member has been suspended"
 5. Borrow the book BOOK005 
 
 **Expected result:**
- - Member cannot borrow the book BOOK005
- - BOOK005 remains available
- - Display error message when borrowing BOOK005 in corresponding display language: borrow limit reached
- - Borrow records for that member and books BOOK001 and BOOK002 are created, due date is 14 days later after today, no record created for BOOK005
+- Member cannot borrow the book BOOK005
+- BOOK005 remains available
+- Display error message when borrowing BOOK005 in corresponding display language: borrow limit reached
+- Borrow records for that member and books BOOK001 and BOOK002 are created, due date is 14 days later after today, no record created for BOOK005
 
 **Actual result:**
 Member can borrow book BOOK005, no error message is displayed, borrow record for BOOK005 is created
@@ -250,8 +256,8 @@ Member can borrow book BOOK005, no error message is displayed, borrow record for
 **Impact:**
 This violates the business requirement of only allowing to borrow up to 3 books at a time
 
-**Severity explanation:**
-
+**Severity explanation:** High
+- Letting a member borrow more than 3 books violates the business rule
 
 **Evidence:**
 - Before borrowing BOOK005: ![TC-04-06 BOOK005 before](Evidences/REQ-04/evidence/TC-04-06%20BUG/BOOK005_before.png)
@@ -298,7 +304,8 @@ Recheck the condition checking whether the user has reached the borrow limit.
 5. Observe the system response after the return action.
 
 **Expected Result:**
-The system should return the book successfully and display a **clear overdue warning**, because according to business rule **BR-05**:
+
+The system should return the book successfully and display a clear overdue warning, because according to business rule **BR-05**:
 > A book is considered overdue on the due date itself (including the exact due date).
 
 Additionally:
@@ -315,16 +322,18 @@ However, **no overdue warning message was displayed** when `returnDate >= dueDat
 - This behavior violates business rules **BR-05 (Overdue)** and **BR-06 (Overdue Return Warning)**.
 - Users do not receive an overdue warning even though the system defines books returned on the due date as overdue. This creates inconsistent behavior with the specified business requirements.
 
-**Severity explanation:**
-
+**Severity explanation:** Medium
+- The defect does not block the return process or affect core system functionality.
+- However, it violates business rules BR-05 and BR-06 by failing to display the required overdue warning.
+- Users may misunderstand the overdue status of returned books.
 
 **Evidence:**
-Before Return
-- ![TC-05-02 before record](Evidences/REQ-05/TC-02-before-record%20BUG%20(Medium).png)
+- Before Return
+![TC-05-02 before record](Evidences/REQ-05/TC-02-before-record%20BUG%20(Medium).png)
 
-After Return
-- ![TC-05-02 after return](Evidences/REQ-05/TC-02-after-return%20BUG%20(Medium).png)
-- ![TC-05-02 after book](Evidences/REQ-05/TC-02-after-book%20BUG%20(Medium).png)
+- After Return
+![TC-05-02 after return](Evidences/REQ-05/TC-02-after-return%20BUG%20(Medium).png)
+![TC-05-02 after book](Evidences/REQ-05/TC-02-after-book%20BUG%20(Medium).png)
 
 **Suggested fix:**
 The system should display an overdue warning message when:
@@ -368,6 +377,7 @@ to ensure compliance with business rules **BR-05** and **BR-06**.
 5. Observe the system response and record status.
 
 **Expected Result:**
+
 The system must **not allow** a member to return another member’s borrowed book.
 
 Additionally:
@@ -384,6 +394,7 @@ As a result:
 - The book status changed despite unauthorized access.
 
 **Impact:**
+
 This behavior violates **access control and data ownership rules**.
 
 Members are able to manipulate borrow records that belong to other users, which may lead to:
@@ -392,8 +403,10 @@ Members are able to manipulate borrow records that belong to other users, which 
 - Data integrity issues
 - Privacy and security concerns
 
-**Severity explanation:**
-
+**Severity explanation:** High
+- The defect allows unauthorized users to modify borrow records belonging to other members.
+- This violates access control requirements and compromises data integrity.
+- Unauthorized actions may affect borrowing history and book availability status.
 
 **Evidence:**
 Before Unauthorized Return
@@ -452,12 +465,13 @@ Invalid input --> Created succesfully
 Loss of new members, poor user experience, damage to reputation, allows invalid data to be stored in the system database.
 
 **Severity explanation:** High
+
 This bug prevents valid users from being created while still allowing invalid entries, which breaks core member registration flow and undermines data integrity.
 
 **Evidence:**
-- ![TC-01 REQ-07](Evidences/REQ-07/TC-01%20REQ-07%20BUG%20(High).png)
-- ![TC-02 REQ-07](Evidences/REQ-07/TC-02%20REQ-07%20BUG%20(High).png)
-- ![TC-06 REQ-07](Evidences/REQ-07/TC-06%20REQ-07%20BUG%20(High).png)
+![TC-01 REQ-07](Evidences/REQ-07/TC-01%20REQ-07%20BUG%20(High).png)
+![TC-02 REQ-07](Evidences/REQ-07/TC-02%20REQ-07%20BUG%20(High).png)
+![TC-06 REQ-07](Evidences/REQ-07/TC-06%20REQ-07%20BUG%20(High).png)
 
 **Suggested fix:**
 Review and fix the email validation logic in the member creation form, ensure valid email formats are accepted and invalid formats are rejected correctly.
@@ -502,10 +516,11 @@ Tickets for MEM003 are displayed
 Data privacy breach
 
 **Severity explanation:** High
+
 The issue exposes other members' ticket data, creating a serious privacy breach and potential compliance violation.
 
 **Evidence:**
-- ![TC-09 REQ-08](Evidences/REQ-08/TC-09%20REQ-08%20BUG%20(High).png)
+![TC-09 REQ-08](Evidences/REQ-08/TC-09%20REQ-08%20BUG%20(High).png)
 
 **Suggested fix:**
 Server-side / data-layer filtering, improve UI-layer enforcement
@@ -568,8 +583,8 @@ Server-side / data-layer filtering, improve UI-layer enforcement
 English users may not understand the displayed error message, causing inconsistent user experience.
 
 **Severity explanation:** Low
-The issue does not prevent users from logging in or accessing system functions.
-However, it affects usability and language consistency when the application is used in English mode.
+
+The issue does not prevent users from logging in or accessing system functions. However, it affects usability and language consistency when the application is used in English mode.
 
 **Priority:**
 - P2
@@ -637,6 +652,7 @@ However, the SRS does not define expected behavior for:
 - Test verdict is marked as: Inconclusive. Because the specification is too vague to determine a Pass or Fail result.
 
 **Severity explanation:** Low
+
 The ambiguity does not prevent the system from functioning. However, it affects the ability to evaluate test results consistently and may lead to misunderstandings during development and testing.
 
 **Priority:**
@@ -707,6 +723,7 @@ The test verdict is marked as Inconclusive because the SRS does not define the e
 Different developers may implement inconsistent validation behavior.
 
 **Severity explanation:** Low
+
 The issue does not affect system operation directly. However, it prevents objective verification of login validation behavior and may lead to inconsistent implementations.
 
 **Priority:**
@@ -761,16 +778,18 @@ Both search bars do not support diacritic-insensitive input — typing without V
 8. Observe the book list.
 
 **Expected result:**
-Step 4: Display 2 books by Nguyễn Minh Đức — same result as TC-03-02.
-Step 8: Display 8 Technology books — same result as TC-03-03.
+- Step 4: Display 2 books by Nguyễn Minh Đức — same result as TC-03-02.
+- Step 8: Display 8 Technology books — same result as TC-03-03.
 
 **Actual result:**
 Display "No books found" for both steps. No books shown.
 
 **Impact:**
-Users who type Vietnamese names or categories without diacritics — which is common on keyboards without Vietnamese input support — get no results despite matching books existing in the system. Given that the system supports a Vietnamese-language interface, this may affect a significant portion of users.
+- Users who type Vietnamese names or categories without diacritics get no results despite matching books existing in the system.
+- Given that the system supports a Vietnamese-English language interface, this may affect a significant portion of users.
 
 **Severity explanation:** Low
+
  SRS does not require diacritic-insensitive search. Current behavior is technically within spec. Reported as an observation for future consideration.
 
 **Priority:**
@@ -828,6 +847,7 @@ Display "No books found". No books shown. Only typing the full exact name `"Côn
 Category filter behaves inconsistently compared to the title/author search bar — which supports partial input. Users who type partial category names get no results and may assume no books exist in that category.
 
 **Severity explanation:** Low
+
 SRS does not explicitly require partial match for the category filter. However the inconsistency with the title/author bar creates a confusing user experience.
 
 **Priority:**
@@ -846,15 +866,15 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 | Attribute | Details |
 |-----------|---------|
 | **Bug ID** | OBS-06 |
-| **Related TC** | TC-04-04, TC-04-05, TC-04-07 |
-| **Related REQ** | REQ-04 |
+| **Related TC** | TC-03-13; TC-04-04, TC-04-05, TC-04-07 |
+| **Related REQ** | REQ-03, REQ-04 |
 | **Type** | Failure - Requirement Gap |
 | **Severity** | Low |
 | **Reported by** | Trần Thị Thu Trang, Nguyễn Minh Nhật |
 | **Date reported** | 23/05/2026 |
 | **Status** | Open |
 
-**Title:** Error messages are in Vietnamese while display language is English
+**Title:** Error messages are in Vietnamese while display language is English; Category bar search does not support English
 
 **Environment:**
 - Browser: Chrome Version 148
@@ -864,6 +884,13 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 **Preconditions:**
 
 **Steps to reproduce:**
+- TC-03-13:
+1. Go to **Books** tab.
+2. Switch to English mode
+3. Type `"Technology"`.
+4. Observe the book list.
+
+- TC-04-04, TC-04-05, TC-04-07:
 1. Recreate the BUG-04-03, set display language to English after step 2
 2. Perform TC-04-04:
 	1. Refresh the page
@@ -879,21 +906,26 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 	6. Borrow the book BOOK005
 	7. Borrow the book BOOK008
 
-
 **Expected result:**
-Error messages are in English
+- Display 8 books in Technology category
+- Error messages are in English
 
 **Actual result:**
-Error messages are in Vietnamese
+- No books found
+- Error messages are in Vietnamese
 
 **Impact:**
-Users who do not know Vietnamese can be confused
+- Users who do not know Vietnamese can be confused
 
-**Severity explanation:**
-
+**Severity explanation:** Low
+- SRS does not require.
+- It doesn't significantly affect the user experience.
 
 **Evidence:**
-<br><a href="evidence/TC-04-04/BOOK001_after_en.png">TC-04-04: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-05/BOOK001_after_en.png">TC-04-05: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-07/BOOK008_after_en.png">TC-04-07: After borrowing BOOK008 (English)</a>
+- TC-04-04, TC-04-05, TC-04-07:
+![TC-04-04: After borrowing BOOK001](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_en)
+![TC-04-05: After borrowing BOOK001](Evidences/REQ-04/evidence/TC-04-05%20BUG(Low)/BOOK001_after_en)
+![TC-04-07: After borrowing BOOK008](Evidences/REQ-04/evidence/TC-04-07%20BUG(Low)/BOOK008_after_en.png)
 
 **Suggested fix:**
 Correct the error messages to the English version when the display language is English
