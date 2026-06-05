@@ -198,3 +198,8 @@ While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully retu
 <a href="evidence/TC-05/TC-05-05-after-return.png">
   <img src="evidence/TC-05/TC-05-05-after-return.png">
 </a>
+
+### Suggested Fix
+
+Add an authorization check before processing any return request to ensure the borrow record belongs to the currently logged-in member.  
+Hide or disable the **Return Book** button for records owned by other members, and reject unauthorized return attempts on the server side with a proper error message.
