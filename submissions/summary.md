@@ -1,182 +1,211 @@
-# Test Summary — Báo cáo tổng hợp kiểm thử
-
-> **Hướng dẫn**: Đây là hoạt động **Quality Assurance** — bạn đánh giá chất lượng tổng thể của phần mềm, không chỉ liệt kê lỗi.
+# Test Summary - Overall Testing Report
 
 ---
 
-## 1. Thông tin nhóm
+## 1. Group Information
 
-| Mục | Thông tin |
-|-----|----------|
-| **Nhóm** | Group 14 |
-| **Lớp** | ICT |
-| **Ngày báo cáo** | 23/05/2026 |
-| **Hệ thống kiểm thử** | https://stqa.rbc.vn — v1.0 |
+| Item | Information |
+|-----|-------------|
+| **Group** | Group 14 |
+| **Class** | ICT |
+| **Report Date** | 28/05/2026 |
+| **System Under Test** | https://stqa.rbc.vn - SRS v1.0 |
+| **Testing Scope** | REQ-01 to REQ-08 |
+| **Browser / Operating System** | Chrome Version 148 / Windows 10 |
 
 ---
 
-## 2. Tổng quan kết quả
+## 2. Result Overview
 
-| Chỉ số | Giá trị |
-|--------|---------|
-| Tổng số test case | 53 |
-| Pass | 34 |
-| Fail | 13 |
-| Observed / Inconclusive | 6 |
+| Metric | Value |
+|--------|-------|
+| Total executed test cases | 61 |
+| Pass | 39 |
+| Fail | 16 |
+| Inconclusive | 6 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | 64.15% |
-| **Số bug phát hiện** | 6 |
+| **Pass Rate** | **63.93%** |
+| **Confirmed Bugs** | **8** |
+| **Observations / Requirement Issues** | **6** |
 
-### Phân bổ theo nhóm chức năng
+### Result by Functional Group
 
-| Nhóm chức năng | TC | Pass | Fail | Bug | Đánh giá |
-|---------------|-----|------|------|-----|---------|
-| REQ-01 & REQ-02 — Login / View Book List | 16 | 10 | 2 | 0 | Partially Passed — Core login and book list functions worked correctly in normal scenarios, but localization inconsistency and requirement ambiguity were observed. |
-| REQ-03 — Search and Filter Books | 12 | 7 | 3 | 2 | Needs Improvement — Basic search and category filtering worked in isolation, but combined search logic and category case-insensitivity did not fully comply with requirements. |
-| REQ-05 & REQ-06 — Return Book / Overdue Handling | 10 | 7 | 3 | 2 | Partially Passed — Core return and overdue checking worked, but overdue warning and member ownership control issues were found. |
-| REQ-07 & REQ-08 — Member Management / Borrow-Return Access | 15 | 10 | 5 | 2 | Needs Improvement — Core workflows mostly functioned, but high-severity validation and access-control issues affected reliability and privacy. |
-| **Total** | **53** | **34** | **13** | **6** | **System requires fixes before release.** |
+| Functional Group | TC | Pass | Fail | Inconclusive | Bug / Observation | Assessment |
+|------------------|----|------|------|--------------|-------------------|------------|
+| REQ-01 - Login | 9 | 3 | 2 | 4 | 0 bug, 3 observations | Partially Passed - Basic login flows work, but error messages and several input cases are not clearly specified in the SRS. |
+| REQ-02 - View Book List | 7 | 7 | 0 | 0 | 0 | Passed - Book list display, book information, and status updates work correctly in the tested cases. |
+| REQ-03 - Search & Filter Books | 12 | 7 | 3 | 2 | 2 bugs, 3 observations | Needs Improvement - Basic search works, but category filtering and combined search do not fully meet the requirements. |
+| REQ-04 - Borrow Book | 7 | 3 | 4 | 0 | 2 bugs, 1 observation | Needs Improvement - Basic borrowing can work, but the borrow-limit rule and member-status messages still contain defects. |
+| REQ-05 - Return Book | 5 | 2 | 3 | 0 | 2 bugs | Needs Improvement - Valid return cases can succeed, but overdue warnings and borrow-record ownership control are incorrect. |
+| REQ-06 - Overdue Handling | 5 | 5 | 0 | 0 | 0 | Passed - The overdue checking function works correctly for before-due, on-due, and after-due date conditions. |
+| REQ-07 - Member Management | 9 | 6 | 3 | 0 | 1 bug | Needs Improvement - Member-tab permission and several validation cases work, but email validation during member creation is seriously flawed. |
+| REQ-08 - Borrow/Return Records | 7 | 6 | 1 | 0 | 1 bug | Needs Improvement - Librarian access works as expected, but members can still view tickets belonging to other members. |
+| **Total** | **61** | **39** | **16** | **6** | **8 bugs, 6 observations** | **System is not ready for release.** |
 
-### Phân bổ bug theo mức độ
+### Bug Distribution by Severity
 
-| Mức độ | Số lượng | Bug IDs |
-|--------|---------|---------|
-| High | 4 | BUG-01, BUG-03, BUG-05, BUG-06 |
-| Medium | 2 | BUG-02, BUG-04 |
+| Severity | Quantity | Bug IDs |
+|----------|----------|---------|
+| High | 5 | BUG-02, BUG-04, BUG-06, BUG-07, BUG-08 |
+| Medium | 3 | BUG-01, BUG-03, BUG-05 |
 | Low | 0 | None |
 
-> Note: Observations, requirement ambiguities, and requirement gaps are tracked separately because they are not confirmed functional bugs.
+### Observations / Requirement Issues
+
+| Type | Quantity | IDs |
+|------|----------|-----|
+| Localization / UI consistency | 2 | OBS-01, OBS-06 |
+| Requirement Ambiguity | 1 | OBS-02 |
+| Requirement Gap | 3 | OBS-03, OBS-04, OBS-05 |
 
 ---
 
-## 3. Kỹ thuật thiết kế đã sử dụng
+## 3. Test Design Techniques Used
 
-| Kỹ thuật | Áp dụng cho REQ nào? | Số TC sử dụng | Giải thích cách áp dụng |
-|----------|---------------------|---------------|------------------------|
-| Equivalence Partitioning (EP) | REQ-01, REQ-02, REQ-03, REQ-05, REQ-06, REQ-07, REQ-08 | 45 | Input conditions were divided into valid and invalid partitions, including valid/invalid login data, user roles, book status, search keywords, category values, overdue/non-overdue records, member permissions, valid/invalid emails, and active/returned borrow records. |
-| Boundary Value Analysis (BVA) | REQ-03, REQ-05, REQ-06, REQ-07 | 9 | Boundary conditions were tested for empty input fields, due date limits such as `currentDate = dueDate`, and input validation limits such as email and phone number format/length. |
-| Decision Table | REQ-03 | 2 | Applied to combined search scenarios to verify different combinations of keyword and category input, especially cases where both fields match or only one field matches. |
-| Negative Testing | REQ-05, REQ-07, REQ-08 | 2+ | Used to verify invalid or unauthorized behavior, such as returning an already returned book, returning another member’s borrowed book, invalid member information, and unauthorized access to another member’s borrow data. |
-
----
-
-## 4. Phân tích chất lượng phần mềm
-
-### 4.1. Điểm mạnh
-
-- **Role-based access for normal login scenarios works correctly.** The system correctly distinguishes between librarian and member roles during normal login and access flows.
-- **Book list display is stable.** The book list shows complete and accurate book information, and real-time book status updates function properly.
-- **Basic search works correctly.** Searching by book title and author name returns accurate results.
-- **Category filter works with exact valid input.** Filtering by exact category name returns the expected book list.
-- **Keyword search supports case-insensitive input.** The title/author search bar correctly handles lowercase and uppercase input as required.
-- **Partial keyword search works on the keyword bar.** Partial author/title input can return matching books, improving usability.
-- **Empty search state is handled correctly.** When both search fields are empty, the full book list is displayed as expected.
-- **Return book core workflow works in normal scenarios.** After a successful return, the book status is updated to `"Available"` and the borrow record status is updated to `"Returned"`.
-- **Duplicate return prevention works.** The system prevents returning books that have already been returned.
-- **Overdue checking works correctly.** The overdue checking function correctly handles before, on, and after due date scenarios.
-- **Member and borrow/return core workflows mostly function.** Adding members and borrow/return flows operate correctly for most valid scenarios.
-- **Input Domain Model (IDM) helped structure testing.** The test cases covered valid/invalid partitions and boundary values for multiple functional areas.
-
-### 4.2. Điểm yếu
-
-#### REQ-01 & REQ-02 — Login / View Book List
-
-**High**
-- None.
-
-**Medium**
-- None.
-
-**Low / Observation**
-- **OBS-01 — Error message localization inconsistency.** Some error messages are not consistently localized, causing English/Vietnamese mismatch in the user interface.
-- **RA-01 — Requirement ambiguity for partially empty fields.** The SRS does not clearly define the expected behavior when only some login fields are empty.
-- **RG-01 — Requirement gap for invalid email format validation.** The SRS does not clearly define how invalid email format should be handled during login.
-
-#### REQ-03 — Search and Filter Books
-
-**High**
-- **BUG-01 — Combined search logic is broken.** When both search bars are used at the same time, the system does not correctly apply AND logic. The field typed last overrides the other field, causing results to differ depending on input order. This makes the combined search feature unreliable and misleading.
-
-**Medium**
-- **BUG-02 — Category filter is case-sensitive.** The category filter does not follow the case-insensitive rule stated in SRS REQ-03. For example, inputs such as `"công nghệ"` or `"CÔNG NGHỆ"` return no result, while the keyword search bar handles case variations correctly.
-
-**Low / Observation**
-- **OBS-02 — Diacritic-insensitive search is not supported.** The system does not recognize Vietnamese input without diacritics, such as `"Nguyen Minh Duc"` for `"Nguyễn Minh Đức"`. This is outside the explicit SRS scope but may affect usability in a Vietnamese-language interface.
-- **OBS-03 — Category filter does not support partial match.** The category filter requires the full exact category name, while the keyword bar supports partial input. This inconsistency may confuse users, although it is not explicitly required by the SRS.
-
-#### REQ-05 & REQ-06 — Return Book / Overdue Handling
-
-**High**
-- **BUG-03 — Member can return another member’s borrowed book.** The system allows a logged-in member to return a book borrowed by another member. This violates access control and borrow-record ownership rules, creating risks to data integrity and user privacy.
-
-**Medium**
-- **BUG-04 — Missing overdue warning when returning overdue books.** The system fails to display an overdue warning when returning overdue books where `returnDate >= dueDate`. This creates inconsistency between return behavior and overdue handling requirements.
-
-**Low / Observation**
-- None.
-
-#### REQ-07 & REQ-08 — Member Management / Borrow-Return Access
-
-**High**
-- **BUG-05 — Member can view another member’s borrow tickets.** Members are able to view borrow tickets belonging to other members, causing a privacy and access-control breach.
-- **BUG-06 — Email validation rejects valid email and accepts invalid email.** Email validation behavior is inconsistent during member creation. A valid email can be rejected, while invalid email data may be accepted into the database. This affects registration reliability and data quality.
-
-**Medium**
-- None.
-
-**Low / Observation**
-- None.
+| Technique | Applied Requirements | Application |
+|-----------|----------------------|-------------|
+| Equivalence Partitioning (EP) | REQ-01 to REQ-08 | Inputs were divided into valid and invalid partitions, including login accounts, roles, book status, search keywords, categories, member status, borrow-record status, email, phone number, and access permissions. |
+| Boundary Value Analysis (BVA) | REQ-04, REQ-05, REQ-06, REQ-07 | Boundary values were tested, such as borrowed-book count equal to 3, current date equal to due date, shortest valid email, and email/phone formats near valid and invalid boundaries. |
+| Decision Table | REQ-01, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08 | Used to combine multiple input conditions, especially for login, combined search, borrowing conditions, return-book behavior, and permission to view borrow records. |
+| Access Control Testing | REQ-05, REQ-07, REQ-08 | Used to verify permission boundaries between librarian and member roles, including whether members can access the Members tab, view other members' tickets, or return books owned by other members. |
+| Negative Testing | REQ-01, REQ-03, REQ-04, REQ-05, REQ-07, REQ-08 | Used to test invalid inputs, non-existing accounts, no-result keywords, unavailable books, invalid members, records not owned by the current user, and invalid member information. |
 
 ---
 
-## 5. Đề xuất ưu tiên sửa lỗi
+## 4. Software Quality Analysis
 
-> 💡 Đây là phần **Quality Assurance**: bạn không chỉ tìm lỗi mà còn **đề xuất thứ tự ưu tiên** sửa chữa và đánh giá tác động.  
-> Nêu rõ tiêu chí ưu tiên: dựa vào **severity** (mức độ nghiêm trọng kỹ thuật) và/hoặc **priority** (mức độ ưu tiên kinh doanh).
+### 4.1. Strengths
 
-| Thứ tự | Bug | Mức độ | Lý do ưu tiên |
-|--------|-----|--------|---------------|
-| 1 | BUG-05 | High | This is a direct privacy and access-control issue because members can view borrow tickets belonging to other users. It should be fixed first to prevent unauthorized data exposure. |
-| 2 | BUG-03 | High | This bug allows members to return books borrowed by other users. It can modify another user's borrow record and book status, causing data integrity and ownership issues. |
-| 3 | BUG-06 | High | This affects member registration and database quality because valid emails may be rejected and invalid emails may be accepted. It can block core member-management functionality. |
-| 4 | BUG-01 | High | Combined search is a core REQ-03 feature. Incorrect AND logic returns misleading results and makes search behavior unpredictable. |
-| 5 | BUG-04 | Medium | Missing overdue warning violates overdue-return requirements and creates inconsistency between return and overdue checking behavior, although the core return process still works. |
-| 6 | BUG-02 | Medium | Category filter case-sensitivity violates the SRS requirement and creates inconsistent behavior between the keyword bar and category bar. This should be fixed before release. |
+- Login with both librarian and member accounts works correctly for valid credentials.
+- The book list displays the required information and updates book status after borrow/return actions.
+- Searching by book title or author works correctly with valid input, including lowercase and uppercase input in the keyword search bar.
+- The category filter returns correct results when the exact existing category name is entered.
+- Borrowing works for active members when the book is available and the member is below the borrow limit.
+- The system blocks several invalid borrowing cases, such as borrowing books that are already borrowed or lost.
+- Valid return actions correctly update both book status and borrow-record status.
+- The system prevents returning a book that has already been returned.
+- The librarian's Check Overdue function works correctly for before-due, on-due, and after-due date conditions.
+- Basic permission control for the Members tab works: members cannot see or access member-management features.
+- The test design covers REQ-01 to REQ-08 and combines EP, BVA, Decision Table, and Access Control Testing.
+
+### 4.2. Weaknesses
+
+#### REQ-01 - Login
+
+**Observations / Requirement issues**
+- **OBS-01 - Error messages are not consistently localized.** When the interface is in English mode, some login error messages are still displayed in Vietnamese.
+- **OBS-02 - The SRS does not clearly specify cases where only email or only password is empty.** Therefore, TC-01-06 and TC-01-07 cannot be confidently evaluated as pass or fail.
+- **OBS-03 - The SRS does not define email-format validation during login.** Inputs such as `abc.com` or `user@gmail` do not have clear expected results.
+
+#### REQ-02 - View Book List
+
+**No confirmed bug recorded.**
+
+- All REQ-02 test cases passed. Book list display, book information, book status, and real-time status updates are stable within the tested scope.
+
+#### REQ-03 - Search & Filter Books
+
+**High**
+- **BUG-02 - Combined search does not apply AND logic.** When both keyword and category are entered, the system does not apply both filters at the same time. The result depends on the search field entered last, causing users to receive incorrect results.
+
+**Medium**
+- **BUG-01 - Category filter is case-sensitive.** The category filter does not comply with the case-insensitive requirement in REQ-03, while the keyword search bar handles case variations correctly.
+
+**Observations / Requirement issues**
+- **OBS-04 - Search does not support Vietnamese diacritic-insensitive input.** Inputs without diacritics, such as `Nguyen Minh Duc` or `Cong nghe`, return no results.
+- **OBS-05 - Category filter does not support partial match.** The category field requires the full exact category name, which is inconsistent with the keyword search bar.
+- **OBS-06 - Category bar does not support English category input.** When the interface is in English, entering `Technology` does not return the corresponding book list.
+
+#### REQ-04 - Borrow Book
+
+**High**
+- **BUG-04 - A member can still borrow a book when their current borrow count is already 3.** The system creates a new borrow record and displays no borrow-limit error, violating the maximum-borrow business rule.
+
+**Medium**
+- **BUG-03 - Incorrect error reason is displayed for suspended members.** A suspended member is correctly prevented from borrowing, but the system displays the reason as expired instead of suspended.
+
+**Observations / Requirement issues**
+- **OBS-06 - Some error messages remain in Vietnamese when the display language is English.** This affects language consistency in borrowing workflows.
+
+#### REQ-05 - Return Book
+
+**High**
+- **BUG-06 - A member can return another member's borrowed book.** The system allows members to view and act on borrow records that do not belong to them, creating security, data ownership, and book-status integrity risks.
+
+**Medium**
+- **BUG-05 - No overdue warning is displayed when returning overdue books or books on the due date.** The return action succeeds, but the system does not show the required overdue warning according to BR-05 and BR-06.
+
+#### REQ-06 - Overdue Handling
+
+**No confirmed bug recorded.**
+
+- Librarians can use Check Overdue.
+- Members cannot access Check Overdue.
+- The system correctly handles `currentDate < dueDate`, `currentDate = dueDate`, and `currentDate > dueDate`.
+
+#### REQ-07 - Member Management
+
+**High**
+- **BUG-07 - Email validation is incorrect when creating members.** The system rejects valid emails but accepts some invalid emails, directly affecting member creation and data quality.
+
+#### REQ-08 - Borrow/Return Records
+
+**High**
+- **BUG-08 - Members can view tickets belonging to other members.** This is a privacy and access-control issue because members can access borrow-ticket information that does not belong to them.
+
+**Cross-related issue**
+- **BUG-06** also affects REQ-08 because a member can not only view another member's record but also perform the return action on that record.
 
 ---
 
-## 6. Kết luận
+## 5. Bug Fix Priority Recommendation
+
+The priority is based on severity, impact on business rules, security/privacy risk, data-integrity impact, and how essential the affected function is.
+
+| Priority | Bug | Severity | Reason |
+|----------|-----|----------|--------|
+| 1 | BUG-08 | High | Members can view borrow tickets belonging to other members, causing data exposure and violating access control. |
+| 2 | BUG-06 | High | Members can return books borrowed by other users, causing unauthorized changes to borrow records and book status. |
+| 3 | BUG-04 | High | The maximum limit of 3 borrowed books is an important business rule, but the system still allows members to borrow beyond the limit. |
+| 4 | BUG-07 | High | Incorrect email validation blocks valid members and allows invalid data into the system. |
+| 5 | BUG-02 | High | Combined search is a core REQ-03 function, but results are incorrect and depend on input order. |
+| 6 | BUG-05 | Medium | Missing overdue warnings violate business rules and may mislead users during overdue returns. |
+| 7 | BUG-01 | Medium | Category filtering is not case-insensitive, violating the SRS and creating inconsistent search behavior. |
+| 8 | BUG-03 | Medium | Incorrect suspended/expired messaging does not change data, but it misleads users and should be corrected to match the business rule. |
+
+After fixing High and Medium severity bugs, the team should retest at least the related test cases: TC-03-06, TC-03-11, TC-03-12, TC-04-04, TC-04-06, TC-05-02, TC-05-03, TC-05-05, TC-07-01, TC-07-03, TC-07-06, and TC-08-03.
+
+---
+
+## 6. Conclusion
 
 The system is **not ready for release** in its current state.
 
-Overall, the system demonstrates that several core workflows are functional: login works in normal cases, the book list displays correctly, basic search and filtering work in isolation, return status updates are performed correctly, duplicate returns are prevented, and overdue checking works for tested date conditions.
+The test results show that several basic workflows are functional, especially viewing the book list, updating book status, basic search, valid book return, and overdue checking. However, the system still contains multiple issues that directly affect business rules and access control.
 
-However, the system still contains several important issues that must be fixed before production release. The most serious problems are related to **access control, privacy, data integrity, and core search correctness**. In particular, members can view or modify records belonging to other members, combined search does not apply the required AND logic, and email validation is inconsistent during member creation.
+The most serious problems are related to members being able to view or modify other members' data, the borrow-limit rule not being enforced, incorrect email validation, and combined search not applying the required AND logic. These defects can cause data inconsistency, privacy concerns, and unreliable results for users.
 
-Therefore, the group recommends fixing all **High** and **Medium** severity bugs before release, then retesting the affected requirements. Observations and requirement issues should also be clarified in the SRS or considered for later usability improvements.
-
----
-
-## 7. Bài học rút ra (Tùy chọn)
-
-- Building the **Input Domain Model (IDM)** before writing test cases helped the group identify important input partitions, boundary values, invalid cases, and edge cases more systematically.
-- Testing multiple input orders is important when several fields interact. The combined search issue in REQ-03 was only discovered because different input orders were tested.
-- Observation cases are still valuable even when they are outside the SRS scope. They reveal usability concerns such as diacritic-insensitive search and inconsistent partial matching behavior.
-- Requirement ambiguity can affect test evaluation. Some cases could not be fully judged as pass or fail because the SRS did not clearly define the expected behavior.
-- Access-control testing is critical for systems involving different user roles. Several serious issues were related to members accessing or modifying data that should belong to other users.
-- Root cause analysis can help developers fix multiple related bugs more efficiently, especially when issues come from shared validation or filtering logic.
-- Manual testing should be combined with unit and integration tests for validation rules, authorization checks, and search/filter behavior.
+The team recommends fixing all High and Medium severity bugs before release, then retesting the affected requirements. Observations and requirement gaps should also be clarified in the SRS so future testing can be evaluated against clear expected results.
 
 ---
 
-## 8. Khai báo sử dụng AI (Tùy chọn)
+## 7. Lessons Learned
 
-> Nếu nhóm có sử dụng công cụ AI (ChatGPT, Copilot, Gemini...), hãy ghi rõ bên dưới. Khai báo trung thực **không ảnh hưởng điểm** — đây là kỹ năng minh bạch trong nghề.
+- Input Domain Modeling helped the team identify input partitions, representative values, and boundary cases before writing test cases.
+- Functions with multiple conditions, such as borrow book, return book, and combined search, should be designed with decision tables to reduce missed cases.
+- Access control testing is critical for systems with multiple roles. Several serious issues were found only when testing with another user's data.
+- Requirement ambiguity and requirement gaps should be separated from confirmed functional bugs to keep reporting fair and to support SRS improvement.
+- Localization testing is not only about translating the interface; it also includes error messages, category/filter behavior, and language consistency across workflows.
+- After fixing defects, the team should retest both the directly affected cases and related cases because many issues share validation, filtering, or authorization logic.
 
-| Công cụ AI | Dùng cho phần nào | Bạn đã kiểm tra/chỉnh sửa thế nào |
-|------------|-------------------|-----------------------------------|
-| ChatGPT | Reviewing test cases, improving wording, organizing report structure, and merging documentation | All outputs were manually reviewed, adjusted, and verified against actual test results before being included in the final documentation. |
-| Claude | Supporting IDM documentation, test case ideas, bug report wording, and report formatting | Suggestions were checked by group members and only used when they matched real observations from testing. |
-| Gemini | Explaining testing concepts and supporting understanding of QA techniques | Concepts were manually applied to the group’s own test design and documentation. |
-| GitHub Copilot | Supporting spelling correction and minor documentation editing | All generated or suggested content was reviewed and edited manually before saving. |
+---
+
+## 8. AI Usage Declaration
+
+| AI Tool | Used For | How the Team Reviewed / Edited It |
+|---------|----------|-----------------------------------|
+| ChatGPT | Reviewing wording and summarizing content from test cases, test execution, and bug reports | The content was cross-checked against actual execution results and the bug list before being included in the summary. |
+| Claude | Supporting ideas for IDM presentation, bug-report wording, and report structure | Suggestions were used only when they matched the team's actual testing results. |
+| Gemini | Explaining testing concepts and supporting QA wording | The team applied the concepts manually and revised the wording according to the assignment context. |
+| GitHub Copilot | Supporting spelling correction and document formatting | All suggested content was manually reviewed and edited before submission. |
