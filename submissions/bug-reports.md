@@ -160,7 +160,7 @@ Refactor the search/filter logic to evaluate both conditions simultaneously usin
 | **Bug ID** | BUG-03 |
 | **Related TC** | TC-04-04 |
 | **Related REQ** | REQ-04 |
-| **Severity** | Medium |
+| **Severity** | High |
 | **Reported by** | Trần Thị Thu Trang |
 | **Date reported** | 23/05/2026 |
 | **Status** | Open |
