@@ -10,8 +10,8 @@
 
 ## Environment
 
-- Browser: Chrome version 142, Chrome Version 148, Chrome
-- Operating System: Windows 10, Linux, Windows 11
+- Browser: Chrome
+- Operating System: Window, Linux
 - Web application: Library Management System
 - User Interface Language: Vietnamese, English
 
