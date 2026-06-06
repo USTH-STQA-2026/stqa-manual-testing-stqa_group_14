@@ -8,7 +8,16 @@
 
 ---
 
-## BUG-01
+## Environment
+
+- Browser: Chrome version 142, Chrome Version 148, Chrome
+- Operating System: Windows 10, Linux, Windows 11
+- Web application: Library Management System
+- User Interface Language: Vietnamese, English
+
+---
+
+## BUG-01: Category filter returns no results when input is lowercase or uppercase
 
 | Attribute | Details |
 |-----------|---------|
@@ -19,15 +28,6 @@
 | **Reported by** | Nguyễn Minh Nhật |
 | **Date reported** | 19/05/2026 |
 | **Status** | Open |
-
-**Title:**
-Category filter returns no results when input is lowercase or uppercase
-
-**Environment:**
-- Browser: Chrome version 142
-- Operating System: Windows 10
-- Web application: Library Management System
-- User Interface Language: Vietnamese, English
 
 **Preconditions:**
 - Logged in as `ba.nguyen@email.com`
@@ -69,7 +69,7 @@ Apply `.toLowerCase()` or equivalent normalization to both the user input and th
 
 ---
 
-## BUG-02
+## BUG-02: Combined search does not apply AND logic — the last-entered search bar overrides the other, returning wrong results
 
 | Attribute | Details |
 |-----------|---------|
@@ -80,15 +80,6 @@ Apply `.toLowerCase()` or equivalent normalization to both the user input and th
 | **Reported by** | Nguyễn Minh Nhật |
 | **Date reported** | 19/05/2026 |
 | **Status** | Open |
-
-**Title:**
-Combined search does not apply AND logic — the last-entered search bar overrides the other, returning wrong results
-
-**Environment:**
-- Browser: Chrome version 142
-- Operating System: Windows 10
-- Web application: Library Management System
-- User Interface Language: Vietnamese, English
 
 **Preconditions:**
 - Logged in as `ba.nguyen@email.com`
@@ -153,7 +144,7 @@ Refactor the search/filter logic to evaluate both conditions simultaneously usin
 
 ---
 
-## BUG-03
+## BUG-03: Error message says the member has expired while they are suspended
 
 | Attribute | Details |
 |-----------|---------|
@@ -164,13 +155,6 @@ Refactor the search/filter logic to evaluate both conditions simultaneously usin
 | **Reported by** | Trần Thị Thu Trang |
 | **Date reported** | 23/05/2026 |
 | **Status** | Open |
-
-**Title:** Error message says the member has expired while they are suspended
-
-**Environment:**
-- Browser: Chrome Version 148
-- Operating System: Linux
-- UI Languague: Vietnamese
 
 **Preconditions:**
 1. Member can log in
@@ -212,7 +196,7 @@ Correct the error message to "member has been suspended"
 
 ---
 
-## BUG-04
+## BUG-04: Users can still borrow a book when their borrow count is 3
 
 | Attribute | Details |
 |-----------|---------|
@@ -223,13 +207,6 @@ Correct the error message to "member has been suspended"
 | **Reported by** | Trần Thị Thu Trang |
 | **Date reported** | 23/05/2026 |
 | **Status** | Open |
-
-**Title:** Users can still borrow a book when their borrow count is 3
-
-**Environment:**
-- Browser: Chrome Version 148
-- Operating System: Linux
-- UI Language: Vietnamese
 
 **Preconditions:**
 1. Member can log in
@@ -270,7 +247,7 @@ Recheck the condition checking whether the user has reached the borrow limit.
 
 ---
 
-## BUG-05
+## BUG-05: No overdue warning displayed when returning overdue books
 
 | Attribute | Details |
 |---|---|
@@ -281,13 +258,6 @@ Recheck the condition checking whether the user has reached the borrow limit.
 | Reported by | Vũ Đức Quang |
 | Date reported | 20/05/2026 |
 | Status | Open |
-
-**Title:** No overdue warning displayed when returning overdue books
-
-**Environment:**
-- Browser: Chrome Version 148  
-- Operating System: Windows 11  
-- Interface Language: Vietnamese  
 
 **Preconditions:**
 - A member is logged into the system.
@@ -345,7 +315,7 @@ to ensure compliance with business rules **BR-05** and **BR-06**.
 
 ---
 
-## BUG-06
+## BUG-06: Member can return books borrowed by another member
 
 | Attribute | Details |
 |---|---|
@@ -356,13 +326,6 @@ to ensure compliance with business rules **BR-05** and **BR-06**.
 | Reported by | Vũ Đức Quang, Nguyễn Hải Minh |
 | Date reported | 27/05/2026 |
 | Status | Open |
-
-**Title:** Member can return books borrowed by another member
-
-**Environment:**
-- Browser: Chrome Version 148
-- Operating System: Windows 11
-- Interface Language: Vietnamese
 
 **Preconditions:**
 - A member account is logged into the system.
@@ -423,7 +386,7 @@ While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully retu
 
 ---
 
-## BUG-07
+## BUG-07: System rejects valid email but accepts invalid email when creating a new member
 
 | Attribute | Details |
 |-----------|---------|
@@ -434,14 +397,6 @@ While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully retu
 | **Reported by** | Hoàng Hải Minh |
 | **Date reported** | 12/5/2026 |
 | **Status** | Open |
-
-**Title:**
-System rejects valid email but accepts invalid email when creating a new member
-
-**Environment:**
-- Browser: Chrome
-- OS: Windows 10
-- UI Language: English
 
 **Preconditions:**
 Log in using librarian account (librarian@library.com / admin123)
@@ -478,7 +433,7 @@ Review and fix the email validation logic in the member creation form, ensure va
 
 ---
 
-## BUG-08
+## BUG-08: Member can view other members' tickets (privacy breach)
 
 | Attribute | Details |
 |-----------|---------|
@@ -489,14 +444,6 @@ Review and fix the email validation logic in the member creation form, ensure va
 | **Reported by** | Hoàng Hải Minh |
 | **Date reported** | 12/5/2026 |
 | **Status** | Open |
-
-**Title:**
-Member can view other members' tickets (privacy breach)
-
-**Environment:**
-- Browser: Chrome
-- OS: Windows 10
-- UI Language: English
 
 **Preconditions:**
 Log in MEM002 (ba.nguyen) — another member is MEM003 (dam.tran) with BR002
@@ -529,7 +476,16 @@ Server-side / data-layer filtering, improve UI-layer enforcement
 
 # Observation reports
 
-## OBSERVATION-01
+## Environment
+
+- Browser: Chrome Version 148, Chrome version 142
+- Operating System: Windows 10, Linux
+- Web application: Library Management System
+- User Interface Language: Vietnamese, English
+
+---
+
+## OBSERVATION-01 Error message is displayed in Vietnamese instead of English when logging in with a non-existing email/incorrect password
 
 | Attribute | Details |
 |-----------|---------|
@@ -541,16 +497,6 @@ Server-side / data-layer filtering, improve UI-layer enforcement
 | **Reported by** | La Thi Bao Tram |
 | **Date reported** | 25/05/2026 |
 | **Status** | Open |
-
-**Title:**
-- TC-01-03: Error message is displayed in Vietnamese instead of English when logging in with a non-existing email
-- TC-01-04: Error message is displayed in Vietnamese instead of English when logging in with incorrect password
-
-**Environment:**
-- Browser: Chrome Version 148
-- Operating System: Windows 10
-- Application: Library Management System
-- UI Language: Vietnamese, English
 
 **Preconditions:**
 - Application is running
@@ -600,7 +546,8 @@ The issue does not prevent users from logging in or accessing system functions. 
 
 ---
 
-## OBSERVATION-02
+## OBSERVATION-02: The SRS specifies behavior only when both email and password fields are empty. However, the SRS does not define expected behavior for empty email only and empty password only
+
 | Attribute | Details |
 |-----------|---------|
 | **Report ID** | OBS-02 |
@@ -611,18 +558,6 @@ The issue does not prevent users from logging in or accessing system functions. 
 | **Reported by** | La Thi Bao Tram |
 | **Date reported** | 25/05/2026 |
 | **Status** | Open |
-
-**Title:**
-The SRS specifies behavior only when both email and password fields are empty.
-However, the SRS does not define expected behavior for:
-- empty email only
-- empty password only
-
-**Environment:**
-- Browser: Chrome Version 148
-- Operating System: Windows 10
-- Application: Library Management System
-- UI Language: English
 
 **Preconditions:**
 - Application is running
@@ -668,7 +603,8 @@ The ambiguity does not prevent the system from functioning. However, it affects 
 
 ---
 
-## OBSERVATION-03
+## OBSERVATION-03: The SRS describes login functionality but does not specify behavior for invalid email format validation. Missing specifications include email without @ and email without . in domain
+
 | Attribute | Details |
 |-----------|---------|
 | **Report ID** | OBS-03 |
@@ -679,18 +615,6 @@ The ambiguity does not prevent the system from functioning. However, it affects 
 | **Reported by** | La Thi Bao Tram |
 | **Date reported** | 25/05/2026 |
 | **Status** | Open |
-
-**Title:**
-The SRS describes login functionality but does not specify behavior for invalid email format validation.
-Missing specifications include:
-- email without @
-- email without . in domain
-
-**Environment:**
-- Browser: Chrome Version 148
-- Operating System: Windows 10
-- Application: Library Management System
-- UI Language: English
 
 **Preconditions:**
 - Application is running
@@ -740,7 +664,7 @@ The issue does not affect system operation directly. However, it prevents object
 
 ---
 
-## OBSERVATION-04
+## OBSERVATION-04: Both search bars do not support diacritic-insensitive input — typing without Vietnamese diacritics returns no results
 
 | Attribute | Details |
 |-----------|---------|
@@ -752,15 +676,6 @@ The issue does not affect system operation directly. However, it prevents object
 | **Reported by** | Nguyễn Minh Nhật |
 | **Date reported** | 20/05/2026 |
 | **Status** | Open |
-
-**Title:**
-Both search bars do not support diacritic-insensitive input — typing without Vietnamese diacritics returns no results
-
-**Environment:**
-- Browser: Chrome version 142
-- Operating system: Windows 10
-- Web application: Library Management System
-- UI language: Vietnamese, English
 
 **Preconditions:**
 - Logged in as `ba.nguyen@email.com`
@@ -804,7 +719,7 @@ Implement diacritic normalization (e.g. convert `"Nguyen Minh Duc"` → `"Nguy�
 
 ---
 
-## OBSERVATION-05
+## OBSERVATION-05: Category filter does not support partial keyword input — requires full exact category name to return results
 
 | Attribute | Details |
 |-----------|---------|
@@ -816,15 +731,6 @@ Implement diacritic normalization (e.g. convert `"Nguyen Minh Duc"` → `"Nguy�
 | **Reported by** | Nguyễn Minh Nhật |
 | **Date reported** | 20/05/2026 |
 | **Status** | Open |
-
-**Title:**
-Category filter does not support partial keyword input — requires full exact category name to return results
-
-**Environment:**
-- Browser: Chrome version 142
-- Operatingn system: Windows 10
-- Web application: Library Management System
-- UI language: Vietnamese, English
 
 **Preconditions:**
 - Logged in as `ba.nguyen@email.com`
@@ -861,7 +767,7 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 
 ---
 
-## OBSERVATION-06
+## OBSERVATION-06: Error messages are in Vietnamese while display language is English; Category bar search does not support English
 
 | Attribute | Details |
 |-----------|---------|
@@ -873,13 +779,6 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 | **Reported by** | Trần Thị Thu Trang, Nguyễn Minh Nhật |
 | **Date reported** | 23/05/2026 |
 | **Status** | Open |
-
-**Title:** Error messages are in Vietnamese while display language is English; Category bar search does not support English
-
-**Environment:**
-- Browser: Chrome Version 148
-- OS: Linux
-- UI Language: Vietnamese
 
 **Preconditions:**
 
