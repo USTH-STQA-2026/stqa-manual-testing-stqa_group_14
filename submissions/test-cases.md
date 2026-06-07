@@ -191,7 +191,7 @@ stateDiagram-v2
 	n4 --> n44: yes
 	n4 --> n5: no
 ```
-Prime path coverage: our prime paths are:
+Prime path coverage: our prime paths are:<br>
 Happy path<br>
 [start, book borrowed?, reject book borrowed]<br>
 [start, book borrowed?, book lost?, reject book lost]<br>
@@ -206,6 +206,7 @@ Base choice coverage: we use BCC as our strategy to combine values from equivale
 P/S: Some REQs will have more test cases than what is illustrated in the decision table. BCC sometimes misses edge test cases, hence we have to include them independently.
 
 **4. Decision Table**
+
 Below is the decision table for REQ-04:
 
 | Test | Book not borrowed? | Book not lost? | Member not suspended? | Member not expired? | Borrow count < 3? | Predicate |
@@ -285,13 +286,12 @@ We used decision tables because:
 
 | TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
 |-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
-| TC-04-01 | An active member whose borrow count is less than 3 borrows an available book | 1. Member can log in<br>2. Member is active<br>3. Book is available<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK001 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK001 | - Member can borrow the book<br>- Display a successful message and the book is borrowed in corresponding display language<br>- A borrow record for that member and that book is created, due date is 14 days later after today | REQ-04 | EP, Decision Table |
-| TC-04-02 | An active member whose borrow count is less than 3 borrows a borrowed book | 1. Member can log in<br>2. Member is active<br>3. Book is borrowed<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK013 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK013 | - Member cannot borrow the book<br>- Display the book is borrowed in corresponding display language<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
-| TC-04-03 | An active member whose borrow count is less than 3 borrows a lost book | 1. Member can log in<br>2. Member is active<br>3. Book is lost<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK013 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK013 | - Member cannot borrow the book<br>- Display the book is lost in corresponding display language<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
+| TC-04-01 | Borrow an available book | 1. Member can log in<br>2. Member is active<br>3. Book is available<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK001 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK001 | - Member can borrow the book<br>- Display a successful message and book status change to "Borrowed" in corresponding display language<br>- A borrow record for that member and that book is created, due date is 14 days later after today | REQ-04 | EP, Decision Table |
+| TC-04-02 | Borrow a borrowed book | 1. Member can log in<br>2. Member is active<br>3. Book is borrowed<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK013 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK013 | - Member cannot borrow the book<br>- Display the book status is "Borrowed" in corresponding display language<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
+| TC-04-03 | Borrow a lost book | 1. Member can log in<br>2. Member is active<br>3. Book is lost<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK013 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK013 | - Member cannot borrow the book<br>- Display the book status is "Lost" in corresponding display language<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
 | TC-04-04 | A suspended member whose borrow count is less than 3 borrows an available book | 1. Member can log in<br>2. Member has been suspended<br>3. Book is available<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM004<br>3. Borrow the book BOOK001 | 1. Login email: cu.le@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK001 | - Member cannot borrow the book<br>- Display error message in corresponding display language: member has been suspended<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
 | TC-04-05 | An expired member whose borrow count is less than 3 borrows an available book | 1. Member can log in<br>2. Member has expired<br>3. Book is available<br>4. Member's borrow count is less than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM005<br>3. Borrow the book BOOK001 | 1. Login email: binh.pham@email.com<br>2. Login password: password123<br>3. Book borrowed: BOOK001 | - Member cannot borrow the book<br>- Display error message in corresponding display language: member has expired<br>- Program state remains unchanged | REQ-04 | EP, Decision Table |
 | TC-04-06 | An active member whose borrow count is 3 borrows an available book | 1. Member can log in<br>2. Member is active<br>3. Book is available<br>4. Member's borrow count is 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK001<br>4. Borrow the book BOOK002<br>5. Borrow the book BOOK005 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Books borrowed: BOOK001, BOOK002, BOOK005 | - Member cannot borrow the book BOOK005<br>- BOOK005 remains available<br>- Display error message when borrowing BOOK005 in corresponding display language: borrow limit reached<br>- Borrow records for that member and books BOOK001 and BOOK002 are created, due date is 14 days later after today, no record created for BOOK005 | REQ-04 | EP, BVA, Decision Table |
-| TC-04-07 | An active member whose borrow count is more than 3 borrows an available book | 1. Member can log in<br>2. Member is active<br>3. Book is available<br>4. Member's borrow count is more than 3<br>5. Display language: Vietnamese/English | 1. Refresh the page<br>2. Log in to the account of MEM002<br>3. Borrow the book BOOK001<br>4. Borrow the book BOOK002<br>5. Borrow the book BOOK005<br>6. Borrow the book BOOK008 | 1. Login email: ba.nguyen@email.com<br>2. Login password: password123<br>3. Books borrowed: BOOK001, BOOK002, BOOK005, BOOK008 | - Member cannot borrow the book BOOK008<br>- BOOK008 remains available<br>- Display error message when borrowing BOOK008 in corresponding display language: borrow limit reached<br>- Borrow records for that member and BOOK008 is not created | REQ-04 | EP |
 
 ---
 
@@ -356,9 +356,9 @@ We used decision tables because:
 | Login | 9 | REQ-01 | EP, Decision Table |
 | View Book List | 7 | REQ-02 | EP, Decision Table |
 | Search & Filter Books | 12 | REQ-03 | EP, BVA, Decision Table |
-| Borrow book | 7 | REQ-04 | EP, BVA, Decision Table |
+| Borrow book | 6 | REQ-04 | EP, BVA, Decision Table |
 | Return Book | 5 | REQ-05, REQ-08 | EP, BVA, Decision Table |
 | Overdue Handling | 5 | REQ-06 | EP, BVA, Decision Table |
 | Members | 9 | REQ-07 | EP, BVA, Decision Table |
 | Search borrow tickets | 6 | REQ-08 | EP, Decision Table |
-| **Total** | 60 | REQ-01 → REQ-08 | EP, BVA, Decision Table |
+| **Total** | 59 | REQ-01 → REQ-08 | EP, BVA, Decision Table |
