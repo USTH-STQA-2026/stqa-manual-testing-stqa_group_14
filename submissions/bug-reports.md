@@ -128,7 +128,7 @@ Recheck the condition checking whether the user has reached the borrow limit.
 | Thuộc tính | Chi tiết |
 |-----------|---------|
 | **Mã lỗi** | BUG-04-07 |
-| **TC liên quan** | TC-04-04, TC-04-05, TC-04-07 |
+| **TC liên quan** | TC-04-04, TC-04-05 |
 | **REQ liên quan** | REQ-04 |
 | **Type** | Failure |
 | **Mức độ** | Low |
@@ -136,7 +136,11 @@ Recheck the condition checking whether the user has reached the borrow limit.
 | **Ngày phát hiện** | 23/05/2026 |
 | **Trạng thái** | Open |
 
-**Tiêu đề:** (NOTE: Merge this with other language-related failures in other REQs) Error messages are in Vietnamese while display language is English
+**Tiêu đề:**  Error messages are in Vietnamese while display language is English
+
+**NOTE:**
+- Merge this with other language-related failures in other REQs
+- TC-04-07 has been DELETED. Do NOT include this in the final version
 
 **Môi trường:**
 - Trình duyệt: Chrome Version 148
@@ -146,13 +150,13 @@ Recheck the condition checking whether the user has reached the borrow limit.
 **Điều kiện tiên quyết:** Refer to each individual test case mentioned below
 
 **Bước tái hiện:**
-1. Recreate the BUG-04-03, set display language to English after step 2
+1. Recreate the BUG-03, set display language to English after step 2
 2. Perform TC-04-04:
 	1. Refresh the page
 	2. Log in to the account of MEM005
 	3. Set display language to English
 	4. Borrow the book BOOK001
-3. Perform TC-04-06:
+3. Perform these steps (extra case):
 	1. Refresh the page
 	2. Log in to the account of MEM002
 	3. Set display language to English
@@ -174,7 +178,7 @@ Error messages are in Vietnamese
 Users who do not know Vietnamese can be confused
 
 **Minh chứng:**
-<br><a href="evidence/TC-04-04/BOOK001_after_en.png">TC-04-04: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-05/BOOK001_after_en.png">TC-04-05: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-07/BOOK008_after_en.png">TC-04-07: After borrowing BOOK008 (English)</a>
+<br><a href="evidence/TC-04-04/BOOK001_after_en.png">TC-04-04: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-05/BOOK001_after_en.png">TC-04-05: After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-07/BOOK008_after_en.png">Extra case: After borrowing BOOK008 (English)</a>
 
 **Đề xuất xử lý:**
 Correct the error messages to the English version when the display language is English

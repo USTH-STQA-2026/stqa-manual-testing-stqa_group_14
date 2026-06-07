@@ -22,23 +22,22 @@
 | TC-04-04 | Borrow Book | - Member cannot borrow the book<br>- Error message on member being suspended is displayed in corresponding language | - Member cannot borrow the book<br>- Error message says the member has expired<br>- Error message is Vietnamese while display language is English | Fail | <a href="evidence/TC-04-04/BOOK001_before.png">Before borrowing BOOK001</a><br><a href="evidence/TC-04-04/BOOK001_after_vi.png">After borrowing BOOK001 (Vietnamese)</a><br><a href="evidence/TC-04-04/BOOK001_after_en.png">After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-04/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-03/BR_after.png">Borrow records after borrowing</a> | BUG-04-03, BUG-04-07 |
 | TC-04-05 | Borrow Book | - Member cannot borrow the book<br>- Error message on member having expired is displayed in corresponding language | - Member cannot borrow the book<br>- Error message says the member has expired<br>- Error message is Vietnamese while display language is English | Fail | <a href="evidence/TC-04-05/BOOK001_before.png">Before borrowing BOOK001</a><br><a href="evidence/TC-04-05/BOOK001_after_vi.png">After borrowing BOOK001 (Vietnamese)</a><br><a href="evidence/TC-04-05/BOOK001_after_en.png">After borrowing BOOK001 (English)</a><br><a href="evidence/TC-04-05/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-05/BR_after.png">Borrow records after borrowing</a> | BUG-04-07 |
 | TC-04-06 | Borrow Book | - Member cannot borrow book BOOK005<br>- Error on limit having exceeded is displayed in corresponding language<br>- Borrow record is not created for BOOK005 | Member can borrow book BOOK005, no error message is displayed, borrow record for BOOK005 is created | Fail | <a href="evidence/TC-04-06/BOOK005_before.png">Before borrowing BOOK005</a><br><a href="evidence/TC-04-06/BOOK005_after.png">After borrowing BOOK005</a><br><a href="evidence/TC-04-06/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-06/BR_after.png">Borrow records after borrowing</a> | BUG-04-05 |
-| TC-04-07 | Borrow Book | - Member cannot borrow book BOOK008<br>- Error on limit being exceeded is displayed in corresponding language<br>- Borrow record is not created for BOOK008 | - Member cannot borrow BOOK008, borrow record for BOOK008 is not created. BOOK008 remains available<br>- Error message says the member has exceeded the limit<br>- Error message is Vietnamese while display language is English  | Fail | <a href="evidence/TC-04-07/BOOK008_before.png">Before borrowing BOOK008</a><br><a href="evidence/TC-04-07/BOOK008_after_vi.png">After borrowing BOOK008 (Vietnamese)</a><br><a href="evidence/TC-04-07/BOOK008_after_en.png">After borrowing BOOK008 (English)</a><br><a href="evidence/TC-04-07/BR_before.png">Borrow records before borrowing</a><br><a href="evidence/TC-04-07/BR_after.png">Borrow records after borrowing</a> | BUG-04-06, BUG-04-07 |
 ---
 
 ## Tổng hợp kết quả
 
 | Chỉ số | Giá trị |
 |--------|---------|
-| Tổng số test case | 7 |
+| Tổng số test case | 6 |
 | Pass | 3 |
-| Fail | 4 |
+| Fail | 3 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Tỷ lệ Pass** | 43% |
+| **Tỷ lệ Pass** | 50% |
 
 ### Kết quả theo nhóm chức năng
 
 | Nhóm | Tổng TC | Pass | Fail | Tỷ lệ Pass |
 |------|---------|------|------|------------|
-| Borrow Book | 7 | 3 | 4 | 43% |
+| Borrow Book | 6 | 3 | 3 | 50% |
 
