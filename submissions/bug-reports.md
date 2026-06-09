@@ -230,10 +230,10 @@ High - combined filtering is a core use case of REQ-03 (especially when users do
 P1
 
 **Minh chứng (Evidence):**
-- Screenshot match - author 1st: ![TC-03-12 author 1st](evidence/TC-03-12_OBS-03_author-1st_1.png) ![TC-03-12 author 1st](evidence/TC-03-12_OBS-03_author-1st_2.png) ![TC-03-12 author 1st](evidence/TC-03-12_OBS-03_author-1st_3.png)
-- Screenshot match - genre 1st: ![TC-03-12 category 1st](evidence/TC-03-12_OBS-03_genre-1st.png)
-- Screenshot mismatch - author 1st: ![TC-03-13 author 1st](evidence/TC-03-13_OBS-03_author-1st.png)
-- Screenshot mismatch - genre 1st: ![TC-03-13 category 1st](evidence/TC-03-13_OBS-03_genre-1st.png)
+- Screenshot match - author 1st: ![TC-03-12 author first](evidence/TC-03-12_OBS-03_author-1st_1.png) ![TC-03-12 author first](evidence/TC-03-12_OBS-03_author-1st_2.png) ![TC-03-12 author first](evidence/TC-03-12_OBS-03_author-1st_3.png)
+- Screenshot match - genre 1st: ![TC-03-12 category first](evidence/TC-03-12_OBS-03_genre-1st.png)
+- Screenshot mismatch - author 1st: ![TC-03-13 author first](evidence/TC-03-13_OBS-03_author-1st.png)
+- Screenshot mismatch - genre 1st: ![TC-03-13 category first](evidence/TC-03-13_OBS-03_genre-1st.png)
 
 **Đề xuất xử lý (Suggested fix):**
 Refactor the search/filter logic to evaluate both conditions simultaneously using AND logic: a book must satisfy both the keyword condition (title or author contains keyword) and the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
