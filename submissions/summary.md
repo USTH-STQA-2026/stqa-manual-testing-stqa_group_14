@@ -19,14 +19,14 @@
 
 | Chỉ số (Metric) | Giá trị (Value) |
 |--------|---------|
-| Tổng số test case (Total TC) | 13 |
-| Pass | 7 |
-| Fail | 3 |
+| Tổng số test case (Total TC) | 14 |
+| Pass | 6 |
+| Fail | 1 |
 | Blocked | 0 |
 | Not Run | 0 |
-| Observed | 3 |
-| **Tỷ lệ Pass (Pass rate)** | 70% |
-| **Số bug phát hiện (Total bugs found)** | 2 |
+| Observed | 7 |
+| **Tỷ lệ Pass (Pass rate)** | 86% |
+| **Số bug phát hiện (Total bugs found)** | 1 |
 
 ### Phân bổ theo nhóm chức năng
 
@@ -35,17 +35,18 @@
 | Search by title/author | 3 | 3 | 0 | 0 | — | Good |
 | Filter by category | 1 | 1 | 0 | 0 | — | Good |
 | Case sensitivity | 2 | 1 | 1 | 0 | BUG-01 | Needs improvement |
-| Diacritic sensitivity | 1 | 0 | 0 | 1 | — | Observed — outside SRS scope, output TBD |
-| Partial keyword | 2 | 1 | 0 | 1 | Observed | Needs improvement |
+| Diacritic sensitivity | 2 | 0 | 0 | 2 | — | Observed — outside SRS scope, output TBD |
+| Partial keyword | 2 | 0 | 0 | 2 | — |  Needs improvement |
 | Empty fields | 1 | 1 | 0 | 0 | — | Good |
-| Combined search | 2 | 0 | 2 | 0 | BUG-02 | Critical issue |
-| **Total** | **13** | **7** | **3** | **3** | **2** | |
+| Combined search | 2 | 0 | 0 | 2 | — | Critical issue |
+| Bilingual support | 1 | 0 | 0 | 1 | — | Observed |
+| **Total** | **14** | **6** | **1** | **7** | **1** | |
 
 ### Phân bổ bug theo mức độ
 
 | Mức độ (Severity) | Số lượng (Count) | Bug IDs |
 |--------|---------|---------|
-| High | 1 | BUG-02 |
+| High | 0 | |
 | Medium | 1 | BUG-01 |
 | Low | 0 | |
 
@@ -55,7 +56,7 @@
 
 | Kỹ thuật (Technique) | Áp dụng cho REQ nào? (Applied to REQ) | Số TC sử dụng (TC count) | Giải thích cách áp dụng (How it was applied) |
 |----------|---------------------|---------------|------------------------|
-| **EP (Equivalence Partitioning)** | REQ-03 | 9 | Divided search inputs into partitions: valid keyword (book title/author name), no match, case variants (lowercase/uppercase), diacritic variants, and partial input. Each partition has one representative value — testing one value covers the whole group. |
+| **EP (Equivalence Partitioning)** | REQ-03 | 11 | Divided search inputs into partitions: valid keyword (book title/author name), no match, case variants (lowercase/uppercase), diacritic variants, and partial input. Each partition has one representative value — testing one value covers the whole group. |
 | **BVA (Boundary Value Analysis)** | REQ-03 | 1 | Applied to the empty input boundary (TC-10): when both search bars are empty, the system must display all 20 books. This is the lower boundary between "filtered" and "unfiltered" state. |
 | **Decision Table** | REQ-03 | 2 | Applied to combined search (TC-11, TC-12): systematically covered all combinations of keyword and category inputs — both match, and keyword match but category mismatch — to verify AND logic is applied correctly. |
 
@@ -66,15 +67,15 @@
 ### 4.1. Điểm mạnh
 - **Basic search works correctly**: Searching by book title and author name returns accurate results (TC-03-01, TC-03-02, TC-03-04 — all Pass).
 - **Category filter works with correct input**: Filtering by exact category name returns the correct book list (TC-03-03, TC-03-04 — Pass).
-- **Case-insensitive search on keyword bar**: The title/author search bar correctly handles lowercase and uppercase input as required by SRS REQ-03 (TC-05 — Pass).
-- **Partial match on keyword bar**: Typing a partial author name returns all matching books, improving usability beyond what SRS requires (TC-08 — Pass).
-- **Empty state handled correctly**: When both fields are empty, all 20 books are displayed as expected (TC-10 — Pass).
+- **Case-insensitive search on keyword bar**: The title/author search bar correctly handles lowercase and uppercase input as required by SRS REQ-03 (TC-03-05 — Pass).
+- **Partial match on keyword bar**: Typing a partial author name returns all matching books, improving usability beyond what SRS requires (TC-03-09 — Pass).
+- **Empty state handled correctly**: When both fields are empty, all 20 books are displayed as expected (TC-03-10 — Pass).
 
 ### 4.2. Điểm yếu
-- **BUG-03 (High) — Combined search broken**: The most critical issue. When both search bars are used simultaneously, the system does not apply AND logic — whichever bar was typed in last overrides the other completely. Results differ based on input order, making the combined search feature unreliable and unpredictable.
+- **OBS-03 (High) — Combined search broken**: The most critical issue. When both search bars are used simultaneously, the system does not apply AND logic — whichever bar was typed in last overrides the other completely. Results differ based on input order, making the combined search feature unreliable and unpredictable.
 - **BUG-01 (Medium) — Category filter is case-sensitive**: The category filter does not follow the case-insensitive rule stated in SRS REQ-03. Typing `"công nghệ"` or `"CÔNG NGHỆ"` returns no results, while the keyword bar handles the same inputs correctly. This is an inconsistency between the two bars.
-- **OBSERVED-02 (Low) — Category filter does not support partial match**: The category filter requires the full exact category name to return results, while the keyword bar supports partial input. SRS does not explicitly require this but the inconsistency may confuse users.
-- **Observed-01 (Low) — Diacritic-insensitive search not supported (TC-07)**: The system does not recognize input without Vietnamese diacritics (e.g. `"Nguyen Minh Duc"` does not return results for `"Nguyễn Minh Đức"`). This is outside SRS scope so it is not classified as a bug, but given that the system supports a Vietnamese-language interface, users may naturally type without diacritics. This is worth considering as a usability improvement in future iterations
+- **OBS-02 (Low) — Category filter does not support partial match**: The category filter requires the full exact category name to return results, while the keyword bar supports partial input. SRS does not explicitly require this but the inconsistency may confuse users.
+- **OBS-01 (Low) — Diacritic-insensitive search not supported (TC-07)**: The system does not recognize input without Vietnamese diacritics (e.g. `"Nguyen Minh Duc"` does not return results for `"Nguyễn Minh Đức"`). This is outside SRS scope so it is not classified as a bug, but given that the system supports a Vietnamese-language interface, users may naturally type without diacritics. This is worth considering as a usability improvement in future iterations
 
 ---
 
@@ -85,10 +86,10 @@
 
 | Thứ tự (Priority) | Bug | Mức độ (Severity) | Lý do ưu tiên (Reason)|
 |--------|-----|--------|---------------|
-| 1 | BUG-02 | High | Combined search is fundamentally broken — wrong results returned silently in 3 out of 4 input scenarios. Directly violates the core functionality of REQ-03. Must be fixed before release. |
+| 1 | OBS-03 | High | Combined search is fundamentally broken — wrong results returned silently in 3 out of 4 input scenarios. Directly violates the core functionality of REQ-03. Must be fixed before release. |
 | 2 | BUG-01 | Medium | Category filter violates the SRS case-insensitive requirement and is inconsistent with the keyword bar. Likely a quick fix (input normalization). Fix before release. |
-| 3 | OBSERVED-01 | Low | Diacritics sensitivity is not supported. Not required by SRS. |
-| 4 | OBSERVED-02 | Low | Category filter does not support partial match. Not required by SRS — treat as a usability improvement. |
+| 3 | OBS-01 | Low | Diacritics sensitivity is not supported. Not required by SRS. |
+| 4 | OBS-02 | Low | Category filter does not support partial match. Not required by SRS — treat as a usability improvement. |
 
 ---
 
@@ -96,10 +97,10 @@
 
 The system partially meets the requirements defined in SRS REQ-03. Basic search and filter functions work correctly in isolation, but **the system is NOT ready for release** in its current state for the following reasons:
 
-1. **BUG-02** makes the combined search feature unreliable — results depend on input order rather than AND logic, which is a fundamental design flaw that directly misleads users.
+1. **OBS-03** makes the combined search feature unreliable — results depend on input order rather than AND logic, which is a fundamental design flaw that directly misleads users.
 2. **BUG-01** means the category filter silently violates the case-insensitive rule stated in SRS, creating inconsistent behavior between the two search bars.
 
-**Recommendation**: Fix BUG-02 and BUG-01 before release. Observed-01, 02 can be addressed in a follow-up iteration as a usability improvement.
+**Recommendation**: Fix OBS-03 and BUG-01 before release. OBS-01, OBS-02 can be addressed in a follow-up iteration as a usability improvement.
 
 ---
 
