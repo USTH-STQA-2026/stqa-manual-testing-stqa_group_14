@@ -22,9 +22,7 @@
 | Blocked | 0 |
 | Not Run | 0 |
 | Pass Rate | 62.5% |
-| Total Observation Reports | 1 |
-| Requirement Ambiguities | 1 |
-| Requirement Gaps | 1 |
+| Total Observation Reports | 3 |
 
 ---
 
@@ -32,8 +30,8 @@
 
 | Functional Group | TC | Pass | Fail | Inconclusive | Observation | Evaluation |
 | :---- | :---: | :---: | :---: | :---: | :---: | :---- |
-| Login | 9 | 3 | 2 | 4 | OBS-01, RA-01, RG-01 | Need Improvement (language inconsistency) |
-| View Book List | 7 | 7 | 0 | 0 | 0 | Stable |
+| Login | 9 | 3 | 2 | 4 | OBS-01, OBS-02, OBS-03 | Need Improvement (language inconsistency, SRS ambiguities) |
+| View Book List | 7 | 7 | 0 | 0 | - | Stable |
 
 ---
 
@@ -43,7 +41,7 @@
 | :---- | :---: | :---- |
 | High | 0 | N/A |
 | Medium | 0 | N/A |
-| Low | 1 | OBS-01 |
+| Low | 3 | OBS-01, OBS-02, OBS-03 |
 
 ---
 
@@ -52,7 +50,6 @@
 | Technique | Applied to REQ | Number of TCs | Explanation |
 | :---- | :---- | :---: | :---- |
 | Equivalence Partitioning (EP) | REQ-01, REQ-02 | 16 | Input is divided into valid and invalid classes such as valid/invalid email, correct/incorrect password, user roles, and book status conditions. |
-
 
 ---
 
@@ -74,9 +71,9 @@
 
 | Priority Order | Report ID | Type | Severity | Reason |
 | :---: | :---- | :---- | :---- | :---- |
-| 1 | OBS-01 | Failure | Low | Affects English UI consistency and user experience. |
-| 2 | RA-01 | Requirement Ambiguity | Low | SRS does not define behavior for partially empty fields. |
-| 3 | RG-01 | Requirement Gap | Low | SRS does not define invalid email format validation. |
+| 1 | OBS-01 | Failure - Requirement Gap | Low | Error messages displayed in Vietnamese instead of English, affecting UI consistency. |
+| 2 | OBS-02 | Requirement Ambiguity | Low | SRS does not define behavior for partially empty fields (email only / password only). |
+| 3 | OBS-03 | Requirement Gap | Low | SRS does not define expected behavior for invalid email formats. |
 
 ---
 
