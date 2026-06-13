@@ -772,7 +772,7 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 | Attribute | Details |
 |-----------|---------|
 | **Bug ID** | OBS-06 |
-| **Related TC** | TC-03-13; TC-04-04, TC-04-05, TC-04-07 |
+| **Related TC** | TC-03-13; TC-04-04, TC-04-05 |
 | **Related REQ** | REQ-03, REQ-04 |
 | **Type** | Failure - Requirement Gap |
 | **Severity** | Low |
@@ -789,14 +789,14 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 3. Type `"Technology"`.
 4. Observe the book list.
 
-- TC-04-04, TC-04-05, TC-04-07:
+- TC-04-04, TC-04-05:
 1. Recreate the BUG-04-03, set display language to English after step 2
 2. Perform TC-04-04:
 	1. Refresh the page
 	2. Log in to the account of MEM005
 	3. Set display language to English
 	4. Borrow the book BOOK001
-3. Perform TC-04-06:
+3. Perform these steps (extra case):
 	1. Refresh the page
 	2. Log in to the account of MEM002
 	3. Set display language to English
@@ -821,10 +821,10 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 - It doesn't significantly affect the user experience.
 
 **Evidence:**
-- TC-04-04, TC-04-05, TC-04-07:
+- TC-04-04, TC-04-05:
 ![TC-04-04: After borrowing BOOK001](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_en)
 ![TC-04-05: After borrowing BOOK001](Evidences/REQ-04/evidence/TC-04-05%20BUG(Low)/BOOK001_after_en)
-![TC-04-07: After borrowing BOOK008](Evidences/REQ-04/evidence/TC-04-07%20BUG(Low)/BOOK008_after_en.png)
+![Extra case: After borrowing BOOK008](Evidences/REQ-04/evidence/TC-04-07%20BUG(Low)/BOOK008_after_en.png)
 
 **Suggested fix:**
 Correct the error messages to the English version when the display language is English
