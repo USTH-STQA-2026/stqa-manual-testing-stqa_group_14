@@ -47,8 +47,8 @@
 
 | Severity | Quantity | Bug IDs |
 |----------|----------|---------|
-| High | 5 | BUG-02, BUG-04, BUG-06, BUG-07, BUG-08 |
-| Medium | 3 | BUG-01, BUG-03, BUG-05 |
+| High | 6 | BUG-02, BUG-03, BUG-04, BUG-06, BUG-07, BUG-08 |
+| Medium | 2 | BUG-01,  BUG-05 |
 | Low | 0 | None |
 
 ### Observations / Requirement Issues
