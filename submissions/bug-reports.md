@@ -125,7 +125,7 @@ Correct the error message to "member has been suspended"
 
 | Attribute | Details |
 |-----------|---------|
-| **Mã lỗi** | BUG-02 |
+| **Mã lỗi** | BUG-03 |
 | **Related TC** | TC-04-06 |
 | **Related REQ** | REQ-04 |
 | **Severity** | High |
