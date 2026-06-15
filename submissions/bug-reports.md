@@ -383,7 +383,8 @@ While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully retu
 ![TC-05-05 after return](Evidences/REQ-05/TC-05-after-return%20BUG%20(High).png)
 
 **Suggested fix:**
-
+Add an authorization check before processing any return request to ensure the borrow record belongs to the currently logged-in member.
+Hide or disable the Return Book button for records owned by other members, and reject unauthorized return attempts on the server side with a proper error message.
 ---
 
 ## BUG-07: System rejects valid email but accepts invalid email when creating a new member
