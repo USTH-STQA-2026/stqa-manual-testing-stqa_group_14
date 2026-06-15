@@ -801,7 +801,7 @@ Since SRS does not require bilingual input for the category filter. However this
 P3
 
 **Evidence:**
-- Screenshot: ![TC-03-14](evidence/TC-03-14_OBS.png)
+- Screenshot: ![TC-03-14](evidence/REQ-03/TC-03-14_OBS.png)
 
 **Đề xuất xử lý (Suggested fix):**
 Map English category keywords to their Vietnamese equivalents before filtering (e.g. `"Technology"` → `"Công nghệ"`). This would make the filter consistent with the bilingual interface experience stated in BRD.
