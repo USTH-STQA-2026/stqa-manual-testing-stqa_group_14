@@ -11,7 +11,7 @@
 ## Environment
 
 - Browser: Chrome
-- Operating System: Window, Linux
+- Operating System: Window 11, Linux
 - Web application: Library Management System
 - User Interface Language: Vietnamese, English
 
@@ -44,7 +44,7 @@
 7. Observe the book list.
 
 **Expected result:**
-Both inputs display 8 books in Technology category — same as typing `"Công nghệ"`. SRS REQ-03 states search must be case-insensitive.
+Both inputs display 8 books in Technology category - same as typing `"Công nghệ"`. SRS REQ-03 states search must be case-insensitive.
 
 **Actual result:**
 Both inputs return "No books found". No books shown.
@@ -61,94 +61,19 @@ The category filter still works with exact casing. Core functionality is not bro
 P2
 
 **Evidence:**
-- Screenshot lowecase: ![TC-03-06 lowercase](Evidences/REQ-03/TC-06_lowercase%20(Medium).png)
-- Screenshot uppercase: ![TC-03-06 uppercase](Evidences/REQ-03/TC-06_uppercase%20(Medium).png)
+- Screenshot lowecase: ![TC-03-06 lowercase](evidence/REQ-03/TC-03-06_BUG%20lowercase%20(Medium).png)
+- Screenshot uppercase: ![TC-03-06 uppercase](evidence/REQ-03/TC-03-06_BUG%20uppercase%20(Medium).png)
 
 **Suggested fix:**
 Apply `.toLowerCase()` or equivalent normalization to both the user input and the stored category values before comparison, consistent with how the keyword search bar already handles case. 
 
 ---
 
-## BUG-02: Combined search does not apply AND logic — the last-entered search bar overrides the other, returning wrong results
+## BUG-02: Error message says the member has expired while they are suspended
 
 | Attribute | Details |
 |-----------|---------|
 | **Bug ID** | BUG-02 |
-| **Related TC** | TC-03-11, TC-03-12 |
-| **Related REQ** | REQ-03 |
-| **Severity** | High |
-| **Reported by** | Nguyễn Minh Nhật |
-| **Date reported** | 19/05/2026 |
-| **Status** | Open |
-
-**Preconditions:**
-- Logged in as `ba.nguyen@email.com`
-- On Books tab
-- Data has been reset to seed data
-
-**Steps to reproduce:**
-- TC-03-11 — 1. keyword first
-1. Go to **Books** tab.
-2. Type `"Nguyễn Minh Đức"` in the title/author search bar.
-3. Observe — display 2 books: BOOK001, BOOK009.
-4. Type `"Công nghệ"` in the category filter.
-5. Observe the book list.
-- TC-03-11 — 2. category first
-1. Go to **Books** tab.
-2. Type `"Công nghệ"` in the category filter.
-3. Observe — display 8 Technology books.
-4. Type `"Nguyễn Minh Đức"` in the title/author search bar.
-5. Observe the book list.
-- TC-03-12 — 1. keyword first
-1. Go to **Books** tab.
-2. Type `"Nguyễn Minh Đức"` in the title/author search bar.
-3. Observe — display 2 books: BOOK001, BOOK009.
-4. Type `"Kinh tế"` in the category filter.
-5. Observe the book list.
-- TC-03-12 — 2. category first
-1. Go to **Books** tab.
-2. Type `"Kinh tế"` in the category filter.
-3. Observe — display 3 Economics books: BOOK007, BOOK014, BOOK015.
-4. Type `"Nguyễn Minh Đức"` in the title/author search bar.
-5. Observe the book list.
-
-**Expected result:**
-- TC-03-11: Display exactly 2 books — BOOK001 (Lập trình Flutter cơ bản) and BOOK009 (Nhập môn lập trình Python), authored by Nguyễn Minh Đức AND in Technology category. Result must be identical regardless of input order.
-- TC-03-12: Display "Không tìm thấy sách" — Nguyễn Minh Đức has no books in Economics category. Result must be identical regardless of input order.
-
-**Actual result:**
-- TC-03-11 - 1: Display 8 Technology books — category filter overrides keyword entirely.
-- TC-03-11 - 2: Display 2 books BOOK001, BOOK009 — keyword overrides category (accidentally correct but inconsistent).
-- TC-03-12 - 1: Display 3 Economics books: BOOK007, BOOK014, BOOK015 — category overrides keyword.
-- TC-03-12 - 2: Display 2 books BOOK001, BOOK009 — keyword overrides category, ignores category filter
-
-**Impact:**
-- Combined search is fundamentally broken. Results are unpredictable and depend entirely on input order (based on which bar is entered last).
-- Users cannot narrow down results using both filters simultaneously, which defeats the purpose of having two search bars. Wrong books are returned silently with no error message.
-
-**Severity explanation:** High
-
-Combined filtering is a core use case of REQ-03 (especially when users don't remember the exact the detail of name). The feature returns incorrect results in 3 out of 4 scenarios with no warning to the user. This directly misleads users and violates SRS requirements.
-
-**Priority:**
-P1
-
-**Evidence:**
-- Screenshot match - author 1st: ![TC-03-11 author 1st](Evidences/REQ-03/TC-11_author-first_1%20(High).png) ![TC-03-11_BUG-03](Evidences/REQ-03/TC-11_author-first_2%20(High).png) ![TC-03-11_BUG-03](Evidences/REQ-03/TC-11_author-first_3%20(High).png)
-- Screenshot match - genre 1st: ![TC-03-11 genre 1st](Evidences/REQ-03/TC-11_genre-first%20(High).png)
-- Screenshot mismatch author 1st: ![TC-03-12 author 1st](Evidences/REQ-03/TC-12_author-first%20(High).png)
-- Screenshot mismatch genre 1st: ![TC-03-12 genre 1st](Evidences//REQ-03/TC-12_genre-first%20(High).png)
-
-**Suggested fix:**
-Refactor the search/filter logic to evaluate both conditions simultaneously using AND logic: a book must satisfy both the keyword condition (title or author contains keyword) and the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
-
----
-
-## BUG-03: Error message says the member has expired while they are suspended
-
-| Attribute | Details |
-|-----------|---------|
-| **Bug ID** | BUG-03 |
 | **Related TC** | TC-04-04 |
 | **Related REQ** | REQ-04 |
 | **Severity** | High |
@@ -186,21 +111,21 @@ Refactor the search/filter logic to evaluate both conditions simultaneously usin
 **Priority:** P1
 
 **Evidence:**
-- Before borrowing BOOK001: ![TC-04-04 BOOK001 before](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_before.png)
-- After borrowing BOOK001: ![TC-04-04 BOOK001 after](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_vi.png)
-- Borrow records before borrowing: ![TC-04-04 BR before](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BR_before.png)
-- Borrow records after borrowing: ![TC-04-04 BR after](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BR_after.png)
+- Before borrowing BOOK001: ![TC-04-04 BOOK001 before](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_before.png)
+- After borrowing BOOK001: ![TC-04-04 BOOK001 after](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_vi.png)
+- Borrow records before borrowing: ![TC-04-04 BR before](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BR_before.png)
+- Borrow records after borrowing: ![TC-04-04 BR after](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BR_after.png)
 
 **Suggested fix:**
 Correct the error message to "member has been suspended"
 
 ---
 
-## BUG-04: Users can still borrow a book when their borrow count is 3
+## BUG-03: Users can still borrow a book when their borrow count is 3
 
 | Attribute | Details |
 |-----------|---------|
-| **Mã lỗi** | BUG-04 |
+| **Mã lỗi** | BUG-02 |
 | **Related TC** | TC-04-06 |
 | **Related REQ** | REQ-04 |
 | **Severity** | High |
@@ -228,30 +153,30 @@ Correct the error message to "member has been suspended"
 - Borrow records for that member and books BOOK001 and BOOK002 are created, due date is 14 days later after today, no record created for BOOK005
 
 **Actual result:**
-Member can borrow book BOOK005, no error message is displayed, borrow record for BOOK005 is created
+- Member can borrow book BOOK005, no error message is displayed, borrow record for BOOK005 is created
 
 **Impact:**
-This violates the business requirement of only allowing to borrow up to 3 books at a time
+- This violates the business requirement of only allowing to borrow up to 3 books at a time
 
 **Severity explanation:** High
 - Letting a member borrow more than 3 books violates the business rule
 
 **Evidence:**
-- Before borrowing BOOK005: ![TC-04-06 BOOK005 before](Evidences/REQ-04/evidence/TC-04-06%20BUG/BOOK005_before.png)
-- After borrowing BOOK005: ![TC-04-06](Evidences/REQ-04/evidence/TC-04-06%20BUG/BOOK005_after.png)
-- Borrow records before borrowing: ![TC-04-06 BR before](Evidences/REQ-04/evidence/TC-04-06%20BUG/BR_before.png)
-- Borrow records after borrowing: ![TC-04-06 BR after](Evidences/REQ-04/evidence/TC-04-06%20BUG/BR_after.png)
+- Before borrowing BOOK005: ![TC-04-06 BOOK005 before](evidence/REQ-04/TC-04-06%20BUG/BOOK005_before.png)
+- After borrowing BOOK005: ![TC-04-06](evidence/REQ-04/TC-04-06%20BUG/BOOK005_after.png)
+- Borrow records before borrowing: ![TC-04-06 BR before](evidence/REQ-04/TC-04-06%20BUG/BR_before.png)
+- Borrow records after borrowing: ![TC-04-06 BR after](evidence/REQ-04/TC-04-06%20BUG/BR_after.png)
 
 **Suggested fix:**
 Recheck the condition checking whether the user has reached the borrow limit.
 
 ---
 
-## BUG-05: No overdue warning displayed when returning overdue books
+## BUG-04: No overdue warning displayed when returning overdue books
 
 | Attribute | Details |
 |---|---|
-| Bug ID | BUG-05 |
+| Bug ID | BUG-04 |
 | Related TC | TC-05-02, TC-05-03 |
 | Related REQ | REQ-05 |
 | Severity | Medium |
@@ -299,11 +224,11 @@ However, **no overdue warning message was displayed** when `returnDate >= dueDat
 
 **Evidence:**
 - Before Return
-![TC-05-02 before record](Evidences/REQ-05/TC-02-before-record%20BUG%20(Medium).png)
+![TC-05-02 before record](evidence/REQ-05/TC-02-before-record%20BUG%20(Medium).png)
 
 - After Return
-![TC-05-02 after return](Evidences/REQ-05/TC-02-after-return%20BUG%20(Medium).png)
-![TC-05-02 after book](Evidences/REQ-05/TC-02-after-book%20BUG%20(Medium).png)
+![TC-05-02 after return](evidence/REQ-05/TC-02-after-return%20BUG%20(Medium).png)
+![TC-05-02 after book](evidence/REQ-05/TC-02-after-book%20BUG%20(Medium).png)
 
 **Suggested fix:**
 The system should display an overdue warning message when:
@@ -315,11 +240,11 @@ to ensure compliance with business rules **BR-05** and **BR-06**.
 
 ---
 
-## BUG-06: Member can return books borrowed by another member
+## BUG-05: Member can return books borrowed by another member
 
 | Attribute | Details |
 |---|---|
-| Bug ID | BUG-06 |
+| Bug ID | BUG-05 |
 | Related TC | TC-05-05 |
 | Related REQ | REQ-05, REQ-08 |
 | Severity | High |
@@ -375,12 +300,12 @@ Members are able to manipulate borrow records that belong to other users, which 
 Before Unauthorized Return
 
 Logged in as **MEM003 (Trần Dựa Dẫm)**, but the system displayed borrow records belonging to **MEM002 (Nguyễn Học Bá)** and still allowed the **Return** action.
-![TC-05-05](Evidences/REQ-05/TC-05-before-record%20BUG%20(High).png)
+![TC-05-05](evidence/REQ-05/TC-05-before-record%20BUG%20(High).png)
 
 After Unauthorized Return
 
 While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully returned a borrow record belonging to **MEM002 (Nguyễn Học Bá)**. The record status changed to **Returned**, confirming unauthorized access and modification.
-![TC-05-05 after return](Evidences/REQ-05/TC-05-after-return%20BUG%20(High).png)
+![TC-05-05 after return](evidence/REQ-05/TC-05-after-return%20BUG%20(High).png)
 
 **Suggested fix:**
 
@@ -388,11 +313,11 @@ While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully retu
 Hide or disable the Return Book button for records owned by other members, and reject unauthorized return attempts on the server side with a proper error message.
 ---
 
-## BUG-07: System rejects valid email but accepts invalid email when creating a new member
+## BUG-06: System rejects valid email but accepts invalid email when creating a new member
 
 | Attribute | Details |
 |-----------|---------|
-| **Bug ID** | BUG-07 |
+| **Bug ID** | BUG-06 |
 | **Related TC** | TC-07-01 |
 | **Related REQ** | REQ-07 |
 | **Severity** | High |
@@ -426,20 +351,20 @@ Loss of new members, poor user experience, damage to reputation, allows invalid 
 This bug prevents valid users from being created while still allowing invalid entries, which breaks core member registration flow and undermines data integrity.
 
 **Evidence:**
-![TC-01 REQ-07](Evidences/REQ-07/TC-01%20REQ-07%20BUG%20(High).png)
-![TC-02 REQ-07](Evidences/REQ-07/TC-02%20REQ-07%20BUG%20(High).png)
-![TC-06 REQ-07](Evidences/REQ-07/TC-06%20REQ-07%20BUG%20(High).png)
+![TC-01 REQ-07](evidence/REQ-07/TC-01%20REQ-07%20BUG%20(High).png)
+![TC-02 REQ-07](evidence/REQ-07/TC-02%20REQ-07%20BUG%20(High).png)
+![TC-06 REQ-07](evidence/REQ-07/TC-06%20REQ-07%20BUG%20(High).png)
 
 **Suggested fix:**
 Review and fix the email validation logic in the member creation form, ensure valid email formats are accepted and invalid formats are rejected correctly.
 
 ---
 
-## BUG-08: Member can view other members' tickets (privacy breach)
+## BUG-07: Member can view other members' tickets (privacy breach)
 
 | Attribute | Details |
 |-----------|---------|
-| **Bug ID** | BUG-08 |
+| **Bug ID** | BUG-07 |
 | **Related TC** | TC-08-09 |
 | **Related REQ** | REQ-08 |
 | **Severity** | High |
@@ -448,7 +373,7 @@ Review and fix the email validation logic in the member creation form, ensure va
 | **Status** | Open |
 
 **Preconditions:**
-Log in MEM002 (ba.nguyen) — another member is MEM003 (dam.tran) with BR002
+Log in MEM002 (ba.nguyen) - another member is MEM003 (dam.tran) with BR002
 
 **Steps to reproduce:**
 1. Log in to MEM002
@@ -456,7 +381,7 @@ Log in MEM002 (ba.nguyen) — another member is MEM003 (dam.tran) with BR002
 3. Enter/look up the ID of MEM003
 
 **Expected result:**
-Tickets for MEM003 are not displayed — or the search function by other IDs is unavailable (REQ-08: Tickets of other members cannot be viewed)
+Tickets for MEM003 are not displayed - or the search function by other IDs is unavailable (REQ-08: Tickets of other members cannot be viewed)
 
 **Actual result:**
 Tickets for MEM003 are displayed
@@ -469,7 +394,7 @@ Data privacy breach
 The issue exposes other members' ticket data, creating a serious privacy breach and potential compliance violation.
 
 **Evidence:**
-![TC-09 REQ-08](Evidences/REQ-08/TC-09%20REQ-08%20BUG%20(High).png)
+![TC-09 REQ-08](evidence/REQ-08/TC-09%20REQ-08%20BUG%20(High).png)
 
 **Suggested fix:**
 Server-side / data-layer filtering, improve UI-layer enforcement
@@ -487,7 +412,7 @@ Server-side / data-layer filtering, improve UI-layer enforcement
 
 ---
 
-## OBSERVATION-01 Error message is displayed in Vietnamese instead of English when logging in with a non-existing email/incorrect password
+## OBSERVATION-01: Error message is displayed in Vietnamese instead of English when logging in with a non-existing email/incorrect password
 
 | Attribute | Details |
 |-----------|---------|
@@ -538,8 +463,8 @@ The issue does not prevent users from logging in or accessing system functions. 
 - P2
 
 **Evidence:**
-- TC-01-03 screenshot: ![TC-01-03](Evidences/REQ-01-02/TC-01-03.jpg)
-- TC-01-04 screenshot: ![TC-01-04](Evidences/REQ-01-02/TC-01-04.jpg)
+- TC-01-03 screenshot: ![TC-01-03](evidence/REQ-01-02/TC-01-03.jpg)
+- TC-01-04 screenshot: ![TC-01-04](evidence/REQ-01-02/TC-01-04.jpg)
 
 **Suggested Fix:**
 - Check localization configuration for error message keys
@@ -596,8 +521,8 @@ The ambiguity does not prevent the system from functioning. However, it affects 
 - P3
 
 **Evidence:**
-- TC-01-06 screenshot: ![TC-01-06](Evidences/REQ-01-02/TC-01-06.jpg)
-- TC-01-07 screenshot: ![TC-01-07](Evidences/REQ-01-02/TC-01-07.jpg)
+- TC-01-06 screenshot: ![TC-01-06](evidence/REQ-01-02/TC-01-06.jpg)
+- TC-01-07 screenshot: ![TC-01-07](evidence/REQ-01-02/TC-01-07.jpg)
 
 **Suggested Fix:**
 - Expected validation message when email is empty
@@ -605,7 +530,7 @@ The ambiguity does not prevent the system from functioning. However, it affects 
 
 ---
 
-## OBSERVATION-03: The SRS describes login functionality but does not specify behavior for invalid email format validation. Missing specifications include email without @ and email without . in domain
+## OBSERVATION-03: The SRS describes login functionality but does not specify behavior for invalid email format validation. Missing specifications include email without "@" and email without "." in domain
 
 | Attribute | Details |
 |-----------|---------|
@@ -618,9 +543,7 @@ The ambiguity does not prevent the system from functioning. However, it affects 
 | **Date reported** | 25/05/2026 |
 | **Status** | Open |
 
-**Preconditions:**
-- Application is running
-- User is on the login screen
+**Preconditions:** Same as OBS-02
 
 **Steps to reproduce:**
 - TC-01-08:
@@ -656,8 +579,8 @@ The issue does not affect system operation directly. However, it prevents object
 - P3
 
 **Evidence:**
-- TC-01-08 screenshot: ![TC-01-08](Evidences/REQ-01-02/TC-01-08.jpg)
-- TC-01-09 screenshot: ![TC-01-09](Evidences/REQ-01-02/TC-01-09.jpg)
+- TC-01-08 screenshot: ![TC-01-08](evidence/REQ-01-02/TC-01-08.jpg)
+- TC-01-09 screenshot: ![TC-01-09](evidence/REQ-01-02/TC-01-09.jpg)
 
 **Suggested Fix:**
 - Specify whether email format validation is required
@@ -666,12 +589,12 @@ The issue does not affect system operation directly. However, it prevents object
 
 ---
 
-## OBSERVATION-04: Both search bars do not support diacritic-insensitive input — typing without Vietnamese diacritics returns no results
+## OBSERVATION-04: Both search bars do not support diacritic-insensitive input - typing without Vietnamese diacritics returns no results
 
 | Attribute | Details |
 |-----------|---------|
 | **Bug ID** | OBS-04 |
-| **Related TC** | TC-03-07 |
+| **Related TC** | TC-03-07, TC-03-08 |
 | **Related REQ** | REQ-03 |
 | **Severity** | Low |
 | **Type** | Failure - Requirement Gap |
@@ -695,8 +618,8 @@ The issue does not affect system operation directly. However, it prevents object
 8. Observe the book list.
 
 **Expected result:**
-- Step 4: Display 2 books by Nguyễn Minh Đức — same result as TC-03-02.
-- Step 8: Display 8 Technology books — same result as TC-03-03.
+- Step 4: Display 2 books by Nguyễn Minh Đức - same result as TC-03-02.
+- Step 8: Display 8 Technology books - same result as TC-03-03.
 
 **Actual result:**
 Display "No books found" for both steps. No books shown.
@@ -713,31 +636,28 @@ Display "No books found" for both steps. No books shown.
 P3
 
 **Evidence:**
-- Screenshot: ![TC-03-07 author](Evidences/REQ-03/TC-07_author-without-diacritics%20(Low).png)
-- Screenshot: ![TC-03-07 genre](Evidences/REQ-03/TC-07_genre-without-diacritics%20(Low).png)
+- Screenshot: ![TC-03-07 author](evidence/REQ-03/TC-03-07_OBS_author-without-diacritics%20(Low).png)
+- Screenshot: ![TC-03-08 genre](evidence/REQ-03/TC-03-08_OBS_genre-without-diacritics%20(Low).png)
 
 **Suggested fix:**
 Implement diacritic normalization (e.g. convert `"Nguyen Minh Duc"` → `"Nguyễn Minh Đức"` before comparison) for both search bars. This is a common requirement for Vietnamese-language applications.
 
 ---
 
-## OBSERVATION-05: Category filter does not support partial keyword input — requires full exact category name to return results
+## OBSERVATION-05: Category filter does not support partial keyword input - requires full exact category name to return results
 
 | Attribute | Details |
 |-----------|---------|
 | **Bug ID** | OBS-05 |
-| **Related TC** | TC-03-09 |
+| **Related TC** | TC-03-10 |
 | **Related REQ** | REQ-03 |
 | **Severity** | Low |
-| **Type** | Requirement Gap |
+| **Type** | Failure - Requirement Gap |
 | **Reported by** | Nguyễn Minh Nhật |
 | **Date reported** | 20/05/2026 |
 | **Status** | Open |
 
-**Preconditions:**
-- Logged in as `ba.nguyen@email.com`
-- On Books tab
-- Data has been reset to seed data
+**Preconditions:** Same as OBS-04
 
 **Steps to reproduce:**
 1. Go to **Books** tab.
@@ -752,7 +672,7 @@ Display 8 books whose category contains "Công": BOOK001, BOOK002, BOOK003, BOOK
 Display "No books found". No books shown. Only typing the full exact name `"Công nghệ"` returns results.
 
 **Impact:**
-Category filter behaves inconsistently compared to the title/author search bar — which supports partial input. Users who type partial category names get no results and may assume no books exist in that category.
+Category filter behaves inconsistently compared to the title/author search bar - which supports partial input. Users who type partial category names get no results and may assume no books exist in that category.
 
 **Severity explanation:** Low
 
@@ -762,37 +682,149 @@ SRS does not explicitly require partial match for the category filter. However t
 P3
 
 **Evidence:**
-- Screenshot: ![TC-03-09](Evidences/REQ-03/TC-03-09%20Observed.png)
+- Screenshot: ![TC-03-10](evidence/REQ-03/TC-03-10_OBS.png)
 
 **Suggested fix:**
 Implement partial match logic for the category filter (e.g. use `.contains()` instead of exact match), consistent with how the title/author search bar handles input.
 
 ---
 
-## OBSERVATION-06: Error messages are in Vietnamese while display language is English; Category bar search does not support English
+## OBSERVATION-06: Combined search does not apply AND logic - the last-entered search bar overrides the other, returning wrong results
 
 | Attribute | Details |
 |-----------|---------|
 | **Bug ID** | OBS-06 |
-| **Related TC** | TC-03-13; TC-04-04, TC-04-05 |
-| **Related REQ** | REQ-03, REQ-04 |
+| **Related TC** | TC-03-12, TC-03-13 |
+| **Related REQ** | REQ-03 |
+| **Severity** | High |
+| **Reported by** | Nguyễn Minh Nhật |
+| **Date reported** | 19/05/2026 |
+| **Status** | Open |
+
+**Preconditions:** Same as OBS-04
+
+**Steps to reproduce:**
+- TC-03-12 - 1. keyword first
+1. Go to **Books** tab.
+2. Type `"Nguyễn Minh Đức"` in the title/author search bar.
+3. Observe - display 2 books: BOOK001, BOOK009.
+4. Type `"Công nghệ"` in the category filter.
+5. Observe the book list.
+- TC-03-12 - 2. category first
+1. Go to **Books** tab.
+2. Type `"Công nghệ"` in the category filter.
+3. Observe - display 8 Technology books.
+4. Type `"Nguyễn Minh Đức"` in the title/author search bar.
+5. Observe the book list.
+- TC-03-13 - 1. keyword first
+1. Go to **Books** tab.
+2. Type `"Nguyễn Minh Đức"` in the title/author search bar.
+3. Observe - display 2 books: BOOK001, BOOK009.
+4. Type `"Kinh tế"` in the category filter.
+5. Observe the book list.
+- TC-03-13 - 2. category first
+1. Go to **Books** tab.
+2. Type `"Kinh tế"` in the category filter.
+3. Observe - display 3 Economics books: BOOK007, BOOK014, BOOK015.
+4. Type `"Nguyễn Minh Đức"` in the title/author search bar.
+5. Observe the book list.
+
+**Expected result:**
+- TC-03-12: Display exactly 2 books - BOOK001 (Lập trình Flutter cơ bản) and BOOK009 (Nhập môn lập trình Python), authored by Nguyễn Minh Đức AND in Technology category. Result must be identical regardless of input order.
+- TC-03-13: Display "Không tìm thấy sách" - Nguyễn Minh Đức has no books in Economics category. Result must be identical regardless of input order.
+
+**Actual result:**
+- TC-03-12 - 1: Display 8 Technology books - category filter overrides keyword entirely.
+- TC-03-12 - 2: Display 2 books BOOK001, BOOK009 - keyword overrides category (accidentally correct but inconsistent).
+- TC-03-13 - 1: Display 3 Economics books: BOOK007, BOOK014, BOOK015 - category overrides keyword.
+- TC-03-13 - 2: Display 2 books BOOK001, BOOK009 - keyword overrides category, ignores category filter
+
+**Impact:**
+- Combined search is fundamentally broken. Results are unpredictable and depend entirely on input order (based on which bar is entered last).
+- Users cannot narrow down results using both filters simultaneously, which defeats the purpose of having two search bars. Wrong books are returned silently with no error message.
+- `In practice, this would be classified as a critical bug in a real-world project as it directly violates the principle of AND logic in combined filtering. However, in the context of this course, this is recorded as an observation since SRS REQ-03 does not explicitly specify the expected behavior when both search bars are used simultaneously.`
+
+**Severity explanation:** High
+
+Combined filtering is a core use case of REQ-03 (especially when users don't remember the exact the detail of name). The feature returns incorrect results in 3 out of 4 scenarios with no warning to the user. This directly misleads users and violates SRS requirements.
+
+**Priority:**
+P1
+
+**Evidence:**
+- Screenshot match - author 1st: ![TC-03-12 author 1st](evidence/REQ-03/TC-03-12_OBS_author-first_1%20(High).png) ![TC-03-12](evidence/REQ-03/TC-03-12_OBS_author-first_2%20(High).png) ![TC-03-12](evidence/REQ-03/TC-03-12_OBS_author-first_3%20(High).png)
+- Screenshot match - genre 1st: ![TC-03-12 genre 1st](evidence/REQ-03/TC-03-12_OBS_genre-first%20(High).png)
+- Screenshot mismatch author 1st: ![TC-03-13 author 1st](evidence/REQ-03/TC-03-13_OBS_author-first%20(High).png)
+- Screenshot mismatch genre 1st: ![TC-03-13 genre 1st](evidence/REQ-03/TC-03-13_OBS_genre-first%20(High).png)
+
+**Suggested fix:**
+Refactor the search/filter logic to evaluate both conditions simultaneously using AND logic: a book must satisfy both the keyword condition (title or author contains keyword) and the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
+
+---
+
+## OBSERVATION-07: Category filter does not support English despite system supporting bilingual interface
+
+| Thuộc tính (Attribute) | Chi tiết (Detail) |
+|-----------|---------|
+| **Mã lỗi (Bug ID)** | OBS-07 |
+| **TC liên quan (Related TC)** | TC-03-14 |
+| **REQ liên quan (Related REQ)** | REQ-03 |
+| **Mức độ (Severity)** | Low |
+| **Type** | Failure - Requirement gap |
+| **Người phát hiện (Found by)** | Nguyễn Minh Nhật |
+| **Ngày phát hiện (Date found)** | 21/05/2026 |
+| **Trạng thái (Status)** | Open |
+
+**Preconditions:** Same as OBS-04
+
+**Steps to reproduce:**
+1. Go to **Books** tab.
+2. Switch interface language to English.
+3. Click on the category filter bar.
+4. Type `"Technology"`.
+5. Observe the book list.
+
+**Expected result:**
+Display all books whose category is "Công nghệ" (since the interface is set to English, the English equivalent "Technology" should be recognized by the filter).
+
+**Actual result:**
+Display "No books found". No books shown.
+
+**Impact:**
+Users who switch the interface to English and type category names in English get no results despite matching books existing in the system. 
+
+**Severity explanation:** Low
+
+Since SRS does not require bilingual input for the category filter. However this is inconsistent with the bilingual support mentioned in BRD. This is reported as an observation for future consideration.
+
+**Priority:**
+P3
+
+**Evidence:**
+- Screenshot: ![TC-03-14](evidence/TC-03-14_OBS.png)
+
+**Đề xuất xử lý (Suggested fix):**
+Map English category keywords to their Vietnamese equivalents before filtering (e.g. `"Technology"` → `"Công nghệ"`). This would make the filter consistent with the bilingual interface experience stated in BRD.
+
+---
+
+## OBSERVATION-08: Error messages are in Vietnamese while display language is English
+
+| Attribute | Details |
+|-----------|---------|
+| **Bug ID** | OBS-08 |
+| **Related TC** | TC-04-04, TC-04-05 |
+| **Related REQ** | REQ-04 |
 | **Type** | Failure - Requirement Gap |
 | **Severity** | Low |
-| **Reported by** | Trần Thị Thu Trang, Nguyễn Minh Nhật |
+| **Reported by** | Trần Thị Thu Trang |
 | **Date reported** | 23/05/2026 |
 | **Status** | Open |
 
-**Preconditions:**
+**Preconditions:** Refer to each individual test case mentioned below
 
 **Steps to reproduce:**
-- TC-03-13:
-1. Go to **Books** tab.
-2. Switch to English mode
-3. Type `"Technology"`.
-4. Observe the book list.
-
-- TC-04-04, TC-04-05:
-1. Recreate the BUG-04-03, set display language to English after step 2
+1. Recreate the BUG-02, set display language to English after step 2
 2. Perform TC-04-04:
 	1. Refresh the page
 	2. Log in to the account of MEM005
@@ -808,11 +840,9 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 	7. Borrow the book BOOK008
 
 **Expected result:**
-- Display 8 books in Technology category
 - Error messages are in English
 
 **Actual result:**
-- No books found
 - Error messages are in Vietnamese
 
 **Impact:**
@@ -823,10 +853,9 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 - It doesn't significantly affect the user experience.
 
 **Evidence:**
-- TC-04-04, TC-04-05:
-![TC-04-04: After borrowing BOOK001](Evidences/REQ-04/evidence/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_en)
-![TC-04-05: After borrowing BOOK001](Evidences/REQ-04/evidence/TC-04-05%20BUG(Low)/BOOK001_after_en)
-![Extra case: After borrowing BOOK008](Evidences/REQ-04/evidence/TC-04-07%20BUG(Low)/BOOK008_after_en.png)
+![TC-04-04: After borrowing BOOK001](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_en.png)
+![TC-04-05: After borrowing BOOK001](evidence/REQ-04/TC-04-05%20BUG(Low)/BOOK001_after_en.png)
+![Extra case: After borrowing BOOK008](evidence/REQ-04/TC-04-07%20BUG(Low)/BOOK008_after_en.png)
 
 **Suggested fix:**
 Correct the error messages to the English version when the display language is English
