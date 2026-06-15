@@ -361,6 +361,6 @@ We used decision tables because:
 | Borrow book | 6 | REQ-04 | EP, BVA, Decision Table |
 | Return Book | 5 | REQ-05, REQ-08 | EP, BVA, Decision Table |
 | Overdue Handling | 5 | REQ-06 | EP, BVA, Decision Table |
-| Members | 9 | REQ-07 | EP, BVA, Decision Table |
-| Search borrow tickets | 6 | REQ-08 | EP, Decision Table |
-| **Total** | 61 | REQ-01 → REQ-08 | EP, BVA, Decision Table |
+| Members | 10 | REQ-07 | EP, BVA, Decision Table |
+| Search borrow tickets | 7 | REQ-08 | EP, Decision Table |
+| **Total** | 63 | REQ-01 → REQ-08 | EP, BVA, Decision Table |
