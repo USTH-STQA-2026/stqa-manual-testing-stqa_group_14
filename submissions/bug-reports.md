@@ -323,7 +323,7 @@ to ensure compliance with business rules **BR-05** and **BR-06**.
 | Related TC | TC-05-05 |
 | Related REQ | REQ-05, REQ-08 |
 | Severity | High |
-| Reported by | Vũ Đức Quang, Nguyễn Hải Minh |
+| Reported by | Vũ Đức Quang |
 | Date reported | 27/05/2026 |
 | Status | Open |
 
