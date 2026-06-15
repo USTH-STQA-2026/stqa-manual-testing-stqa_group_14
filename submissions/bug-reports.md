@@ -384,8 +384,7 @@ While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully retu
 
 **Suggested fix:**
 
-Add an authorization check before processing any return request to ensure the borrow record belongs to the currently logged-in member.
-
+- Add an authorization check before processing any return request to ensure the borrow record belongs to the currently logged-in member.
 Hide or disable the Return Book button for records owned by other members, and reject unauthorized return attempts on the server side with a proper error message.
 ---
 
