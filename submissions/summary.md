@@ -19,13 +19,13 @@
 
 | Metric | Value |
 |--------|-------|
-| Total executed test cases | 61 |
-| Pass | 39 |
-| Fail | 16 |
-| Inconclusive | 6 |
+| Total executed test cases | 63 |
+| Pass | 41 |
+| Fail | 15 |
+| Inconclusive | 7 |
 | Blocked | 0 |
 | Not Run | 0 |
-| **Pass Rate** | **63.93%** |
+| **Pass Rate** | **65.08%** |
 | **Confirmed Bugs** | **8** |
 | **Observations / Requirement Issues** | **6** |
 
@@ -35,13 +35,13 @@
 |------------------|----|------|------|--------------|-------------------|------------|
 | REQ-01 - Login | 9 | 3 | 2 | 4 | 0 bug, 3 observations | Partially Passed - Basic login flows work, but error messages and several input cases are not clearly specified in the SRS. |
 | REQ-02 - View Book List | 7 | 7 | 0 | 0 | 0 | Passed - Book list display, book information, and status updates work correctly in the tested cases. |
-| REQ-03 - Search & Filter Books | 12 | 7 | 3 | 2 | 2 bugs, 3 observations | Needs Improvement - Basic search works, but category filtering and combined search do not fully meet the requirements. |
-| REQ-04 - Borrow Book | 7 | 3 | 4 | 0 | 2 bugs, 1 observation | Needs Improvement - Basic borrowing can work, but the borrow-limit rule and member-status messages still contain defects. |
+| REQ-03 - Search & Filter Books | 14 | 7 | 4 | 3 | 2 bugs, 3 observations | Needs Improvement - Basic search works, but category filtering and combined search do not fully meet the requirements. |
+| REQ-04 - Borrow Book | 6 | 4 | 2 | 0 | 2 bugs, 1 observation | Needs Improvement - Basic borrowing can work, but the borrow-limit rule and member-status messages still contain defects. |
 | REQ-05 - Return Book | 5 | 2 | 3 | 0 | 2 bugs | Needs Improvement - Valid return cases can succeed, but overdue warnings and borrow-record ownership control are incorrect. |
 | REQ-06 - Overdue Handling | 5 | 5 | 0 | 0 | 0 | Passed - The overdue checking function works correctly for before-due, on-due, and after-due date conditions. |
-| REQ-07 - Member Management | 9 | 6 | 3 | 0 | 1 bug | Needs Improvement - Member-tab permission and several validation cases work, but email validation during member creation is seriously flawed. |
+| REQ-07 - Member Management | 10 | 7 | 3 | 0 | 1 bug | Needs Improvement - Member-tab permission and several validation cases work, but email validation during member creation is seriously flawed. |
 | REQ-08 - Borrow/Return Records | 7 | 6 | 1 | 0 | 1 bug | Needs Improvement - Librarian access works as expected, but members can still view tickets belonging to other members. |
-| **Total** | **61** | **39** | **16** | **6** | **8 bugs, 6 observations** | **System is not ready for release.** |
+| **Total** | **63** | **41** | **15** | **7** | **8 bugs, 6 observations** | **System is not ready for release.** |
 
 ### Bug Distribution by Severity
 
@@ -122,7 +122,7 @@
 **High**
 - **BUG-04 - A member can still borrow a book when their current borrow count is already 3.** The system creates a new borrow record and displays no borrow-limit error, violating the maximum-borrow business rule.
 
-**Medium**
+**High**
 - **BUG-03 - Incorrect error reason is displayed for suspended members.** A suspended member is correctly prevented from borrowing, but the system displays the reason as expired instead of suspended.
 
 **Observations / Requirement issues**
@@ -170,9 +170,9 @@ The priority is based on severity, impact on business rules, security/privacy ri
 | 3 | BUG-04 | High | The maximum limit of 3 borrowed books is an important business rule, but the system still allows members to borrow beyond the limit. |
 | 4 | BUG-07 | High | Incorrect email validation blocks valid members and allows invalid data into the system. |
 | 5 | BUG-02 | High | Combined search is a core REQ-03 function, but results are incorrect and depend on input order. |
-| 6 | BUG-05 | Medium | Missing overdue warnings violate business rules and may mislead users during overdue returns. |
-| 7 | BUG-01 | Medium | Category filtering is not case-insensitive, violating the SRS and creating inconsistent search behavior. |
-| 8 | BUG-03 | Medium | Incorrect suspended/expired messaging does not change data, but it misleads users and should be corrected to match the business rule. |
+| 6 | BUG-03 | High | Mixing up between suspension and expiration violates the business rule. |
+| 7 | BUG-05 | Medium | Missing overdue warnings violate business rules and may mislead users during overdue returns. |
+| 8 | BUG-01 | Medium | Category filtering is not case-insensitive, violating the SRS and creating inconsistent search behavior. |
 
 After fixing High and Medium severity bugs, the team should retest at least the related test cases: TC-03-06, TC-03-11, TC-03-12, TC-04-04, TC-04-06, TC-05-02, TC-05-03, TC-05-05, TC-07-01, TC-07-03, TC-07-06, and TC-08-03.
 
