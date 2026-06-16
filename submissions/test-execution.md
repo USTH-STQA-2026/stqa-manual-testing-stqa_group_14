@@ -90,21 +90,21 @@
 | TC-07-04 | Members | Reject duplicate email | System rejected (email exists) | Pass |[View Evidence](evidence/REQ-07/TC-04%20REQ-07.png)| - |
 | TC-07-05 | Members | Member does not see "Add member" tab | Tab not displayed / not accessible | Pass |[View Evidence](evidence/REQ-07/TC-05%20REQ-07.png) | - |
 | TC-07-06 | Members | Create member with a@b.co successfully | System rejected (email invalid) | Fail |[View Evidence](evidence/REQ-07/TC-06%20REQ-07%20BUG%20(High).png) | BUG-07|
-| TC-07-14 | Members | Reject email with multiple @ or .. | System rejected (email invalid) | Pass |[View Evidence](evidence/REQ-07/TC-14%20REQ-07.png)| - |
-| TC-07-15 | Members | Reject blank username | System rejected (Username blank) | Pass | [View Evidence](evidence/REQ-07/TC-15%20REQ-07.png)| -|
-| TC-07-16 | Members | Reject wrong phone number | System rejected (Invalid phone number) | Pass |[View Evidence](evidence/REQ-07/TC-16%20REQ-07.png) | - |
-| TC-07-17 | Members | Librarian can view all members across categories (Active, Suspended, Expired) | Librarian saw all members appear in the "Member" list, categorized correctly | Pass | N/A | - |
+| TC-07-07 | Members | Reject email with multiple @ or .. | System rejected (email invalid) | Pass |[View Evidence](evidence/REQ-07/TC-14%20REQ-07.png)| - |
+| TC-07-08 | Members | Reject blank username | System rejected (Username blank) | Pass | [View Evidence](evidence/REQ-07/TC-15%20REQ-07.png)| -|
+| TC-07-09 | Members | Reject wrong phone number | System rejected (Invalid phone number) | Pass |[View Evidence](evidence/REQ-07/TC-16%20REQ-07.png) | - |
+| TC-07-10 | Members | Librarian can view all members across categories (Active, Suspended, Expired) | Librarian saw all members appear in the "Member" list, categorized correctly | Pass | N/A | - |
 ---
 ## REQ-08: Search borrow tickets
 | TC ID | Functional Group | Expected Result (Summary) | Actual Result | Status | Evidence | Issue |
 |---|---|---|---|---|---|---|
-| TC-08-07 | Borrow/Return | Display BR001–BR005 (Librarian) | Display all tickets | Pass |[View Evidence](evidence/REQ-08/TC-07%20REQ-08.png)| - |
-| TC-08-08| Borrow/Return | Member sees only BR001 & BR004 | Only see BR001 & BR004 | Pass |[View Evidence](evidence/REQ-08/TC-08%20REQ-08.png) | - |
-| TC-08-09 | Borrow/Return | Member cannot view other ticket | MEM003 tickets displayed | Fail |[View Evidence](evidence/REQ-08/TC-09%20REQ-08%20BUG%20(High).png) | BUG-07 |
-| TC-08-10 | Borrow/Return | View BR001 details completely | Display all information | Pass |[View Evidence](evidence/REQ-08/TC-10-11-12-13%20REQ-08.png) | - |
-| TC-08-11 | Borrow/Return | BR002 displays "Returned" | Displays "Returned" | Pass |[View Evidence](evidence/REQ-08/TC-10-11-12-13%20REQ-08.png) | - |
-| TC-08-12 | Borrow/Return | Check Overdue marks BR001 | BR001 changes to "Overdue" if expired | Pass |[View Evidence](evidence/REQ-08/TC-10-11-12-13%20REQ-08.png)| - |
-| TC-08-13 | Borrow/Return | BR002 still "Returned" after check | BR002 still displays "Returned" | Pass |[View Evidence](evidence/REQ-08/TC-10-11-12-13%20REQ-08.png)| - |
+| TC-08-01 | Borrow/Return | Display BR001–BR005 (Librarian) | Display all tickets | Pass |[View Evidence](evidence/REQ-08/TC-07%20REQ-08.png)| - |
+| TC-08-02| Borrow/Return | Member sees only BR001 & BR004 | Only see BR001 & BR004 | Pass |[View Evidence](evidence/REQ-08/TC-08%20REQ-08.png) | - |
+| TC-08-03 | Borrow/Return | Member cannot view other ticket | MEM003 tickets displayed | Fail |[View Evidence](evidence/REQ-08/TC-09%20REQ-08%20BUG%20(High).png) | BUG-07 |
+| TC-08-04 | Borrow/Return | View BR001 details completely | Display all information | Pass |[View Evidence](evidence/REQ-08/TC-10-11-12-13%20REQ-08.png) | - |
+| TC-08-05 | Borrow/Return | BR002 displays "Returned" | Displays "Returned" | Pass |[View Evidence](evidence/REQ-08/TC-10-11-12-13%20REQ-08.png) | - |
+| TC-08-06 | Borrow/Return | Check Overdue marks BR001 | BR001 changes to "Overdue" if expired | Pass |[View Evidence](evidence/REQ-08/TC-10-11-12-13%20REQ-08.png)| - |
+| TC-08-07 | Borrow/Return | BR002 still "Returned" after check | BR002 still displays "Returned" | Pass |[View Evidence](evidence/REQ-08/TC-10-11-12-13%20REQ-08.png)| - |
 ---
 # SUMMARY TABLE
 

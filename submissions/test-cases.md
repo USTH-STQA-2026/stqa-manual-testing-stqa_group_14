@@ -330,10 +330,10 @@ We used decision tables because:
 | TC-07-04 | Add member with duplicate email | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter existing email (ba.nguyen@email.com)<br>4. Confirm | Email: ba.nguyen@email.com | System rejects, displays email already exists message | REQ-07 | EP, Decision Table |
 | TC-07-05 | Check Member permission cannot see Members tab | Login with Member account (ba.nguyen) | 1. Login with MEM002<br>2. Observe displayed tabs | (no additional input needed) | "Members" tab does not appear or is not accessible | REQ-07 | EP, Decision Table |
 | TC-07-06 | Shortest valid email (BVA) | Login as Librarian | 1. Go to Members<br>2. Click Add<br>3. Enter email a@b.co<br>4. Confirm | Email: a@b.co<br>Phone: 0900000001 | Member is created successfully | REQ-07 | BVA, Decision Table |
-| TC-07-14 | Add member with email having multiple @ or consecutive dots | Login as Librarian | 1. Click Add member<br>2. Enter email admin@@vn.com or admin@vn..com<br>3. Confirm | Email: admin@@vn.com / admin@vn..com | System rejects, displays email error message | REQ-07 | EP, Decision Table |
-| TC-07-15 | Add member with blank username | Login as Librarian | 1. Click Add member<br>2. Leave Username blank<br>3. Confirm | Username: (blank), Email: admin@vn.com | System rejects, displays "Username blank" message | REQ-07 | EP, Decision Table |
-| TC-07-16 | Phone number not start with 0 | Log in as Librarian | 1. Go to Members tab<br>2. Click "Add member"<br>3. Fill in information<br>4. Confirm | Username: Stranger, Email: admin@vn.com, Phone number: 9839219743 | System rejects, displays "Phone number invalid" message| REQ-07 | EP, Decision Table |
-| TC-07-17 | Check all available members | Login with Librarian account | 1. Go to Members tab<br>2. View all categories: Active members, Suspened members, Expired members| (no additional input needed) | Librarian see all members appear in "Member" list | REQ-07 | EP, Decision Table |
+| TC-07-07 | Add member with email having multiple @ or consecutive dots | Login as Librarian | 1. Click Add member<br>2. Enter email admin@@vn.com or admin@vn..com<br>3. Confirm | Email: admin@@vn.com / admin@vn..com | System rejects, displays email error message | REQ-07 | EP, Decision Table |
+| TC-07-08 | Add member with blank username | Login as Librarian | 1. Click Add member<br>2. Leave Username blank<br>3. Confirm | Username: (blank), Email: admin@vn.com | System rejects, displays "Username blank" message | REQ-07 | EP, Decision Table |
+| TC-07-09 | Phone number not start with 0 | Log in as Librarian | 1. Go to Members tab<br>2. Click "Add member"<br>3. Fill in information<br>4. Confirm | Username: Stranger, Email: admin@vn.com, Phone number: 9839219743 | System rejects, displays "Phone number invalid" message| REQ-07 | EP, Decision Table |
+| TC-07-10 | Check all available members | Login with Librarian account | 1. Go to Members tab<br>2. View all categories: Active members, Suspened members, Expired members| (no additional input needed) | Librarian see all members appear in "Member" list | REQ-07 | EP, Decision Table |
 
 ---
 
@@ -341,13 +341,13 @@ We used decision tables because:
 
 | TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
 |-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
-| TC-08-07 | Display borrow ticket list (Librarian) | Login as Librarian | 1. Login as Librarian<br>2. Go to Borrow/Return tab<br>3. Observe list | (no data input needed) | Display BR001–BR005 for all members | REQ-08 | EP, Decision Table |
-| TC-08-08 | Display borrow ticket for Member (only theirs) | Login as MEM002 | 1. Login as MEM002<br>2. Go to Borrow/Return<br>3. Observe list | (MEM002) | Only see BR001 and BR004 (belonging to MEM002) | REQ-08 | EP, Decision Table |
-| TC-08-09 | Search borrow ticket of another member (not allowed) | Login as MEM002 | 1. Login as MEM002<br>2. Go to Borrow/Return<br>3. Search for ID MEM003 | Search for MEM003 | Does not display MEM003 tickets; or displays "Not found" message | REQ-08 | EP, Decision Table |
-| TC-08-10 | View details of ticket BR001 | Login as Librarian | 1. Login as Librarian<br>2. Go to Borrow/Return<br>3. Open BR001 | BR001 | Display complete: code, book, borrow date, return date, status | REQ-08 | EP, Decision Table |
-| TC-08-11 | View ticket BR002 (returned) | Login as Librarian or MEM003 | 1. Login<br>2. Go to Borrow/Return<br>3. Open BR002 | BR002 (returned 20/08/2024) | Status displays "Returned" | REQ-08 | EP, Decision Table |
-| TC-08-12 | Check overdue marking (Check Overdue) | Login as Librarian | 1. Login as Librarian<br>2. Click "Check Overdue"<br>3. Go to Borrow/Return, open BR001 | BR001 (expiry 15/09/2024) | BR001 status is changed to "Overdue" if expired | REQ-06, REQ-08 | EP, Decision Table |
-| TC-08-13 | Check BR002 displays correct status after check overdue | Login as Librarian | 1. Login as Librarian<br>2. Check Overdue<br>3. Open BR002 | BR002 (returned) | BR002 still displays "Returned" | REQ-08 | EP, Decision Table |
+| TC-08-01 | Display borrow ticket list (Librarian) | Login as Librarian | 1. Login as Librarian<br>2. Go to Borrow/Return tab<br>3. Observe list | (no data input needed) | Display BR001–BR005 for all members | REQ-08 | EP, Decision Table |
+| TC-08-02 | Display borrow ticket for Member (only theirs) | Login as MEM002 | 1. Login as MEM002<br>2. Go to Borrow/Return<br>3. Observe list | (MEM002) | Only see BR001 and BR004 (belonging to MEM002) | REQ-08 | EP, Decision Table |
+| TC-08-03 | Search borrow ticket of another member (not allowed) | Login as MEM002 | 1. Login as MEM002<br>2. Go to Borrow/Return<br>3. Search for ID MEM003 | Search for MEM003 | Does not display MEM003 tickets; or displays "Not found" message | REQ-08 | EP, Decision Table |
+| TC-08-04 | View details of ticket BR001 | Login as Librarian | 1. Login as Librarian<br>2. Go to Borrow/Return<br>3. Open BR001 | BR001 | Display complete: code, book, borrow date, return date, status | REQ-08 | EP, Decision Table |
+| TC-08-05 | View ticket BR002 (returned) | Login as Librarian or MEM003 | 1. Login<br>2. Go to Borrow/Return<br>3. Open BR002 | BR002 (returned 20/08/2024) | Status displays "Returned" | REQ-08 | EP, Decision Table |
+| TC-08-06 | Check overdue marking (Check Overdue) | Login as Librarian | 1. Login as Librarian<br>2. Click "Check Overdue"<br>3. Go to Borrow/Return, open BR001 | BR001 (expiry 15/09/2024) | BR001 status is changed to "Overdue" if expired | REQ-06, REQ-08 | EP, Decision Table |
+| TC-08-07 | Check BR002 displays correct status after check overdue | Login as Librarian | 1. Login as Librarian<br>2. Check Overdue<br>3. Open BR002 | BR002 (returned) | BR002 still displays "Returned" | REQ-08 | EP, Decision Table |
 
 ---
 
