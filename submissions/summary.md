@@ -35,7 +35,7 @@
 |------------------|----|------|------|--------------|-------------------|------------|
 | REQ-01 - Login | 9 | 3 | 2 | 4 | 0 bug, 3 observations | Partially Passed - Basic login flows work, but error messages and several input cases are not clearly specified in the SRS. |
 | REQ-02 - View Book List | 7 | 7 | 0 | 0 | 0 | Passed - Book list display, book information, and status updates work correctly in the tested cases. |
-| REQ-03 - Search & Filter Books | 14 | 7 | 4 | 3 | 2 bugs, 3 observations | Needs Improvement - Basic search works, but category filtering and combined search do not fully meet the requirements. |
+| REQ-03 - Search & Filter Books | 14 | 7 | 4 | 3 | 1 bugs, 4 observations | Needs Improvement - Basic search works, but category filtering and combined search do not fully meet the requirements. |
 | REQ-04 - Borrow Book | 6 | 4 | 2 | 0 | 2 bugs, 1 observation | Needs Improvement - Basic borrowing can work, but the borrow-limit rule and member-status messages still contain defects. |
 | REQ-05 - Return Book | 5 | 2 | 3 | 0 | 2 bugs | Needs Improvement - Valid return cases can succeed, but overdue warnings and borrow-record ownership control are incorrect. |
 | REQ-06 - Overdue Handling | 5 | 5 | 0 | 0 | 0 | Passed - The overdue checking function works correctly for before-due, on-due, and after-due date conditions. |
