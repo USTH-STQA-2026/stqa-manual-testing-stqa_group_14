@@ -67,7 +67,7 @@
 |-----------|----------------------|-------------|
 | Equivalence Partitioning (EP) | REQ-01 to REQ-08 | Inputs were divided into valid and invalid partitions, including login accounts, roles, book status, search keywords, categories, member status, borrow-record status, email, phone number, and access permissions. |
 | Boundary Value Analysis (BVA) | REQ-04, REQ-05, REQ-06, REQ-07 | Boundary values were tested, such as borrowed-book count equal to 3, current date equal to due date, shortest valid email, and email/phone formats near valid and invalid boundaries. |
-| Decision Table | REQ-01, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08 | Used to combine multiple input conditions, especially for login, combined search, borrowing conditions, return-book behavior, and permission to view borrow records. |
+| Decision Table | REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08 | Used to combine multiple input conditions, especially for login, combined search, borrowing conditions, return-book behavior, and permission to view borrow records. |
 | Access Control Testing | REQ-05, REQ-07, REQ-08 | Used to verify permission boundaries between librarian and member roles, including whether members can access the Members tab, view other members' tickets, or return books owned by other members. |
 | Negative Testing | REQ-01, REQ-03, REQ-04, REQ-05, REQ-07, REQ-08 | Used to test invalid inputs, non-existing accounts, no-result keywords, unavailable books, invalid members, records not owned by the current user, and invalid member information. |
 
