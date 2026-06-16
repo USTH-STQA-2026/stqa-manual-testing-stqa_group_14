@@ -3,12 +3,10 @@
 |---|---|
 | **Team** |  14 |
 | **Execution Date** | 23/05/2026 |
-| **Browser** | Chrome Version 148 |
+| **Browser** | Chrome |
 | **Operating System** | Windows 10 |
 
 ---
-## Bước 3: Test Execution
-
 ## REQ-01: Login
 | TC ID | Functional Group | Expected Result (Summary) | Actual Result | Status | Evidence | Issue |
 |---|---|---|---|---|---|---|
