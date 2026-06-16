@@ -26,8 +26,8 @@
 | Blocked | 0 |
 | Not Run | 0 |
 | **Pass Rate** | **65.08%** |
-| **Confirmed Bugs** | **8** |
-| **Observations / Requirement Issues** | **6** |
+| **Confirmed Bugs** | **7** |
+| **Observations / Requirement Issues** | **8** |
 
 ### Result by Functional Group
 
@@ -41,23 +41,23 @@
 | REQ-06 - Overdue Handling | 5 | 5 | 0 | 0 | 0 | Passed - The overdue checking function works correctly for before-due, on-due, and after-due date conditions. |
 | REQ-07 - Member Management | 10 | 7 | 3 | 0 | 1 bug | Needs Improvement - Member-tab permission and several validation cases work, but email validation during member creation is seriously flawed. |
 | REQ-08 - Borrow/Return Records | 7 | 6 | 1 | 0 | 1 bug | Needs Improvement - Librarian access works as expected, but members can still view tickets belonging to other members. |
-| **Total** | **63** | **41** | **15** | **7** | **8 bugs, 6 observations** | **System is not ready for release.** |
+| **Total** | **63** | **41** | **15** | **7** | **7 bugs, 8 observations** | **System is not ready for release.** |
 
 ### Bug Distribution by Severity
 
 | Severity | Quantity | Bug IDs |
 |----------|----------|---------|
-| High | 6 | BUG-02, BUG-03, BUG-04, BUG-06, BUG-07, BUG-08 |
-| Medium | 2 | BUG-01,  BUG-05 |
+| High | 5 | BUG-02, BUG-03, BUG-05, BUG-06, BUG-07 |
+| Medium | 2 | BUG-01,  BUG-04 |
 | Low | 0 | None |
 
 ### Observations / Requirement Issues
 
 | Type | Quantity | IDs |
 |------|----------|-----|
-| Localization / UI consistency | 2 | OBS-01, OBS-06 |
+| Localization / UI consistency | 3 | OBS-01, OBS-07, OBS-08 |
 | Requirement Ambiguity | 1 | OBS-02 |
-| Requirement Gap | 3 | OBS-03, OBS-04, OBS-05 |
+| Requirement Gap | 4 | OBS-03, OBS-04, OBS-05, OBS-06 |
 
 ---
 
@@ -106,35 +106,33 @@
 
 #### REQ-03 - Search & Filter Books
 
-**High**
-- **BUG-02 - Combined search does not apply AND logic.** When both keyword and category are entered, the system does not apply both filters at the same time. The result depends on the search field entered last, causing users to receive incorrect results.
-
 **Medium**
 - **BUG-01 - Category filter is case-sensitive.** The category filter does not comply with the case-insensitive requirement in REQ-03, while the keyword search bar handles case variations correctly.
 
 **Observations / Requirement issues**
 - **OBS-04 - Search does not support Vietnamese diacritic-insensitive input.** Inputs without diacritics, such as `Nguyen Minh Duc` or `Cong nghe`, return no results.
 - **OBS-05 - Category filter does not support partial match.** The category field requires the full exact category name, which is inconsistent with the keyword search bar.
-- **OBS-06 - Category bar does not support English category input.** When the interface is in English, entering `Technology` does not return the corresponding book list.
+- **OBS-06 - Combined search does not apply AND logic.** When both keyword and category are entered, the system does not apply both filters at the same time. The result depends on the search field entered last, causing users to receive incorrect results.
+- **OBS-07 - Category bar does not support English category input.** When the interface is in English, entering `Technology` does not return the corresponding book list.
 
 #### REQ-04 - Borrow Book
 
 **High**
-- **BUG-04 - A member can still borrow a book when their current borrow count is already 3.** The system creates a new borrow record and displays no borrow-limit error, violating the maximum-borrow business rule.
+- **BUG-03 - A member can still borrow a book when their current borrow count is already 3.** The system creates a new borrow record and displays no borrow-limit error, violating the maximum-borrow business rule.
 
 **High**
-- **BUG-03 - Incorrect error reason is displayed for suspended members.** A suspended member is correctly prevented from borrowing, but the system displays the reason as expired instead of suspended.
+- **BUG-02 - Incorrect error reason is displayed for suspended members.** A suspended member is correctly prevented from borrowing, but the system displays the reason as expired instead of suspended.
 
 **Observations / Requirement issues**
-- **OBS-06 - Some error messages remain in Vietnamese when the display language is English.** This affects language consistency in borrowing workflows.
+- **OBS-08 - Some error messages remain in Vietnamese when the display language is English.** This affects language consistency in borrowing workflows.
 
 #### REQ-05 - Return Book
 
 **High**
-- **BUG-06 - A member can return another member's borrowed book.** The system allows members to view and act on borrow records that do not belong to them, creating security, data ownership, and book-status integrity risks.
+- **BUG-05 - A member can return another member's borrowed book.** The system allows members to view and act on borrow records that do not belong to them, creating security, data ownership, and book-status integrity risks.
 
 **Medium**
-- **BUG-05 - No overdue warning is displayed when returning overdue books or books on the due date.** The return action succeeds, but the system does not show the required overdue warning according to BR-05 and BR-06.
+- **BUG-04 - No overdue warning is displayed when returning overdue books or books on the due date.** The return action succeeds, but the system does not show the required overdue warning according to BR-05 and BR-06.
 
 #### REQ-06 - Overdue Handling
 
@@ -147,15 +145,15 @@
 #### REQ-07 - Member Management
 
 **High**
-- **BUG-07 - Email validation is incorrect when creating members.** The system rejects valid emails but accepts some invalid emails, directly affecting member creation and data quality.
+- **BUG-06 - Email validation is incorrect when creating members.** The system rejects valid emails but accepts some invalid emails, directly affecting member creation and data quality.
 
 #### REQ-08 - Borrow/Return Records
 
 **High**
-- **BUG-08 - Members can view tickets belonging to other members.** This is a privacy and access-control issue because members can access borrow-ticket information that does not belong to them.
+- **BUG-07 - Members can view tickets belonging to other members.** This is a privacy and access-control issue because members can access borrow-ticket information that does not belong to them.
 
 **Cross-related issue**
-- **BUG-06** also affects REQ-08 because a member can not only view another member's record but also perform the return action on that record.
+- **BUG-05** also affects REQ-08 because a member can not only view another member's record but also perform the return action on that record.
 
 ---
 
@@ -165,16 +163,15 @@ The priority is based on severity, impact on business rules, security/privacy ri
 
 | Priority | Bug | Severity | Reason |
 |----------|-----|----------|--------|
-| 1 | BUG-08 | High | Members can view borrow tickets belonging to other members, causing data exposure and violating access control. |
-| 2 | BUG-06 | High | Members can return books borrowed by other users, causing unauthorized changes to borrow records and book status. |
-| 3 | BUG-04 | High | The maximum limit of 3 borrowed books is an important business rule, but the system still allows members to borrow beyond the limit. |
-| 4 | BUG-07 | High | Incorrect email validation blocks valid members and allows invalid data into the system. |
-| 5 | BUG-02 | High | Combined search is a core REQ-03 function, but results are incorrect and depend on input order. |
-| 6 | BUG-03 | High | Mixing up between suspension and expiration violates the business rule. |
-| 7 | BUG-05 | Medium | Missing overdue warnings violate business rules and may mislead users during overdue returns. |
-| 8 | BUG-01 | Medium | Category filtering is not case-insensitive, violating the SRS and creating inconsistent search behavior. |
+| 1 | BUG-07 | High | Members can view borrow tickets belonging to other members, causing data exposure and violating access control. |
+| 2 | BUG-05 | High | Members can return books borrowed by other users, causing unauthorized changes to borrow records and book status. |
+| 3 | BUG-03 | High | The maximum limit of 3 borrowed books is an important business rule, but the system still allows members to borrow beyond the limit. |
+| 4 | BUG-06 | High | Incorrect email validation blocks valid members and allows invalid data into the system. |
+| 5 | BUG-02 | High | Mixing up between suspension and expiration violates the business rule. |
+| 6 | BUG-04 | Medium | Missing overdue warnings violate business rules and may mislead users during overdue returns. |
+| 7 | BUG-01 | Medium | Category filtering is not case-insensitive, violating the SRS and creating inconsistent search behavior. |
 
-After fixing High and Medium severity bugs, the team should retest at least the related test cases: TC-03-06, TC-03-11, TC-03-12, TC-04-04, TC-04-06, TC-05-02, TC-05-03, TC-05-05, TC-07-01, TC-07-03, TC-07-06, and TC-08-03.
+After fixing High and Medium severity bugs, the team should retest at least the related test cases: TC-03-06, TC-04-04, TC-04-06, TC-05-02, TC-05-03, TC-05-05, TC-07-01, TC-07-03, TC-07-06, and TC-08-03.
 
 ---
 
