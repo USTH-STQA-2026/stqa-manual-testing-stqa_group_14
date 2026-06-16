@@ -41,9 +41,9 @@
 
 | Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
-| User Role | Librarian | librarian@library.com | System displays complete book list |
-|  | Member | ba.nguyen@email.com | System displays complete book list |
-| Book Information Display | Complete book information | BOOK001 | System displays all 20 books: title, author, genre, published year correctly |
+| User Role | Librarian | librarian@library.com | Librarian can view complete book list |
+|  | Member | ba.nguyen@email.com | Member can view complete book list |
+| Book Information Display | Complete book information | BOOK001 | System correctly displays title, author, genre, published year for BOOK001 |
 | Book Status | Available | BOOK001 | Status displayed as “Available” |
 |  | Borrowed | BOOK003 | Status displayed as “Borrowed” |
 |  | Lost | BOOK007 | Status displayed as “Lost” |
@@ -253,8 +253,8 @@ We used decision tables because:
 
 | TC ID | Test Objective | Preconditions | Test Steps | Input Data | Expected Result | REQ | Technique |
 |-------|-------------------|---------------|---------------|-----------------|------------------|-----|---------|
-| TC-02-01 | Verify librarian can view the complete book list | User is logged in as librarian | 1. Login as librarian <br> 2. Navigate to the “Books” tab <br> 3. Check displayed book list | Email: librarian@library.com <br> Password: admin123 | System displays all 20 books with title, author, genre, published year | REQ-02 | EP, Decision Table |
-| TC-02-02 | Verify member can view the complete book list | User is logged in as member | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Check displayed book list | Email: ba.nguyen@email.com <br> Password: password123 | System displays all 20 books with title, author, genre, published year| REQ-02 | EP, Decision Table |
+| TC-02-01 | Verify librarian can view the complete book list | User is logged in as librarian | 1. Login as librarian <br> 2. Navigate to the “Books” tab <br> 3. Check displayed book list | Email: librarian@library.com <br> Password: admin123 | Librarian can view complete book list  | REQ-02 | EP, Decision Table |
+| TC-02-02 | Verify member can view the complete book list | User is logged in as member | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Check displayed book list | Email: ba.nguyen@email.com <br> Password: password123 |Member can view complete book list| REQ-02 | EP, Decision Table |
 | TC-02-03 | Verify complete book information is displayed correctly | User is logged in and currently on the “Books” tab | 1. Login <br> 2. Navigate to the “Books” tab <br> 3. Check information of BOOK001 | BOOK001 | System correctly displays title, author, genre, published year for BOOK001 | REQ-02 | EP, Decision Table |
 | TC-02-04 | Verify book status is displayed correctly | User is logged in and currently on the “Books” tab | 1. Login <br> 2. Navigate to the “Books” tab <br> 3. Check status of BOOK001 and BOOK003 | BOOK001, BOOK003 | BOOK001 status is displayed as “Available”. BOOK003 status is displayed as “Borrowed” | REQ-02 | EP, Decision Table |
 | TC-02-05 | Verify real-time status update after borrowing a book | User is logged in as member. BOOK001 is currently “Available” | 1. Login as member <br> 2. Navigate to the “Books” tab <br> 3. Verify BOOK001 is “Available” <br> 4. Borrow BOOK001 <br> 5. Return to the “Books” tab <br> 6. Check BOOK001 status again | BOOK001 | BOOK001 status changes immediately from “Available” to “Borrowed” | REQ-02 | EP, Decision Table |
