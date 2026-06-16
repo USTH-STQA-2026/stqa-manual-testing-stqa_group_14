@@ -7,7 +7,7 @@
 | Item | Information |
 |-----|-------------|
 | **Group** | Group 14 |
-| **Class** | ICT |
+| **Class** | ICT2 |
 | **Report Date** | 28/05/2026 |
 | **System Under Test** | https://stqa.rbc.vn - SRS v1.0 |
 | **Testing Scope** | REQ-01 to REQ-08 |
@@ -35,7 +35,7 @@
 |------------------|----|------|------|--------------|-------------------|------------|
 | REQ-01 - Login | 9 | 3 | 2 | 4 | 0 bug, 3 observations | Partially Passed - Basic login flows work, but error messages and several input cases are not clearly specified in the SRS. |
 | REQ-02 - View Book List | 7 | 7 | 0 | 0 | 0 | Passed - Book list display, book information, and status updates work correctly in the tested cases. |
-| REQ-03 - Search & Filter Books | 14 | 7 | 4 | 3 | 1 bugs, 4 observations | Needs Improvement - Basic search works, but category filtering and combined search do not fully meet the requirements. |
+| REQ-03 - Search & Filter Books | 14 | 7 | 4 | 3 | 1 bug, 4 observations | Needs Improvement - Basic search works, but category filtering and combined search do not fully meet the expected behavior. |
 | REQ-04 - Borrow Book | 6 | 4 | 2 | 0 | 2 bugs, 1 observation | Needs Improvement - Basic borrowing can work, but the borrow-limit rule and member-status messages still contain defects. |
 | REQ-05 - Return Book | 5 | 2 | 3 | 0 | 2 bugs | Needs Improvement - Valid return cases can succeed, but overdue warnings and borrow-record ownership control are incorrect. |
 | REQ-06 - Overdue Handling | 5 | 5 | 0 | 0 | 0 | Passed - The overdue checking function works correctly for before-due, on-due, and after-due date conditions. |
@@ -48,7 +48,7 @@
 | Severity | Quantity | Bug IDs |
 |----------|----------|---------|
 | High | 5 | BUG-02, BUG-03, BUG-05, BUG-06, BUG-07 |
-| Medium | 2 | BUG-01,  BUG-04 |
+| Medium | 2 | BUG-01, BUG-04 |
 | Low | 0 | None |
 
 ### Observations / Requirement Issues
@@ -57,7 +57,7 @@
 |------|----------|-----|
 | Localization / UI consistency | 3 | OBS-01, OBS-07, OBS-08 |
 | Requirement Ambiguity | 1 | OBS-02 |
-| Requirement Gap | 4 | OBS-03, OBS-04, OBS-05, OBS-06 |
+| Requirement Gap / Enhancement Candidate | 4 | OBS-03, OBS-04, OBS-05, OBS-06 |
 
 ---
 
@@ -67,7 +67,7 @@
 |-----------|----------------------|-------------|
 | Equivalence Partitioning (EP) | REQ-01 to REQ-08 | Inputs were divided into valid and invalid partitions, including login accounts, roles, book status, search keywords, categories, member status, borrow-record status, email, phone number, and access permissions. |
 | Boundary Value Analysis (BVA) | REQ-04, REQ-05, REQ-06, REQ-07 | Boundary values were tested, such as borrowed-book count equal to 3, current date equal to due date, shortest valid email, and email/phone formats near valid and invalid boundaries. |
-| Decision Table | REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-08 | Used to combine multiple input conditions, especially for login, combined search, borrowing conditions, return-book behavior, and permission to view borrow records. |
+| Decision Table | REQ-01 to REQ-08, with strongest use in REQ-04 and related multi-condition flows | Used to combine multiple input conditions, especially for login, combined search, borrowing conditions, return-book behavior, and permission to view borrow records. |
 | Access Control Testing | REQ-05, REQ-07, REQ-08 | Used to verify permission boundaries between librarian and member roles, including whether members can access the Members tab, view other members' tickets, or return books owned by other members. |
 | Negative Testing | REQ-01, REQ-03, REQ-04, REQ-05, REQ-07, REQ-08 | Used to test invalid inputs, non-existing accounts, no-result keywords, unavailable books, invalid members, records not owned by the current user, and invalid member information. |
 
@@ -112,7 +112,7 @@
 **Observations / Requirement issues**
 - **OBS-04 - Search does not support Vietnamese diacritic-insensitive input.** Inputs without diacritics, such as `Nguyen Minh Duc` or `Cong nghe`, return no results.
 - **OBS-05 - Category filter does not support partial match.** The category field requires the full exact category name, which is inconsistent with the keyword search bar.
-- **OBS-06 - Combined search does not apply AND logic.** When both keyword and category are entered, the system does not apply both filters at the same time. The result depends on the search field entered last, causing users to receive incorrect results.
+- **OBS-06 - Combined search does not apply stable AND logic.** When both keyword and category are entered, the system does not apply both filters at the same time. The result depends on the search field entered last, causing users to receive incorrect results. This is recorded as an observation because the SRS does not explicitly define combined-filter behavior.
 - **OBS-07 - Category bar does not support English category input.** When the interface is in English, entering `Technology` does not return the corresponding book list.
 
 #### REQ-04 - Borrow Book
@@ -181,7 +181,7 @@ The system is **not ready for release** in its current state.
 
 The test results show that several basic workflows are functional, especially viewing the book list, updating book status, basic search, valid book return, and overdue checking. However, the system still contains multiple issues that directly affect business rules and access control.
 
-The most serious problems are related to members being able to view or modify other members' data, the borrow-limit rule not being enforced, incorrect email validation, and combined search not applying the required AND logic. These defects can cause data inconsistency, privacy concerns, and unreliable results for users.
+The most serious problems are related to members being able to view or modify other members' data, the borrow-limit rule not being enforced, incorrect email validation, and combined search not applying stable filtering logic. These issues can cause data inconsistency, privacy concerns, and unreliable results for users.
 
 The team recommends fixing all High and Medium severity bugs before release, then retesting the affected requirements. Observations and requirement gaps should also be clarified in the SRS so future testing can be evaluated against clear expected results.
 

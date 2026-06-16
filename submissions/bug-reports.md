@@ -60,9 +60,9 @@ Both inputs return "No books found". No books shown.
 P2
 
 **Evidence:**
-- Screenshot lowecase: ![TC-03-06 lowercase](evidence/REQ-03/TC-03-06_BUG%20lowercase%20(Medium).png)
+- Screenshot lowecase: ![TC-03-06 lowercase](evidence/REQ-03/TC-03-06_BUG%20lowercase%20%28Medium%29.png)
 
-- Screenshot uppercase: ![TC-03-06 uppercase](evidence/REQ-03/TC-03-06_BUG%20uppercase%20(Medium).png)
+- Screenshot uppercase: ![TC-03-06 uppercase](evidence/REQ-03/TC-03-06_BUG%20uppercase%20%28Medium%29.png)
 
 **Suggested fix:**
 Apply `.toLowerCase()` or equivalent normalization to both the user input and the stored category values before comparison, consistent with how the keyword search bar already handles case. 
@@ -111,13 +111,13 @@ Apply `.toLowerCase()` or equivalent normalization to both the user input and th
 **Priority:** P1
 
 **Evidence:**
-- Before borrowing BOOK001: ![TC-04-04 BOOK001 before](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_before.png)
+- Before borrowing BOOK001: ![TC-04-04 BOOK001 before](evidence/REQ-04/TC-04-04%20BUG%28Low%20and%20Medium%29/BOOK001_before.png)
 
-- After borrowing BOOK001: ![TC-04-04 BOOK001 after](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_vi.png)
+- After borrowing BOOK001: ![TC-04-04 BOOK001 after](evidence/REQ-04/TC-04-04%20BUG%28Low%20and%20Medium%29/BOOK001_after_vi.png)
 
-- Borrow records before borrowing: ![TC-04-04 BR before](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BR_before.png)
+- Borrow records before borrowing: ![TC-04-04 BR before](evidence/REQ-04/TC-04-04%20BUG%28Low%20and%20Medium%29/BR_before.png)
 
-- Borrow records after borrowing: ![TC-04-04 BR after](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BR_after.png)
+- Borrow records after borrowing: ![TC-04-04 BR after](evidence/REQ-04/TC-04-04%20BUG%28Low%20and%20Medium%29/BR_after.png)
 
 **Suggested fix:**
 Correct the error message to "member has been suspended"
@@ -230,12 +230,12 @@ However, **no overdue warning message was displayed** when `returnDate >= dueDat
 
 **Evidence:**
 - Before Return
-![TC-05-02 before record](evidence/REQ-05/TC-02-before-record%20BUG%20(Medium).png)
+![TC-05-02 before record](evidence/REQ-05/TC-02-before-record%20BUG%20%28Medium%29.png)
 
 - After Return
-![TC-05-02 after return](evidence/REQ-05/TC-02-after-return%20BUG%20(Medium).png)
+![TC-05-02 after return](evidence/REQ-05/TC-02-after-return%20BUG%20%28Medium%29.png)
 
-![TC-05-02 after book](evidence/REQ-05/TC-02-after-book%20BUG%20(Medium).png)
+![TC-05-02 after book](evidence/REQ-05/TC-02-after-book%20BUG%20%28Medium%29.png)
 
 **Suggested fix:**
 The system should display an overdue warning message when:
@@ -307,12 +307,12 @@ Members are able to manipulate borrow records that belong to other users, which 
 Before Unauthorized Return
 
 Logged in as **MEM003 (Trần Dựa Dẫm)**, but the system displayed borrow records belonging to **MEM002 (Nguyễn Học Bá)** and still allowed the **Return** action.
-![TC-05-05](evidence/REQ-05/TC-05-before-record%20BUG%20(High).png)
+![TC-05-05](evidence/REQ-05/TC-05-before-record%20BUG%20%28High%29.png)
 
 After Unauthorized Return
 
 While logged in as **MEM003 (Trần Dựa Dẫm)**, the system successfully returned a borrow record belonging to **MEM002 (Nguyễn Học Bá)**. The record status changed to **Returned**, confirming unauthorized access and modification.
-![TC-05-05 after return](evidence/REQ-05/TC-05-after-return%20BUG%20(High).png)
+![TC-05-05 after return](evidence/REQ-05/TC-05-after-return%20BUG%20%28High%29.png)
 
 **Suggested fix:**
 
@@ -325,7 +325,7 @@ Hide or disable the Return Book button for records owned by other members, and r
 | Attribute | Details |
 |-----------|---------|
 | **Bug ID** | BUG-06 |
-| **Related TC** | TC-07-01 |
+| **Related TC** | TC-07-01, TC-07-03, TC-07-06 |
 | **Related REQ** | REQ-07 |
 | **Severity** | High |
 | **Reported by** | Hoàng Hải Minh |
@@ -358,9 +358,9 @@ Loss of new members, poor user experience, damage to reputation, allows invalid 
 This bug prevents valid users from being created while still allowing invalid entries, which breaks core member registration flow and undermines data integrity.
 
 **Evidence:**
-![TC-01 REQ-07](evidence/REQ-07/TC-01%20REQ-07%20BUG%20(High).png)
-![TC-02 REQ-07](evidence/REQ-07/TC-02%20REQ-07%20BUG%20(High).png)
-![TC-06 REQ-07](evidence/REQ-07/TC-06%20REQ-07%20BUG%20(High).png)
+![TC-01 REQ-07](evidence/REQ-07/TC-01%20REQ-07%20BUG%20%28High%29.png)
+![TC-02 REQ-07](evidence/REQ-07/TC-02%20REQ-07%20BUG%20%28High%29.png)
+![TC-06 REQ-07](evidence/REQ-07/TC-06%20REQ-07%20BUG%20%28High%29.png)
 
 **Suggested fix:**
 Review and fix the email validation logic in the member creation form, ensure valid email formats are accepted and invalid formats are rejected correctly.
@@ -400,7 +400,7 @@ Data privacy breach
 - The issue exposes other members' ticket data, creating a serious privacy breach and potential compliance violation.
 
 **Evidence:**
-![TC-09 REQ-08](evidence/REQ-08/TC-09%20REQ-08%20BUG%20(High).png)
+![TC-09 REQ-08](evidence/REQ-08/TC-09%20REQ-08%20BUG%20%28High%29.png)
 
 **Suggested fix:**
 Server-side / data-layer filtering, improve UI-layer enforcement
@@ -641,9 +641,9 @@ Display "No books found" for both steps. No books shown.
 P3
 
 **Evidence:**
-- Screenshot name bar: ![TC-03-07 author](evidence/REQ-03/TC-03-07_OBS_author-without-diacritics%20(Low).png)
+- Screenshot name bar: ![TC-03-07 author](evidence/REQ-03/TC-03-07_OBS_author-without-diacritics%20%28Low%29.png)
 
-- Screenshot category bar: ![TC-03-08 genre](evidence/REQ-03/TC-03-08_OBS_genre-without-diacritics%20(Low).png)
+- Screenshot category bar: ![TC-03-08 genre](evidence/REQ-03/TC-03-08_OBS_genre-without-diacritics%20%28Low%29.png)
 
 **Suggested fix:**
 Implement diacritic normalization (e.g. convert `"Nguyen Minh Duc"` → `"Nguyễn Minh Đức"` before comparison) for both search bars. This is a common requirement for Vietnamese-language applications.
@@ -758,13 +758,13 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 P1
 
 **Evidence:**
-- Screenshot match - author 1st: ![TC-03-12 author 1st](evidence/REQ-03/TC-03-12_OBS_author-first_1%20(High).png) ![TC-03-12](evidence/REQ-03/TC-03-12_OBS_author-first_2%20(High).png) ![TC-03-12](evidence/REQ-03/TC-03-12_OBS_author-first_3%20(High).png)
+- Screenshot match - author 1st: ![TC-03-12 author 1st](evidence/REQ-03/TC-03-12_OBS_author-first_1%20%28High%29.png) ![TC-03-12](evidence/REQ-03/TC-03-12_OBS_author-first_2%20%28High%29.png) ![TC-03-12](evidence/REQ-03/TC-03-12_OBS_author-first_3%20%28High%29.png)
 
-- Screenshot match - genre 1st: ![TC-03-12 genre 1st](evidence/REQ-03/TC-03-12_OBS_genre-first%20(High).png)
+- Screenshot match - genre 1st: ![TC-03-12 genre 1st](evidence/REQ-03/TC-03-12_OBS_genre-first%20%28High%29.png)
 
-- Screenshot mismatch author 1st: ![TC-03-13 author 1st](evidence/REQ-03/TC-03-13_OBS_author-first%20(High).png)
+- Screenshot mismatch author 1st: ![TC-03-13 author 1st](evidence/REQ-03/TC-03-13_OBS_author-first%20%28High%29.png)
 
-- Screenshot mismatch genre 1st: ![TC-03-13 genre 1st](evidence/REQ-03/TC-03-13_OBS_genre-first%20(High).png)
+- Screenshot mismatch genre 1st: ![TC-03-13 genre 1st](evidence/REQ-03/TC-03-13_OBS_genre-first%20%28High%29.png)
 
 **Suggested fix:**
 Refactor the search/filter logic to evaluate both conditions simultaneously using `AND` logic: a book must satisfy both the keyword condition (title or author contains keyword) and the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
@@ -861,9 +861,9 @@ Map English category keywords to their Vietnamese equivalents before filtering (
 - It doesn't significantly affect the user experience.
 
 **Evidence:**
-![TC-04-04: After borrowing BOOK001](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_en.png)
-![TC-04-05: After borrowing BOOK001](evidence/REQ-04/TC-04-05%20BUG(Low)/BOOK001_after_en.png)
-![Extra case: After borrowing BOOK008](evidence/REQ-04/TC-04-07%20BUG(Low)/BOOK008_after_en.png)
+![TC-04-04: After borrowing BOOK001](evidence/REQ-04/TC-04-04%20BUG%28Low%20and%20Medium%29/BOOK001_after_en.png)
+![TC-04-05: After borrowing BOOK001](evidence/REQ-04/TC-04-05%20BUG%28Low%29/BOOK001_after_en.png)
+![Extra case: After borrowing BOOK008](evidence/REQ-04/TC-04-07%20BUG%28Low%29/BOOK008_after_en.png)
 
 **Suggested fix:**
 Correct the error messages to the English version when the display language is English
