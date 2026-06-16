@@ -10,7 +10,7 @@
 
 ## Environment
 
-- Browser: Chrome
+- Browser: Chrome Version 148
 - Operating System: Window 11, Linux
 - Web application: Library Management System
 - User Interface Language: Vietnamese, English
@@ -54,14 +54,14 @@ Both inputs return "No books found". No books shown.
 - Violates the case-insensitive rule stated in SRS REQ-03. This is inconsistent with keyword search bar which correctly handles case-insensitive input.
 
 **Severity explanation:** Medium
-
-The category filter still works with exact casing. Core functionality is not broken, but the inconsistency with the keyword bar and the SRS violation reduce reliability and usability.
+- The category filter still works with exact casing. Core functionality is not broken, but the inconsistency with the keyword bar and the SRS violation reduce reliability and usability.
 
 **Priority:**
 P2
 
 **Evidence:**
 - Screenshot lowecase: ![TC-03-06 lowercase](evidence/REQ-03/TC-03-06_BUG%20lowercase%20(Medium).png)
+
 - Screenshot uppercase: ![TC-03-06 uppercase](evidence/REQ-03/TC-03-06_BUG%20uppercase%20(Medium).png)
 
 **Suggested fix:**
@@ -112,8 +112,11 @@ Apply `.toLowerCase()` or equivalent normalization to both the user input and th
 
 **Evidence:**
 - Before borrowing BOOK001: ![TC-04-04 BOOK001 before](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_before.png)
+
 - After borrowing BOOK001: ![TC-04-04 BOOK001 after](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BOOK001_after_vi.png)
+
 - Borrow records before borrowing: ![TC-04-04 BR before](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BR_before.png)
+
 - Borrow records after borrowing: ![TC-04-04 BR after](evidence/REQ-04/TC-04-04%20BUG(Low%20and%20Medium)/BR_after.png)
 
 **Suggested fix:**
@@ -163,8 +166,11 @@ Correct the error message to "member has been suspended"
 
 **Evidence:**
 - Before borrowing BOOK005: ![TC-04-06 BOOK005 before](evidence/REQ-04/TC-04-06%20BUG/BOOK005_before.png)
+
 - After borrowing BOOK005: ![TC-04-06](evidence/REQ-04/TC-04-06%20BUG/BOOK005_after.png)
+
 - Borrow records before borrowing: ![TC-04-06 BR before](evidence/REQ-04/TC-04-06%20BUG/BR_before.png)
+
 - Borrow records after borrowing: ![TC-04-06 BR after](evidence/REQ-04/TC-04-06%20BUG/BR_after.png)
 
 **Suggested fix:**
@@ -228,6 +234,7 @@ However, **no overdue warning message was displayed** when `returnDate >= dueDat
 
 - After Return
 ![TC-05-02 after return](evidence/REQ-05/TC-02-after-return%20BUG%20(Medium).png)
+
 ![TC-05-02 after book](evidence/REQ-05/TC-02-after-book%20BUG%20(Medium).png)
 
 **Suggested fix:**
@@ -390,8 +397,7 @@ Tickets for MEM003 are displayed
 Data privacy breach
 
 **Severity explanation:** High
-
-The issue exposes other members' ticket data, creating a serious privacy breach and potential compliance violation.
+- The issue exposes other members' ticket data, creating a serious privacy breach and potential compliance violation.
 
 **Evidence:**
 ![TC-09 REQ-08](evidence/REQ-08/TC-09%20REQ-08%20BUG%20(High).png)
@@ -405,7 +411,7 @@ Server-side / data-layer filtering, improve UI-layer enforcement
 
 ## Environment
 
-- Browser: Chrome Version 148, Chrome version 142
+- Browser: Chrome Version 142
 - Operating System: Windows 10, Linux
 - Web application: Library Management System
 - User Interface Language: Vietnamese, English
@@ -443,27 +449,27 @@ Server-side / data-layer filtering, improve UI-layer enforcement
 4. Click the **Login** button
 
 **Expected result:**
-- TC-01-03:System displays the error message:
+- TC-01-03: System displays the error message:
 'Member not found'(English Message)
-- TC-01-04:System displays the error message:
+- TC-01-04: System displays the error message:
 'Incorrect password'(English Message)
 
 **Actual result:**
-- TC-01-03:System displays the Vietnamese message: 'Không tìm thấy thành viên'
-- TC-01-04:System displays the Vietnamese message: 'Mật khẩu không đúng'
+- TC-01-03: System displays the Vietnamese message: 'Không tìm thấy thành viên'
+- TC-01-04: System displays the Vietnamese message: 'Mật khẩu không đúng'
 
 **Impact:**
 English users may not understand the displayed error message, causing inconsistent user experience.
 
 **Severity explanation:** Low
-
-The issue does not prevent users from logging in or accessing system functions. However, it affects usability and language consistency when the application is used in English mode.
+- The issue does not prevent users from logging in or accessing system functions. However, it affects usability and language consistency when the application is used in English mode.
 
 **Priority:**
 - P2
 
 **Evidence:**
 - TC-01-03 screenshot: ![TC-01-03](evidence/REQ-01-02/TC-01-03.jpg)
+
 - TC-01-04 screenshot: ![TC-01-04](evidence/REQ-01-02/TC-01-04.jpg)
 
 **Suggested Fix:**
@@ -514,14 +520,14 @@ The issue does not prevent users from logging in or accessing system functions. 
 - Test verdict is marked as: Inconclusive. Because the specification is too vague to determine a Pass or Fail result.
 
 **Severity explanation:** Low
-
-The ambiguity does not prevent the system from functioning. However, it affects the ability to evaluate test results consistently and may lead to misunderstandings during development and testing.
+- The ambiguity does not prevent the system from functioning. However, it affects the ability to evaluate test results consistently and may lead to misunderstandings during development and testing.
 
 **Priority:**
 - P3
 
 **Evidence:**
 - TC-01-06 screenshot: ![TC-01-06](evidence/REQ-01-02/TC-01-06.jpg)
+
 - TC-01-07 screenshot: ![TC-01-07](evidence/REQ-01-02/TC-01-07.jpg)
 
 **Suggested Fix:**
@@ -572,14 +578,14 @@ The test verdict is marked as Inconclusive because the SRS does not define the e
 Different developers may implement inconsistent validation behavior.
 
 **Severity explanation:** Low
-
-The issue does not affect system operation directly. However, it prevents objective verification of login validation behavior and may lead to inconsistent implementations.
+- The issue does not affect system operation directly. However, it prevents objective verification of login validation behavior and may lead to inconsistent implementations.
 
 **Priority:**
 - P3
 
 **Evidence:**
 - TC-01-08 screenshot: ![TC-01-08](evidence/REQ-01-02/TC-01-08.jpg)
+
 - TC-01-09 screenshot: ![TC-01-09](evidence/REQ-01-02/TC-01-09.jpg)
 
 **Suggested Fix:**
@@ -629,15 +635,15 @@ Display "No books found" for both steps. No books shown.
 - Given that the system supports a Vietnamese-English language interface, this may affect a significant portion of users.
 
 **Severity explanation:** Low
-
- SRS does not require diacritic-insensitive search. Current behavior is technically within spec. Reported as an observation for future consideration.
+- SRS does not require diacritic-insensitive search. Current behavior is technically within spec. Reported as an observation for future consideration.
 
 **Priority:**
 P3
 
 **Evidence:**
-- Screenshot: ![TC-03-07 author](evidence/REQ-03/TC-03-07_OBS_author-without-diacritics%20(Low).png)
-- Screenshot: ![TC-03-08 genre](evidence/REQ-03/TC-03-08_OBS_genre-without-diacritics%20(Low).png)
+- Screenshot name bar: ![TC-03-07 author](evidence/REQ-03/TC-03-07_OBS_author-without-diacritics%20(Low).png)
+
+- Screenshot category bar: ![TC-03-08 genre](evidence/REQ-03/TC-03-08_OBS_genre-without-diacritics%20(Low).png)
 
 **Suggested fix:**
 Implement diacritic normalization (e.g. convert `"Nguyen Minh Duc"` → `"Nguyễn Minh Đức"` before comparison) for both search bars. This is a common requirement for Vietnamese-language applications.
@@ -672,11 +678,11 @@ Display 8 books whose category contains "Công": BOOK001, BOOK002, BOOK003, BOOK
 Display "No books found". No books shown. Only typing the full exact name `"Công nghệ"` returns results.
 
 **Impact:**
-Category filter behaves inconsistently compared to the title/author search bar - which supports partial input. Users who type partial category names get no results and may assume no books exist in that category.
+- Category filter behaves inconsistently compared to the title/author search bar - which supports partial input.
+- Users who type partial category names get no results and may assume no books exist in that category.
 
 **Severity explanation:** Low
-
-SRS does not explicitly require partial match for the category filter. However the inconsistency with the title/author bar creates a confusing user experience.
+- SRS does not explicitly require partial match for the category filter. However the inconsistency with the title/author bar creates a confusing user experience.
 
 **Priority:**
 P3
@@ -742,23 +748,26 @@ Implement partial match logic for the category filter (e.g. use `.contains()` in
 **Impact:**
 - Combined search is fundamentally broken. Results are unpredictable and depend entirely on input order (based on which bar is entered last).
 - Users cannot narrow down results using both filters simultaneously, which defeats the purpose of having two search bars. Wrong books are returned silently with no error message.
-- `In practice, this would be classified as a critical bug in a real-world project as it directly violates the principle of AND logic in combined filtering. However, in the context of this course, this is recorded as an observation since SRS REQ-03 does not explicitly specify the expected behavior when both search bars are used simultaneously.`
+- __`In practice, this would be classified as a critical bug in a real-world project as it directly violates the principle of AND logic in combined filtering. However, in the context of this course, this is recorded as an observation since SRS REQ-03 does not explicitly specify the expected behavior when both search bars are used simultaneously.`__
 
 **Severity explanation:** High
-
-Combined filtering is a core use case of REQ-03 (especially when users don't remember the exact the detail of name). The feature returns incorrect results in 3 out of 4 scenarios with no warning to the user. This directly misleads users and violates SRS requirements.
+- Combined filtering is a core use case of REQ-03, especially when users don't remember the exact the detail of name.
+- The feature returns incorrect results in 3 out of 4 scenarios with no warning to the user. This directly misleads users and violates SRS requirements.
 
 **Priority:**
 P1
 
 **Evidence:**
 - Screenshot match - author 1st: ![TC-03-12 author 1st](evidence/REQ-03/TC-03-12_OBS_author-first_1%20(High).png) ![TC-03-12](evidence/REQ-03/TC-03-12_OBS_author-first_2%20(High).png) ![TC-03-12](evidence/REQ-03/TC-03-12_OBS_author-first_3%20(High).png)
+
 - Screenshot match - genre 1st: ![TC-03-12 genre 1st](evidence/REQ-03/TC-03-12_OBS_genre-first%20(High).png)
+
 - Screenshot mismatch author 1st: ![TC-03-13 author 1st](evidence/REQ-03/TC-03-13_OBS_author-first%20(High).png)
+
 - Screenshot mismatch genre 1st: ![TC-03-13 genre 1st](evidence/REQ-03/TC-03-13_OBS_genre-first%20(High).png)
 
 **Suggested fix:**
-Refactor the search/filter logic to evaluate both conditions simultaneously using AND logic: a book must satisfy both the keyword condition (title or author contains keyword) and the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
+Refactor the search/filter logic to evaluate both conditions simultaneously using `AND` logic: a book must satisfy both the keyword condition (title or author contains keyword) and the category condition (category matches filter) to appear in results. The result must be consistent regardless of which bar is filled in first.
 
 ---
 
@@ -794,8 +803,7 @@ Display "No books found". No books shown.
 Users who switch the interface to English and type category names in English get no results despite matching books existing in the system. 
 
 **Severity explanation:** Low
-
-Since SRS does not require bilingual input for the category filter. However this is inconsistent with the bilingual support mentioned in BRD. This is reported as an observation for future consideration.
+- Since SRS does not require bilingual input for the category filter. However this is inconsistent with the bilingual support mentioned in BRD. This is reported as an observation for future consideration.
 
 **Priority:**
 P3
