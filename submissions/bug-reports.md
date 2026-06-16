@@ -365,7 +365,7 @@ Review and fix the email validation logic in the member creation form, ensure va
 | Attribute | Details |
 |-----------|---------|
 | **Bug ID** | BUG-07 |
-| **Related TC** | TC-08-09 |
+| **Related TC** | TC-08-03 |
 | **Related REQ** | REQ-08 |
 | **Severity** | High |
 | **Reported by** | Hoàng Hải Minh |
