@@ -1,9 +1,5 @@
 # Test Cases — Bảng trường hợp kiểm thử
 
-> **Hướng dẫn**: Viết tối thiểu **20 TC** phủ đủ các chức năng chính (REQ-01 → REQ-08).
-> Xem [examples/sample-test-case.md](../examples/sample-test-case.md) để hiểu cách viết TC tốt.
-> Tự tổ chức và phân nhóm test case theo cách hợp lý nhất.
-
 | Thông tin | |
 |---|---|
 | **Nhóm** | Group 14 |
@@ -12,13 +8,6 @@
 | **Tham chiếu** | SRS v1.0 |
 
 ---
-
-## Bước 1: Mô hình hóa miền đầu vào — Input Domain Modeling (IDM)
-
-> 📖 **Textbook:** Chương 6 — *Input Domain Modeling*, Paul Ammann & Jeff Offutt.
->
-> **Trước khi viết Test Case**, nhóm **phải** phân tích miền đầu vào bằng bảng IDM bên dưới.
-> Mỗi chức năng cần xác định: **Đặc tính (Characteristic)**, **Phân vùng (Block/Partition)**, và **Giá trị đại diện (Value)**.
 
 ### IDM — Login (REQ-01)
 
