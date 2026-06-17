@@ -43,8 +43,8 @@
 
 | Characteristic | Block | Representative Value | Expected Result |
 |---|---|---|---|
-| Keywords exists in DB | Yes (book title) | `"Flutter"` | Display books containing "Flutter" |
-| | Yes (author name) | `"Nguyễn Minh Đức"` | Display books by Nguyễn Minh Đức |
+| Keywords exists in DB | Bbook title | `"Flutter"` | Display books containing "Flutter" |
+| | Author name | `"Nguyễn Minh Đức"` | Display books by Nguyễn Minh Đức |
 | | Books (category) | `"Công nghệ"` | Display 8 books in Technology category only |
 | | No match | `"XYZ123"` | Display "Không tìm thấy sách" |
 | | Completely empty search | no input | Display all 20 books |
