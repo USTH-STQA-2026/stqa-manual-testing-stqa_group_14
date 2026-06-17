@@ -34,20 +34,20 @@
 ## REQ-03: Search & Filter Books
 | TC ID | Functional Group | Expected Result (Summary) | Actual Result | Status | Evidence | Issue |
 |---|---|---|---|---|---|---|
-| TC-03-01 | Search by title/author | Display 1 book: BOOK001 (baseline for TC-05) | Display BOOK001 | Pass | N/A | - |
-| TC-03-02 | As above | Display 2 books: BOOK001, BOOK009 | Display BOOK001, 009 | Pass | N/A | - |
-| TC-03-03 | Filter by category | Display 8 books in Technology: BOOK001, 002, 003, 005, 008, 009, 010, 011 (baseline for TC-06) | Display BOOK001, 002, 003, 005, 008, 009, 010, 011 | Pass | N/A | - |
-| TC-03-04 | Both bars | Display "No books found" | Display "No books found" |  Pass | N/A | - |
-| TC-03-05 | Case sensitivity — title/author bar | Display 1 book: BOOK001 for both `"nguyễn minh đức"` and `"NGUYỄN MINH ĐỨC"` (same as TC-03-01) | Display BOOK001 for both inputs | Pass | N/A | - |
-| TC-03-06 | Case sensitivity — category bar | Display 8 books for both `"công nghệ"` and `"CÔNG NGHỆ"` (same as TC-03-03) | Display "No books found", blank list for both inputs | Fail |  [Lowercase](evidence/REQ-03/TC-03-06_BUG%20lowercase%20%28Medium%29.png), [Uppercase](evidence/REQ-03/TC-03-06_BUG%20uppercase%20%28Medium%29.png)| BUG-01 |
-| TC-03-07 | Diacritic sensitivity — name bar | Display 2 books: BOOK001, BOOK009 (same as TC-03-02) | Display "No books found", blank list | Inconclusive | [Author without diacritics](evidence/REQ-03/TC-03-07_OBS_author-without-diacritics%20%28Low%29.png) | OBS-04 |
-| TC-03-08 | Diacritic sensitivity — category bar | Display 8 books: BOOK001, 002, 003, 005, 008, 009, 010, 011 (same as TC-03-03) | Display "No books found", blank list | Inconclusive | [Genre without diacritics](evidence/REQ-03/TC-03-08_OBS_genre-without-diacritics%20%28Low%29.png) | OBS-04 |
-| TC-03-09 | Partial keyword — title/author bar | Display 4 books whose author contains "Nguyễn": BOOK001, 006, 009, 016 | Display BOOK001, 006, 009, 016 | Pass |N/A | - |
-| TC-03-10 | Partial keyword — category bar | Display 8 books whose genre contains "Công": BOOK001, 002, 003, 005, 008, 009, 010, 011 | Display "No books found", blank list | Inconclusive | [Evidence](evidence/REQ-03/TC-03-10_OBS.png) | OBS-05 |
+| TC-03-01 | Search by title/author | Display 1 book: BOOK001 | Display BOOK001 | Pass | N/A | - |
+| TC-03-02 | As above | Display 2 books: BOOK001, BOOK009 (baseline for TC-03-05) | Display BOOK001, BOOK009 | Pass | N/A | - |
+| TC-03-03 | Filter by category | Display 8 books in Technology: BOOK001, 002, 003, 005, 008, 009, 010, 011 (baseline for TC-03-06) | Display BOOK001, 002, 003, 005, 008, 009, 010, 011 | Pass | N/A | - |
+| TC-03-04 | Both bars - non-existent keyword | Display "No books found" | Display "No books found" | Pass | N/A | - |
+| TC-03-05 | Case sensitivity - title/author bar | Display 1 book: BOOK001 for both `"nguyễn minh đức"` and `"NGUYỄN MINH ĐỨC"` (same as TC-03-02) | Display BOOK001 for both inputs | Pass | N/A | - |
+| TC-03-06 | Case sensitivity - category bar | Display 8 books for both `"công nghệ"` and `"CÔNG NGHỆ"` (same as TC-03-03) | Display "No books found", blank list for both inputs | Fail |  [Lowercase](evidence/REQ-03/TC-03-06_BUG%20lowercase%20%28Medium%29.png), [Uppercase](evidence/REQ-03/TC-03-06_BUG%20uppercase%20%28Medium%29.png)| BUG-01 |
+| TC-03-07 | Diacritic sensitivity - name bar | Display 2 books: BOOK001, BOOK009 (same as TC-03-02) | Display "No books found", blank list | Inconclusive | [Author without diacritics](evidence/REQ-03/TC-03-07_OBS_author-without-diacritics%20%28Low%29.png) | OBS-04 |
+| TC-03-08 | Diacritic sensitivity - category bar | Display 8 Technology books: BOOK001, 002, 003, 005, 008, 009, 010, 011 (same as TC-03-03) | Display "No books found", blank list | Inconclusive | [Genre without diacritics](evidence/REQ-03/TC-03-08_OBS_genre-without-diacritics%20%28Low%29.png) | OBS-04 |
+| TC-03-09 | Partial keyword - title/author bar | Display 4 books whose author contains "Nguyễn": BOOK001, 006, 009, 016 | Display BOOK001, 006, 009, 016 | Pass |N/A | - |
+| TC-03-10 | Partial keyword - category bar | Display 8 books whose genre contains "Công": BOOK001, 002, 003, 005, 008, 009, 010, 011 | Display "No books found", blank list | Inconclusive | [Evidence](evidence/REQ-03/TC-03-10_OBS.png) | OBS-05 |
 | TC-03-11 | Empty fields | Display all 20 books | Display all 20 books | Pass |N/A| - |
-| TC-03-12 | Combined search - match | Display 2 books: BOOK001, BOOK009 | (1) If keyword entered first then category — display 8 Technology books: BOOK001, 002, 003, 005, 008, 009, 010, 011 (category overrides keyword); (2) If category entered first then keyword — display 2 books: BOOK001, BOOK009 (keyword overrides category) | Fail | [Author first 1](evidence/REQ-03/TC-03-12_OBS_author-first_1%20%28High%29.png), [Author first 2](evidence/REQ-03/TC-03-12_OBS_author-first_2%20%28High%29.png), [Author first 3](evidence/REQ-03/TC-03-12_OBS_author-first_3%20%28High%29.png), [Genre first](evidence/REQ-03/TC-03-12_OBS_genre-first%20%28High%29.png) | OBS-06 |
-| TC-03-13 | Combined search - mismatch | Display "No books found" | (1) If keyword entered first then category — display 3 Economics books: BOOK007, BOOK014, BOOK015 (category overrides keyword); (2) If category entered first then keyword — display 2 books: BOOK001, BOOK009 (keyword overrides category); | Fail | [Author first](evidence/REQ-03/TC-03-13_OBS_author-first%20%28High%29.png), [Genre first](evidence/REQ-03/TC-03-13_OBS_genre-first%20%28High%29.png) | OBS-06 |
-| TC-03-14 | Category bar — English keyword (bilingual support) | Display 8 books in Technology category (same as TC-03-03) | Display "No books found" | Fail | [Evidence](evidence/REQ-03/TC-03-14_OBS.png) | OBS-07 |
+| TC-03-12 | Combined search - match | Display 2 books: BOOK001, BOOK009 | (1) If keyword entered first then category - display 8 Technology books: BOOK001, 002, 003, 005, 008, 009, 010, 011 (category overrides keyword); (2) If category entered first then keyword - display 2 books: BOOK001, BOOK009 (keyword overrides category) | Inconclusion | [Author first 1](evidence/REQ-03/TC-03-12_OBS_author-first_1%20%28High%29.png), [Author first 2](evidence/REQ-03/TC-03-12_OBS_author-first_2%20%28High%29.png), [Author first 3](evidence/REQ-03/TC-03-12_OBS_author-first_3%20%28High%29.png), [Genre first](evidence/REQ-03/TC-03-12_OBS_genre-first%20%28High%29.png) | OBS-06 |
+| TC-03-13 | Combined search - mismatch | Display "No books found" | (1) If keyword entered first then category - display 3 Economics books: BOOK007, BOOK014, BOOK015 (category overrides keyword); (2) If category entered first then keyword - display 2 books: BOOK001, BOOK009 (keyword overrides category); | Inconclusion | [Author first](evidence/REQ-03/TC-03-13_OBS_author-first%20%28High%29.png), [Genre first](evidence/REQ-03/TC-03-13_OBS_genre-first%20%28High%29.png) | OBS-06 |
+| TC-03-14 | Category bar - English keyword (bilingual support) | Display 8 books in Technology category (same as TC-03-03) | Display "No books found" | Inconclusion | [Evidence](evidence/REQ-03/TC-03-14_OBS.png) | OBS-07 |
 ---
 ## REQ-04: Borrow book
 | TC ID | Functional Group | Expected Result (Summary) | Actual Result | Status | Evidence | Issue |
@@ -110,7 +110,7 @@
 |---|---|---|---|
 | Login | 9 | REQ-01 | Equivalence Partitioning (EP) |
 | View Book List | 7 | REQ-02 | Equivalence Partitioning (EP) |
-| Search by Title/Author | 14 | REQ-03 | Equivalence Partitioning (EP), Boundary Value Analysis (BVA) |
+| Search by Title/Author | 14 | REQ-03 | Equivalence Partitioning (EP), Boundary Value Analysis (BVA), Decision Table (DT) |
 | Borrow Book | 6 | REQ-04 | Equivalence Partitioning (EP), Decision Table (DT) |
 | Return Book | 5 | REQ-05 | Equivalence Partitioning (EP), Decision Table (DT) |
 | Overdue Handling | 5 | REQ-06 | Equivalence Partitioning (EP), Boundary Value Analysis (BVA) |
