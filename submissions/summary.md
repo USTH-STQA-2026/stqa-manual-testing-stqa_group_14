@@ -1,7 +1,7 @@
 # Test Summary - Overall Testing Report
 
 ---
-**Link GitHub repo:** https://github.com/USTH-STQA-2026/stqa-automation-testing-stqa_group_14/
+**Link GitHub repo:** https://github.com/USTH-STQA-2026/stqa-manual-testing-stqa_group_14/
 
 ## 1. Group Information
 
